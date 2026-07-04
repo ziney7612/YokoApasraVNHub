@@ -62,43 +62,10 @@
 
 /* Grid */
 
-.gallery-section{
-
-    padding:50px 0 80px;
-
-}
-
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
     gap:20px;
-}
-
-/* Card */
-
-.gallery-img{
-
-    width:100%;
-
-    aspect-ratio:3/4;
-
-    object-fit:cover;
-
-    border-radius:18px;
-
-    cursor:pointer;
-
-    opacity:0;
-
-    transform:translateY(20px) scale(.98);
-
-    transition:
-        transform .35s,
-        opacity .45s,
-        box-shadow .35s;
-
-    background:#ececec;
-
 }
 
 /* Khi ảnh load xong */
@@ -132,8 +99,6 @@
 
 }
 
-}
-
 @media(max-width:768px){
 
 .gallery{
@@ -144,7 +109,6 @@
 
 }
 
-}
 
 @media(max-width:480px){
 
