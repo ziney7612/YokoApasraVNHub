@@ -1,10 +1,14 @@
+/*=========================
+    LIGHTBOX
+==========================*/
+
 .lightbox{
 
     position:fixed;
 
     inset:0;
 
-    background:rgba(0,0,0,.9);
+    background:rgba(0,0,0,.92);
 
     display:flex;
 
@@ -16,11 +20,9 @@
 
     visibility:hidden;
 
-    transition:.3s;
+    transition:.25s;
 
     z-index:9999;
-
-    padding:40px;
 
 }
 
@@ -34,14 +36,114 @@
 
 .lightbox img{
 
-    max-width:95%;
+    max-width:92vw;
 
-    max-height:92vh;
+    max-height:88vh;
 
     object-fit:contain;
 
     border-radius:12px;
 
     box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+/* CLOSE */
+
+.lb-close{
+
+    position:absolute;
+
+    top:25px;
+
+    right:35px;
+
+    font-size:40px;
+
+    color:white;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+/* PREV */
+
+.lb-prev{
+
+    position:absolute;
+
+    left:25px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:60px;
+
+    color:white;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+/* NEXT */
+
+.lb-next{
+
+    position:absolute;
+
+    right:25px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:60px;
+
+    color:white;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+/* COUNTER */
+
+.lb-counter{
+
+    position:absolute;
+
+    top:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+.lb-prev,
+.lb-next,
+.lb-close{
+
+    transition:.25s;
+
+}
+
+.lb-prev:hover,
+.lb-next:hover,
+.lb-close:hover{
+
+    transform:scale(1.15);
 
 }
