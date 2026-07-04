@@ -1,0 +1,29 @@
+.container{
+
+    width:min(var(--container),92%);
+
+    margin:auto;
+
+}
+
+section{
+
+    padding:70px 0;
+
+}
+
+.section-title{
+
+    font-size:42px;
+
+    margin-bottom:12px;
+
+}
+
+.section-desc{
+
+    color:var(--text-light);
+
+    margin-bottom:40px;
+
+}
