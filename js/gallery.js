@@ -20,7 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         img.alt = `${folder} ${i}`;
 
-        gallery.appendChild(img);
+        img.addEventListener("load",()=>{
+
+    img.classList.add("loaded");
+
+});
+
+gallery.appendChild(img);
 
     }
 
