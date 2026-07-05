@@ -8,21 +8,20 @@
     align-items:center;
     gap:36px;
 
-    background:rgba(255,255,255,.45);
+    padding:28px;
 
-    border:1px solid rgba(255,255,255,.75);
+    background:rgba(255,255,255,.10);
 
-    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.30);
+
+    backdrop-filter:blur(24px);
 
     border-radius:30px;
 
-    padding:28px;
-
     text-decoration:none;
-
     color:inherit;
 
-    box-shadow:0 20px 60px rgba(255,120,180,.10);
+    box-shadow:0 18px 55px rgba(255,120,180,.08);
 
     transition:.35s ease;
 
@@ -30,9 +29,9 @@
 
 .event-card:hover{
 
-    transform:translateY(-8px);
+    transform:translateY(-6px);
 
-    box-shadow:0 28px 70px rgba(255,120,180,.18);
+    box-shadow:0 24px 70px rgba(255,120,180,.12);
 
 }
 
@@ -49,7 +48,7 @@
 
     overflow:hidden;
 
-    border-radius:24px;
+    border-radius:22px;
 
 }
 
@@ -62,20 +61,18 @@
 
     object-fit:cover;
 
-    object-position:center;
-
-    transition:.45s ease;
+    transition:.4s ease;
 
 }
 
 .event-card:hover .event-thumb img{
 
-    transform:scale(1.05);
+    transform:scale(1.04);
 
 }
 
 /* ==========================================
-   EVENT INFO
+   INFO
 ========================================== */
 
 .event-info{
@@ -94,13 +91,13 @@
 
     color:#2d3553;
 
-    margin-bottom:18px;
+    margin-bottom:16px;
 
 }
 
 .event-date{
 
-    color:#7b7b7b;
+    color:#777;
 
     margin-bottom:10px;
 
@@ -108,11 +105,15 @@
 
 .event-location{
 
-    color:#7b7b7b;
+    color:#888;
 
     margin-bottom:24px;
 
 }
+
+/* ==========================================
+   LINK
+========================================== */
 
 .event-photos{
 
@@ -122,63 +123,58 @@
 
     width:max-content;
 
-    padding:12px 24px;
-
-    border-radius:999px;
-
-    background:#ff6ba5;
-
-    color:#fff;
+    color:#ff5a9d;
 
     font-weight:600;
 
-    transition:.3s ease;
+    transition:.25s ease;
 
 }
 
 .event-card:hover .event-photos{
 
-    background:#ff5a9d;
+    transform:translateX(6px);
 
 }
 
 /* ==========================================
-   GLASS CARD
+   GALLERY GRID
+   (Dùng cho Event Detail sau này)
 ========================================== */
 
-.schedule-card,
-.about-card{
+.gallery-grid{
 
-    transition:.35s ease;
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:24px;
 
 }
 
-.schedule-card:hover,
-.about-card:hover{
+.gallery-item{
 
-    transform:translateY(-6px);
+    overflow:hidden;
 
-    box-shadow:0 24px 60px rgba(255,120,180,.16);
+    border-radius:22px;
+
+    cursor:pointer;
 
 }
 
-/* ==========================================
-   IMAGE
-========================================== */
-
-.schedule-card img{
+.gallery-item img{
 
     width:100%;
 
     display:block;
 
-    transition:.45s ease;
+    transition:.35s ease;
 
 }
 
-.schedule-card:hover img{
+.gallery-item:hover img{
 
-    transform:scale(1.02);
+    transform:scale(1.04);
 
 }
 
@@ -196,14 +192,11 @@
 
         gap:24px;
 
-        padding:22px;
-
     }
 
     .event-thumb{
 
         width:100%;
-
         height:230px;
 
     }
