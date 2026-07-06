@@ -6,70 +6,126 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const image = document.getElementById("lightbox-image");
     const caption = document.getElementById("lightbox-caption");
+    const counter = document.getElementById("lightbox-counter");
 
     const closeBtn = document.querySelector(".lightbox-close");
     const prevBtn = document.querySelector(".lightbox-prev");
     const nextBtn = document.querySelector(".lightbox-next");
-    const counter = document.getElementById("lightbox-counter");
 
     let images = [];
     let currentIndex = 0;
+    let isAnimating = false;
+
+    /* ===========================
+       Counter
+    =========================== */
 
     function updateCounter() {
 
         if (!counter) return;
 
-        counter.textContent =
-            `${currentIndex + 1} / ${images.length}`;
+        counter.textContent = `${currentIndex + 1} / ${images.length}`;
 
     }
 
-    function updateNavigation() {
+    /* ===========================
+       Caption
+    =========================== */
 
-        if (!prevBtn || !nextBtn) return;
+    function updateCaption() {
+
+        if (!caption) return;
+
+        const text = images[currentIndex].alt.trim();
+
+        caption.textContent =
+            text !== ""
+                ? text
+                : `Photo ${currentIndex + 1}`;
+
+    }
+
+    /* ===========================
+       Navigation
+    =========================== */
+
+    function updateNavigation() {
 
         if (images.length <= 1) {
 
-            prevBtn.style.display = "none";
-            nextBtn.style.display = "none";
+            lightbox.classList.add("single");
 
             return;
 
         }
 
-        prevBtn.style.display = "flex";
-        nextBtn.style.display = "flex";
+        lightbox.classList.remove("single");
 
     }
 
-    function showImage(index) {
+    /* ===========================
+       Load Image
+    =========================== */
 
-        currentIndex = index;
+    function loadImage(index) {
 
-        image.src = images[index].src;
-        image.alt = images[index].alt;
+        if (isAnimating) return;
 
-        if (caption) {
+        isAnimating = true;
 
-            caption.textContent = images[index].alt;
+        image.classList.add("loading");
 
-        }
+        image.style.opacity = "0";
 
-        updateCounter();
+        const newImage = new Image();
 
-        updateNavigation();
+        newImage.src = images[index].src;
+
+        newImage.onload = () => {
+
+            currentIndex = index;
+
+            image.src = newImage.src;
+
+            image.alt = images[index].alt;
+
+            updateCaption();
+
+            updateCounter();
+
+            updateNavigation();
+
+            requestAnimationFrame(() => {
+
+                image.classList.remove("loading");
+
+                image.style.opacity = "1";
+
+                isAnimating = false;
+
+            });
+
+        };
 
     }
+
+    /* ===========================
+       Open
+    =========================== */
 
     function open(index) {
 
-        showImage(index);
+        loadImage(index);
 
         lightbox.classList.add("show");
 
         document.body.style.overflow = "hidden";
 
     }
+
+    /* ===========================
+       Close
+    =========================== */
 
     function close() {
 
@@ -79,23 +135,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    /* ===========================
+       Previous
+    =========================== */
+
     function previous() {
 
-        currentIndex =
+        const index =
             (currentIndex - 1 + images.length) % images.length;
 
-        showImage(currentIndex);
+        loadImage(index);
 
     }
+
+    /* ===========================
+       Next
+    =========================== */
 
     function next() {
 
-        currentIndex =
+        const index =
             (currentIndex + 1) % images.length;
 
-        showImage(currentIndex);
+        loadImage(index);
 
     }
+
+    /* ===========================
+       Click Image
+    =========================== */
 
     document.addEventListener("click", (event) => {
 
@@ -110,29 +178,23 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".lightbox-trigger")
         );
 
-        const index = images.indexOf(target);
-
-        open(index);
+        open(images.indexOf(target));
 
     });
 
-    if (closeBtn) {
+    /* ===========================
+       Buttons
+    =========================== */
 
-        closeBtn.addEventListener("click", close);
+    closeBtn?.addEventListener("click", close);
 
-    }
+    prevBtn?.addEventListener("click", previous);
 
-    if (prevBtn) {
+    nextBtn?.addEventListener("click", next);
 
-        prevBtn.addEventListener("click", previous);
-
-    }
-
-    if (nextBtn) {
-
-        nextBtn.addEventListener("click", next);
-
-    }
+    /* ===========================
+       Click Background
+    =========================== */
 
     lightbox.addEventListener("click", (event) => {
 
@@ -143,6 +205,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     });
+
+    /* ===========================
+       Keyboard
+    =========================== */
 
     document.addEventListener("keydown", (event) => {
 
@@ -175,6 +241,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 break;
+
+        }
+
+    });
+
+    /* ===========================
+       Swipe (Mobile)
+    =========================== */
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    lightbox.addEventListener("touchstart", (event) => {
+
+        touchStartX = event.changedTouches[0].screenX;
+
+    });
+
+    lightbox.addEventListener("touchend", (event) => {
+
+        touchEndX = event.changedTouches[0].screenX;
+
+        const distance = touchStartX - touchEndX;
+
+        if (Math.abs(distance) < 50) return;
+
+        if (distance > 0) {
+
+            if (images.length > 1) next();
+
+        } else {
+
+            if (images.length > 1) previous();
 
         }
 
