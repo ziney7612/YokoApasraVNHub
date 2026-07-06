@@ -314,7 +314,9 @@ section{
 
     width:54px;
 
-    display:block;
+    height:auto;
+
+    object-fit:contain;
 
 }
 
