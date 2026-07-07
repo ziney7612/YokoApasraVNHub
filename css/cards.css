@@ -213,4 +213,16 @@
 
     }
 
+   @media (max-width:768px){
+
+    .schedule-content{
+
+        display:flex;
+        flex-direction:column;
+        gap:32px;
+
+    }
+
+}
+
 }
