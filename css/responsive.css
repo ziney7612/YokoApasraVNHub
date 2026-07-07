@@ -361,6 +361,48 @@
 
     }
 
-}
-   
+@media (max-width:576px){
+
+    .schedule-card{
+
+        padding:24px 18px;
+
+    }
+
+    .schedule-content{
+
+        gap:28px;
+
+    }
+
+    .schedule-poster{
+
+        max-width:100%;
+
+    }
+
+    .schedule-info h2{
+
+        font-size:1.55rem;
+
+    }
+
+    .schedule-item{
+
+        flex-direction:column;
+
+        gap:8px;
+
+        margin-bottom:22px;
+
+    }
+
+    .schedule-date{
+
+        width:auto;
+
+        margin-bottom:2px;
+
+    }
+
 }
