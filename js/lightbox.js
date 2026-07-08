@@ -1,242 +1,503 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* ==========================================
+   LIGHTBOX V2
+   Yoko Apasra VNHub
+========================================== */
 
-    const lightbox = document.getElementById("lightbox");
+let lightbox = null;
 
-    if (!lightbox) return;
+let lightboxImage = null;
 
-    const image = document.getElementById("lightbox-image");
-    const caption = document.getElementById("lightbox-caption");
-    const counter = document.getElementById("lightbox-counter");
-    const download = document.getElementById("lightbox-download");
+let lightboxCaption = null;
 
-    const closeBtn = document.querySelector(".lightbox-close");
-    const prevBtn = document.querySelector(".lightbox-prev");
-    const nextBtn = document.querySelector(".lightbox-next");
+let lightboxCounter = null;
 
-    let images = [];
-    let currentIndex = 0;
+let lightboxDownload = null;
 
-    /* ==========================================
-       SHOW IMAGE
-    ========================================== */
+let closeButton = null;
 
-    function showImage(index) {
+let prevButton = null;
 
-        currentIndex = index;
+let nextButton = null;
 
-        const current = images[currentIndex];
+let images = [];
 
-        image.src = current.src;
-        image.alt = current.alt;
+let currentIndex = 0;
 
-        if (caption) {
+let startX = 0;
 
-            caption.textContent = current.alt;
+let initialized = false;
 
-        }
+/* ==========================================
+   INITIALIZE
+========================================== */
 
-        if (counter) {
+function initializeLightbox() {
 
-            counter.textContent =
-                `${currentIndex + 1} / ${images.length}`;
-
-        }
-
-        if (download) {
-
-            download.href = current.src;
-
-            const parts = current.src.split("/");
-
-            const folder = parts[parts.length - 2];
-
-            const file = parts[parts.length - 1];
-
-            download.download = `yoko-${folder}-${file}`;
-
-        }
-
-        if (images.length <= 1) {
-
-            prevBtn.style.display = "none";
-            nextBtn.style.display = "none";
-
-        } else {
-
-            prevBtn.style.display = "flex";
-            nextBtn.style.display = "flex";
-
-        }
-
-    }
-
-    /* ==========================================
-       OPEN
-    ========================================== */
-
-    function open(index) {
-
-        showImage(index);
-
-        lightbox.classList.add("show");
-
-        document.body.style.overflow = "hidden";
-
-    }
-
-    /* ==========================================
-       CLOSE
-    ========================================== */
-
-    function close() {
-
-        lightbox.classList.remove("show");
-
-        document.body.style.overflow = "";
-
-    }
-
-    /* ==========================================
-       PREVIOUS
-    ========================================== */
-
-    function previous() {
-
-        currentIndex =
-            (currentIndex - 1 + images.length) % images.length;
-
-        showImage(currentIndex);
-
-    }
-
-    /* ==========================================
-       NEXT
-    ========================================== */
-
-    function next() {
-
-        currentIndex =
-            (currentIndex + 1) % images.length;
-
-        showImage(currentIndex);
-
-    }
-
-    /* ==========================================
-       OPEN LIGHTBOX
-    ========================================== */
-
-    document.addEventListener("click", (event) => {
-
-        const target =
-            event.target.closest(".lightbox-trigger");
-
-        if (!target) return;
-
-        event.preventDefault();
+    if (initialized) {
 
         images = Array.from(
             document.querySelectorAll(".lightbox-trigger")
         );
 
-        open(images.indexOf(target));
+        return;
+
+    }
+
+    lightbox = document.getElementById("lightbox");
+
+    if (!lightbox) return;
+
+    lightboxImage =
+        document.getElementById("lightbox-image");
+
+    lightboxCaption =
+        document.getElementById("lightbox-caption");
+
+    lightboxCounter =
+        document.getElementById("lightbox-counter");
+
+    lightboxDownload =
+        document.getElementById("lightbox-download");
+
+    closeButton =
+        document.querySelector(".lightbox-close");
+
+    prevButton =
+        document.querySelector(".lightbox-prev");
+
+    nextButton =
+        document.querySelector(".lightbox-next");
+
+    images = Array.from(
+        document.querySelectorAll(".lightbox-trigger")
+    );
+
+    initialized = true;
+
+    bindEvents();
+
+}
+
+/* ==========================================
+   EVENTS
+========================================== */
+
+function bindEvents() {
+
+    document.addEventListener("click", handleOpen);
+
+    closeButton?.addEventListener(
+        "click",
+        closeLightbox
+    );
+
+    prevButton?.addEventListener(
+        "click",
+        previousImage
+    );
+
+    nextButton?.addEventListener(
+        "click",
+        nextImage
+    );
+
+    lightbox?.addEventListener(
+        "click",
+        handleBackgroundClick
+    );
+
+    document.addEventListener(
+        "keydown",
+        handleKeyboard
+    );
+
+    lightbox?.addEventListener(
+        "touchstart",
+        handleTouchStart,
+        {
+            passive: true
+        }
+    );
+
+    lightbox?.addEventListener(
+        "touchend",
+        handleTouchEnd,
+        {
+            passive: true
+        }
+    );
+
+}
+
+/* ==========================================
+   OPEN
+========================================== */
+
+function handleOpen(event) {
+
+    const trigger =
+        event.target.closest(".lightbox-trigger");
+
+    if (!trigger) return;
+
+    event.preventDefault();
+
+    images = Array.from(
+        document.querySelectorAll(".lightbox-trigger")
+    );
+
+    const index =
+        images.indexOf(trigger);
+
+    if (index < 0) return;
+
+    openLightbox(index);
+
+}
+
+/* ==========================================
+   OPEN LIGHTBOX
+========================================== */
+
+function openLightbox(index) {
+
+    currentIndex = index;
+
+    showImage(currentIndex);
+
+    lightbox.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+/* ==========================================
+   SHOW IMAGE
+========================================== */
+
+function showImage(index) {
+
+    if (!images.length) return;
+
+    currentIndex = index;
+
+    const current = images[currentIndex];
+
+    const imageSrc = current.getAttribute("href");
+
+    const imageAlt =
+        current.querySelector("img")?.alt || "";
+
+    lightboxImage.classList.remove("show");
+
+    requestAnimationFrame(() => {
+
+        lightboxImage.src = imageSrc;
+
+        lightboxImage.alt = imageAlt;
 
     });
 
-    /* ==========================================
-       BUTTON EVENTS
-    ========================================== */
+    lightboxImage.onload = () => {
 
-    closeBtn?.addEventListener("click", close);
+        lightboxImage.classList.add("show");
 
-    prevBtn?.addEventListener("click", previous);
+        preloadImages();
 
-    nextBtn?.addEventListener("click", next);
+    };
 
-    /* ==========================================
-       CLICK BACKGROUND
-    ========================================== */
+    /* ==========================
+       CAPTION
+    ========================== */
 
-    lightbox.addEventListener("click", (event) => {
+    if (lightboxCaption) {
 
-        if (event.target === lightbox) {
+        lightboxCaption.textContent = imageAlt;
 
-            close();
+    }
+
+    /* ==========================
+       COUNTER
+    ========================== */
+
+    if (lightboxCounter) {
+
+        lightboxCounter.textContent =
+            `${currentIndex + 1} / ${images.length}`;
+
+    }
+
+    /* ==========================
+       DOWNLOAD
+    ========================== */
+
+    if (lightboxDownload) {
+
+        lightboxDownload.href = imageSrc;
+
+        const customFilename =
+            current.dataset.filename;
+
+        if (customFilename) {
+
+            lightboxDownload.download =
+                customFilename;
 
         }
 
-    });
+        else {
 
-    /* ==========================================
-       KEYBOARD
-    ========================================== */
+            const filename =
+                imageSrc.split("/").pop();
 
-    document.addEventListener("keydown", (event) => {
-
-        if (!lightbox.classList.contains("show")) return;
-
-        switch (event.key) {
-
-            case "Escape":
-
-                close();
-
-                break;
-
-            case "ArrowLeft":
-
-                if (images.length > 1) {
-
-                    previous();
-
-                }
-
-                break;
-
-            case "ArrowRight":
-
-                if (images.length > 1) {
-
-                    next();
-
-                }
-
-                break;
+            lightboxDownload.download =
+                filename;
 
         }
 
+    }
+
+    /* ==========================
+       BUTTONS
+    ========================== */
+
+    if (images.length <= 1) {
+
+        prevButton.style.display = "none";
+
+        nextButton.style.display = "none";
+
+    }
+
+    else {
+
+        prevButton.style.display = "flex";
+
+        nextButton.style.display = "flex";
+
+    }
+
+}
+
+/* ==========================================
+   PRELOAD
+========================================== */
+
+function preloadImages() {
+
+    if (!images.length) return;
+
+    const next =
+        (currentIndex + 1) % images.length;
+
+    const prev =
+        (currentIndex - 1 + images.length) %
+        images.length;
+
+    [
+
+        images[next],
+
+        images[prev]
+
+    ].forEach(item => {
+
+        const preload = new Image();
+
+        preload.src =
+            item.getAttribute("href");
+
     });
 
-    /* ==========================================
-       MOBILE SWIPE
-    ========================================== */
+}
 
-    let startX = 0;
+/* ==========================================
+   PREVIOUS
+========================================== */
 
-    lightbox.addEventListener("touchstart", (event) => {
+function previousImage() {
 
-        startX = event.touches[0].clientX;
+    if (images.length <= 1) return;
 
-    });
+    currentIndex =
+        (currentIndex - 1 + images.length) %
+        images.length;
 
-    lightbox.addEventListener("touchend", (event) => {
+    showImage(currentIndex);
 
-        const endX = event.changedTouches[0].clientX;
+}
 
-        const distance = endX - startX;
+/* ==========================================
+   NEXT
+========================================== */
 
-        if (Math.abs(distance) < 50) return;
+function nextImage() {
 
-        if (distance > 0) {
+    if (images.length <= 1) return;
 
-            previous();
+    currentIndex =
+        (currentIndex + 1) %
+        images.length;
 
-        } else {
+    showImage(currentIndex);
 
-            next();
+}
 
-        }
+/* ==========================================
+   CLOSE
+========================================== */
 
-    });
+function closeLightbox() {
+
+    lightbox.classList.remove("show");
+
+    document.body.style.overflow = "";
+
+}
+
+/* ==========================================
+   BACKGROUND CLICK
+========================================== */
+
+function handleBackgroundClick(event) {
+
+    if (event.target === lightbox) {
+
+        closeLightbox();
+
+    }
+
+}
+
+/* ==========================================
+   KEYBOARD
+========================================== */
+
+function handleKeyboard(event) {
+
+    if (!lightbox.classList.contains("show")) return;
+
+    switch (event.key) {
+
+        case "Escape":
+
+            closeLightbox();
+
+            break;
+
+        case "ArrowLeft":
+
+            previousImage();
+
+            break;
+
+        case "ArrowRight":
+
+            nextImage();
+
+            break;
+
+    }
+
+}
+
+/* ==========================================
+   TOUCH START
+========================================== */
+
+function handleTouchStart(event) {
+
+    startX = event.touches[0].clientX;
+
+}
+
+/* ==========================================
+   TOUCH END
+========================================== */
+
+function handleTouchEnd(event) {
+
+    const endX = event.changedTouches[0].clientX;
+
+    const distance = endX - startX;
+
+    if (Math.abs(distance) < 50) return;
+
+    if (distance > 0) {
+
+        previousImage();
+
+    }
+
+    else {
+
+        nextImage();
+
+    }
+
+}
+
+/* ==========================================
+   AUTO INITIALIZE
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    initializeLightbox();
 
 });
+
+/* ==========================================
+   WINDOW RESIZE
+========================================== */
+
+window.addEventListener("resize", () => {
+
+    if (!lightbox) return;
+
+    if (!lightbox.classList.contains("show")) return;
+
+    lightboxImage.style.maxHeight =
+        `${window.innerHeight - 120}px`;
+
+});
+
+/* ==========================================
+   IMAGE DRAG
+========================================== */
+
+document.addEventListener("dragstart", (event) => {
+
+    if (
+        event.target &&
+        event.target.id === "lightbox-image"
+    ) {
+
+        event.preventDefault();
+
+    }
+
+});
+
+/* ==========================================
+   PREVENT DOUBLE CLICK SELECT
+========================================== */
+
+document.addEventListener("selectstart", (event) => {
+
+    if (
+        lightbox &&
+        lightbox.classList.contains("show")
+    ) {
+
+        event.preventDefault();
+
+    }
+
+});
+
+/* ==========================================
+   EXPORT
+========================================== */
+
+window.initializeLightbox = initializeLightbox;
