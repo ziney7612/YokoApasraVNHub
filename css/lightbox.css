@@ -213,6 +213,7 @@
 
     right:24px;
 
+    overflow:hidden;
 }
 
 .lightbox-close::before{
@@ -227,17 +228,22 @@
 
 }
 
+.lightbox-close::after{
+
+    content:"Close";
+
+    font-size:14px;
+
+    margin-left:8px;
+
+}
 /* ==========================================================
    PREVIOUS
 ========================================================== */
 
 .lightbox-prev{
 
-    left:28px;
-
-    top:50%;
-
-    transform:translateY(-50%);
+left:max(20px,calc(50% - 620px));
 
 }
 
@@ -267,11 +273,7 @@
 
 .lightbox-next{
 
-    right:28px;
-
-    top:50%;
-
-    transform:translateY(-50%);
+right:max(20px,calc(50% - 620px));
 
 }
 
@@ -301,47 +303,19 @@
 
 .lightbox-counter{
 
-    position:absolute;
+    min-width:90px;
 
-    top:24px;
+    height:42px;
 
-    left:50%;
+    padding:0 18px;
 
-    transform:translateX(-50%);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    min-width:96px;
-
-    padding:10px 18px;
-
-    border-radius:999px;
+    border:1px solid rgba(255,255,255,.10);
 
     background:rgba(255,255,255,.08);
 
-    backdrop-filter:blur(18px);
+    font-weight:700;
 
-    -webkit-backdrop-filter:blur(18px);
-
-    border:1px solid rgba(255,255,255,.12);
-
-    color:#ffffff;
-
-    font-size:.95rem;
-
-    font-weight:600;
-
-    letter-spacing:.5px;
-
-    box-shadow:
-
-        0 8px 24px rgba(0,0,0,.18);
-
-    user-select:none;
+    letter-spacing:1px;
 
 }
 
@@ -381,7 +355,9 @@
 
     text-align:center;
 
-    white-space:nowrap;
+    white-space:pre-line;
+   
+    ine-height:1.5;
 
     overflow:hidden;
 
@@ -473,7 +449,7 @@
 
 .lightbox-download::after{
 
-    content:"Download Original";
+    content:"Download";
 
 }
 
@@ -481,7 +457,15 @@
 
 .lightbox-download:hover{
 
-    background:rgba(255,120,185,.22);
+    background:
+
+linear-gradient(
+
+135deg,
+
+rgba(255,120,185,.32),
+
+rgba(255,180,215,.20);
 
     border-color:rgba(255,170,210,.45);
 
@@ -494,6 +478,20 @@
         translateX(-50%)
 
         translateY(-2px);
+
+}
+
+.lightbox.show img:hover{
+
+    transform:
+
+        scale(1.015);
+
+    box-shadow:
+
+        0 25px 70px rgba(255,120,185,.18),
+
+        0 20px 60px rgba(0,0,0,.55);
 
 }
 
