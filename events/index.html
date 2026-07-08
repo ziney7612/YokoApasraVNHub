@@ -10,49 +10,46 @@
 
     <title>Events • Yoko Apasra VNHub</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
-    <!-- ==========================================
-         HEADER
-    =========================================== -->
 
-    <header class="header">
+<header class="header">
 
-        <div class="container header-container">
+    <div class="container header-container">
 
-            <a href="index.html" class="logo">
+        <a href="../index.html" class="logo">
 
-    <img
-        src="../assets/logo/logo.png"
-        alt="Yoko Apasra VNHub">
+            <img
+                src="../assets/logo/logo.png"
+                alt="Yoko Apasra VNHub">
 
-    <div class="logo-text">
+            <div class="logo-text">
 
-        <span class="logo-title">
-            Yoko Apasra VNHub
-        </span>
+                <span class="logo-title">
+                    Yoko Apasra VNHub
+                </span>
 
-    </div>
+            </div>
 
-</a>
+        </a>
 
         <nav>
 
             <ul class="nav-menu">
 
-                  <li><a href="../index.html">Home</a></li>
-                  <li><a href="./">Events</a></li>
-                  <li><a href="#">Exclusive</a></li>
-                  <li><a href="#">About</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./">Events</a></li>
+                <li><a href="../exclusive/">Exclusive</a></li>
+                <li><a href="../about/">About</a></li>
 
             </ul>
 
@@ -61,7 +58,6 @@
     </div>
 
 </header>
-
 
 <main>
 
@@ -80,48 +76,17 @@
 
         </div>
 
+        <!-- JS sẽ render toàn bộ Event Card tại đây -->
 
-        <!-- ===========================
-             EVENT CARD
-        ============================ -->
-
-        <a href="eveandboy-2026.html" class="event-card">
-
-            <div class="event-thumb">
-
-                <img src="../assets/events/eveandboy-2026/010.jpg"
-                     alt="Yoko @ EVEANDBOY">
-
-            </div>
-
-            <div class="event-info">
-
-                <h2>Yoko @ EVEANDBOY</h2>
-
-                <p class="event-date">
-                    📅 30 June 2026
-                </p>
-
-                <p class="event-location">
-                    📍 Bangkok, Thailand
-                </p>
-
-                <span class="event-photos">
-                    📷 51 Photos
-                </span>
-
-            </div>
-
-        </a>
-
-        <!-- END CARD -->
-
+        <div id="events-list"></div>
 
     </div>
 
 </section>
 
 </main>
+
+<script src="../js/events.js"></script>
 
 </body>
 
