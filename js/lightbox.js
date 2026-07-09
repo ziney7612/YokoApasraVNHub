@@ -1,202 +1,167 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    /*==================================
-    =            Elements             =
-    ==================================*/
+        const lightbox =
+            document.getElementById(
+                "lightbox"
+            );
 
-    const lightbox =
-        document.getElementById("lightbox");
+        const image =
+            document.getElementById(
+                "lightbox-image"
+            );
 
-    const image =
-        document.getElementById(
-            "lightbox-image"
-        );
+        const closeButton =
+            document.querySelector(
+                ".lightbox-close"
+            );
 
-    const closeButton =
-        document.querySelector(
-            ".lightbox-close"
-        );
+        if (
+            !lightbox ||
+            !image
+        ) return;
 
-    const counter =
-        document.getElementById(
-            "lightbox-counter"
-        );
+        let images = [];
 
-    const caption =
-        document.getElementById(
-            "lightbox-caption"
-        );
+        let currentIndex = 0;
 
-    const download =
-        document.getElementById(
-            "lightbox-download"
-        );
+        function collectImages() {
 
-    if (
-        !lightbox ||
-        !image
-    ) return;
+            images = [
 
-    /*==================================
-    =             State               =
-    ==================================*/
+                ...document.querySelectorAll(
+                    "#gallery .lightbox-trigger"
+                )
 
-    let images = [];
+            ];
 
-    let currentIndex = 0;
+            console.log(
+                "Images:",
+                images.length
+            );
 
-    let isOpen = false;
+        }
 
-    /*==================================
-    =        Collect Images           =
-    ==================================*/
+        function showImage(index) {
 
-    function collectImages() {
+            const item =
+                images[index];
 
-        images = [
-
-            ...document.querySelectorAll(
-                ".lightbox-trigger"
-            )
-
-        ];
-
-    }
-
-    /*==================================
-    =        Update Information       =
-    ==================================*/
-
-    function updateUI() {
-
-        const item =
-            images[currentIndex];
-
-        if (!item) return;
-
-        const img =
-            item.querySelector("img");
-
-        counter.textContent =
-            `${currentIndex + 1} / ${images.length}`;
-
-        caption.textContent =
-            img?.alt || "";
-
-        download.href =
-            item.href;
-
-        download.download =
-            item.dataset.filename ||
-
-            item.href.split("/")
-                .pop();
-
-    }
-
-         /*==================================
-    =          Show Image             =
-    ==================================*/
-
-    function showImage(index) {
-
-        const item =
-            images[index];
-
-        if (!item) return;
-
-        image.src =
-            item.href;
-
-        image.alt =
-            item.querySelector("img")
-            ?.alt || "";
-
-        currentIndex = index;
-
-        updateUI();
-
-    }
-
-    /*==================================
-    =          Open Lightbox          =
-    ==================================*/
-
-    function openLightbox(index) {
-
-        collectImages();
-
-        if (!images.length)
-            return;
-
-        isOpen = true;
-
-        lightbox.classList.add(
-            "active"
-        );
-
-        document.body.classList.add(
-            "lightbox-open"
-        );
-
-        showImage(index);
-
-    }
-
-        /*==================================
-    =         Close Lightbox          =
-    ==================================*/
-
-    function closeLightbox() {
-
-        isOpen = false;
-
-        lightbox.classList.remove(
-            "active"
-        );
-
-        document.body.classList.remove(
-            "lightbox-open"
-        );
-
-    }
-
-        /*==================================
-    =          Click Image            =
-    ==================================*/
-
-    document.addEventListener(
-        "click",
-        (event) => {
-
-            const target =
-                event.target.closest(
-                    ".lightbox-trigger"
-                );
-
-            if (!target)
+            if (!item)
                 return;
 
-            event.preventDefault();
+            image.src =
+                item.href;
+
+            image.alt =
+                item.querySelector("img")
+                ?.alt || "";
+
+            currentIndex =
+                index;
+        }
+
+        function openLightbox(index) {
 
             collectImages();
 
-            const index =
-                images.indexOf(
-                    target
-                );
+            if (
+                !images.length
+            ) return;
 
-            if (index === -1)
-                return;
+            showImage(index);
 
-            openLightbox(index);
+            lightbox.classList.add(
+                "show"
+            );
+
+            document.body.classList.add(
+                "lightbox-open"
+            );
 
         }
-    );
 
-    closeButton?.addEventListener(
-        "click",
-        closeLightbox
-    );
+        function closeLightbox() {
 
-});
+            lightbox.classList.remove(
+                "show"
+            );
+
+            document.body.classList.remove(
+                "lightbox-open"
+            );
+
+        }
+
+        document.addEventListener(
+            "click",
+            (event) => {
+
+                const target =
+                    event.target.closest(
+                        ".lightbox-trigger"
+                    );
+
+                if (!target)
+                    return;
+
+                event.preventDefault();
+
+                collectImages();
+
+                const index =
+                    images.indexOf(
+                        target
+                    );
+
+                if (
+                    index === -1
+                ) return;
+
+                openLightbox(
+                    index
+                );
+
+            }
+        );
+
+        closeButton?.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+        lightbox.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    event.target ===
+                    lightbox
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+    }
+);
