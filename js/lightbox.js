@@ -2,6 +2,10 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+        /*==============================
+        =           Elements          =
+        ==============================*/
+
         const lightbox =
             document.getElementById(
                 "lightbox"
@@ -12,9 +16,34 @@ document.addEventListener(
                 "lightbox-image"
             );
 
+        const counter =
+            document.getElementById(
+                "lightbox-counter"
+            );
+
+        const caption =
+            document.getElementById(
+                "lightbox-caption"
+            );
+
+        const download =
+            document.getElementById(
+                "lightbox-download"
+            );
+
         const closeButton =
             document.querySelector(
                 ".lightbox-close"
+            );
+
+        const prevButton =
+            document.querySelector(
+                ".lightbox-prev"
+            );
+
+        const nextButton =
+            document.querySelector(
+                ".lightbox-next"
             );
 
         if (
@@ -22,9 +51,19 @@ document.addEventListener(
             !image
         ) return;
 
+        /*==============================
+        =             State           =
+        ==============================*/
+
         let images = [];
 
         let currentIndex = 0;
+
+        let isAnimating = false;
+
+        /*==============================
+        =        Collect Images       =
+        ==============================*/
 
         function collectImages() {
 
@@ -36,14 +75,99 @@ document.addEventListener(
 
             ];
 
-            console.log(
-                "Images:",
-                images.length
+        }
+
+        window.refreshLightbox =
+            collectImages;
+
+        /*==============================
+        =          Update UI          =
+        ==============================*/
+
+        function updateUI() {
+
+            const item =
+                images[currentIndex];
+
+            if (!item)
+                return;
+
+            const img =
+                item.querySelector(
+                    "img"
+                );
+
+            if (counter) {
+
+                counter.textContent =
+                    `${currentIndex + 1} / ${images.length}`;
+
+            }
+
+            if (caption) {
+
+                caption.textContent =
+                    img?.alt || "";
+
+            }
+
+            if (download) {
+
+                download.href =
+                    item.href;
+
+                download.download =
+                    item.dataset
+                        .filename ||
+
+                    item.href
+                        .split("/")
+                        .pop();
+
+            }
+
+        }
+
+        /*==============================
+        =           Preload          =
+        ==============================*/
+
+        function preload(index) {
+
+            if (
+                index < 0 ||
+                index >= images.length
+            ) return;
+
+            const img =
+                new Image();
+
+            img.src =
+                images[index].href;
+
+        }
+
+        function preloadNearby() {
+
+            preload(
+                currentIndex - 1
+            );
+
+            preload(
+                currentIndex + 1
             );
 
         }
 
+        /*==============================
+        =         Show Image         =
+        ==============================*/
+
         function showImage(index) {
+
+            if (
+                isAnimating
+            ) return;
 
             const item =
                 images[index];
@@ -51,18 +175,81 @@ document.addEventListener(
             if (!item)
                 return;
 
-            image.src =
+            isAnimating =
+                true;
+
+            image.classList.remove(
+                "loaded"
+            );
+
+            image.classList.add(
+                "loading"
+            );
+
+            const loader =
+                new Image();
+
+            loader.onload =
+                () => {
+
+                    image.src =
+                        loader.src;
+
+                    image.alt =
+                        item
+                        .querySelector(
+                            "img"
+                        )
+                        ?.alt ||
+
+                        "";
+
+                    currentIndex =
+                        index;
+
+                    updateUI();
+
+                    preloadNearby();
+
+                    requestAnimationFrame(
+                        () => {
+
+                            image.classList.remove(
+                                "loading"
+                            );
+
+                            image.classList.add(
+                                "loaded"
+                            );
+
+                            isAnimating =
+                                false;
+
+                        }
+                    );
+
+                };
+
+            loader.onerror =
+                () => {
+
+                    isAnimating =
+                        false;
+
+                };
+
+            loader.src =
                 item.href;
 
-            image.alt =
-                item.querySelector("img")
-                ?.alt || "";
-
-            currentIndex =
-                index;
         }
 
-        function openLightbox(index) {
+        /*==============================
+        =       Open / Close         =
+        ==============================*/
+
+        function openLightbox(
+            index
+        ) {
 
             collectImages();
 
@@ -70,14 +257,16 @@ document.addEventListener(
                 !images.length
             ) return;
 
-            showImage(index);
-
             lightbox.classList.add(
                 "show"
             );
 
             document.body.classList.add(
                 "lightbox-open"
+            );
+
+            showImage(
+                index
             );
 
         }
@@ -94,17 +283,72 @@ document.addEventListener(
 
         }
 
+        /*==============================
+        =        Navigation          =
+        ==============================*/
+
+        function prevImage() {
+
+            if (
+                !images.length
+            ) return;
+
+            currentIndex--;
+
+            if (
+                currentIndex < 0
+            ) {
+
+                currentIndex =
+                    images.length - 1;
+
+            }
+
+            showImage(
+                currentIndex
+            );
+
+        }
+
+        function nextImage() {
+
+            if (
+                !images.length
+            ) return;
+
+            currentIndex++;
+
+            if (
+                currentIndex >=
+                images.length
+            ) {
+
+                currentIndex = 0;
+
+            }
+
+            showImage(
+                currentIndex
+            );
+
+        }
+
+        /*==============================
+        =          Click Open        =
+        ==============================*/
+
         document.addEventListener(
             "click",
-            (event) => {
+            event => {
 
                 const target =
                     event.target.closest(
                         ".lightbox-trigger"
                     );
 
-                if (!target)
-                    return;
+                if (
+                    !target
+                ) return;
 
                 event.preventDefault();
 
@@ -126,14 +370,31 @@ document.addEventListener(
             }
         );
 
-        closeButton?.addEventListener(
-            "click",
-            closeLightbox
-        );
+        /*==============================
+        =            Events          =
+        ==============================*/
+
+        closeButton
+            ?.addEventListener(
+                "click",
+                closeLightbox
+            );
+
+        prevButton
+            ?.addEventListener(
+                "click",
+                prevImage
+            );
+
+        nextButton
+            ?.addEventListener(
+                "click",
+                nextImage
+            );
 
         lightbox.addEventListener(
             "click",
-            (event) => {
+            event => {
 
                 if (
                     event.target ===
@@ -149,14 +410,35 @@ document.addEventListener(
 
         document.addEventListener(
             "keydown",
-            (event) => {
+            event => {
 
                 if (
-                    event.key ===
-                    "Escape"
+                    !lightbox.classList.contains(
+                        "show"
+                    )
+                ) return;
+
+                switch (
+                    event.key
                 ) {
 
-                    closeLightbox();
+                    case "Escape":
+
+                        closeLightbox();
+
+                        break;
+
+                    case "ArrowLeft":
+
+                        prevImage();
+
+                        break;
+
+                    case "ArrowRight":
+
+                        nextImage();
+
+                        break;
 
                 }
 
