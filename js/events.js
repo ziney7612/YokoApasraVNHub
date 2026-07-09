@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
 
-        const response = await fetch("../data/events.json");
+        const response = await fetch("../data/gallery.json");
 
         if (!response.ok) {
 
