@@ -87,12 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    function getImagePath(index) {
+ function getImagePath(index) {
 
-        return `../assets/events/${folder}/${pad(index + 1)}.jpg`;
+    return images[index].href;
 
-    }
-
+}
 
 
     function lockScroll() {
@@ -405,24 +404,23 @@ document.addEventListener("DOMContentLoaded", () => {
     =       Gallery Click Event       =
     ==================================*/
 
-    gallery.addEventListener("click", (event) => {
+  gallery.addEventListener("click", (event) => {
 
-        const target = event.target.closest(".lightbox-trigger");
+    const target = event.target.closest(".lightbox-trigger");
 
-        if (!target) return;
+    if (!target) return;
 
-        collectImages();
+    event.preventDefault();
 
-        const index = images.indexOf(target);
+    collectImages();
 
-        if (index === -1) return;
+    const index = images.indexOf(target);
 
-        openLightbox(index);
+    if (index === -1) return;
 
-    });
+    openLightbox(index);
 
-
-
+});
     /*==================================
     =       Previous Button           =
     ==================================*/
