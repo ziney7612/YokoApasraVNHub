@@ -93,3 +93,110 @@ document.addEventListener("DOMContentLoaded", () => {
                 .pop();
 
     }
+
+         /*==================================
+    =          Show Image             =
+    ==================================*/
+
+    function showImage(index) {
+
+        const item =
+            images[index];
+
+        if (!item) return;
+
+        image.src =
+            item.href;
+
+        image.alt =
+            item.querySelector("img")
+            ?.alt || "";
+
+        currentIndex = index;
+
+        updateUI();
+
+    }
+
+    /*==================================
+    =          Open Lightbox          =
+    ==================================*/
+
+    function openLightbox(index) {
+
+        collectImages();
+
+        if (!images.length)
+            return;
+
+        isOpen = true;
+
+        lightbox.classList.add(
+            "active"
+        );
+
+        document.body.classList.add(
+            "lightbox-open"
+        );
+
+        showImage(index);
+
+    }
+
+        /*==================================
+    =         Close Lightbox          =
+    ==================================*/
+
+    function closeLightbox() {
+
+        isOpen = false;
+
+        lightbox.classList.remove(
+            "active"
+        );
+
+        document.body.classList.remove(
+            "lightbox-open"
+        );
+
+    }
+
+        /*==================================
+    =          Click Image            =
+    ==================================*/
+
+    document.addEventListener(
+        "click",
+        (event) => {
+
+            const target =
+                event.target.closest(
+                    ".lightbox-trigger"
+                );
+
+            if (!target)
+                return;
+
+            event.preventDefault();
+
+            collectImages();
+
+            const index =
+                images.indexOf(
+                    target
+                );
+
+            if (index === -1)
+                return;
+
+            openLightbox(index);
+
+        }
+    );
+
+    closeButton?.addEventListener(
+        "click",
+        closeLightbox
+    );
+
+});
