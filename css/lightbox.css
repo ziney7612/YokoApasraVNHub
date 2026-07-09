@@ -52,38 +52,19 @@
 .lightbox{
 
     position:fixed;
-
     inset:0;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
-    overflow:hidden;
-
     opacity:0;
-
     visibility:hidden;
 
-    background:var(--lb-bg);
+    transition:.35s;
 
-    backdrop-filter:blur(18px);
-
-    -webkit-backdrop-filter:blur(18px);
-
-    transition:
-
-        opacity .35s ease,
-
-        visibility .35s ease;
-
-    z-index:1000;
-
+    z-index:9999;
 }
-
-
 /*==================================
 =         Active State             =
 ==================================*/
@@ -91,11 +72,9 @@
 .lightbox.show{
 
     opacity:1;
-
     visibility:visible;
 
 }
-
 
 /*==================================
 =        Background Glow           =
@@ -161,29 +140,12 @@
 
 .lightbox-stage{
 
-    position:relative;
-
-    display:grid;
-
-    grid-template-columns:
-
-        72px
-
-        minmax(0,1fr)
-
-        72px;
-
+    display:flex;
+    justify-content:center;
     align-items:center;
 
-    justify-items:center;
-
-    width:min(94vw,1400px);
-
-    height:min(82vh,900px);
-
-    z-index:2;
-
 }
+
 
 
 /*==================================
@@ -1347,15 +1309,14 @@ body.lightbox-open{
 
     }
 
-    #lightbox-image{
+#lightbox-image{
 
-        max-width:100%;
+    max-width:85vw;
+    max-height:85vh;
 
-        max-height:72vh;
+    border-radius:24px;
 
-        border-radius:14px;
-
-    }
+}
 
     .lightbox-counter{
 
