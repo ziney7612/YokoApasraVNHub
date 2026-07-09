@@ -87,7 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
- function getImagePath(index) {
+function getImagePath(index) {
+
+    if (!images[index]) return "";
 
     return images[index].href;
 
@@ -369,36 +371,34 @@ document.addEventListener("DOMContentLoaded", () => {
     /*==================================
     =          Next Image             =
     ==================================*/
+function nextImage() {
 
-    function nextImage() {
+    console.log("Before:", {
+        currentIndex,
+        total,
+        isAnimating,
+        isOpen,
+        images: images.length
+    });
 
-        if (
+    if (
+        isAnimating ||
+        !isOpen
+    ) return;
 
-            isAnimating ||
+    currentIndex++;
 
-            !isOpen
+    if (currentIndex >= total) {
 
-        ) return;
-
-        currentIndex++;
-
-        if (
-
-            currentIndex >= total
-
-        ) {
-
-            currentIndex = 0;
-
-        }
-
-        showImage(
-
-            currentIndex
-
-        );
+        currentIndex = 0;
 
     }
+
+    console.log("After:", currentIndex);
+
+    showImage(currentIndex);
+
+}
 
                               /*==================================
     =       Gallery Click Event       =
