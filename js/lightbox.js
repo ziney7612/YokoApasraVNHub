@@ -85,19 +85,13 @@ document.addEventListener(
                     "img"
                 );
 
-            if (counter) {
+            counter &&
+                (counter.textContent =
+                    `${currentIndex + 1} / ${images.length}`);
 
-                counter.textContent =
-                    `${currentIndex + 1} / ${images.length}`;
-
-            }
-
-            if (caption) {
-
-                caption.textContent =
-                    img?.alt || "";
-
-            }
+            caption &&
+                (caption.textContent =
+                    img?.alt || "");
 
             if (download) {
 
@@ -160,6 +154,10 @@ document.addEventListener(
 
             isAnimating = true;
 
+            image.classList.add(
+                "loading"
+            );
+
             const loader =
                 new Image();
 
@@ -185,6 +183,16 @@ document.addEventListener(
 
                     preloadNearby();
 
+                    requestAnimationFrame(
+                        () => {
+
+                            image.classList.remove(
+                                "loading"
+                            );
+
+                        }
+                    );
+
                     isAnimating =
                         false;
 
@@ -192,6 +200,10 @@ document.addEventListener(
 
             loader.onerror =
                 () => {
+
+                    image.classList.remove(
+                        "loading"
+                    );
 
                     isAnimating =
                         false;
@@ -326,8 +338,6 @@ document.addEventListener(
         );
 
         /*========================*/
-        /* BUTTONS */
-        /*========================*/
 
         closeButton?.addEventListener(
             "click",
@@ -344,8 +354,6 @@ document.addEventListener(
             prevImage
         );
 
-        /*========================*/
-        /* BACKDROP */
         /*========================*/
 
         lightbox.addEventListener(
@@ -378,30 +386,24 @@ document.addEventListener(
                     )
                 ) return;
 
-                if (
-                    event.key ===
-                    "Escape"
+                switch (
+                    event.key
                 ) {
 
-                    closeLightbox();
+                    case "Escape":
 
-                }
+                        closeLightbox();
+                        break;
 
-                if (
-                    event.key ===
-                    "ArrowRight"
-                ) {
+                    case "ArrowRight":
 
-                    nextImage();
+                        nextImage();
+                        break;
 
-                }
+                    case "ArrowLeft":
 
-                if (
-                    event.key ===
-                    "ArrowLeft"
-                ) {
-
-                    prevImage();
+                        prevImage();
+                        break;
 
                 }
 
@@ -467,6 +469,10 @@ document.addEventListener(
                 passive: true
             }
         );
+
+        /*========================*/
+
+        collectImages();
 
     }
 );
