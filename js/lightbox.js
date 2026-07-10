@@ -390,9 +390,7 @@ document.addEventListener(
 
     }
 
-    /* ==================================
-   KEYBOARD CONTROLS
-================================== */
+/*========================*/
 
 document.addEventListener(
     "keydown",
@@ -404,39 +402,38 @@ document.addEventListener(
             )
         ) return;
 
-        switch (
-            event.key
+        if (
+            event.key === "Escape"
         ) {
 
-            case "ArrowLeft":
+            closeLightbox();
 
-                prevImage();
+        }
 
-                break;
+        if (
+            event.key === "ArrowRight"
+        ) {
 
-            case "ArrowRight":
+            nextImage();
 
-                nextImage();
+        }
 
-                break;
+        if (
+            event.key === "ArrowLeft"
+        ) {
 
-            case "Escape":
-
-                closeLightbox();
-
-                break;
+            prevImage();
 
         }
 
     }
 );
 
-/* ==================================
-   TOUCH SWIPE
-================================== */
+/*========================*/
+/* TOUCH SWIPE */
+/*========================*/
 
 let touchStartX = 0;
-
 let touchEndX = 0;
 
 lightbox.addEventListener(
@@ -472,9 +469,8 @@ function handleSwipe() {
         touchStartX;
 
     if (
-        Math.abs(
-            distance
-        ) < 60
+        Math.abs(distance)
+        < 60
     ) return;
 
     if (
@@ -492,3 +488,5 @@ function handleSwipe() {
     }
 
 }
+
+});
