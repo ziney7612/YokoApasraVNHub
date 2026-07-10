@@ -389,4 +389,108 @@ document.addEventListener(
         );
 
     }
+
+    /* ==================================
+   KEYBOARD CONTROLS
+================================== */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            !lightbox.classList.contains(
+                "show"
+            )
+        ) return;
+
+        switch (
+            event.key
+        ) {
+
+            case "ArrowLeft":
+
+                prevImage();
+
+                break;
+
+            case "ArrowRight":
+
+                nextImage();
+
+                break;
+
+            case "Escape":
+
+                closeLightbox();
+
+                break;
+
+        }
+
+    }
+);
+
+/* ==================================
+   TOUCH SWIPE
+================================== */
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+lightbox.addEventListener(
+    "touchstart",
+    (event) => {
+
+        touchStartX =
+            event.changedTouches[0]
+                .screenX;
+
+    },
+    { passive:true }
+);
+
+lightbox.addEventListener(
+    "touchend",
+    (event) => {
+
+        touchEndX =
+            event.changedTouches[0]
+                .screenX;
+
+        handleSwipe();
+
+    },
+    { passive:true }
+);
+
+function handleSwipe() {
+
+    const distance =
+        touchEndX -
+        touchStartX;
+
+    if (
+        Math.abs(
+            distance
+        ) < 60
+    ) return;
+
+    if (
+        distance > 0
+    ) {
+
+        prevImage();
+
+    }
+
+    else {
+
+        nextImage();
+
+    }
+
+}
+
 );
