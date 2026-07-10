@@ -55,11 +55,7 @@ document.addEventListener(
 
         let zoom = 1;
 
-        let touchStartX = 0;
-
-        /*========================*/
-        /* COLLECT */
-        /*========================*/
+        /*=============================*/
 
         function collectImages() {
 
@@ -76,9 +72,7 @@ document.addEventListener(
         window.refreshLightbox =
             collectImages;
 
-        /*========================*/
-        /* ZOOM */
-        /*========================*/
+        /*=============================*/
 
         function resetZoom() {
 
@@ -87,26 +81,9 @@ document.addEventListener(
             image.style.transform =
                 "scale(1)";
 
-            image.style.cursor =
-                "zoom-in";
-
         }
 
-        function applyZoom() {
-
-            image.style.transform =
-                `scale(${zoom})`;
-
-            image.style.cursor =
-                zoom > 1
-                ? "zoom-out"
-                : "zoom-in";
-
-        }
-
-        /*========================*/
-        /* UI */
-        /*========================*/
+        /*=============================*/
 
         function updateUI() {
 
@@ -121,17 +98,19 @@ document.addEventListener(
                     "img"
                 );
 
-            counter &&
-                (
-                    counter.textContent =
-                    `${currentIndex + 1} / ${images.length}`
-                );
+            if (counter) {
 
-            caption &&
-                (
-                    caption.textContent =
-                    img?.alt || ""
-                );
+                counter.textContent =
+                    `${currentIndex + 1} / ${images.length}`;
+
+            }
+
+            if (caption) {
+
+                caption.textContent =
+                    img?.alt || "";
+
+            }
 
             if (download) {
 
@@ -149,9 +128,7 @@ document.addEventListener(
 
         }
 
-        /*========================*/
-        /* PRELOAD */
-        /*========================*/
+        /*=============================*/
 
         function preload(index) {
 
@@ -180,9 +157,7 @@ document.addEventListener(
 
         }
 
-        /*========================*/
-        /* SHOW IMAGE */
-        /*========================*/
+        /*=============================*/
 
         function showImage(index) {
 
@@ -257,9 +232,7 @@ document.addEventListener(
 
         }
 
-        /*========================*/
-        /* OPEN / CLOSE */
-        /*========================*/
+        /*=============================*/
 
         function openLightbox(
             index
@@ -299,9 +272,7 @@ document.addEventListener(
 
         }
 
-        /*========================*/
-        /* NAVIGATION */
-        /*========================*/
+        /*=============================*/
 
         function nextImage() {
 
@@ -341,9 +312,9 @@ document.addEventListener(
 
         }
 
-        /*========================*/
-        /* OPEN EVENT */
-        /*========================*/
+        /*=============================*/
+        /* OPEN IMAGE */
+        /*=============================*/
 
         document.addEventListener(
             "click",
@@ -377,28 +348,46 @@ document.addEventListener(
             }
         );
 
-        /*========================*/
+        /*=============================*/
         /* BUTTONS */
-        /*========================*/
+        /*=============================*/
 
         closeButton?.addEventListener(
             "click",
-            closeLightbox
+            (event) => {
+
+                event.stopPropagation();
+
+                closeLightbox();
+
+            }
         );
 
         nextButton?.addEventListener(
             "click",
-            nextImage
+            (event) => {
+
+                event.stopPropagation();
+
+                nextImage();
+
+            }
         );
 
         prevButton?.addEventListener(
             "click",
-            prevImage
+            (event) => {
+
+                event.stopPropagation();
+
+                prevImage();
+
+            }
         );
 
-        /*========================*/
+        /*=============================*/
         /* CLICK OUTSIDE */
-        /*========================*/
+        /*=============================*/
 
         lightbox.addEventListener(
             "click",
@@ -416,9 +405,9 @@ document.addEventListener(
             }
         );
 
-        /*========================*/
+        /*=============================*/
         /* KEYBOARD */
-        /*========================*/
+        /*=============================*/
 
         document.addEventListener(
             "keydown",
@@ -454,9 +443,11 @@ document.addEventListener(
             }
         );
 
-        /*========================*/
-        /* TOUCH SWIPE */
-        /*========================*/
+        /*=============================*/
+        /* SWIPE */
+        /*=============================*/
+
+        let touchStartX = 0;
 
         lightbox.addEventListener(
             "touchstart",
@@ -510,9 +501,9 @@ document.addEventListener(
             }
         );
 
-        /*========================*/
-        /* ONE CLICK ZOOM */
-        /*========================*/
+        /*=============================*/
+        /* CLICK TO ZOOM */
+        /*=============================*/
 
         image.addEventListener(
             "click",
@@ -525,14 +516,15 @@ document.addEventListener(
                     ? 2
                     : 1;
 
-                applyZoom();
+                image.style.transform =
+                    `scale(${zoom})`;
 
             }
         );
 
-        /*========================*/
+        /*=============================*/
         /* MOUSE WHEEL */
-        /*========================*/
+        /*=============================*/
 
         lightbox.addEventListener(
             "wheel",
@@ -561,7 +553,8 @@ document.addEventListener(
                         )
                     );
 
-                applyZoom();
+                image.style.transform =
+                    `scale(${zoom})`;
 
             },
             {
