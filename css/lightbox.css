@@ -1,100 +1,140 @@
-/*==============================*/
+/*==================================
+=          LIGHTBOX ROOT           =
+==================================*/
+
 .lightbox{
+
     position:fixed;
     inset:0;
-    z-index:99999;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    background:rgba(15,15,25,.65);
-    backdrop-filter:blur(32px);
+    background:
+        rgba(8,8,15,.72);
+
+    backdrop-filter:
+        blur(28px);
 
     opacity:0;
     visibility:hidden;
+
     transition:.35s;
+
+    z-index:99999;
 }
 
 .lightbox.show{
+
     opacity:1;
     visibility:visible;
+
 }
 
 body.lightbox-open{
+
     overflow:hidden;
+
 }
 
-/*==============================*/
+/*==================================
+=          IMAGE STAGE             =
+==================================*/
 
 .lightbox-stage{
-    position:relative;
+
+    position:fixed;
+    inset:0;
 
     display:flex;
     justify-content:center;
     align-items:center;
-
-    width:100%;
-    height:100%;
 
     padding:40px;
 }
 
-/*==============================*/
-
 #lightbox-image{
 
     max-width:88vw;
-    max-height:86vh;
-
-    border-radius:28px;
+    max-height:88vh;
 
     object-fit:contain;
 
+    border-radius:24px;
+
+    user-select:none;
+    -webkit-user-drag:none;
+
+    cursor:zoom-in;
+
     box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.45);
+        0 25px 80px rgba(0,0,0,.45);
 
     transition:
-        transform .3s,
-        opacity .3s;
-
-    cursor:pointer;
+        opacity .35s ease,
+        transform .35s ease;
 }
 
-/*==============================*/
-/* COUNTER */
-/*==============================*/
+#lightbox-image.loading{
 
-.lightbox-counter{
+    opacity:0;
+    transform:scale(.96);
 
-    position:fixed;
+}
 
-    top:18px;
-    left:30px;
+/*==================================
+=             BUTTONS              =
+==================================*/
 
-    padding:12px 18px;
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next,
+.lightbox-download{
 
-    border-radius:999px;
-
-    color:#fff;
-    font-size:14px;
-    font-weight:700;
+    backdrop-filter:blur(25px);
 
     background:
-        rgba(255,255,255,.08);
+        rgba(255,230,245,.10);
 
-    backdrop-filter:blur(20px);
+    border:
+        1px solid
+        rgba(255,190,220,.20);
 
     box-shadow:
 
         0 0 0 1px
-        rgba(255,255,255,.08);
+        rgba(255,190,220,.06),
+
+        0 0 28px
+        rgba(255,170,210,.18);
+
+    color:#fff;
+
+    transition:.35s ease;
 }
 
-/*==============================*/
-/* BUTTONS */
-/*==============================*/
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover,
+.lightbox-download:hover{
+
+    background:
+        rgba(255,230,245,.16);
+
+    box-shadow:
+
+        0 0 40px
+        rgba(255,170,210,.35),
+
+        0 0 70px
+        rgba(255,170,210,.12);
+
+}
+
+/*==================================
+=         CLOSE / NAV              =
+==================================*/
 
 .lightbox-close,
 .lightbox-prev,
@@ -102,76 +142,32 @@ body.lightbox-open{
 
     position:fixed;
 
-    width:58px;
-    height:58px;
-
-    border:none;
-    border-radius:999px;
-
-    cursor:pointer;
-
     display:flex;
     justify-content:center;
     align-items:center;
 
-    color:#fff;
+    width:58px;
+    height:58px;
+
+    border-radius:999px;
+    border:none;
+
+    font-size:26px;
+
+    cursor:pointer;
+}
+
+.lightbox-close{
+
+    top:18px;
+    right:20px;
 
     font-size:34px;
-
-    background:
-
-        rgba(
-            255,
-            255,
-            255,
-            .08
-        );
-
-    backdrop-filter:
-        blur(18px);
-
-    box-shadow:
-
-        0 0 0 1px
-        rgba(
-            255,
-            255,
-            255,
-            .10
-        ),
-
-        0 8px 30px
-        rgba(
-            0,
-            0,
-            0,
-            .18
-        );
-
-    transition:.3s;
 }
-
-.lightbox-close:hover,
-.lightbox-prev:hover,
-.lightbox-next:hover{
-
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            .14
-        );
-
-    transform:
-        scale(1.06);
-}
-
-/*==============================*/
 
 .lightbox-prev{
 
-    left:30px;
+    left:20px;
     top:50%;
 
     transform:
@@ -180,171 +176,253 @@ body.lightbox-open{
 
 .lightbox-next{
 
-    right:30px;
+    right:20px;
     top:50%;
 
     transform:
         translateY(-50%);
 }
 
-.lightbox-close{
+/*==================================
+=            COUNTER               =
+==================================*/
 
-    top:14px;
-    right:18px;
+.lightbox-counter{
+
+    position:fixed;
+
+    top:22px;
+    left:22px;
+
+    padding:
+        10px 16px;
+
+    border-radius:999px;
+
+    color:#fff;
+
+    font-size:13px;
+    font-weight:600;
+
+    background:
+        rgba(255,230,245,.10);
+
+    backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        0 0 25px
+        rgba(255,170,210,.15);
 }
 
-/*==============================*/
-/* DOWNLOAD */
-/*==============================*/
+/*==================================
+=            DOWNLOAD              =
+==================================*/
 
 .lightbox-download{
 
     position:fixed;
 
-    top:14px;
+    top:18px;
     right:92px;
 
     padding:
-
-        14px 22px;
+        12px 20px;
 
     border-radius:999px;
 
-    color:#fff;
     text-decoration:none;
-    font-weight:700;
+
+    color:#fff;
+
+    font-size:14px;
+    font-weight:600;
+
+    overflow:hidden;
+}
+
+/*==================================
+=            BUBBLES               =
+==================================*/
+
+.lightbox-download .bubble{
+
+    position:absolute;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
 
     background:
 
-        rgba(
-            255,
-            255,
-            255,
-            .08
+        radial-gradient(
+
+            circle,
+
+            rgba(255,255,255,.95),
+
+            rgba(255,190,220,.85)
+
         );
 
-    backdrop-filter:
-        blur(18px);
+    opacity:0;
 
-    box-shadow:
+    pointer-events:none;
 
-        0 0 0 1px
-        rgba(
-            255,
-            255,
-            255,
-            .10
-        ),
-
-        0 8px 30px
-        rgba(
-            0,
-            0,
-            0,
-            .18
-        );
-
-    transition:.3s;
+    filter:blur(.4px);
 }
 
-.lightbox-download:hover{
+.lightbox-download:hover .bubble{
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            .14
-        );
-
-    transform:
-        translateY(-2px);
+    animation:
+        bubbleFloat
+        2.2s infinite;
 }
 
-/*==============================*/
-/* CAPTION */
-/*==============================*/
+.lightbox-download .bubble:nth-child(2){
+
+    left:20%;
+    bottom:8px;
+
+    animation-delay:0s;
+}
+
+.lightbox-download .bubble:nth-child(3){
+
+    left:50%;
+    bottom:8px;
+
+    animation-delay:.6s;
+}
+
+.lightbox-download .bubble:nth-child(4){
+
+    left:78%;
+    bottom:8px;
+
+    animation-delay:1.2s;
+}
+
+@keyframes bubbleFloat{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(10px)
+            scale(.6);
+    }
+
+    20%{
+
+        opacity:.8;
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translateY(-26px)
+            scale(1.4);
+    }
+}
+
+/*==================================
+=            CAPTION               =
+==================================*/
 
 .lightbox-caption{
 
     position:fixed;
 
     left:50%;
-    bottom:22px;
+    bottom:38px;
 
     transform:
         translateX(-50%);
 
-    color:#fff;
-
-    font-size:15px;
-    font-weight:700;
+    width:80vw;
 
     text-align:center;
 
+    color:#fff;
+
+    font-size:16px;
+    font-weight:700;
+
     text-shadow:
-        0 3px 12px
+        0 3px 15px
         rgba(0,0,0,.45);
 }
 
-/*==============================*/
-/* MOBILE */
-/*==============================*/
+/*==================================
+=             MOBILE               =
+==================================*/
 
 @media (max-width:768px){
-
-    #lightbox-image{
-
-        max-width:94vw;
-        max-height:78vh;
-    }
 
     .lightbox-prev,
     .lightbox-next{
 
-        width:52px;
-        height:52px;
+        width:48px;
+        height:48px;
 
-        font-size:26px;
+        font-size:22px;
+
+        top:50%;
     }
 
     .lightbox-prev{
 
-        left:12px;
+        left:10px;
     }
 
     .lightbox-next{
 
-        right:12px;
-    }
-
-    .lightbox-counter{
-
-        left:14px;
-        top:14px;
+        right:10px;
     }
 
     .lightbox-close{
 
-        right:12px;
-        top:12px;
+        width:50px;
+        height:50px;
+
+        top:14px;
+        right:14px;
     }
 
     .lightbox-download{
 
-        right:76px;
-        top:12px;
+        top:14px;
+        right:72px;
 
         padding:
-            13px 18px;
+            10px 16px;
 
         font-size:13px;
     }
 
-    .lightbox-caption{
+    .lightbox-counter{
 
-        width:90vw;
-        bottom:18px;
+        top:14px;
+        left:14px;
     }
 
+    .lightbox-caption{
+
+        bottom:26px;
+
+        width:92vw;
+
+        font-size:14px;
+    }
+
+    #lightbox-image{
+
+        max-width:94vw;
+        max-height:82vh;
+    }
 }
