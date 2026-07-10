@@ -391,49 +391,11 @@ document.addEventListener(
     }
 
 /*========================*/
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            !lightbox.classList.contains(
-                "show"
-            )
-        ) return;
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            closeLightbox();
-
-        }
-
-        if (
-            event.key === "ArrowRight"
-        ) {
-
-            nextImage();
-
-        }
-
-        if (
-            event.key === "ArrowLeft"
-        ) {
-
-            prevImage();
-
-        }
-
-    }
-);
-
-/*========================*/
-/* TOUCH SWIPE */
+/* TOUCH SUPPORT */
 /*========================*/
 
 let touchStartX = 0;
+
 let touchEndX = 0;
 
 lightbox.addEventListener(
@@ -456,37 +418,35 @@ lightbox.addEventListener(
             event.changedTouches[0]
                 .screenX;
 
-        handleSwipe();
+        const distance =
+            touchEndX -
+            touchStartX;
+
+        if (
+            Math.abs(
+                distance
+            ) < 60
+        ) return;
+
+        if (
+            distance > 0
+        ) {
+
+            prevImage();
+
+        }
+
+        else {
+
+            nextImage();
+
+        }
 
     },
     { passive:true }
 );
 
-function handleSwipe() {
-
-    const distance =
-        touchEndX -
-        touchStartX;
-
-    if (
-        Math.abs(distance)
-        < 60
-    ) return;
-
-    if (
-        distance > 0
-    ) {
-
-        prevImage();
-
-    }
-
-    else {
-
-        nextImage();
-
-    }
-
-}
-
 });
+
+
+    
