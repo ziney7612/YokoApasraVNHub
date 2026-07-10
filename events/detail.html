@@ -79,8 +79,13 @@
 
 <div id="lightbox" class="lightbox">
 
-    <button class="lightbox-close">
+    <button
+        type="button"
+        class="lightbox-close"
+        aria-label="Close">
+
         &times;
+
     </button>
 
     <div
@@ -88,24 +93,36 @@
         class="lightbox-counter">
     </div>
 
-    <button class="lightbox-prev">
+    <button
+        type="button"
+        class="lightbox-prev"
+        aria-label="Previous image">
+
         &#10094;
+
     </button>
 
     <div class="lightbox-stage">
 
         <img
-            id="lightbox-image">
+            id="lightbox-image"
+            alt="">
 
     </div>
 
-    <button class="lightbox-next">
+    <button
+        type="button"
+        class="lightbox-next"
+        aria-label="Next image">
+
         &#10095;
+
     </button>
 
     <a
         id="lightbox-download"
         class="lightbox-download"
+        href=""
         download>
 
         Download Original
