@@ -110,7 +110,7 @@ body.lightbox-open{
     backdrop-filter:blur(20px);
 
     background:
-        rgba(255,230,245,.12);
+        rgba(255,230,245,.20);
 
     border:
         1px solid
@@ -237,7 +237,7 @@ body.lightbox-open{
     color:#fff;
 
     background:
-        rgba(255,230,245,.10);
+        rgba(255,230,245,.20);
 
     backdrop-filter:
         blur(20px);
@@ -255,7 +255,7 @@ body.lightbox-open{
 
     position:fixed;
 
-    top:20px;
+    top:22px;
     right:88px;
 
     padding:
