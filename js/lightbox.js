@@ -53,6 +53,8 @@ document.addEventListener(
 
         let isAnimating = false;
 
+        let zoom = 1;
+
         /*========================*/
 
         function collectImages() {
@@ -72,6 +74,17 @@ document.addEventListener(
 
         /*========================*/
 
+        function resetZoom() {
+
+            zoom = 1;
+
+            image.style.transform =
+                "scale(1)";
+
+        }
+
+        /*========================*/
+
         function updateUI() {
 
             const item =
@@ -86,12 +99,16 @@ document.addEventListener(
                 );
 
             counter &&
-                (counter.textContent =
-                    `${currentIndex + 1} / ${images.length}`);
+                (
+                    counter.textContent =
+                    `${currentIndex + 1} / ${images.length}`
+                );
 
             caption &&
-                (caption.textContent =
-                    img?.alt || "");
+                (
+                    caption.textContent =
+                    img?.alt || ""
+                );
 
             if (download) {
 
@@ -169,10 +186,10 @@ document.addEventListener(
 
                     image.alt =
                         item
-                            .querySelector(
-                                "img"
-                            )
-                            ?.alt ||
+                        .querySelector(
+                            "img"
+                        )
+                        ?.alt ||
 
                         `Photo ${index + 1}`;
 
@@ -182,6 +199,8 @@ document.addEventListener(
                     updateUI();
 
                     preloadNearby();
+
+                    resetZoom();
 
                     requestAnimationFrame(
                         () => {
@@ -201,10 +220,6 @@ document.addEventListener(
             loader.onerror =
                 () => {
 
-                    image.classList.remove(
-                        "loading"
-                    );
-
                     isAnimating =
                         false;
 
@@ -217,9 +232,7 @@ document.addEventListener(
 
         /*========================*/
 
-        function openLightbox(
-            index
-        ) {
+        function openLightbox(index) {
 
             collectImages();
 
@@ -235,9 +248,7 @@ document.addEventListener(
                 "lightbox-open"
             );
 
-            showImage(
-                index
-            );
+            showImage(index);
 
         }
 
@@ -251,15 +262,13 @@ document.addEventListener(
                 "lightbox-open"
             );
 
+            resetZoom();
+
         }
 
         /*========================*/
 
         function nextImage() {
-
-            if (
-                !images.length
-            ) return;
 
             currentIndex++;
 
@@ -280,10 +289,6 @@ document.addEventListener(
 
         function prevImage() {
 
-            if (
-                !images.length
-            ) return;
-
             currentIndex--;
 
             if (
@@ -302,7 +307,7 @@ document.addEventListener(
         }
 
         /*========================*/
-        /* OPEN IMAGE */
+        /* OPEN */
         /*========================*/
 
         document.addEventListener(
@@ -390,20 +395,20 @@ document.addEventListener(
                     event.key
                 ) {
 
-                    case "Escape":
+                        case "Escape":
 
-                        closeLightbox();
-                        break;
+                            closeLightbox();
+                            break;
 
-                    case "ArrowRight":
+                        case "ArrowRight":
 
-                        nextImage();
-                        break;
+                            nextImage();
+                            break;
 
-                    case "ArrowLeft":
+                        case "ArrowLeft":
 
-                        prevImage();
-                        break;
+                            prevImage();
+                            break;
 
                 }
 
@@ -416,19 +421,17 @@ document.addEventListener(
 
         let touchStartX = 0;
 
-        let touchEndX = 0;
-
         lightbox.addEventListener(
             "touchstart",
             (event) => {
 
                 touchStartX =
                     event.changedTouches[0]
-                        .screenX;
+                    .screenX;
 
             },
             {
-                passive: true
+                passive:true
             }
         );
 
@@ -436,9 +439,9 @@ document.addEventListener(
             "touchend",
             (event) => {
 
-                touchEndX =
+                const touchEndX =
                     event.changedTouches[0]
-                        .screenX;
+                    .screenX;
 
                 const distance =
                     touchEndX -
@@ -466,11 +469,63 @@ document.addEventListener(
 
             },
             {
-                passive: true
+                passive:true
             }
         );
 
         /*========================*/
+        /* ZOOM */
+        /*========================*/
+
+        image.addEventListener(
+            "dblclick",
+            () => {
+
+                zoom =
+                    zoom === 1
+                    ? 2
+                    : 1;
+
+                image.style.transform =
+                    `scale(${zoom})`;
+
+            }
+        );
+
+        lightbox.addEventListener(
+            "wheel",
+            (event) => {
+
+                if (
+                    !lightbox.classList.contains(
+                        "show"
+                    )
+                ) return;
+
+                event.preventDefault();
+
+                zoom +=
+                    event.deltaY > 0
+                    ? -0.15
+                    : 0.15;
+
+                zoom =
+                    Math.max(
+                        1,
+                        Math.min(
+                            zoom,
+                            4
+                        )
+                    );
+
+                image.style.transform =
+                    `scale(${zoom})`;
+
+            },
+            {
+                passive:false
+            }
+        );
 
         collectImages();
 
