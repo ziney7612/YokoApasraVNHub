@@ -140,32 +140,16 @@ body.lightbox-open{
     backdrop-filter:
         blur(20px);
 
-    background:
+   background:
+rgba(255,230,240,.24);
 
-        rgba(
-            255,
-            220,
-            235,
-            .18
-        );
+  box-shadow:
 
-    box-shadow:
+    0 0 0 1px
+    rgba(255,190,220,.25),
 
-        0 0 0 1px
-        rgba(
-            255,
-            190,
-            220,
-            .20
-        ),
-
-        0 0 40px
-        rgba(
-            255,
-            170,
-            210,
-            .18
-        );
+    0 0 50px
+    rgba(255,170,210,.25);
 
     transition:
         .3s;
@@ -396,38 +380,108 @@ body.lightbox-open{
 }
 
 /*==================================
-=          YOKO EGGS 🥚            =
+=          YOKO EGGS 🍳            =
 ==================================*/
+
+.lightbox-download{
+
+    overflow:visible;
+}
 
 .lightbox-download .bubble{
 
     position:absolute;
 
-    width:12px;
-    height:16px;
+    width:22px;
+    height:18px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    background:#fff;
 
     border-radius:
 
+        48%
+        52%
         50%
         50%
+        /
+        55%
         45%
+        55%
         45%;
+
+    box-shadow:
+
+        0 4px 12px
+        rgba(0,0,0,.18);
+
+}
+
+.lightbox-download .bubble::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
 
     background:
 
         radial-gradient(
 
-            circle at center,
+            circle,
 
-            #ffd84a 0%,
-            #ffc83c 60%,
-            #ffb52e 100%
+            #ffe86d 0%,
+
+            #ffbc2f 100%
 
         );
 
-    opacity:0;
+    top:50%;
+    left:50%;
 
-    pointer-events:none;
+    transform:
+        translate(-50%,-50%);
+
+}
+
+/*==================================
+=         EGG POSITIONS            =
+==================================*/
+
+.lightbox-download
+.bubble:nth-child(2){
+
+    left:18%;
+    bottom:8px;
+
+    animation-delay:0s;
+
+}
+
+.lightbox-download
+.bubble:nth-child(3){
+
+    left:48%;
+    bottom:6px;
+
+    animation-delay:.35s;
+
+}
+
+.lightbox-download
+.bubble:nth-child(4){
+
+    left:76%;
+    bottom:8px;
+
+    animation-delay:.7s;
 
 }
 
@@ -436,34 +490,15 @@ body.lightbox-open{
     animation:
 
         yokoEgg
-        2s
+        1.8s
+        ease-out
         infinite;
 
 }
 
-.lightbox-download
-.bubble:nth-child(2){
-
-    left:25%;
-    animation-delay:.2s;
-
-}
-
-.lightbox-download
-.bubble:nth-child(3){
-
-    left:55%;
-    animation-delay:.5s;
-
-}
-
-.lightbox-download
-.bubble:nth-child(4){
-
-    left:80%;
-    animation-delay:.8s;
-
-}
+/*==================================
+=         SUNNY SIDE UP 🍳         =
+==================================*/
 
 @keyframes yokoEgg{
 
@@ -474,14 +509,48 @@ body.lightbox-open{
         transform:
 
             translateY(0)
+            translateX(0)
             rotate(0deg)
-            scale(.7);
+            scale(.6);
 
     }
 
-    25%{
+    20%{
 
         opacity:1;
+
+    }
+
+    35%{
+
+        transform:
+
+            translateY(-18px)
+            translateX(-6px)
+            rotate(-10deg)
+            scale(.85);
+
+    }
+
+    60%{
+
+        transform:
+
+            translateY(-40px)
+            translateX(8px)
+            rotate(10deg)
+            scale(1);
+
+    }
+
+    80%{
+
+        transform:
+
+            translateY(-58px)
+            translateX(-6px)
+            rotate(-12deg)
+            scale(1.1);
 
     }
 
@@ -491,9 +560,10 @@ body.lightbox-open{
 
         transform:
 
-            translateY(-65px)
-            rotate(20deg)
-            scale(1.3);
+            translateY(-78px)
+            translateX(8px)
+            rotate(18deg)
+            scale(1.25);
 
     }
 
@@ -508,10 +578,26 @@ body.lightbox-open{
     .lightbox-prev,
     .lightbox-next{
 
-        width:52px;
-        height:52px;
+        width:56px;
+        height:56px;
 
-        font-size:24px;
+        font-size:26px;
+
+        top:45%;
+
+        transform:
+            translateY(-50%);
+    }
+
+    .lightbox-prev{
+
+        left:12px;
+
+    }
+
+    .lightbox-next{
+
+        right:12px;
 
     }
 
@@ -522,32 +608,37 @@ body.lightbox-open{
 
         font-size:34px;
 
+        top:20px;
+        right:20px;
+
     }
 
     .lightbox-download{
 
         top:auto;
         bottom:28px;
-        right:50%;
+
+        left:50%;
+        right:auto;
 
         transform:
-            translateX(50%);
+            translateX(-50%);
     }
 
     .lightbox-caption{
 
         bottom:95px;
 
-        font-size:14px;
-
         width:90vw;
+
+        font-size:14px;
 
     }
 
     .lightbox-counter{
 
-        top:24px;
-        left:24px;
+        top:20px;
+        left:20px;
 
     }
 
