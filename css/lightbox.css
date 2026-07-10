@@ -54,6 +54,11 @@ body.lightbox-open{
     overflow:hidden;
 
     padding:40px;
+
+    z-index:1;
+
+    pointer-events:none;
+
 }
 
 /*==================================
@@ -61,6 +66,12 @@ body.lightbox-open{
 ==================================*/
 
 #lightbox-image{
+
+    position:relative;
+
+    z-index:2;
+
+    pointer-events:auto;
 
     display:block;
 
@@ -102,20 +113,27 @@ body.lightbox-open{
 
 }
 
-#lightbox-image:active{
+/*==================================
+=            BUTTONS               =
+==================================*/
 
-    cursor:grab;
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next,
+.lightbox-counter,
+.lightbox-download,
+.lightbox-caption{
+
+    z-index:100;
 
 }
 
 /*==================================
-=         CLOSE BUTTON             =
+=        CLOSE / PREV / NEXT       =
 ==================================*/
 
 .lightbox-close,
-
 .lightbox-prev,
-
 .lightbox-next{
 
     position:fixed;
@@ -131,68 +149,48 @@ body.lightbox-open{
 
     border-radius:999px;
 
-    font-size:30px;
-
     color:#fff;
+
+    font-size:30px;
 
     cursor:pointer;
 
     backdrop-filter:
         blur(20px);
 
-   background:
-rgba(255,230,240,.24);
-
-  box-shadow:
-
-    0 0 0 1px
-    rgba(255,190,220,.25),
-
-    0 0 50px
-    rgba(255,170,210,.25);
-
-    transition:
-        .3s;
-}
-
-.lightbox-close:hover,
-
-.lightbox-prev:hover,
-
-.lightbox-next:hover{
-
     background:
-
-        rgba(
-            255,
-            220,
-            235,
-            .30
-        );
-
-    transform:
-        scale(1.08);
+        rgba(255,230,240,.24);
 
     box-shadow:
 
+        0 0 0 1px
+        rgba(255,190,220,.25),
+
         0 0 50px
-        rgba(
-            255,
-            170,
-            210,
-            .35
-        );
+        rgba(255,170,210,.25);
+
+    transition:.3s;
 
 }
 
-/*==================================
-=             POSITIONS            =
-==================================*/
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover{
+
+    background:
+        rgba(255,230,240,.35);
+
+    box-shadow:
+
+        0 0 60px
+        rgba(255,170,210,.40);
+
+}
 
 .lightbox-close{
 
-    top:32px;
-    right:32px;
+    top:30px;
+    right:30px;
 
     font-size:40px;
 
@@ -200,7 +198,7 @@ rgba(255,230,240,.24);
 
 .lightbox-prev{
 
-    left:32px;
+    left:30px;
     top:50%;
 
     transform:
@@ -210,7 +208,7 @@ rgba(255,230,240,.24);
 
 .lightbox-next{
 
-    right:32px;
+    right:30px;
     top:50%;
 
     transform:
@@ -218,49 +216,48 @@ rgba(255,230,240,.24);
 
 }
 
+.lightbox-prev:hover,
+.lightbox-next:hover{
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+
+}
+
+.lightbox-close:hover{
+
+    transform:
+        scale(1.08);
+
+}
+
 /*==================================
-=             COUNTER              =
+=            COUNTER               =
 ==================================*/
 
 .lightbox-counter{
 
     position:fixed;
 
-    top:36px;
-    left:36px;
+    top:34px;
+    left:34px;
 
     padding:
-
         12px 20px;
 
     border-radius:999px;
 
+    color:#fff;
+
     font-size:14px;
     font-weight:600;
-
-    color:#fff;
 
     backdrop-filter:
         blur(20px);
 
     background:
-
-        rgba(
-            255,
-            220,
-            235,
-            .18
-        );
-
-    box-shadow:
-
-        0 0 35px
-        rgba(
-            255,
-            170,
-            210,
-            .18
-        );
+        rgba(255,230,240,.18);
 
 }
 
@@ -273,19 +270,19 @@ rgba(255,230,240,.24);
     position:fixed;
 
     left:50%;
-    bottom:110px;
+    bottom:35px;
 
     transform:
         translateX(-50%);
 
-    max-width:70vw;
+    max-width:80vw;
 
     text-align:center;
 
+    color:#fff;
+
     font-size:16px;
     font-weight:700;
-
-    color:#fff;
 
     text-shadow:
 
@@ -295,23 +292,22 @@ rgba(255,230,240,.24);
 }
 
 /*==================================
-=          DOWNLOAD BUTTON         =
+=         DOWNLOAD BUTTON          =
 ==================================*/
 
 .lightbox-download{
 
     position:fixed;
 
-    top:32px;
+    top:30px;
     right:120px;
 
     display:flex;
     align-items:center;
-    gap:10px;
+    justify-content:center;
 
     padding:
-
-        14px 22px;
+        14px 24px;
 
     border-radius:999px;
 
@@ -343,14 +339,14 @@ rgba(255,230,240,.24);
                 255,
                 170,
                 210,
-                .20
+                .22
             )
 
         );
 
     box-shadow:
 
-        0 0 40px
+        0 0 50px
         rgba(
             255,
             170,
@@ -358,8 +354,8 @@ rgba(255,230,240,.24);
             .22
         );
 
-    transition:
-        .3s;
+    transition:.3s;
+
 }
 
 .lightbox-download:hover{
@@ -367,69 +363,21 @@ rgba(255,230,240,.24);
     transform:
         translateY(-3px);
 
-    box-shadow:
-
-        0 0 55px
-        rgba(
-            255,
-            170,
-            210,
-            .35
-        );
-
 }
 
 /*==================================
-=          YOKO EGGS 🍳            =
+=         YOKO BUBBLES ✨          =
 ==================================*/
-
-.lightbox-download{
-
-    overflow:visible;
-}
 
 .lightbox-download .bubble{
 
     position:absolute;
 
-    width:22px;
-    height:18px;
+    border-radius:50%;
 
     opacity:0;
 
     pointer-events:none;
-
-    background:#fff;
-
-    border-radius:
-
-        48%
-        52%
-        50%
-        50%
-        /
-        55%
-        45%
-        55%
-        45%;
-
-    box-shadow:
-
-        0 4px 12px
-        rgba(0,0,0,.18);
-
-}
-
-.lightbox-download .bubble::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:9px;
-    height:9px;
-
-    border-radius:50%;
 
     background:
 
@@ -437,51 +385,71 @@ rgba(255,230,240,.24);
 
             circle,
 
-            #ffe86d 0%,
+            rgba(
+                255,
+                255,
+                255,
+                .95
+            ) 0%,
 
-            #ffbc2f 100%
+            rgba(
+                255,
+                220,
+                235,
+                .80
+            ) 45%,
+
+            rgba(
+                255,
+                170,
+                210,
+                .20
+            ) 100%
 
         );
 
-    top:50%;
-    left:50%;
+    box-shadow:
 
-    transform:
-        translate(-50%,-50%);
+        0 0 18px
+        rgba(
+            255,
+            190,
+            230,
+            .50
+        );
 
 }
 
-/*==================================
-=         EGG POSITIONS            =
-==================================*/
+.lightbox-download .bubble:nth-child(2){
 
-.lightbox-download
-.bubble:nth-child(2){
+    width:8px;
+    height:8px;
 
-    left:18%;
-    bottom:8px;
+    left:20%;
 
     animation-delay:0s;
 
 }
 
-.lightbox-download
-.bubble:nth-child(3){
+.lightbox-download .bubble:nth-child(3){
 
-    left:48%;
-    bottom:6px;
+    width:12px;
+    height:12px;
 
-    animation-delay:.35s;
+    left:50%;
+
+    animation-delay:.4s;
 
 }
 
-.lightbox-download
-.bubble:nth-child(4){
+.lightbox-download .bubble:nth-child(4){
 
-    left:76%;
-    bottom:8px;
+    width:10px;
+    height:10px;
 
-    animation-delay:.7s;
+    left:75%;
+
+    animation-delay:.8s;
 
 }
 
@@ -489,18 +457,13 @@ rgba(255,230,240,.24);
 
     animation:
 
-        yokoEgg
-        1.8s
-        ease-out
+        yokoBubble
+        2.4s
         infinite;
 
 }
 
-/*==================================
-=         SUNNY SIDE UP 🍳         =
-==================================*/
-
-@keyframes yokoEgg{
+@keyframes yokoBubble{
 
     0%{
 
@@ -508,49 +471,24 @@ rgba(255,230,240,.24);
 
         transform:
 
-            translateY(0)
-            translateX(0)
-            rotate(0deg)
+            translateY(10px)
             scale(.6);
 
     }
 
-    20%{
+    25%{
 
-        opacity:1;
-
-    }
-
-    35%{
-
-        transform:
-
-            translateY(-18px)
-            translateX(-6px)
-            rotate(-10deg)
-            scale(.85);
+        opacity:.7;
 
     }
 
-    60%{
+    50%{
 
         transform:
 
-            translateY(-40px)
-            translateX(8px)
-            rotate(10deg)
+            translateY(-6px)
+            translateX(4px)
             scale(1);
-
-    }
-
-    80%{
-
-        transform:
-
-            translateY(-58px)
-            translateX(-6px)
-            rotate(-12deg)
-            scale(1.1);
 
     }
 
@@ -560,17 +498,16 @@ rgba(255,230,240,.24);
 
         transform:
 
-            translateY(-78px)
-            translateX(8px)
-            rotate(18deg)
-            scale(1.25);
+            translateY(-20px)
+            translateX(-4px)
+            scale(1.3);
 
     }
 
 }
 
 /*==================================
-=            MOBILE                =
+=             MOBILE               =
 ==================================*/
 
 @media (max-width:768px){
@@ -585,8 +522,6 @@ rgba(255,230,240,.24);
 
         top:45%;
 
-        transform:
-            translateY(-50%);
     }
 
     .lightbox-prev{
@@ -606,32 +541,23 @@ rgba(255,230,240,.24);
         width:56px;
         height:56px;
 
-        font-size:34px;
-
         top:20px;
         right:20px;
+
+        font-size:34px;
 
     }
 
     .lightbox-download{
 
         top:auto;
-        bottom:28px;
+        bottom:25px;
 
         left:50%;
         right:auto;
 
         transform:
             translateX(-50%);
-    }
-
-    .lightbox-caption{
-
-        bottom:95px;
-
-        width:90vw;
-
-        font-size:14px;
 
     }
 
@@ -639,6 +565,16 @@ rgba(255,230,240,.24);
 
         top:20px;
         left:20px;
+
+    }
+
+    .lightbox-caption{
+
+        bottom:90px;
+
+        width:90vw;
+
+        font-size:14px;
 
     }
 
