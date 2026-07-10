@@ -2,10 +2,6 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        /*==============================
-        =           Elements          =
-        ==============================*/
-
         const lightbox =
             document.getElementById(
                 "lightbox"
@@ -14,21 +10,6 @@ document.addEventListener(
         const image =
             document.getElementById(
                 "lightbox-image"
-            );
-
-        const counter =
-            document.getElementById(
-                "lightbox-counter"
-            );
-
-        const caption =
-            document.getElementById(
-                "lightbox-caption"
-            );
-
-        const download =
-            document.getElementById(
-                "lightbox-download"
             );
 
         const closeButton =
@@ -46,14 +27,25 @@ document.addEventListener(
                 ".lightbox-next"
             );
 
+        const counter =
+            document.getElementById(
+                "lightbox-counter"
+            );
+
+        const caption =
+            document.getElementById(
+                "lightbox-caption"
+            );
+
+        const download =
+            document.getElementById(
+                "lightbox-download"
+            );
+
         if (
             !lightbox ||
             !image
         ) return;
-
-        /*==============================
-        =             State           =
-        ==============================*/
 
         let images = [];
 
@@ -61,9 +53,7 @@ document.addEventListener(
 
         let isAnimating = false;
 
-        /*==============================
-        =        Collect Images       =
-        ==============================*/
+        /*========================*/
 
         function collectImages() {
 
@@ -80,9 +70,7 @@ document.addEventListener(
         window.refreshLightbox =
             collectImages;
 
-        /*==============================
-        =          Update UI          =
-        ==============================*/
+        /*========================*/
 
         function updateUI() {
 
@@ -117,8 +105,7 @@ document.addEventListener(
                     item.href;
 
                 download.download =
-                    item.dataset
-                        .filename ||
+                    item.dataset.filename ||
 
                     item.href
                         .split("/")
@@ -128,9 +115,7 @@ document.addEventListener(
 
         }
 
-        /*==============================
-        =           Preload          =
-        ==============================*/
+        /*========================*/
 
         function preload(index) {
 
@@ -159,9 +144,7 @@ document.addEventListener(
 
         }
 
-        /*==============================
-        =         Show Image         =
-        ==============================*/
+        /*========================*/
 
         function showImage(index) {
 
@@ -175,16 +158,7 @@ document.addEventListener(
             if (!item)
                 return;
 
-            isAnimating =
-                true;
-
-            image.classList.remove(
-                "loaded"
-            );
-
-            image.classList.add(
-                "loading"
-            );
+            isAnimating = true;
 
             const loader =
                 new Image();
@@ -197,12 +171,10 @@ document.addEventListener(
 
                     image.alt =
                         item
-                        .querySelector(
-                            "img"
-                        )
-                        ?.alt ||
-
-                        "";
+                            .querySelector(
+                                "img"
+                            )
+                            ?.alt || "";
 
                     currentIndex =
                         index;
@@ -211,22 +183,8 @@ document.addEventListener(
 
                     preloadNearby();
 
-                    requestAnimationFrame(
-                        () => {
-
-                            image.classList.remove(
-                                "loading"
-                            );
-
-                            image.classList.add(
-                                "loaded"
-                            );
-
-                            isAnimating =
-                                false;
-
-                        }
-                    );
+                    isAnimating =
+                        false;
 
                 };
 
@@ -243,9 +201,7 @@ document.addEventListener(
 
         }
 
-        /*==============================
-        =       Open / Close         =
-        ==============================*/
+        /*========================*/
 
         function openLightbox(
             index
@@ -283,38 +239,9 @@ document.addEventListener(
 
         }
 
-        /*==============================
-        =        Navigation          =
-        ==============================*/
-
-        function prevImage() {
-
-            if (
-                !images.length
-            ) return;
-
-            currentIndex--;
-
-            if (
-                currentIndex < 0
-            ) {
-
-                currentIndex =
-                    images.length - 1;
-
-            }
-
-            showImage(
-                currentIndex
-            );
-
-        }
+        /*========================*/
 
         function nextImage() {
-
-            if (
-                !images.length
-            ) return;
 
             currentIndex++;
 
@@ -333,22 +260,38 @@ document.addEventListener(
 
         }
 
-        /*==============================
-        =          Click Open        =
-        ==============================*/
+        function prevImage() {
+
+            currentIndex--;
+
+            if (
+                currentIndex < 0
+            ) {
+
+                currentIndex =
+                    images.length - 1;
+
+            }
+
+            showImage(
+                currentIndex
+            );
+
+        }
+
+        /*========================*/
 
         document.addEventListener(
             "click",
-            event => {
+            (event) => {
 
                 const target =
                     event.target.closest(
                         ".lightbox-trigger"
                     );
 
-                if (
-                    !target
-                ) return;
+                if (!target)
+                    return;
 
                 event.preventDefault();
 
@@ -370,31 +313,26 @@ document.addEventListener(
             }
         );
 
-        /*==============================
-        =            Events          =
-        ==============================*/
+        closeButton?.addEventListener(
+            "click",
+            closeLightbox
+        );
 
-        closeButton
-            ?.addEventListener(
-                "click",
-                closeLightbox
-            );
+        nextButton?.addEventListener(
+            "click",
+            nextImage
+        );
 
-        prevButton
-            ?.addEventListener(
-                "click",
-                prevImage
-            );
+        prevButton?.addEventListener(
+            "click",
+            prevImage
+        );
 
-        nextButton
-            ?.addEventListener(
-                "click",
-                nextImage
-            );
+        /*========================*/
 
         lightbox.addEventListener(
             "click",
-            event => {
+            (event) => {
 
                 if (
                     event.target ===
@@ -408,9 +346,11 @@ document.addEventListener(
             }
         );
 
+        /*========================*/
+
         document.addEventListener(
             "keydown",
-            event => {
+            (event) => {
 
                 if (
                     !lightbox.classList.contains(
@@ -418,27 +358,30 @@ document.addEventListener(
                     )
                 ) return;
 
-                switch (
-                    event.key
+                if (
+                    event.key ===
+                    "Escape"
                 ) {
 
-                    case "Escape":
+                    closeLightbox();
 
-                        closeLightbox();
+                }
 
-                        break;
+                if (
+                    event.key ===
+                    "ArrowRight"
+                ) {
 
-                    case "ArrowLeft":
+                    nextImage();
 
-                        prevImage();
+                }
 
-                        break;
+                if (
+                    event.key ===
+                    "ArrowLeft"
+                ) {
 
-                    case "ArrowRight":
-
-                        nextImage();
-
-                        break;
+                    prevImage();
 
                 }
 
