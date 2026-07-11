@@ -8,4 +8,14 @@
         "photos": 51,
         "format": "jpg"
     }
+
+{
+    "id":"pucci-2026",
+    "title":"Yoko @ Pucci",
+    "date":"30 April 2026",
+    "folder":"pucci-2026",
+    "cover":"018.jpg",
+    "photos":162,
+    "format":"jpg"
+}
 ]
