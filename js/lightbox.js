@@ -56,13 +56,15 @@ document.addEventListener(
         let zoom = 1;
 
         /*=============================*/
+        /* COLLECT */
+        /*=============================*/
 
         function collectImages() {
 
             images = [
 
                 ...document.querySelectorAll(
-                    "#gallery .lightbox-trigger"
+                    ".lightbox-trigger"
                 )
 
             ];
@@ -71,6 +73,24 @@ document.addEventListener(
 
         window.refreshLightbox =
             collectImages;
+
+        /*=============================*/
+
+        function getImageSrc(item) {
+
+            return (
+
+                item.href ||
+
+                item.dataset.src ||
+
+                item.src ||
+
+                ""
+
+            );
+
+        }
 
         /*=============================*/
 
@@ -96,6 +116,13 @@ document.addEventListener(
             const img =
                 item.querySelector(
                     "img"
+                ) ||
+
+                item;
+
+            const src =
+                getImageSrc(
+                    item
                 );
 
             if (counter) {
@@ -115,12 +142,13 @@ document.addEventListener(
             if (download) {
 
                 download.href =
-                    item.href;
+                    src;
 
                 download.download =
+
                     item.dataset.filename ||
 
-                    item.href
+                    src
                         .split("/")
                         .pop();
 
@@ -137,11 +165,16 @@ document.addEventListener(
                 index >= images.length
             ) return;
 
+            const item =
+                images[index];
+
             const img =
                 new Image();
 
             img.src =
-                images[index].href;
+                getImageSrc(
+                    item
+                );
 
         }
 
@@ -171,6 +204,11 @@ document.addEventListener(
             if (!item)
                 return;
 
+            const src =
+                getImageSrc(
+                    item
+                );
+
             isAnimating = true;
 
             image.classList.add(
@@ -186,12 +224,15 @@ document.addEventListener(
                     image.src =
                         loader.src;
 
-                    image.alt =
-                        item
-                        .querySelector(
+                    const img =
+                        item.querySelector(
                             "img"
-                        )
-                        ?.alt ||
+                        ) ||
+
+                        item;
+
+                    image.alt =
+                        img?.alt ||
 
                         `Photo ${index + 1}`;
 
@@ -228,7 +269,7 @@ document.addEventListener(
                 };
 
             loader.src =
-                item.href;
+                src;
 
         }
 
@@ -313,7 +354,7 @@ document.addEventListener(
         }
 
         /*=============================*/
-        /* OPEN IMAGE */
+        /* OPEN */
         /*=============================*/
 
         document.addEventListener(
@@ -386,8 +427,6 @@ document.addEventListener(
         );
 
         /*=============================*/
-        /* CLICK OUTSIDE */
-        /*=============================*/
 
         lightbox.addEventListener(
             "click",
@@ -455,7 +494,7 @@ document.addEventListener(
 
                 touchStartX =
                     event.changedTouches[0]
-                    .screenX;
+                        .screenX;
 
             },
             {
@@ -469,7 +508,7 @@ document.addEventListener(
 
                 const touchEndX =
                     event.changedTouches[0]
-                    .screenX;
+                        .screenX;
 
                 const distance =
                     touchEndX -
