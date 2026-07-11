@@ -1,11 +1,42 @@
 [
+  {
+    "id": "eveandboy-2026",
+    "title": "Yoko @ EVEANDBOY",
+    "date": "30 June 2026",
+    "folder": "eveandboy-2026",
+    "cover": "010",
+    "photos": 51,
+    "format": "jpg"
+  },
+
+  {
+    "id": "pucci-2026",
+    "title": "Yoko @ Pucci",
+    "date": "30 April 2026",
+    "folder": "pucci-2026",
+    "cover": "018",
+    "photos": 162,
+    "format": "jpg"
+  },
+
+  {
+    "id": "airport-cannes-2026",
+    "title": "Yoko @ Airport to Cannes",
+    "date": "16 May 2026",
+    "folder": "airport-cannes-2026",
+    "cover": "009",
+    "photos": 69,
+    "format": "jpg"
+  },
+
     {
-        "id": "eveandboy-2026",
-        "title": "Yoko @ EVEANDBOY",
-        "date": "30 June 2026",
-        "folder": "eveandboy-2026",
-        "cover": "010",
-        "photos": 51,
-        "format": "jpg"
-    }
+  "id": "xaga-awards-2026",
+  "title": "Yoko @ XAGA Awards",
+  "date": "18 May 2026",
+  "folder": "xaga-awards-2026",
+  "cover": "126",
+  "photos": 143,
+  "format": "jpg"
+}
+    
 ]
