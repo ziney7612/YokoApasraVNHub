@@ -37,6 +37,16 @@
   "cover": "126",
   "photos": 143,
   "format": "jpg"
+},
+
+  {
+  "id": "cannes-2026",
+  "title": "Yoko @ Cannes 2026",
+  "date": "19 May 2026",
+  "folder": "cannes-2026",
+  "cover": "001",
+  "photos": 181,
+  "format": "jpg"
 }
     
 ]
