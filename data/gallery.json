@@ -64,8 +64,18 @@
   "title": "Yoko @ TILFF 2026",
   "date": "07 June 2026",
   "folder": "tilff-2026",
-  "cover": "001",
+  "cover": "044",
   "photos": 47,
+  "format": "jpg"
+},
+
+  {
+  "id": "dmd-line-up-2026",
+  "title": "Yoko @ DMD Line Up",
+  "date": "18 June 2026",
+  "folder": "dmd-line-up-2026",
+  "cover": "087",
+  "photos": 105,
   "format": "jpg"
 }
     
