@@ -77,6 +77,36 @@
   "cover": "087",
   "photos": 105,
   "format": "jpg"
+},
+
+  {
+  "id": "mcm-moment-2026",
+  "title": "Yoko @ MCM Moment",
+  "date": "20 June 2026",
+  "folder": "mcm-moment-2026",
+  "cover": "008",
+  "photos": 95,
+  "format": "jpg"
+},
+
+  {
+  "id": "guerlain-fragrance-2026",
+  "title": "Yoko @ Guerlain Fragrance",
+  "date": "21 June 2026",
+  "folder": "guerlain-fragrance-2026",
+  "cover": "010",
+  "photos": 20,
+  "format": "jpg"
+},
+
+  {
+  "id": "pride-love-galaxy-2026",
+  "title": "Yoko @ Pride Love Galaxy",
+  "date": "26 June 2026",
+  "folder": "pride-love-galaxy-2026",
+  "cover": "070",
+  "photos": 119,
+  "format": "jpg"
 }
     
 ]
