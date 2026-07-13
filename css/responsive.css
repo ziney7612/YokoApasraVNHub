@@ -1,19 +1,27 @@
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+/* =====================================================
+   EVENTS RESPONSIVE
+===================================================== */
 
 /* =========================
    Laptop
 ========================= */
-
 @media (max-width:1200px){
 
-    .container{
-        width:min(94%,1100px);
+    .hero-title{
+        font-size:4.3rem;
     }
 
-    #events-list{
-        grid-template-columns:repeat(3,1fr);
+    .hero-image img{
+        width:480px;
+    }
+
+    .latest-content{
+        padding:55px;
+    }
+
+    .events-grid{
+        grid-template-columns:
+            repeat(3,1fr);
     }
 
 }
@@ -22,91 +30,79 @@
 /* =========================
    Tablet
 ========================= */
-
 @media (max-width:992px){
 
-    .header-container{
-        flex-direction:column;
-        height:auto;
-        padding:20px 0;
-        gap:18px;
+    .events-hero{
+        padding:90px 0 220px;
     }
-
-    .nav-menu{
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:18px;
-    }
-
-    section{
-        padding:80px 0;
-    }
-
-    /* HERO */
 
     .hero-layout{
-        grid-template-columns:1fr;
+        flex-direction:column;
         text-align:center;
-        gap:30px;
+        gap:40px;
     }
 
     .hero-copy{
-        order:2;
+        max-width:700px;
     }
 
-    .hero-image{
-        order:1;
-    }
-
-    .hero-image img{
-        max-width:420px;
-        margin:auto;
+    .hero-desc{
+        margin:0 auto 40px;
     }
 
     .hero-stats{
         justify-content:center;
     }
 
-    /* LATEST EVENT */
+    .hero-image{
+        justify-content:center;
+    }
+
+    .hero-image img{
+        width:420px;
+    }
+
+    /* latest */
 
     .latest-card{
         grid-template-columns:1fr;
-        gap:30px;
+    }
+
+    .latest-image{
+        min-height:340px;
+    }
+
+    .latest-content{
+        padding:48px;
         text-align:center;
     }
 
-    .latest-image img{
-        height:360px;
+    .latest-tag{
+        margin-inline:auto;
     }
 
-    /* EVENTS */
+    /* toolbar */
 
     .events-toolbar{
         flex-direction:column;
-        align-items:flex-start;
-        gap:24px;
+        align-items:center;
+        gap:28px;
+    }
+
+    .events-filter{
+        justify-content:center;
     }
 
     .events-actions{
         width:100%;
-        justify-content:space-between;
-        margin-left:0;
+        justify-content:center;
     }
 
-    #events-list{
-        grid-template-columns:repeat(2,1fr);
-    }
+    /* grid */
 
-    /* HOME */
-
-    .schedule-content{
-        grid-template-columns:1fr;
-        gap:40px;
-    }
-
-    .schedule-poster{
-        max-width:420px;
-        margin:auto;
+    .events-grid{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
 }
@@ -115,551 +111,137 @@
 /* =========================
    Mobile Tablet
 ========================= */
-
-@media (max-width:768px){
-
-    section{
-        padding:70px 0;
-    }
-
-    .container{
-        width:min(92%,680px);
-    }
-
-    /* HERO */
-
-    .hero-title{
-        font-size:4rem;
-    }
-
-    .hero-copy p{
-        max-width:600px;
-        margin:auto;
-    }
-
-    .hero-stats{
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:18px;
-    }
-
-    .hero-stats div{
-        width:180px;
-    }
-
-    /* LATEST */
-
-    .latest-card{
-        padding:35px;
-    }
-
-    .latest-content h2{
-        font-size:2rem;
-    }
-
-    /* EVENTS */
-
-    .events-heading h2{
-        font-size:2.2rem;
-        text-align:center;
-    }
-
-    .events-toolbar{
-        align-items:center;
-    }
-
-    .events-filter{
-        justify-content:center;
-    }
-
-    .events-actions{
-        justify-content:center;
-        flex-wrap:wrap;
-        gap:16px;
-    }
-
-    /* HOME */
-
-    .schedule-card{
-        padding:32px 24px;
-    }
-
-    .schedule-info h2{
-        text-align:center;
-        font-size:1.8rem;
-    }
-
-}
-
-
-/* =========================
-   Mobile
-========================= */
-
-@media (max-width:576px){
-
-    section{
-        padding:60px 0;
-    }
-
-    /* HEADER */
-
-    .logo{
-        justify-content:center;
-    }
-
-    .nav-menu{
-        gap:14px;
-        font-size:.92rem;
-    }
-
-    /* HERO */
-
-    .hero-title{
-        font-size:3rem;
-    }
-
-    .hero-copy p{
-        font-size:.95rem;
-    }
-
-    .hero-image img{
-        max-width:320px;
-    }
-
-    .hero-stats{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .hero-stats div{
-        width:100%;
-        max-width:250px;
-    }
-
-    /* LATEST */
-
-    .latest-card{
-        padding:24px;
-    }
-
-    .latest-image img{
-        height:240px;
-    }
-
-    .latest-content h2{
-        font-size:1.7rem;
-    }
-
-    /* EVENTS */
-
-    .events-heading h2{
-        font-size:1.9rem;
-    }
-
-    .events-filter{
-        gap:10px;
-    }
-
-    .events-filter button{
-        padding:10px 18px;
-        font-size:.85rem;
-    }
-
-    .events-actions{
-        width:100%;
-        flex-direction:column;
-    }
-
-    .events-sort{
-        width:100%;
-    }
-
-    .events-sort select{
-        width:100%;
-    }
-
-    .view-toggle{
-        width:100%;
-        justify-content:center;
-    }
-
-    #events-list{
-        grid-template-columns:1fr;
-        gap:24px;
-    }
-
-    .event-thumb{
-        height:240px;
-    }
-
-    /* FOOTER */
-
-    .footer-message{
-        padding:40px 28px;
-    }
-
-    .footer-message h2{
-        font-size:2rem;
-    }
-
-    /* HOME */
-
-    .schedule-card{
-        padding:24px 18px;
-    }
-
-    .schedule-item{
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .schedule-date{
-        width:auto;
-    }
-
-   /* =====================================================
-   EVENTS RESPONSIVE
-===================================================== */
-
-/* =========================
-   Laptop
-========================= */
-
-@media (max-width:1200px){
-
-    .hero-title{
-
-        font-size:4.2rem;
-
-    }
-
-    .hero-image img{
-
-        width:480px;
-
-    }
-
-    .latest-content{
-
-        padding:55px;
-
-    }
-
-    .events-grid{
-
-        grid-template-columns:
-            repeat(3,1fr);
-
-    }
-
-}
-
-/* =========================
-   Tablet
-========================= */
-
-@media (max-width:992px){
-
-    .events-hero{
-
-        padding:80px 0 220px;
-
-    }
-
-    .hero-layout{
-
-        flex-direction:column;
-
-        text-align:center;
-
-        gap:40px;
-
-    }
-
-    .hero-copy{
-
-        max-width:700px;
-
-    }
-
-    .hero-desc{
-
-        margin:
-            0 auto
-            45px;
-
-    }
-
-    .hero-stats{
-
-        justify-content:center;
-
-        flex-wrap:wrap;
-
-        gap:40px;
-
-    }
-
-    .hero-image{
-
-        justify-content:center;
-
-    }
-
-    .hero-image img{
-
-        width:420px;
-
-    }
-
-    /* latest */
-
-    .latest-card{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .latest-image{
-
-        min-height:360px;
-
-    }
-
-    .latest-content{
-
-        padding:50px;
-
-    }
-
-    /* toolbar */
-
-    .events-toolbar{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:28px;
-
-    }
-
-    .events-actions{
-
-        width:100%;
-
-        justify-content:space-between;
-
-    }
-
-    /* cards */
-
-    .events-grid{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-}
-
-/* =========================
-   Mobile
-========================= */
-
 @media (max-width:768px){
 
     .events-hero{
-
-        padding:70px 0 180px;
-
+        padding:80px 0 180px;
     }
 
     .hero-title{
-
-        font-size:3.3rem;
-
+        font-size:3.4rem;
     }
 
     .hero-stats{
-
         flex-direction:column;
-
-        gap:24px;
-
-    }
-
-    .hero-stat{
-
-        align-items:center;
-
+        gap:20px;
     }
 
     .hero-image img{
-
-        width:320px;
-
+        width:330px;
     }
 
     .latest-event{
-
         margin-top:-120px;
-
     }
 
     .latest-image{
-
-        min-height:280px;
-
+        min-height:260px;
     }
 
     .latest-content{
-
         padding:36px;
-
     }
 
     .latest-content h2{
-
         font-size:2rem;
-
     }
 
     .events-heading h2{
-
-        font-size:2.2rem;
-
-    }
-
-    .events-filter{
-
-        gap:12px;
-
-    }
-
-    .events-filter button{
-
-        padding:12px 20px;
-
-        font-size:.9rem;
-
+        font-size:2.1rem;
+        text-align:center;
     }
 
     .events-actions{
-
         flex-wrap:wrap;
-
-        gap:16px;
-
+        gap:14px;
     }
 
     .events-sort{
-
         width:100%;
-
     }
 
     .events-sort select{
-
         width:100%;
-
     }
 
     .view-toggle{
-
-        margin-left:auto;
-
+        margin:auto;
     }
 
     .events-grid{
-
         grid-template-columns:1fr;
-
     }
 
-    /* LIST MODE */
+    /* LIST VIEW */
 
     .events-grid.list-view .archive-card{
-
         flex-direction:column;
-
     }
 
     .events-grid.list-view .archive-thumb{
-
         width:100%;
-
-        height:240px;
-
+        height:250px;
     }
 
 }
 
-/* =========================
-   Small Mobile
-========================= */
 
+/* =========================
+   Mobile
+========================= */
 @media (max-width:576px){
 
     .hero-title{
-
-        font-size:2.7rem;
-
+        font-size:2.8rem;
     }
 
     .hero-desc{
-
         font-size:.95rem;
-
     }
 
     .hero-image img{
-
         width:260px;
+    }
 
+    .hero-stat strong{
+        font-size:1.8rem;
     }
 
     .latest-content{
-
         padding:28px;
-
     }
 
     .latest-content h2{
-
         font-size:1.7rem;
-
     }
 
     .events-heading h2{
+        font-size:1.8rem;
+    }
 
-        font-size:1.9rem;
+    .events-filter{
+        gap:10px;
+    }
 
+    .events-filter button{
+        padding:11px 18px;
+        font-size:.85rem;
     }
 
     .archive-thumb{
-
         height:230px;
-
     }
 
     .archive-info{
-
         padding:22px;
-
     }
 
     .archive-info h3{
-
         font-size:1.2rem;
-
     }
 
     .footer-message h2{
-
-        font-size:2.2rem;
-
+        font-size:2rem;
     }
 
 }
