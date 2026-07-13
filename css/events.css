@@ -1,0 +1,482 @@
+/* ==========================================
+   EVENTS HERO
+========================================== */
+
+.events-hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:50px 0 80px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff9fc 0%,
+            #fff4f8 100%
+        );
+
+}
+
+.hero-layout{
+
+    display:grid;
+
+    grid-template-columns:1fr 520px;
+
+    align-items:center;
+
+    gap:40px;
+
+    position:relative;
+    z-index:2;
+
+}
+
+/* ==========================================
+   TEXT
+========================================== */
+
+.hero-kicker{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    color:#8c91a8;
+
+    letter-spacing:.5px;
+
+    margin-bottom:24px;
+
+}
+
+.hero-title{
+
+    font-size:
+        clamp(4rem,8vw,6.2rem);
+
+    line-height:.88;
+
+    font-weight:700;
+
+    color:#2d3553;
+
+}
+
+.hero-title span{
+
+    display:block;
+
+    color:var(--primary);
+
+}
+
+.hero-copy p{
+
+    margin-top:28px;
+
+    max-width:430px;
+
+    color:#6e7185;
+
+    font-size:1.1rem;
+
+}
+
+/* ==========================================
+   STATS
+========================================== */
+
+.hero-stats{
+
+    margin-top:48px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.hero-stats div{
+
+    padding:26px;
+
+    background:rgba(255,255,255,.55);
+
+    border:1px solid rgba(255,255,255,.75);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:30px;
+
+    box-shadow:
+        0 18px 55px rgba(255,120,180,.08);
+
+}
+
+.hero-stats strong{
+
+    display:block;
+
+    font-size:2rem;
+
+    color:#2d3553;
+
+    line-height:1;
+
+    margin-bottom:10px;
+
+}
+
+.hero-stats span{
+
+    color:#777;
+
+    font-size:.92rem;
+
+}
+
+/* ==========================================
+   HERO IMAGE
+========================================== */
+
+.hero-image{
+
+    position:relative;
+
+}
+
+.hero-image img{
+
+    width:100%;
+
+    pointer-events:none;
+
+    filter:
+        drop-shadow(
+            0 25px 50px
+            rgba(255,120,180,.12)
+        );
+
+}
+
+/* ==========================================
+   BUBBLES
+========================================== */
+
+.hero-bubble{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+            circle at 35% 35%,
+            rgba(255,255,255,.95),
+            rgba(255,255,255,.18)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.75);
+
+    box-shadow:
+
+        inset
+        0 0 25px rgba(255,255,255,.9),
+
+        0 15px 40px
+        rgba(255,170,210,.18);
+
+    backdrop-filter:blur(12px);
+
+}
+
+.b1{
+
+    width:160px;
+    height:160px;
+
+    top:120px;
+    left:40%;
+
+}
+
+.b2{
+
+    width:90px;
+    height:90px;
+
+    top:300px;
+    right:15%;
+
+}
+
+.b3{
+
+    width:240px;
+    height:240px;
+
+    bottom:-80px;
+    right:-60px;
+
+}
+
+/* ==========================================
+   EVENTS SECTION
+========================================== */
+
+.events-page{
+
+    padding-top:20px;
+
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+#events-list{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(260px,1fr)
+        );
+
+    gap:28px;
+
+}
+
+/* ==========================================
+   EVENT CARD
+========================================== */
+
+.event-card{
+
+    display:block;
+
+    overflow:hidden;
+
+    background:
+        rgba(255,255,255,.55);
+
+    border:
+        1px solid rgba(255,255,255,.8);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:30px;
+
+    box-shadow:
+        0 18px 55px rgba(255,120,180,.08);
+
+    transition:.35s ease;
+
+    padding:0;
+
+}
+
+.event-card:hover{
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 24px 70px rgba(255,120,180,.15);
+
+}
+
+.event-thumb{
+
+    width:100%;
+    height:auto;
+
+    aspect-ratio:1/1;
+
+    overflow:hidden;
+
+    border-radius:0;
+
+}
+
+.event-thumb img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s ease;
+
+}
+
+.event-card:hover img{
+
+    transform:scale(1.05);
+
+}
+
+.event-info{
+
+    padding:22px;
+
+}
+
+.event-info h2{
+
+    font-size:1.2rem;
+
+    color:#2d3553;
+
+    margin-bottom:8px;
+
+}
+
+.event-date{
+
+    color:#888;
+
+    font-size:.92rem;
+
+    margin-bottom:8px;
+
+}
+
+.event-photos{
+
+    color:var(--primary);
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   FOOTER MESSAGE
+========================================== */
+
+.events-footer{
+
+    padding-top:90px;
+
+}
+
+.footer-message{
+
+    text-align:center;
+
+    padding:60px;
+
+    background:
+
+        rgba(255,255,255,.45);
+
+    border:
+        1px solid rgba(255,255,255,.8);
+
+    border-radius:36px;
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 18px 55px rgba(255,120,180,.08);
+
+}
+
+.footer-message h2{
+
+    font-size:
+        clamp(2rem,5vw,3rem);
+
+    line-height:1.15;
+
+    color:var(--primary);
+
+    margin-bottom:20px;
+
+}
+
+.footer-message p{
+
+    color:#6e7185;
+
+    margin-bottom:10px;
+
+}
+
+.footer-message small{
+
+    display:block;
+
+    margin-top:24px;
+
+    color:#9aa0b4;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1000px){
+
+    .hero-layout{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+    .hero-copy p{
+
+        margin-inline:auto;
+
+    }
+
+    .hero-image{
+
+        max-width:480px;
+
+        margin:0 auto;
+
+    }
+
+    .hero-stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .hero-title{
+
+        font-size:4rem;
+
+    }
+
+    .footer-message{
+
+        padding:40px 28px;
+
+    }
+
+}

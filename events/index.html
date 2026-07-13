@@ -5,18 +5,24 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Events • Yoko Apasra VNHub</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet"
+          href="../css/style.css">
 
 </head>
 
@@ -26,7 +32,8 @@
 
     <div class="container header-container">
 
-        <a href="../index.html" class="logo">
+        <a href="../index.html"
+           class="logo">
 
             <img
                 src="../assets/logo/logo.png"
@@ -35,7 +42,9 @@
             <div class="logo-text">
 
                 <span class="logo-title">
+
                     Yoko Apasra VNHub
+
                 </span>
 
             </div>
@@ -46,10 +55,29 @@
 
             <ul class="nav-menu">
 
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="./">Events</a></li>
-                <li><a href="../exclusive/">Exclusive</a></li>
-                <li><a href="../about/">About</a></li>
+                <li>
+                    <a href="../index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="./">
+                        Events
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../exclusive/">
+                        Exclusive
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../about/">
+                        About
+                    </a>
+                </li>
 
             </ul>
 
@@ -61,28 +89,209 @@
 
 <main>
 
-<section class="events-page">
+    <!-- HERO -->
 
-    <div class="container">
+    <section class="events-hero">
 
-        <div class="page-title">
+        <div class="hero-bubble b1"></div>
+        <div class="hero-bubble b2"></div>
+        <div class="hero-bubble b3"></div>
 
-            <h1>Events</h1>
+        <div class="container hero-layout">
 
-            <p>
-                A collection of Yoko Apasra's public appearances,
-                fan meetings and brand events.
-            </p>
+            <div class="hero-copy">
+
+                <span class="hero-kicker">
+
+                    🤍 YOKO APASRA
+
+                </span>
+
+                <h1 class="hero-title">
+
+                    Events
+                    <span>Archive</span>
+
+                </h1>
+
+                <p>
+
+                    Preserving Yoko's beautiful moments
+                    through every event and appearance.
+
+                </p>
+
+                <div class="hero-stats">
+
+                    <div>
+
+                        <strong id="total-events">
+
+                            0
+
+                        </strong>
+
+                        <span>
+
+                            Events
+
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong id="total-photos">
+
+                            0+
+
+                        </strong>
+
+                        <span>
+
+                            Photos Archived
+
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+
+                            100%
+
+                        </strong>
+
+                        <span>
+
+                            Yoko Love
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-image">
+
+                <img
+                    src="../assets/images/yoko-cutout.webp"
+                    alt="Yoko Apasra">
+
+            </div>
 
         </div>
 
-        <!-- JS sẽ render toàn bộ Event Card tại đây -->
+    </section>
 
-        <div id="events-list"></div>
 
-    </div>
+    <!-- LATEST EVENT -->
 
-</section>
+    <section class="latest-event">
+
+        <div class="container">
+
+            <div id="latest-event-card">
+
+                <!-- JS render -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FILTER -->
+
+    <section class="events-page">
+
+        <div class="container">
+
+            <div class="events-heading">
+
+                <h2>
+
+                    Browse All Events 🤍
+
+                </h2>
+
+            </div>
+
+            <div class="events-filter">
+
+                <button class="active">
+
+                    All
+
+                </button>
+
+                <!-- JS render month filter -->
+
+            </div>
+
+
+            <!-- EVENT GRID -->
+
+            <div id="events-list">
+
+                <!-- JS render -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER MESSAGE -->
+
+    <section class="events-footer">
+
+        <div class="container">
+
+            <div class="footer-message">
+
+                <h2>
+
+                    WITH YO,<br>
+                    THROUGH EVERY CHAPTER
+
+                </h2>
+
+                <p>
+
+                    A Vietnamese space for people who love
+                    Yoko Apasra 🤍🫧
+
+                </p>
+
+                <p>
+
+                    Powered by love,
+                    protein &
+                    sunny-side-up behavior 🍳
+
+                </p>
+
+                <small>
+
+                    Unofficial fan-made archive •
+                    Non-commercial project.<br>
+
+                    All photos and media belong to
+                    their respective owners.
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
