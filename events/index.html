@@ -9,11 +9,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Events • Yoko Apasra VNHub
-    </title>
-
-    <!-- Fonts -->
+    <title>Events • Yoko Apasra VNHub</title>
 
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
@@ -25,22 +21,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
           rel="stylesheet">
 
-    <!-- CSS -->
-
     <link rel="stylesheet"
           href="../css/style.css">
-
-    <!-- favicon -->
-
-    <link rel="icon"
-          href="../assets/logo/logo.png">
 
 </head>
 
 <body>
 
 
-    <!-- ================= HEADER ================= -->
+    <!-- HEADER -->
 
     <header class="header">
 
@@ -51,9 +40,9 @@
 
                 <img
                     src="../assets/logo/logo.png"
-                    alt="YokoVNHub">
+                    alt="Yoko Apasra VNHub">
 
-                <span class="logo-title">
+                <span>
 
                     Yoko Apasra VNHub
 
@@ -61,23 +50,17 @@
 
             </a>
 
-
             <nav>
 
                 <ul class="nav-menu">
 
                     <li>
-
                         <a href="../index.html">
-
                             Home
-
                         </a>
-
                     </li>
 
                     <li>
-
                         <a
                            href="./"
                            class="active">
@@ -85,32 +68,29 @@
                             Events
 
                         </a>
-
                     </li>
 
                     <li>
-
                         <a href="../exclusive/">
-
                             Exclusive
-
                         </a>
-
                     </li>
 
                     <li>
-
                         <a href="../about/">
-
                             About
-
                         </a>
-
                     </li>
 
                 </ul>
 
             </nav>
+
+            <button class="menu-btn">
+
+                ☰
+
+            </button>
 
         </div>
 
@@ -118,32 +98,38 @@
 
 
 
-    <!-- ================= MAIN ================= -->
-
     <main>
+
 
         <!-- HERO -->
 
         <section class="events-hero">
 
+            <!-- bubbles -->
+
+            <div class="hero-bubble b1"></div>
+            <div class="hero-bubble b2"></div>
+            <div class="hero-bubble b3"></div>
+            <div class="hero-bubble b4"></div>
+            <div class="hero-bubble b5"></div>
+
             <div class="container hero-layout">
+
+
+                <!-- LEFT -->
 
                 <div class="hero-copy">
 
                     <span class="hero-kicker">
 
-                        ♡ YOKO APASRA
+                        🤍 YOKO APASRA
 
                     </span>
 
                     <h1 class="hero-title">
 
                         Events
-                        <span>
-
-                            Archive
-
-                        </span>
+                        <span>Archive</span>
 
                     </h1>
 
@@ -155,40 +141,89 @@
                     </p>
 
 
+                    <!-- STATS -->
+
                     <div class="hero-stats">
 
                         <div class="hero-stat">
 
-                            <strong
-                                id="total-events">
+                            <div class="hero-stat-icon">
 
-                                0
+                                📅
 
-                            </strong>
+                            </div>
 
-                            <span>
+                            <div>
 
-                                Events Archived
+                                <strong
+                                    id="total-events">
 
-                            </span>
+                                    0
+
+                                </strong>
+
+                                <span>
+
+                                    Events Archived
+
+                                </span>
+
+                            </div>
 
                         </div>
 
 
                         <div class="hero-stat">
 
-                            <strong
-                                id="total-photos">
+                            <div class="hero-stat-icon">
 
-                                0
+                                📷
 
-                            </strong>
+                            </div>
 
-                            <span>
+                            <div>
 
-                                Photos Preserved
+                                <strong
+                                    id="total-photos">
 
-                            </span>
+                                    0
+
+                                </strong>
+
+                                <span>
+
+                                    Photos Archived
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <div class="hero-stat-icon">
+
+                                💗
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+
+                                    100%
+
+                                </strong>
+
+                                <span>
+
+                                    Yoko Love
+
+                                </span>
+
+                            </div>
 
                         </div>
 
@@ -196,6 +231,9 @@
 
                 </div>
 
+
+
+                <!-- RIGHT -->
 
                 <div class="hero-image">
 
@@ -217,9 +255,8 @@
 
             <div class="container">
 
-                <div id="latest-event-card">
-
-                    <!-- JS -->
+                <div
+                    id="latest-event-card">
 
                 </div>
 
@@ -235,6 +272,7 @@
 
             <div class="container">
 
+
                 <div class="events-heading">
 
                     <h2>
@@ -247,7 +285,10 @@
 
 
 
+                <!-- TOOLBAR -->
+
                 <div class="events-toolbar">
+
 
                     <div
                         id="month-filter"
@@ -306,11 +347,14 @@
 
 
 
+                <!-- GRID -->
+
                 <div
                     id="events-list"
                     class="events-grid">
 
                 </div>
+
 
             </div>
 
@@ -324,32 +368,50 @@
 
             <div class="container">
 
-                <div class="footer-message">
+                <div class="footer-card">
 
-                    <h2>
+                    <div class="footer-content">
 
-                        WITH YO,<br>
-                        THROUGH EVERY CHAPTER
+                        <div class="footer-heart">
 
-                    </h2>
+                            💗
 
-                    <p>
+                        </div>
 
-                        For people who love
-                        Yoko Apasra 🤍🫧
+                        <div>
 
-                    </p>
+                            <h2>
 
-                    <div class="footer-divider"></div>
+                                Thank you for being here
 
-                    <small>
+                            </h2>
 
-                        Unofficial fan-made archive.<br>
-                        Non-commercial project.<br>
-                        All photos belong to
-                        their respective owners.
+                            <p>
 
-                    </small>
+                                Every moment with Yoko
+                                is precious.
+
+                            </p>
+
+                            <p>
+
+                                Let's keep supporting
+                                her together! ✨
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="footer-image">
+
+                        <img
+                            src="../assets/images/chibi.png"
+                            alt="Yoko Chibi">
+
+                    </div>
 
                 </div>
 
@@ -357,11 +419,9 @@
 
         </section>
 
+
     </main>
 
-
-
-    <!-- JS -->
 
     <script src="../js/events.js"></script>
 
