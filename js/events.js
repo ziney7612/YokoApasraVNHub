@@ -1,243 +1,290 @@
-document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
-    const list =
-        document.getElementById(
-            "events-list"
-        );
+    const eventsList = document.getElementById("events-list");
+    const latestContainer =
+        document.getElementById("latest-event-card");
 
-    const latest =
-        document.getElementById(
-            "latest-event-card"
-        );
+    const totalEvents =
+        document.getElementById("total-events");
+
+    const totalPhotos =
+        document.getElementById("total-photos");
 
     const monthFilter =
-        document.getElementById(
-            "month-filter"
-        );
+        document.getElementById("month-filter");
 
     const sortSelect =
-        document.getElementById(
-            "sort-select"
-        );
+        document.getElementById("sort-select");
 
     try {
 
-        const res =
-            await fetch(
-                "../data/gallery.json"
-            );
+        const response =
+            await fetch("../data/gallery.json");
 
         const events =
-            await res.json();
+            await response.json();
 
-        /*
-        stats
-        */
+        let currentEvents =
+            [...events];
 
-        document.getElementById(
-            "total-events"
-        ).textContent =
+        /* ==========================
+           TOTALS
+        ========================== */
+
+        totalEvents.textContent =
             events.length;
 
-        const totalPhotos =
+        const photos =
             events.reduce(
                 (sum, e) =>
-                    sum + e.photos,
+                    sum + (e.photos || 0),
                 0
             );
 
-        document.getElementById(
-            "total-photos"
-        ).textContent =
-            totalPhotos.toLocaleString()
-            + "+";
+        totalPhotos.textContent =
+            photos.toLocaleString() + "+";
 
-        /*
-        latest card
-        */
+        /* ==========================
+           MONTH FILTER
+        ========================== */
 
-        const latestEvent =
-            events[0];
+        const months = [
+            ...new Set(
+                events.map(e => {
 
-        latest.innerHTML = `
+                    const parts =
+                        e.date.split(" ");
 
-        <div class="latest-card">
+                    return parts[1];
 
-            <div class="event-thumb">
+                })
+            )
+        ];
 
-                <img
-                    src="../assets/events/${latestEvent.folder}/${latestEvent.cover}.${latestEvent.format}"
-                    alt="${latestEvent.title}">
+        monthFilter.innerHTML = `
 
-            </div>
+            <button
+                class="active"
+                data-month="all">
 
-            <div>
+                All
 
-                <div class="latest-badge">
-                    ⭐ LATEST EVENT
-                </div>
+            </button>
 
-                <h2>
-                    ${latestEvent.title}
-                </h2>
-
-                <p class="event-date">
-                    📅 ${latestEvent.date}
-                </p>
-
-                <p>
-                    ${latestEvent.photos}
-                    photos archived.
-                </p>
-
-                <a
-                    class="event-photos"
-                    href="detail.html?id=${latestEvent.id}">
-
-                    View Gallery →
-
-                </a>
-
-            </div>
-
-        </div>
         `;
-
-        /*
-        months
-        */
-
-        const months =
-            [
-                "All",
-                ...new Set(
-                    events.map(e =>
-                        e.date.split(" ")[1]
-                    )
-                )
-            ];
 
         months.forEach(month => {
 
-            const btn =
-                document.createElement(
-                    "button"
-                );
+            monthFilter.innerHTML += `
 
-            btn.textContent =
-                month;
+                <button
+                    data-month="${month}">
 
-            if (
-                month === "All"
-            ) {
+                    ${month}
 
-                btn.classList.add(
-                    "active"
-                );
+                </button>
 
-            }
+            `;
 
-            btn.onclick = () => {
+        });
+
+        /* ==========================
+           LATEST EVENT
+        ========================== */
+
+        renderLatest(events[0]);
+
+        /* ==========================
+           INITIAL RENDER
+        ========================== */
+
+        renderEvents(events);
+
+        /* ==========================
+           FILTER CLICK
+        ========================== */
+
+        monthFilter.addEventListener(
+            "click",
+            e => {
+
+                const btn =
+                    e.target.closest("button");
+
+                if (!btn) return;
 
                 document
                     .querySelectorAll(
                         "#month-filter button"
                     )
-                    .forEach(
-                        b =>
-                            b.classList.remove(
-                                "active"
-                            )
+                    .forEach(b =>
+                        b.classList.remove(
+                            "active"
+                        )
                     );
 
                 btn.classList.add(
                     "active"
                 );
 
-                render(month);
+                const month =
+                    btn.dataset.month;
 
-            };
+                currentEvents =
+                    month === "all"
+                        ? [...events]
+                        : events.filter(
+                              ev =>
+                                  ev.date.includes(
+                                      month
+                                  )
+                          );
 
-            monthFilter.appendChild(
-                btn
+                applySort();
+
+            }
+        );
+
+        /* ==========================
+           SORT
+        ========================== */
+
+        sortSelect?.addEventListener(
+            "change",
+            applySort
+        );
+
+        function applySort() {
+
+            const mode =
+                sortSelect.value;
+
+            const sorted =
+                [...currentEvents];
+
+            sorted.sort((a, b) => {
+
+                const da =
+                    new Date(a.date);
+
+                const db =
+                    new Date(b.date);
+
+                return mode ===
+                    "oldest"
+                    ? da - db
+                    : db - da;
+
+            });
+
+            renderEvents(sorted);
+
+        }
+
+        /* ==========================
+           GRID / LIST
+        ========================== */
+
+        const gridBtn =
+            document.getElementById(
+                "grid-view"
             );
 
-        });
+        const listBtn =
+            document.getElementById(
+                "list-view"
+            );
 
-        /*
-        render
-        */
+        gridBtn?.addEventListener(
+            "click",
+            () => {
 
-        function render(
-            month = "All"
-        ) {
+                eventsList.classList.remove(
+                    "list-view"
+                );
 
-            let filtered =
-                [...events];
+                gridBtn.classList.add(
+                    "active"
+                );
 
-            if (
-                month !== "All"
-            ) {
-
-                filtered =
-                    filtered.filter(
-                        e =>
-                            e.date.includes(
-                                month
-                            )
-                    );
+                listBtn.classList.remove(
+                    "active"
+                );
 
             }
+        );
 
-            if (
-                sortSelect.value
-                === "oldest"
-            ) {
+        listBtn?.addEventListener(
+            "click",
+            () => {
 
-                filtered.reverse();
+                eventsList.classList.add(
+                    "list-view"
+                );
+
+                listBtn.classList.add(
+                    "active"
+                );
+
+                gridBtn.classList.remove(
+                    "active"
+                );
 
             }
+        );
 
-            list.innerHTML = "";
+    }
 
-            filtered.forEach(
-                event => {
+    catch (err) {
 
-                const parts =
-                    event.date.split(
-                        " "
-                    );
+        console.error(err);
 
-                const day =
-                    parts[0];
+    }
 
-                const month =
-                    parts[1].slice(
-                        0,
-                        3
-                    );
+    /* ===================================
+       RENDER EVENTS
+    =================================== */
 
-                const year =
-                    parts[2];
+    function renderEvents(events) {
 
-                const card =
-                    document.createElement(
-                        "a"
-                    );
+        eventsList.innerHTML = "";
 
-                card.className =
-                    "event-card";
+        events.forEach(event => {
 
-                card.href =
-                    `detail.html?id=${event.id}`;
+            const cover =
+                String(
+                    event.cover || "001"
+                ).padStart(
+                    3,
+                    "0"
+                );
 
-                card.innerHTML =
-                `
+            const ext =
+                event.format || "jpg";
+
+            const day =
+                event.date.split(" ")[0];
+
+            const month =
+                event.date.split(" ")[1];
+
+            const card =
+                document.createElement(
+                    "a"
+                );
+
+            card.className =
+                "event-card";
+
+            card.href =
+                `detail.html?id=${event.id}`;
+
+            card.innerHTML = `
+
                 <div class="event-thumb">
 
-                    <div class="event-date-badge">
+                    <div
+                        class="event-date-badge">
 
                         <strong>
                             ${day}
@@ -247,15 +294,12 @@ document.addEventListener(
                             ${month}
                         </span>
 
-                        <small>
-                            ${year}
-                        </small>
-
                     </div>
 
                     <img
-                        src="../assets/events/${event.folder}/${event.cover}.${event.format}"
-                        alt="${event.title}">
+                        src="../assets/events/${event.folder}/${cover}.${ext}"
+                        alt="${event.title}"
+                        loading="lazy">
 
                 </div>
 
@@ -265,7 +309,8 @@ document.addEventListener(
                         ${event.title}
                     </h2>
 
-                    <p class="event-date">
+                    <p
+                        class="event-date">
 
                         📅 ${event.date}
 
@@ -281,39 +326,90 @@ document.addEventListener(
                     </span>
 
                 </div>
-                `;
 
-                list.appendChild(
-                    card
-                );
+            `;
 
-            });
+            eventsList.appendChild(
+                card
+            );
 
-        }
-
-        sortSelect.addEventListener(
-            "change",
-            () => {
-
-                const active =
-                    document.querySelector(
-                        "#month-filter .active"
-                    );
-
-                render(
-                    active.textContent
-                );
-
-            }
-        );
-
-        render();
+        });
 
     }
 
-    catch(error){
+    /* ===================================
+       LATEST EVENT
+    =================================== */
 
-        console.error(error);
+    function renderLatest(event) {
+
+        if (!latestContainer)
+            return;
+
+        const cover =
+            String(
+                event.cover
+            ).padStart(
+                3,
+                "0"
+            );
+
+        latestContainer.innerHTML = `
+
+            <a
+                href="detail.html?id=${event.id}"
+                class="latest-card">
+
+                <div
+                    class="latest-image">
+
+                    <img
+                        src="../assets/events/${event.folder}/${cover}.${event.format}">
+
+                </div>
+
+                <div
+                    class="latest-content">
+
+                    <span
+                        class="latest-tag">
+
+                        ⭐ LATEST EVENT
+
+                    </span>
+
+                    <h2>
+
+                        ${event.title}
+
+                    </h2>
+
+                    <p>
+
+                        📅
+                        ${event.date}
+
+                    </p>
+
+                    <p>
+
+                        ${event.photos}
+                        photos archived.
+
+                    </p>
+
+                    <span
+                        class="latest-btn">
+
+                        View Gallery →
+
+                    </span>
+
+                </div>
+
+            </a>
+
+        `;
 
     }
 
