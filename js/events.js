@@ -1,290 +1,266 @@
-document.addEventListener("DOMContentLoaded", async () => {
+const eventsContainer =
+    document.getElementById("events-list");
 
-    const eventsList = document.getElementById("events-list");
-    const latestContainer =
-        document.getElementById("latest-event-card");
+const latestContainer =
+    document.getElementById("latest-event-card");
 
-    const totalEvents =
-        document.getElementById("total-events");
+const monthFilter =
+    document.getElementById("month-filter");
 
-    const totalPhotos =
-        document.getElementById("total-photos");
+const totalEvents =
+    document.getElementById("total-events");
 
-    const monthFilter =
-        document.getElementById("month-filter");
+const totalPhotos =
+    document.getElementById("total-photos");
 
-    const sortSelect =
-        document.getElementById("sort-select");
+const sortSelect =
+    document.getElementById("sort-select");
 
-    try {
+const gridBtn =
+    document.getElementById("grid-view");
 
-        const response =
-            await fetch("../data/gallery.json");
+const listBtn =
+    document.getElementById("list-view");
 
-        const events =
-            await response.json();
+let events = [];
+let currentMonth = "all";
 
-        let currentEvents =
-            [...events];
+/* ==========================================
+   LOAD
+========================================== */
 
-        /* ==========================
-           TOTALS
-        ========================== */
+async function loadEvents() {
 
-        totalEvents.textContent =
-            events.length;
+    const response =
+        await fetch("../data/events.json");
 
-        const photos =
-            events.reduce(
-                (sum, e) =>
-                    sum + (e.photos || 0),
-                0
-            );
+    events = await response.json();
 
-        totalPhotos.textContent =
-            photos.toLocaleString() + "+";
+    updateStats();
 
-        /* ==========================
-           MONTH FILTER
-        ========================== */
+    renderLatest();
 
-        const months = [
-            ...new Set(
-                events.map(e => {
+    createMonthFilters();
 
-                    const parts =
-                        e.date.split(" ");
+    renderEvents();
+}
 
-                    return parts[1];
+loadEvents();
 
-                })
-            )
-        ];
+/* ==========================================
+   STATS
+========================================== */
 
-        monthFilter.innerHTML = `
+function updateStats() {
+
+    totalEvents.textContent =
+        events.length;
+
+    const photos =
+        events.reduce(
+            (sum, item) =>
+                sum + item.photos,
+            0
+        );
+
+    totalPhotos.textContent =
+        photos.toLocaleString() + "+";
+}
+
+/* ==========================================
+   LATEST
+========================================== */
+
+function renderLatest() {
+
+    if (!events.length) return;
+
+    const latest = events[0];
+
+    latestContainer.innerHTML = `
+
+        <div class="latest-card">
+
+            <div class="latest-image">
+
+                <img
+                    src="../assets/events/${latest.folder}/${latest.cover}.${latest.format}"
+                    alt="${latest.title}">
+
+            </div>
+
+            <div class="latest-content">
+
+                <span class="latest-tag">
+                    ⭐ LATEST EVENT
+                </span>
+
+                <h2>
+                    ${latest.title}
+                </h2>
+
+                <p>
+                    🗓 ${latest.date}
+                </p>
+
+                <p>
+                    ${latest.photos} photos archived.
+                </p>
+
+                <a
+                    href="../events/detail.html?id=${latest.id}"
+                    class="latest-btn">
+
+                    View Gallery →
+
+                </a>
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+/* ==========================================
+   FILTER BUTTONS
+========================================== */
+
+function createMonthFilters() {
+
+    const months = [
+        "all",
+        ...new Set(
+            events.map(event => {
+
+                return new Date(
+                    event.date
+                ).toLocaleString(
+                    "en-US",
+                    {
+                        month:"long"
+                    }
+                );
+
+            })
+        )
+    ];
+
+    monthFilter.innerHTML =
+        months.map(month => `
 
             <button
-                class="active"
-                data-month="all">
+                class="${
+                    month === "all"
+                    ? "active"
+                    : ""
+                }"
+                data-month="${month}">
 
-                All
+                ${
+                    month === "all"
+                    ? "All"
+                    : month
+                }
 
             </button>
 
-        `;
+        `).join("");
 
-        months.forEach(month => {
+    monthFilter
+        .querySelectorAll("button")
+        .forEach(button => {
 
-            monthFilter.innerHTML += `
+            button.onclick = () => {
 
-                <button
-                    data-month="${month}">
-
-                    ${month}
-
-                </button>
-
-            `;
-
-        });
-
-        /* ==========================
-           LATEST EVENT
-        ========================== */
-
-        renderLatest(events[0]);
-
-        /* ==========================
-           INITIAL RENDER
-        ========================== */
-
-        renderEvents(events);
-
-        /* ==========================
-           FILTER CLICK
-        ========================== */
-
-        monthFilter.addEventListener(
-            "click",
-            e => {
-
-                const btn =
-                    e.target.closest("button");
-
-                if (!btn) return;
-
-                document
-                    .querySelectorAll(
-                        "#month-filter button"
-                    )
-                    .forEach(b =>
+                monthFilter
+                    .querySelectorAll("button")
+                    .forEach(
+                        b =>
                         b.classList.remove(
                             "active"
                         )
                     );
 
-                btn.classList.add(
+                button.classList.add(
                     "active"
                 );
+
+                currentMonth =
+                    button.dataset.month;
+
+                renderEvents();
+            };
+        });
+}
+
+/* ==========================================
+   RENDER EVENTS
+========================================== */
+
+function renderEvents() {
+
+    let filtered = [...events];
+
+    if (currentMonth !== "all") {
+
+        filtered =
+            filtered.filter(event => {
 
                 const month =
-                    btn.dataset.month;
+                    new Date(
+                        event.date
+                    ).toLocaleString(
+                        "en-US",
+                        {
+                            month:"long"
+                        }
+                    );
 
-                currentEvents =
-                    month === "all"
-                        ? [...events]
-                        : events.filter(
-                              ev =>
-                                  ev.date.includes(
-                                      month
-                                  )
-                          );
-
-                applySort();
-
-            }
-        );
-
-        /* ==========================
-           SORT
-        ========================== */
-
-        sortSelect?.addEventListener(
-            "change",
-            applySort
-        );
-
-        function applySort() {
-
-            const mode =
-                sortSelect.value;
-
-            const sorted =
-                [...currentEvents];
-
-            sorted.sort((a, b) => {
-
-                const da =
-                    new Date(a.date);
-
-                const db =
-                    new Date(b.date);
-
-                return mode ===
-                    "oldest"
-                    ? da - db
-                    : db - da;
-
+                return (
+                    month === currentMonth
+                );
             });
-
-            renderEvents(sorted);
-
-        }
-
-        /* ==========================
-           GRID / LIST
-        ========================== */
-
-        const gridBtn =
-            document.getElementById(
-                "grid-view"
-            );
-
-        const listBtn =
-            document.getElementById(
-                "list-view"
-            );
-
-        gridBtn?.addEventListener(
-            "click",
-            () => {
-
-                eventsList.classList.remove(
-                    "list-view"
-                );
-
-                gridBtn.classList.add(
-                    "active"
-                );
-
-                listBtn.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-        listBtn?.addEventListener(
-            "click",
-            () => {
-
-                eventsList.classList.add(
-                    "list-view"
-                );
-
-                listBtn.classList.add(
-                    "active"
-                );
-
-                gridBtn.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
     }
 
-    catch (err) {
+    if (
+        sortSelect.value ===
+        "oldest"
+    ) {
 
-        console.error(err);
-
+        filtered.reverse();
     }
 
-    /* ===================================
-       RENDER EVENTS
-    =================================== */
+    eventsContainer.innerHTML =
+        filtered.map(event => {
 
-    function renderEvents(events) {
-
-        eventsList.innerHTML = "";
-
-        events.forEach(event => {
-
-            const cover =
-                String(
-                    event.cover || "001"
-                ).padStart(
-                    3,
-                    "0"
-                );
-
-            const ext =
-                event.format || "jpg";
+            const date =
+                new Date(event.date);
 
             const day =
-                event.date.split(" ")[0];
+                date.getDate();
 
             const month =
-                event.date.split(" ")[1];
-
-            const card =
-                document.createElement(
-                    "a"
+                date.toLocaleString(
+                    "en-US",
+                    {
+                        month:"short"
+                    }
                 );
 
-            card.className =
-                "event-card";
+            return `
 
-            card.href =
-                `detail.html?id=${event.id}`;
-
-            card.innerHTML = `
+            <a
+                href="../events/detail.html?id=${event.id}"
+                class="event-card">
 
                 <div class="event-thumb">
 
-                    <div
-                        class="event-date-badge">
+                    <img
+                        src="../assets/events/${event.folder}/${event.cover}.${event.format}"
+                        alt="${event.title}">
+
+                    <div class="event-date-badge">
 
                         <strong>
                             ${day}
@@ -296,11 +272,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     </div>
 
-                    <img
-                        src="../assets/events/${event.folder}/${cover}.${ext}"
-                        alt="${event.title}"
-                        loading="lazy">
-
                 </div>
 
                 <div class="event-info">
@@ -309,108 +280,63 @@ document.addEventListener("DOMContentLoaded", async () => {
                         ${event.title}
                     </h2>
 
-                    <p
-                        class="event-date">
-
-                        📅 ${event.date}
-
-                    </p>
-
-                    <span
-                        class="event-photos">
-
-                        📷
-                        ${event.photos}
-                        Photos
-
-                    </span>
-
-                </div>
-
-            `;
-
-            eventsList.appendChild(
-                card
-            );
-
-        });
-
-    }
-
-    /* ===================================
-       LATEST EVENT
-    =================================== */
-
-    function renderLatest(event) {
-
-        if (!latestContainer)
-            return;
-
-        const cover =
-            String(
-                event.cover
-            ).padStart(
-                3,
-                "0"
-            );
-
-        latestContainer.innerHTML = `
-
-            <a
-                href="detail.html?id=${event.id}"
-                class="latest-card">
-
-                <div
-                    class="latest-image">
-
-                    <img
-                        src="../assets/events/${event.folder}/${cover}.${event.format}">
-
-                </div>
-
-                <div
-                    class="latest-content">
-
-                    <span
-                        class="latest-tag">
-
-                        ⭐ LATEST EVENT
-
-                    </span>
-
-                    <h2>
-
-                        ${event.title}
-
-                    </h2>
-
-                    <p>
-
-                        📅
+                    <p class="event-date">
                         ${event.date}
-
                     </p>
 
-                    <p>
-
-                        ${event.photos}
-                        photos archived.
-
+                    <p class="event-photos">
+                        📷 ${event.photos}
+                        Photos
                     </p>
-
-                    <span
-                        class="latest-btn">
-
-                        View Gallery →
-
-                    </span>
 
                 </div>
 
             </a>
 
-        `;
+            `;
 
-    }
+        }).join("");
+}
 
-});
+/* ==========================================
+   SORT
+========================================== */
+
+sortSelect.addEventListener(
+    "change",
+    renderEvents
+);
+
+/* ==========================================
+   VIEW
+========================================== */
+
+gridBtn.onclick = () => {
+
+    eventsContainer.classList.remove(
+        "list-view"
+    );
+
+    gridBtn.classList.add(
+        "active"
+    );
+
+    listBtn.classList.remove(
+        "active"
+    );
+};
+
+listBtn.onclick = () => {
+
+    eventsContainer.classList.add(
+        "list-view"
+    );
+
+    listBtn.classList.add(
+        "active"
+    );
+
+    gridBtn.classList.remove(
+        "active"
+    );
+};
