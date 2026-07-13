@@ -1,864 +1,395 @@
-/* ==================================================
-   EVENTS PAGE
-================================================== */
-
-.events-page,
-.latest-event,
-.events-footer{
-
-    position:relative;
-
-}
-
-/* ==================================================
-   HERO
-================================================== */
-
-.events-hero{
-
-    position:relative;
-
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            180deg,
-            #fff9fc 0%,
-            #fff6fa 100%
-        );
-
-    padding:
-        90px 0
-        70px;
-
-}
-
-.hero-layout{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
-
-    align-items:center;
-
-    gap:40px;
-
-}
-
-.hero-copy{
-
-    position:relative;
-
-    z-index:2;
-
-}
-
-.hero-kicker{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    margin-bottom:28px;
-
-    color:#8c90aa;
-
-    font-size:.95rem;
-
-    font-weight:600;
-
-}
-
-.hero-title{
-
-    font-family:
-        "Playfair Display",
-        serif;
-
-    font-size:6.8rem;
-
-    line-height:.9;
-
-    color:#2c3152;
-
-}
-
-.hero-title span{
-
-    display:block;
-
-    color:#ff6eb7;
-
-}
-
-.hero-copy p{
-
-    margin-top:34px;
-
-    max-width:500px;
-
-    font-size:1.15rem;
-
-    color:#70758d;
-
-    line-height:1.8;
-
-}
-
-/* ==================================================
-   HERO IMAGE
-================================================== */
-
-.hero-image{
-
-    display:flex;
-
-    justify-content:center;
-
-    position:relative;
-
-}
-
-.hero-image img{
-
-    width:720px;
-
-    max-width:none;
-
-    transform:
-        translateY(30px);
-
-    pointer-events:none;
-
-}
-
-/* ==================================================
-   FLOATING BUBBLES
-================================================== */
-
-.hero-bubble{
-
-    position:absolute;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.95),
-            rgba(255,255,255,.3)
-        );
-
-    backdrop-filter:blur(18px);
-
-    opacity:.85;
-
-}
-
-.b1{
-
-    width:180px;
-    height:180px;
-
-    top:110px;
-    left:38%;
-
-}
-
-.b2{
-
-    width:120px;
-    height:120px;
-
-    right:18%;
-    top:340px;
-
-}
-
-.b3{
-
-    width:250px;
-    height:250px;
-
-    right:-80px;
-    bottom:-70px;
-
-}
-
-/* ==================================================
-   STATS
-================================================== */
-
-.hero-stats{
-
-    margin-top:55px;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-
-}
-
-.hero-stats div{
-
-    background:
-        rgba(255,255,255,.65);
-
-    border:
-        1px solid
-        rgba(255,255,255,.7);
-
-    backdrop-filter:blur(25px);
-
-    border-radius:34px;
-
-    padding:30px;
-
-    box-shadow:
-        0 18px 50px
-        rgba(255,120,180,.08);
-
-}
-
-.hero-stats strong{
-
-    display:block;
-
-    font-size:2rem;
-
-    color:#2d3553;
-
-    margin-bottom:8px;
-
-}
-
-.hero-stats span{
-
-    color:#7b7f93;
-
-    font-size:.95rem;
-
-}
-
-/* ==================================================
-   LATEST EVENT
-================================================== */
-
-.latest-event{
-
-    padding-top:35px;
-
-}
-
-.latest-card{
-
-    position:relative;
-
-    display:grid;
-
-    grid-template-columns:
-        430px
-        1fr;
-
-    gap:55px;
-
-    align-items:center;
-
-    padding:42px;
-
-    border-radius:42px;
-
-    background:
-        rgba(255,255,255,.7);
-
-    backdrop-filter:blur(25px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.75);
-
-    box-shadow:
-        0 22px 60px
-        rgba(255,120,180,.08);
-
-    overflow:hidden;
-
-}
-
-.latest-card::before{
-
-    content:"01";
-
-    position:absolute;
-
-    right:70px;
-    top:35px;
-
-    font-size:7rem;
-
-    font-family:
-        "Playfair Display",
-        serif;
-
-    color:
-        rgba(255,110,183,.18);
-
-    font-weight:700;
-
-}
-
-.latest-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    border-radius:50%;
-
-    right:70px;
-    bottom:-30px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,180,220,.6),
-            rgba(255,255,255,0)
-        );
-
-}
-
-.latest-card .event-thumb{
-
-    width:100%;
-    height:340px;
-
-    overflow:hidden;
-
-    border-radius:30px;
-
-}
-
-.latest-card .event-thumb img{
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-}
-
-.latest-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    padding:10px 18px;
-
-    border-radius:999px;
-
-    background:#fff0f7;
-
-    color:#ff6eb7;
-
-    font-size:.85rem;
-
-    font-weight:600;
-
-    margin-bottom:24px;
-
-}
-
-.latest-card h2{
-
-    font-size:3rem;
-
-    color:#2d3553;
-
-    margin-bottom:18px;
-
-}
-
-.latest-card p{
-
-    color:#777;
-
-    line-height:1.8;
-
-}
-
-.latest-card .event-photos{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-top:35px;
-
-    padding:
-        16px
-        32px;
-
-    border-radius:999px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff6eb7,
-            #ff9a67
-        );
-
-    color:white;
-
-    font-weight:600;
-
-}
-
-/* ==================================================
+/* ==========================================
    EVENTS SECTION
-================================================== */
+========================================== */
 
 .events-page{
-
-    padding-top:95px;
-
+    padding:90px 0 110px;
+    position:relative;
 }
 
+.events-page .container{
+    width:min(1500px,92%);
+}
+
+/* ==========================================
+   TITLE
+========================================== */
+
 .events-heading{
-
-    margin-bottom:35px;
-
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:32px;
 }
 
 .events-heading h2{
-
-    font-size:2.4rem;
-
+    font-size:2.5rem;
+    font-weight:700;
     color:#2d3553;
-
+    font-family:"Playfair Display",serif;
 }
 
-/* ==================================================
-   TOOLBAR
-================================================== */
+/* ==========================================
+   TOP BAR
+========================================== */
 
-.events-toolbar{
-
+.events-topbar{
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
-    gap:30px;
-
-    flex-wrap:wrap;
-
+    gap:40px;
     margin-bottom:50px;
-
 }
+
+/* ==========================================
+   FILTER
+========================================== */
 
 .events-filter{
-
     display:flex;
-
     flex-wrap:wrap;
-
-    gap:15px;
-
+    gap:16px;
 }
 
 .events-filter button{
 
     border:none;
 
-    background:white;
+    background:rgba(255,255,255,.8);
 
-    color:#777;
-
-    padding:
-        14px
-        26px;
+    border:1px solid #ffd2e5;
 
     border-radius:999px;
 
-    font-family:inherit;
+    padding:14px 28px;
 
-    font-weight:500;
+    font-size:.95rem;
+
+    font-weight:600;
+
+    color:#ff6aa9;
 
     cursor:pointer;
 
     transition:.3s;
+}
+
+.events-filter button:hover{
+
+    transform:translateY(-2px);
 
     box-shadow:
-        0 8px 24px
-        rgba(0,0,0,.05);
-
+        0 10px 30px rgba(255,120,180,.12);
 }
 
 .events-filter button.active{
 
     background:
         linear-gradient(
-            90deg,
-            #ff6eb7,
-            #ff9a67
+            135deg,
+            #ff5db8,
+            #ff9a7d
         );
 
-    color:white;
+    color:#fff;
 
+    border:none;
 }
 
-.events-sort{
+/* ==========================================
+   RIGHT TOOLS
+========================================== */
 
-    margin-left:auto;
-
+.events-view{
+    display:flex;
+    align-items:center;
+    gap:18px;
 }
 
-.events-sort select{
-
-    appearance:none;
+.sort-btn{
 
     border:none;
 
-    background:white;
+    background:#fff;
 
-    padding:
-        15px
-        26px;
+    padding:15px 30px;
 
     border-radius:999px;
 
-    font-family:inherit;
+    font-weight:600;
 
-    color:#666;
+    color:#555;
 
     box-shadow:
-        0 8px 24px
-        rgba(0,0,0,.05);
+        0 12px 35px rgba(255,120,180,.08);
 
+    cursor:pointer;
 }
 
-/* ==================================================
-   EVENT GRID
-================================================== */
+/* ==========================================
+   GRID / LIST SWITCH
+========================================== */
+
+.view-switch{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#fff;
+
+    padding:8px;
+
+    border-radius:999px;
+
+    box-shadow:
+        0 12px 35px rgba(255,120,180,.08);
+}
+
+.view-switch button{
+
+    width:46px;
+    height:46px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    color:#b6b6b6;
+
+    font-size:1.1rem;
+
+    transition:.3s;
+}
+
+.view-switch button.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5db8,
+            #ff9a7d
+        );
+
+    color:#fff;
+}
+
+/* ==========================================
+   GRID
+========================================== */
 
 #events-list{
+
+    width:100%;
 
     display:grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+        repeat(
+            auto-fit,
+            minmax(290px,1fr)
+        );
 
-    gap:30px;
+    gap:34px;
 
+    margin-top:40px;
 }
 
-#events-list .event-card{
+/* ==========================================
+   EVENT CARD
+========================================== */
+
+.event-card{
 
     display:block;
 
+    background:
+        rgba(255,255,255,.55);
+
+    backdrop-filter:blur(24px);
+
+    border:
+        1px solid rgba(255,255,255,.7);
+
+    border-radius:32px;
+
     overflow:hidden;
-
-    border-radius:30px;
-
-    background:white;
-
-    box-shadow:
-        0 15px 45px
-        rgba(255,120,180,.08);
 
     transition:.35s;
 
+    box-shadow:
+        0 18px 45px rgba(255,120,180,.08);
 }
 
-#events-list .event-card:hover{
+.event-card:hover{
 
     transform:
-        translateY(-6px);
+        translateY(-8px);
 
+    box-shadow:
+        0 25px 60px rgba(255,120,180,.12);
 }
 
-#events-list .event-thumb{
+/* ==========================================
+   IMAGE
+========================================== */
+
+.event-thumb{
 
     position:relative;
 
     width:100%;
-    height:270px;
+    height:260px;
 
     overflow:hidden;
-
 }
 
-#events-list .event-thumb img{
+.event-thumb img{
 
     width:100%;
     height:100%;
 
     object-fit:cover;
 
-    transition:.45s;
-
+    transition:.5s;
 }
 
 .event-card:hover img{
 
-    transform:scale(1.05);
-
+    transform:scale(1.06);
 }
 
-.event-date-badge{
+/* ==========================================
+   DATE TAG
+========================================== */
+
+.event-badge{
 
     position:absolute;
 
-    top:15px;
-    left:15px;
+    top:18px;
+    left:18px;
 
-    z-index:5;
+    background:#fff;
 
-    background:
-        rgba(255,255,255,.92);
+    width:58px;
 
-    backdrop-filter:blur(12px);
-
-    border-radius:18px;
-
-    padding:
-        10px
-        12px;
+    border-radius:16px;
 
     text-align:center;
 
+    padding:10px 6px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.08);
+
+    z-index:3;
 }
 
-.event-date-badge strong{
+.event-badge strong{
 
     display:block;
 
-    font-size:1.1rem;
-
-}
-
-.event-date-badge span{
-
-    display:block;
-
-    font-size:.82rem;
-
-}
-
-.event-date-badge small{
-
-    color:#888;
-
-}
-
-#events-list .event-info{
-
-    padding:24px;
-
-}
-
-#events-list h2{
-
-    font-size:1.45rem;
-
-    margin-bottom:10px;
+    font-size:1.3rem;
 
     color:#2d3553;
 
+    line-height:1;
 }
 
-/* ==================================================
-   FOOTER
-================================================== */
+.event-badge span{
 
-.events-footer{
+    display:block;
 
-    padding:
-        120px 0;
+    font-size:.72rem;
 
+    color:#888;
+
+    line-height:1.4;
 }
 
-.footer-message{
+/* ==========================================
+   INFO
+========================================== */
 
-    position:relative;
+.event-info{
 
-    overflow:hidden;
-
-    text-align:center;
-
-    padding:
-        75px
-        60px;
-
-    border-radius:40px;
-
-    background:
-        rgba(255,255,255,.65);
-
-    backdrop-filter:blur(25px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.75);
-
-    box-shadow:
-        0 20px 60px
-        rgba(255,120,180,.08);
-
+    padding:26px;
 }
 
-.footer-message h2{
+.event-info h3{
 
-    font-family:
-        "Playfair Display",
-        serif;
+    font-size:1.45rem;
 
-    font-size:3.4rem;
+    color:#2d3553;
 
-    color:#ff6eb7;
-
-    line-height:1.15;
-
-    margin-bottom:24px;
-
+    margin-bottom:14px;
 }
 
-.footer-message p{
+.event-date{
 
-    font-size:1.12rem;
+    color:#777;
 
-    color:#6f7388;
+    font-size:.95rem;
 
-    margin-bottom:12px;
-
+    margin-bottom:8px;
 }
 
-.footer-disclaimer{
+.event-photos{
 
-    margin-top:40px;
+    color:#ff5a9d;
 
-    padding-top:30px;
+    font-weight:600;
 
-    border-top:
-        1px solid
-        rgba(0,0,0,.06);
-
-    color:#999;
-
-    font-size:.92rem;
-
-    line-height:1.9;
-
+    font-size:.95rem;
 }
 
-/* ==================================================
+/* ==========================================
    RESPONSIVE
-================================================== */
+========================================== */
 
-@media(max-width:1200px){
+@media(max-width:1100px){
 
-    #events-list{
+    .events-topbar{
 
-        grid-template-columns:
-            repeat(3,1fr);
+        flex-direction:column;
 
+        align-items:flex-start;
     }
 
+    .events-view{
+
+        width:100%;
+
+        justify-content:space-between;
+    }
 }
 
-@media(max-width:980px){
+@media(max-width:700px){
 
-    .hero-layout,
-    .latest-card{
+    .events-heading h2{
 
-        grid-template-columns:
-            1fr;
-
-    }
-
-    .hero-copy{
-
-        text-align:center;
-
-    }
-
-    .hero-copy p{
-
-        margin-inline:auto;
-
-    }
-
-    .hero-stats{
-
-        max-width:700px;
-
-        margin-inline:auto;
-
-    }
-
-    .hero-image img{
-
-        width:520px;
-
-        transform:none;
-
+        font-size:2rem;
     }
 
     #events-list{
 
-        grid-template-columns:
-            repeat(2,1fr);
-
+        grid-template-columns:1fr;
     }
 
-}
+    .events-view{
 
-@media(max-width:680px){
-
-    .hero-title{
-
-        font-size:4.5rem;
-
+        flex-wrap:wrap;
     }
 
-    .hero-stats{
+    .sort-btn{
 
-        grid-template-columns:
-            1fr;
-
+        width:100%;
     }
-
-    #events-list{
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-    .footer-message{
-
-        padding:50px 30px;
-
-    }
-
-    .footer-message h2{
-
-        font-size:2.4rem;
-
-    }
-
 }
