@@ -32,8 +32,9 @@
 
     <div class="container header-container">
 
-        <a href="../index.html"
-           class="logo">
+        <a
+            href="../index.html"
+            class="logo">
 
             <img
                 src="../assets/logo/logo.png"
@@ -62,7 +63,8 @@
                 </li>
 
                 <li>
-                    <a href="./">
+                    <a href="./"
+                       class="active">
                         Events
                     </a>
                 </li>
@@ -103,18 +105,22 @@
 
                 <span class="hero-kicker">
 
-                    🤍 YOKO APASRA
+                    ♡ YOKO APASRA
 
                 </span>
 
                 <h1 class="hero-title">
 
                     Events
-                    <span>Archive</span>
+                    <span>
+
+                        Archive
+
+                    </span>
 
                 </h1>
 
-                <p>
+                <p class="hero-desc">
 
                     Preserving Yoko's beautiful moments
                     through every event and appearance.
@@ -123,7 +129,7 @@
 
                 <div class="hero-stats">
 
-                    <div>
+                    <div class="stat-card">
 
                         <strong id="total-events">
 
@@ -139,7 +145,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="stat-card">
 
                         <strong id="total-photos">
 
@@ -155,7 +161,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="stat-card">
 
                         <strong>
 
@@ -205,7 +211,7 @@
     </section>
 
 
-    <!-- FILTER -->
+    <!-- ALL EVENTS -->
 
     <section class="events-page">
 
@@ -215,47 +221,75 @@
 
                 <h2>
 
-                    Browse All Events 🤍
+                    Browse All Events ♡
 
                 </h2>
 
             </div>
 
-           <div class="events-toolbar">
+            <div class="events-toolbar">
 
-    <div
-        class="events-filter"
-        id="month-filter">
+                <div
+                    class="events-filter"
+                    id="month-filter">
 
-    </div>
+                    <!-- JS render -->
 
-    <div class="events-sort">
+                </div>
 
-        <select id="sort-select">
+                <div class="events-actions">
 
-            <option value="newest">
-                Newest First
-            </option>
+                    <div class="events-sort">
 
-            <option value="oldest">
-                Oldest First
-            </option>
+                        <select id="sort-select">
 
-        </select>
+                            <option value="newest">
 
-    </div>
+                                Newest First
 
-</div>
-                <!-- JS render month filter -->
+                            </option>
+
+                            <option value="oldest">
+
+                                Oldest First
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="view-toggle">
+
+                        <button
+                            id="grid-view"
+                            class="view-btn active">
+
+                            ⊞
+
+                        </button>
+
+                        <button
+                            id="list-view"
+                            class="view-btn">
+
+                            ☰
+
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
 
+            <div class="events-grid-wrapper">
 
-            <!-- EVENT GRID -->
+                <div id="events-list">
 
-            <div id="events-list">
+                    <!-- JS render -->
 
-                <!-- JS render -->
+                </div>
 
             </div>
 
@@ -264,7 +298,7 @@
     </section>
 
 
-    <!-- FOOTER MESSAGE -->
+    <!-- FOOTER -->
 
     <section class="events-footer">
 
@@ -279,14 +313,14 @@
 
                 </h2>
 
-                <p>
+                <p class="footer-subtitle">
 
-                    A Vietnamese space for people who love
+                    For people who love
                     Yoko Apasra 🤍🫧
 
                 </p>
 
-                <p>
+                <p class="footer-subtitle">
 
                     Powered by love,
                     protein &
@@ -294,15 +328,28 @@
 
                 </p>
 
-                <small>
+                <div class="footer-disclaimer">
 
-                    Unofficial fan-made archive •
-                    Non-commercial project.<br>
+                    <small>
 
-                    All photos and media belong to
-                    their respective owners.
+                        Unofficial fan-made archive
 
-                </small>
+                    </small>
+
+                    <small>
+
+                        Non-commercial project
+
+                    </small>
+
+                    <small>
+
+                        All photos and media belong
+                        to their respective owners.
+
+                    </small>
+
+                </div>
 
             </div>
 
