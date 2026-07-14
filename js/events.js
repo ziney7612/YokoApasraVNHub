@@ -1,34 +1,57 @@
-const eventsContainer =
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const eventsList =
     document.getElementById("events-list");
 
-const latestContainer =
-    document.getElementById("latest-event-card");
+const latestCard =
+    document.getElementById(
+        "latest-event-card"
+    );
 
 const monthFilter =
-    document.getElementById("month-filter");
+    document.getElementById(
+        "month-filter"
+    );
 
 const totalEvents =
-    document.getElementById("total-events");
+    document.getElementById(
+        "total-events"
+    );
 
 const totalPhotos =
-    document.getElementById("total-photos");
+    document.getElementById(
+        "total-photos"
+    );
 
 const sortSelect =
-    document.getElementById("sort-select");
+    document.getElementById(
+        "sort-select"
+    );
 
 const gridBtn =
-    document.getElementById("grid-view");
+    document.getElementById(
+        "grid-view"
+    );
 
 const listBtn =
-    document.getElementById("list-view");
+    document.getElementById(
+        "list-view"
+    );
 
+
+/* ==========================================
+   STATE
+========================================== */
 
 let events = [];
+
 let currentMonth = "all";
 
 
 /* ==========================================
-   LOAD DATA
+   LOAD
 ========================================== */
 
 async function loadEvents() {
@@ -36,38 +59,41 @@ async function loadEvents() {
     try {
 
         const response =
-            await fetch("../data/gallery.json");
+            await fetch(
+                "../data/gallery.json"
+            );
 
         events =
             await response.json();
 
-
-        events.sort((a, b) => {
-
-            return (
-                new Date(b.date) -
-                new Date(a.date)
-            );
-
-        });
+        events.sort(
+            (a,b) =>
+                parseDate(b.date)
+                -
+                parseDate(a.date)
+        );
 
         updateStats();
 
         renderLatest();
 
-        createMonthFilters();
+        createFilters();
 
         renderEvents();
 
     }
 
-    catch (error) {
+    catch(error){
 
-        console.error(
-            "Cannot load gallery.json",
-            error
-        );
+        console.error(error);
 
+        eventsList.innerHTML =
+
+            `
+            <p>
+                Failed to load events.
+            </p>
+            `;
     }
 }
 
@@ -75,23 +101,81 @@ loadEvents();
 
 
 /* ==========================================
+   DATE
+========================================== */
+
+function parseDate(dateString){
+
+    return new Date(
+        dateString.replace(
+            /(\d+) (\w+) (\d+)/,
+            "$2 $1, $3"
+        )
+    );
+}
+
+
+/* ==========================================
+   COUNTER
+========================================== */
+
+function animateNumber(
+    element,
+    target
+){
+
+    let current = 0;
+
+    const step =
+        Math.ceil(
+            target / 40
+        );
+
+    const timer =
+        setInterval(() => {
+
+            current += step;
+
+            if(
+                current >= target
+            ){
+
+                current = target;
+
+                clearInterval(
+                    timer
+                );
+            }
+
+            element.textContent =
+                current.toLocaleString();
+
+        },20);
+}
+
+
+/* ==========================================
    STATS
 ========================================== */
 
-function updateStats() {
+function updateStats(){
 
-    totalEvents.textContent =
-        events.length;
-
-    const total =
+    const photoCount =
         events.reduce(
-            (sum, item) =>
+            (sum,item)=>
                 sum + item.photos,
             0
         );
 
-    totalPhotos.textContent =
-        total.toLocaleString() + "+";
+    animateNumber(
+        totalEvents,
+        events.length
+    );
+
+    animateNumber(
+        totalPhotos,
+        photoCount
+    );
 }
 
 
@@ -99,68 +183,58 @@ function updateStats() {
    LATEST EVENT
 ========================================== */
 
-function renderLatest() {
+function renderLatest(){
 
-    if (!events.length) return;
+    if(
+        !events.length
+    ) return;
 
-    const latest = events[0];
+    const item =
+        events[0];
 
-    latestContainer.innerHTML = `
+    latestCard.innerHTML =
 
+        `
         <div class="latest-card">
 
             <div class="latest-image">
 
                 <img
-                    src="../assets/events/${latest.folder}/${latest.cover}.${latest.format}"
-                    alt="${latest.title}"
-
-                    onerror="
-                    this.src='../assets/images/events.png'
-                    ">
+                    src="../assets/events/${item.folder}/${item.cover}.${item.format}"
+                    alt="${item.title}">
 
             </div>
 
             <div class="latest-content">
 
                 <span class="latest-tag">
-
-                    ⭐ LATEST EVENT
-
+                    ✦ LATEST EVENT
                 </span>
 
                 <h2>
-
-                    ${latest.title}
-
+                    ${item.title}
                 </h2>
 
                 <p>
-
-                    🗓 ${latest.date}
-
+                    ${item.date}
                 </p>
 
                 <p>
-
-                    ${latest.photos}
-                    photos archived.
-
+                    ${item.photos}
+                    photos archived
                 </p>
 
                 <a
-                    href="./detail.html?id=${latest.id}"
-                    class="latest-btn">
+                    class="latest-btn"
+                    href="detail.html?id=${item.id}">
 
                     View Gallery →
-
                 </a>
 
             </div>
 
         </div>
-
-    `;
+        `;
 }
 
 
@@ -168,84 +242,71 @@ function renderLatest() {
    MONTH FILTER
 ========================================== */
 
-function createMonthFilters() {
-
-    const order = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ];
+function createFilters(){
 
     const months = [
-        ...new Set(
-            events.map(event => {
 
-                return new Date(
-                    event.date
-                ).toLocaleString(
+        "all",
+
+        ...new Set(
+
+            events.map(item =>
+
+                parseDate(
+                    item.date
+                )
+                .toLocaleString(
                     "en-US",
                     {
-                        month: "long"
+                        month:"long"
                     }
-                );
-
-            })
+                )
+            )
         )
     ];
 
-    months.sort(
-        (a, b) =>
-            order.indexOf(a) -
-            order.indexOf(b)
-    );
+    monthFilter.innerHTML =
 
-    monthFilter.innerHTML = `
+        months.map(month =>
 
-        <button
-            class="active"
-            data-month="all">
-
-            All
-
-        </button>
-
-        ${months.map(month => `
-
+            `
             <button
-                data-month="${month}">
+                data-month="${month}"
+                class="${
+                    month==="all"
+                    ? "active"
+                    : ""
+                }">
 
-                ${month}
+                ${
+                    month==="all"
+                    ? "All"
+                    : month
+                }
 
             </button>
-
-        `).join("")}
-
-    `;
+            `
+        )
+        .join("");
 
     monthFilter
-        .querySelectorAll("button")
+        .querySelectorAll(
+            "button"
+        )
         .forEach(button => {
 
             button.onclick = () => {
 
                 monthFilter
-                    .querySelectorAll("button")
-                    .forEach(btn => {
-
-                        btn.classList.remove(
+                    .querySelectorAll(
+                        "button"
+                    )
+                    .forEach(
+                        b =>
+                        b.classList.remove(
                             "active"
-                        );
-
-                    });
+                        )
+                    );
 
                 button.classList.add(
                     "active"
@@ -256,58 +317,62 @@ function createMonthFilters() {
 
                 renderEvents();
             };
-
         });
 }
 
 
 /* ==========================================
-   RENDER
+   EVENTS
 ========================================== */
 
-function renderEvents() {
+function renderEvents(){
 
     let filtered =
         [...events];
 
-    if (
+    if(
         currentMonth !== "all"
-    ) {
+    ){
 
         filtered =
-            filtered.filter(event => {
+            filtered.filter(
+                item => {
 
-                const month =
-                    new Date(
-                        event.date
-                    ).toLocaleString(
-                        "en-US",
-                        {
-                            month: "long"
-                        }
+                    const month =
+                        parseDate(
+                            item.date
+                        )
+                        .toLocaleString(
+                            "en-US",
+                            {
+                                month:"long"
+                            }
+                        );
+
+                    return (
+                        month ===
+                        currentMonth
                     );
-
-                return (
-                    month === currentMonth
-                );
-
-            });
-
+                }
+            );
     }
 
-    if (
+    if(
         sortSelect.value ===
         "oldest"
-    ) {
+    ){
 
         filtered.reverse();
     }
 
-    eventsContainer.innerHTML =
-        filtered.map(event => {
+    eventsList.innerHTML =
+
+        filtered.map(item => {
 
             const date =
-                new Date(event.date);
+                parseDate(
+                    item.date
+                );
 
             const day =
                 date.getDate();
@@ -316,77 +381,53 @@ function renderEvents() {
                 date.toLocaleString(
                     "en-US",
                     {
-                        month: "short"
+                        month:"short"
                     }
                 );
-
-            const year =
-                date.getFullYear();
 
             return `
 
             <a
-                href="./detail.html?id=${event.id}"
+                href="detail.html?id=${item.id}"
                 class="event-card">
 
                 <div class="event-thumb">
 
                     <img
-                        src="../assets/events/${event.folder}/${event.cover}.${event.format}"
-
-                        alt="${event.title}"
-
-                        onerror="
-                        this.src='../assets/images/events.png'
-                        ">
+                        src="../assets/events/${item.folder}/${item.cover}.${item.format}"
+                        alt="${item.title}">
 
                     <div
                         class="event-date-badge">
 
                         <strong>
-
                             ${day}
-
                         </strong>
 
                         <span>
-
                             ${month}
-
                         </span>
-
-                        <small>
-
-                            ${year}
-
-                        </small>
 
                     </div>
 
                 </div>
 
-                <div
-                    class="event-info">
+                <div class="event-info">
 
                     <h2>
-
-                        ${event.title}
-
+                        ${item.title}
                     </h2>
 
-                    <p
-                        class="event-date">
-
-                        ${event.date}
-
+                    <p class="event-date">
+                        ${item.date}
                     </p>
 
                     <p
                         class="event-photos">
 
                         📷
-                        ${event.photos}
-                        Photos
+                        ${item.photos}
+                        photos
 
                     </p>
 
@@ -397,43 +438,6 @@ function renderEvents() {
             `;
 
         }).join("");
-
-    fadeCards();
-}
-
-
-/* ==========================================
-   ANIMATION
-========================================== */
-
-function fadeCards() {
-
-    const cards =
-        document.querySelectorAll(
-            ".event-card"
-        );
-
-    cards.forEach(
-        (card, index) => {
-
-            card.style.opacity = "0";
-            card.style.transform =
-                "translateY(20px)";
-
-            setTimeout(() => {
-
-                card.style.transition =
-                    ".45s ease";
-
-                card.style.opacity = "1";
-
-                card.style.transform =
-                    "translateY(0px)";
-
-            }, index * 60);
-
-        }
-    );
 }
 
 
@@ -448,12 +452,12 @@ sortSelect.addEventListener(
 
 
 /* ==========================================
-   VIEW
+   GRID / LIST
 ========================================== */
 
 gridBtn.onclick = () => {
 
-    eventsContainer.classList.remove(
+    eventsList.classList.remove(
         "list-view"
     );
 
@@ -466,10 +470,9 @@ gridBtn.onclick = () => {
     );
 };
 
-
 listBtn.onclick = () => {
 
-    eventsContainer.classList.add(
+    eventsList.classList.add(
         "list-view"
     );
 
