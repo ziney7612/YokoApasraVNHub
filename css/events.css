@@ -1,61 +1,34 @@
-/* ==========================================
+/* =====================================================
    EVENTS PAGE
-========================================== */
+===================================================== */
 
 :root{
+    --pink:#ff6ea9;
+    --pink2:#ff9d87;
 
-    --bg:#fdf7fb;
-    --card:#fffdfd;
+    --text:#2f3555;
+    --muted:#7d8398;
 
-    --text:#2d3452;
-    --muted:#7e8398;
-
-    --pink:#ff6cab;
-    --pink2:#ffa38c;
-
-    --border:#f8d7e7;
+    --card:rgba(255,255,255,.72);
 }
 
 
-/* ==========================================
-   PAGE
-========================================== */
-
-body{
-
-    background:
-        linear-gradient(
-            180deg,
-            #fff8fc 0%,
-            #fdf7fb 40%,
-            #faf0f6 100%
-        );
-
-    color:var(--text);
-}
-
-.container{
-
-    width:min(1320px,92%);
-    margin:auto;
-}
-
-
-/* ==========================================
+/* =====================================================
    HERO
-========================================== */
+===================================================== */
 
 .events-hero{
 
-    padding:90px 0 70px;
-    position:relative;
-    overflow:hidden;
+    padding:70px 0 40px;
 }
 
 .hero-layout{
 
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 560px;
+
     align-items:center;
 
     gap:40px;
@@ -63,21 +36,22 @@ body{
 
 .hero-copy{
 
-    max-width:600px;
+    max-width:650px;
 }
 
 .hero-kicker{
 
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
+    display:inline-block;
 
-    font-size:.9rem;
-    color:#8f94aa;
+    margin-bottom:22px;
+
+    color:#9195aa;
+
+    letter-spacing:.15em;
 
     font-weight:700;
 
-    margin-bottom:25px;
+    font-size:.9rem;
 }
 
 .hero-title{
@@ -86,8 +60,11 @@ body{
         "Playfair Display",
         serif;
 
-    font-size:6rem;
-    line-height:.9;
+    font-size:5.8rem;
+
+    line-height:.92;
+
+    color:var(--text);
 
     margin-bottom:30px;
 }
@@ -95,61 +72,50 @@ body{
 .hero-title span{
 
     display:block;
+
     color:var(--pink);
 }
 
 .hero-desc{
 
-    font-size:1.3rem;
-    line-height:1.8;
+    max-width:520px;
 
     color:var(--muted);
 
-    max-width:500px;
-}
+    line-height:1.9;
 
-.hero-image{
-
-    display:flex;
-    justify-content:flex-end;
-}
-
-.hero-image img{
-
-    width:650px;
-    max-width:100%;
+    font-size:1.05rem;
 }
 
 
-/* ==========================================
+/* =====================================================
    STATS
-========================================== */
+===================================================== */
 
 .hero-stats{
 
-    margin-top:45px;
-
-    display:grid;
-    grid-template-columns:
-        repeat(3,1fr);
+    display:flex;
 
     gap:18px;
+
+    margin-top:45px;
 }
 
 .hero-stat{
 
-    background:
-        rgba(255,255,255,.72);
+    min-width:190px;
 
-    backdrop-filter:blur(25px);
+    padding:22px 26px;
 
-    border-radius:32px;
+    border-radius:26px;
 
-    padding:28px;
+    background:var(--card);
+
+    backdrop-filter:blur(20px);
 
     box-shadow:
-        0 15px 40px
-        rgba(255,170,210,.12);
+        0 20px 40px
+        rgba(255,180,210,.12);
 }
 
 .hero-stat strong{
@@ -158,54 +124,78 @@ body{
 
     font-size:2rem;
 
-    margin-bottom:8px;
+    margin-bottom:6px;
+
+    color:var(--text);
 }
 
 .hero-stat span{
 
-    font-size:.95rem;
-
     color:var(--muted);
+
+    font-size:.9rem;
 }
 
 
-/* ==========================================
+/* =====================================================
+   HERO IMAGE
+===================================================== */
+
+.hero-image{
+
+    display:flex;
+
+    justify-content:flex-end;
+}
+
+.hero-image img{
+
+    width:540px;
+
+    max-width:100%;
+}
+
+
+/* =====================================================
    LATEST
-========================================== */
+===================================================== */
 
 .latest-event{
+
+    padding-top:20px;
 
     padding-bottom:90px;
 }
 
 .latest-card{
 
-    background:
-        rgba(255,255,255,.72);
-
-    border-radius:42px;
-
-    padding:36px;
-
     display:grid;
 
     grid-template-columns:
-        520px 1fr;
+        480px 1fr;
 
-    gap:60px;
+    gap:50px;
+
+    padding:35px;
+
+    background:var(--card);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:40px;
 
     box-shadow:
-        0 20px 60px
+        0 25px 55px
         rgba(255,170,210,.12);
 }
 
 .latest-image{
 
-    border-radius:28px;
+    height:310px;
 
     overflow:hidden;
 
-    height:320px;
+    border-radius:28px;
 }
 
 .latest-image img{
@@ -221,15 +211,33 @@ body{
 .latest-content{
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
 
     position:relative;
 }
 
-.latest-tag{
+.latest-content::after{
 
-    display:inline-flex;
+    content:"01";
+
+    position:absolute;
+
+    right:0;
+    bottom:-40px;
+
+    font-size:9rem;
+
+    font-weight:700;
+
+    color:#f8eef4;
+
+    z-index:-1;
+}
+
+.latest-tag{
 
     width:max-content;
 
@@ -237,28 +245,30 @@ body{
 
     border-radius:999px;
 
-    background:#ffe7f2;
+    background:#ffe8f3;
 
     color:var(--pink);
 
-    font-size:.8rem;
+    font-size:.82rem;
 
     font-weight:700;
 
-    margin-bottom:25px;
+    margin-bottom:24px;
 }
 
 .latest-content h2{
 
-    font-size:3.6rem;
-
-    line-height:1.1;
-
-    margin-bottom:22px;
-
     font-family:
         "Playfair Display",
         serif;
+
+    font-size:3rem;
+
+    line-height:1.15;
+
+    margin-bottom:20px;
+
+    color:var(--text);
 }
 
 .latest-content p{
@@ -270,15 +280,13 @@ body{
 
 .latest-btn{
 
-    margin-top:28px;
-
     width:max-content;
+
+    margin-top:24px;
 
     text-decoration:none;
 
-    color:white;
-
-    padding:16px 34px;
+    padding:15px 30px;
 
     border-radius:999px;
 
@@ -289,47 +297,53 @@ body{
             var(--pink2)
         );
 
+    color:white;
+
     font-weight:700;
 }
 
 
-/* ==========================================
+/* =====================================================
    EVENTS
-========================================== */
+===================================================== */
 
 .events-page{
 
-    padding-bottom:100px;
+    padding:90px 0;
 }
 
 .events-heading{
 
-    margin-bottom:45px;
+    margin-bottom:40px;
 }
 
 .events-heading h2{
+
+    font-size:2.8rem;
 
     font-family:
         "Playfair Display",
         serif;
 
-    font-size:3rem;
+    color:var(--text);
 }
 
 
-/* ==========================================
+/* =====================================================
    TOOLBAR
-========================================== */
+===================================================== */
 
 .events-toolbar{
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
     flex-wrap:wrap;
 
-    gap:25px;
+    gap:24px;
 
     margin-bottom:45px;
 }
@@ -337,21 +351,27 @@ body{
 .events-filter{
 
     display:flex;
+
     flex-wrap:wrap;
+
     gap:14px;
 }
 
 .events-filter button{
 
-    border:1px solid var(--border);
+    border:none;
 
     background:white;
 
+    border:1px solid #ffd6e7;
+
     border-radius:999px;
 
-    padding:12px 24px;
+    padding:12px 22px;
 
     color:var(--pink);
+
+    font-weight:600;
 
     cursor:pointer;
 
@@ -360,8 +380,6 @@ body{
 
 .events-filter button.active{
 
-    color:white;
-
     background:
         linear-gradient(
             135deg,
@@ -369,13 +387,15 @@ body{
             var(--pink2)
         );
 
-    border:none;
+    color:white;
 }
 
 .events-actions{
 
     display:flex;
+
     align-items:center;
+
     gap:16px;
 }
 
@@ -385,23 +405,24 @@ body{
 
     background:white;
 
+    padding:14px 24px;
+
     border-radius:999px;
 
-    padding:14px 25px;
-
     box-shadow:
-        0 10px 25px
-        rgba(255,170,210,.10);
+        0 12px 28px
+        rgba(255,180,210,.10);
 }
 
 
-/* ==========================================
-   VIEW BUTTONS
-========================================== */
+/* =====================================================
+   VIEW BUTTON
+===================================================== */
 
 .view-toggle{
 
     display:flex;
+
     gap:10px;
 }
 
@@ -412,9 +433,9 @@ body{
 
     border:none;
 
-    border-radius:50%;
-
     background:white;
+
+    border-radius:50%;
 
     cursor:pointer;
 }
@@ -432,58 +453,56 @@ body{
 }
 
 
-/* ==========================================
+/* =====================================================
    GRID
-========================================== */
+===================================================== */
 
 .events-grid{
 
     display:grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+        repeat(5,1fr);
 
-    gap:28px;
+    gap:24px;
 }
 
 
-/* ==========================================
+/* =====================================================
    CARD
-========================================== */
+===================================================== */
 
 .event-card{
 
     display:block;
 
+    background:var(--card);
+
+    border-radius:28px;
+
+    overflow:hidden;
+
     text-decoration:none;
 
     color:inherit;
-
-    background:
-        rgba(255,255,255,.75);
-
-    border-radius:30px;
-
-    overflow:hidden;
 
     transition:.35s;
 
     box-shadow:
         0 15px 35px
-        rgba(255,170,210,.10);
+        rgba(255,180,210,.10);
 }
 
 .event-card:hover{
 
-    transform:
-        translateY(-8px);
+    transform:translateY(-8px);
 }
 
 .event-thumb{
 
     position:relative;
 
-    height:230px;
+    height:220px;
 
     overflow:hidden;
 }
@@ -495,9 +514,9 @@ body{
 
     object-fit:cover;
 
-    object-position:center;
+    object-position:center top;
 
-    transition:.5s;
+    transition:.45s;
 }
 
 .event-card:hover img{
@@ -514,23 +533,11 @@ body{
 
     background:white;
 
-    border-radius:18px;
-
     padding:10px 14px;
 
+    border-radius:18px;
+
     text-align:center;
-}
-
-.event-date-badge strong{
-
-    display:block;
-}
-
-.event-date-badge span{
-
-    font-size:.8rem;
-
-    color:#888;
 }
 
 .event-info{
@@ -540,20 +547,22 @@ body{
 
 .event-info h2{
 
-    font-size:1.25rem;
+    font-size:1.15rem;
 
-    line-height:1.45;
+    line-height:1.5;
 
     margin-bottom:12px;
+
+    color:var(--text);
 }
 
 .event-date{
 
     color:var(--muted);
 
-    margin-bottom:10px;
+    font-size:.92rem;
 
-    font-size:.9rem;
+    margin-bottom:10px;
 }
 
 .event-photos{
@@ -564,9 +573,9 @@ body{
 }
 
 
-/* ==========================================
+/* =====================================================
    LIST VIEW
-========================================== */
+===================================================== */
 
 .events-grid.list-view{
 
@@ -581,75 +590,93 @@ body{
 .events-grid.list-view .event-thumb{
 
     width:320px;
+
     height:220px;
 
     flex-shrink:0;
 }
 
 
-/* ==========================================
+/* =====================================================
    FOOTER
-========================================== */
+===================================================== */
 
 .events-footer{
 
-    padding-bottom:80px;
+    padding-top:40px;
+
+    padding-bottom:90px;
 }
 
 .footer-message{
 
-    background:
-        rgba(255,255,255,.72);
+    background:var(--card);
 
-    border-radius:42px;
+    backdrop-filter:blur(20px);
 
-    padding:50px 60px;
+    border-radius:40px;
 
-    display:flex;
+    padding:60px;
 
-    justify-content:space-between;
+    text-align:center;
 
-    align-items:center;
-
-    gap:40px;
+    box-shadow:
+        0 20px 50px
+        rgba(255,180,210,.12);
 }
 
 .footer-message h2{
 
-    font-size:3rem;
-
-    color:var(--pink);
-
-    margin-bottom:20px;
-
     font-family:
         "Playfair Display",
         serif;
+
+    font-size:3rem;
+
+    line-height:1.2;
+
+    color:var(--pink);
+
+    margin-bottom:24px;
 }
 
 .footer-message p{
 
-    line-height:1.8;
-
     color:var(--muted);
+
+    line-height:1.9;
+
+    margin-bottom:10px;
 }
 
-.footer-message img{
+.footer-divider{
 
-    width:220px;
+    width:90px;
+    height:1px;
+
+    background:#ffd9e8;
+
+    margin:35px auto;
+}
+
+.footer-message small{
+
+    color:#999;
+
+    line-height:1.8;
 }
 
 
-/* ==========================================
+/* =====================================================
    RESPONSIVE
-========================================== */
+===================================================== */
 
 @media(max-width:1200px){
 
     .events-grid{
 
         grid-template-columns:
-            repeat(3,1fr);
+            repeat(4,1fr);
     }
 }
 
@@ -671,12 +698,6 @@ body{
         grid-template-columns:
             repeat(2,1fr);
     }
-
-    .footer-message{
-
-        flex-direction:column;
-        text-align:center;
-    }
 }
 
 @media(max-width:768px){
@@ -688,7 +709,7 @@ body{
 
     .hero-stats{
 
-        grid-template-columns:1fr;
+        flex-direction:column;
     }
 
     .events-grid{
@@ -708,11 +729,11 @@ body{
 
     .latest-content h2{
 
-        font-size:2.5rem;
+        font-size:2.3rem;
     }
 
     .footer-message{
 
-        padding:40px 30px;
+        padding:40px 28px;
     }
 }
