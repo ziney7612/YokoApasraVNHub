@@ -4,35 +4,33 @@
 
 .event-card{
 
-    display:flex;
-    align-items:center;
-    gap:36px;
+    display:block;
 
-    padding:28px;
+    background:rgba(255,255,255,.72);
 
-    background:rgba(255,255,255,.10);
-
-    border:1px solid rgba(255,255,255,.30);
+    border:1px solid rgba(255,255,255,.35);
 
     backdrop-filter:blur(24px);
 
-    border-radius:30px;
+    border-radius:34px;
+
+    overflow:hidden;
 
     text-decoration:none;
     color:inherit;
 
-    box-shadow:0 18px 55px rgba(255,120,180,.08);
+    box-shadow:
+        0 18px 55px rgba(255,120,180,.08);
 
     transition:.35s ease;
-
 }
 
 .event-card:hover{
 
-    transform:translateY(-6px);
+    transform:translateY(-8px);
 
-    box-shadow:0 24px 70px rgba(255,120,180,.12);
-
+    box-shadow:
+        0 24px 70px rgba(255,120,180,.12);
 }
 
 /* ==========================================
@@ -41,15 +39,12 @@
 
 .event-thumb{
 
-    width:340px;
-    height:210px;
+    position:relative;
 
-    flex-shrink:0;
+    width:100%;
+    height:260px;
 
     overflow:hidden;
-
-    border-radius:22px;
-
 }
 
 .event-thumb img{
@@ -60,15 +55,59 @@
     display:block;
 
     object-fit:cover;
+    object-position:center top;
 
-    transition:.4s ease;
-
+    transition:.45s ease;
 }
 
 .event-card:hover .event-thumb img{
 
     transform:scale(1.04);
+}
 
+/* ==========================================
+   DATE BADGE
+========================================== */
+
+.event-date-badge{
+
+    position:absolute;
+
+    top:18px;
+    left:18px;
+
+    background:white;
+
+    padding:12px 14px;
+
+    border-radius:18px;
+
+    min-width:72px;
+
+    text-align:center;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+}
+
+.event-date-badge strong{
+
+    display:block;
+
+    font-size:1.2rem;
+
+    color:#2f3555;
+
+    line-height:1.1;
+}
+
+.event-date-badge span{
+
+    font-size:.8rem;
+
+    color:#8d91a8;
+
+    text-transform:uppercase;
 }
 
 /* ==========================================
@@ -77,42 +116,38 @@
 
 .event-info{
 
-    flex:1;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
+    padding:24px;
 }
 
 .event-info h2{
 
-    font-size:2rem;
+    font-size:1.35rem;
 
-    color:#2d3553;
+    line-height:1.45;
 
-    margin-bottom:16px;
+    color:#2f3555;
 
+    margin-bottom:14px;
 }
 
 .event-date{
 
-    color:#777;
+    color:#8d91a8;
 
-    margin-bottom:10px;
+    margin-bottom:12px;
 
+    font-size:.95rem;
 }
 
 .event-location{
 
-    color:#888;
+    color:#9fa3b5;
 
-    margin-bottom:24px;
-
+    margin-bottom:14px;
 }
 
 /* ==========================================
-   LINK
+   PHOTOS
 ========================================== */
 
 .event-photos{
@@ -121,45 +156,67 @@
 
     align-items:center;
 
-    width:max-content;
+    gap:8px;
 
-    color:#ff5a9d;
+    color:#ff69ab;
 
-    font-weight:600;
+    font-weight:700;
 
-    transition:.25s ease;
-
+    transition:.3s ease;
 }
 
 .event-card:hover .event-photos{
 
-    transform:translateX(6px);
+    transform:translateX(5px);
+}
 
+/* ==========================================
+   LIST VIEW
+========================================== */
+
+.events-grid.list-view .event-card{
+
+    display:flex;
+
+    align-items:center;
+
+    overflow:hidden;
+}
+
+.events-grid.list-view .event-thumb{
+
+    width:340px;
+    height:220px;
+
+    flex-shrink:0;
+}
+
+.events-grid.list-view .event-info{
+
+    flex:1;
 }
 
 /* ==========================================
    GALLERY GRID
-   (Dùng cho Event Detail sau này)
 ========================================== */
 
 .gallery-grid{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
 
     gap:24px;
-
 }
 
 .gallery-item{
 
     overflow:hidden;
 
-    border-radius:22px;
+    border-radius:24px;
 
     cursor:pointer;
-
 }
 
 .gallery-item img{
@@ -169,13 +226,11 @@
     display:block;
 
     transition:.35s ease;
-
 }
 
 .gallery-item:hover img{
 
     transform:scale(1.04);
-
 }
 
 /* ==========================================
@@ -184,33 +239,21 @@
 
 @media(max-width:900px){
 
-    .event-card{
+    .events-grid.list-view .event-card{
 
         flex-direction:column;
 
         align-items:flex-start;
-
-        gap:24px;
-
     }
 
-    .event-thumb{
+    .events-grid.list-view .event-thumb{
 
         width:100%;
         height:230px;
-
-    }
-
-    .event-info{
-
-        width:100%;
-
     }
 
     .event-info h2{
 
-        font-size:1.6rem;
-
+        font-size:1.2rem;
     }
-
 }
