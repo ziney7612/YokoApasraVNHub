@@ -1,16 +1,8 @@
 /* ==========================================
    CONTAINER
 ========================================== */
-
-body{
-
-    background:#fdf5fa;
-    color:#303452;
-    overflow-x:hidden;
-}
-
 .container{
-    width:min(1280px,92%);
+    width:min(1320px,92%);
     margin:auto;
 }
 
