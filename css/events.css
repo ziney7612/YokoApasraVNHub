@@ -57,6 +57,7 @@
 .hero-stats{
     display:flex;
     margin-top:50px;
+    margin-bottom:-150px;
     width:820px;
     background:rgba(255,255,255,.65);
     backdrop-filter:blur(25px);
