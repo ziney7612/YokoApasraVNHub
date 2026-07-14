@@ -3,13 +3,13 @@
 ====================================================== */
 
 .events-page{
-    overflow:hidden;
-    padding-bottom:80px;
+    overflow:visible;
+    padding-bottom:70px;
 }
 
 /* ======================================================
    HERO
-   (GIỮ NGUYÊN THÔNG SỐ CỦA BẠN)
+   GIỮ NGUYÊN
 ====================================================== */
 
 .events-hero{
@@ -26,7 +26,6 @@
 
 .hero-copy{
     position:relative;
-    z-index:5;
 }
 
 .hero-kicker{
@@ -112,22 +111,24 @@
 ====================================================== */
 
 .latest-section{
-    margin-top:-60px;
-    padding-bottom:70px;
+    margin-top:-50px;
+    padding-bottom:80px;
 }
 
 .latest-card{
     background:rgba(255,255,255,.72);
     backdrop-filter:blur(24px);
+
     border-radius:42px;
 
+    padding:28px;
+
     display:grid;
-    grid-template-columns:430px 1fr;
+    grid-template-columns:460px 1fr;
     gap:45px;
 
-    padding:28px;
     box-shadow:
-        0 20px 60px rgba(255,180,210,.10);
+        0 20px 60px rgba(255,180,210,.08);
 }
 
 .latest-image{
@@ -153,24 +154,24 @@
     content:"01";
     position:absolute;
     right:10px;
-    top:-20px;
+    top:-10px;
 
     font-size:8rem;
     font-weight:700;
-
     color:#f6dce6;
 }
 
 .latest-tag{
     width:max-content;
 
+    padding:10px 18px;
+
+    border-radius:999px;
+
     background:#ffe8f2;
     color:#ff69ab;
 
-    padding:10px 18px;
-    border-radius:999px;
-
-    font-size:.78rem;
+    font-size:.8rem;
     font-weight:700;
 
     margin-bottom:25px;
@@ -188,10 +189,13 @@
 }
 
 .latest-btn{
-    margin-top:20px;
     width:max-content;
 
-    text-decoration:none;
+    margin-top:20px;
+
+    padding:16px 34px;
+
+    border-radius:999px;
 
     background:
         linear-gradient(
@@ -201,9 +205,7 @@
         );
 
     color:white;
-
-    padding:16px 34px;
-    border-radius:999px;
+    text-decoration:none;
     font-weight:700;
 }
 
@@ -232,32 +234,36 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:30px;
-    margin-bottom:45px;
     flex-wrap:wrap;
+
+    gap:30px;
+
+    margin-bottom:45px;
 }
 
-.month-filter{
+.events-filter{
     display:flex;
     flex-wrap:wrap;
     gap:14px;
 }
 
-.month-filter button{
+.events-filter button{
     border:none;
     background:white;
 
-    border:1px solid #ffd7e5;
+    border:1px solid #ffd6e6;
 
     padding:13px 24px;
+
     border-radius:999px;
 
     color:#ff69ab;
+
     cursor:pointer;
     transition:.3s;
 }
 
-.month-filter button.active{
+.events-filter button.active{
     background:
         linear-gradient(
             135deg,
@@ -266,9 +272,10 @@
         );
 
     color:white;
+    border-color:transparent;
 }
 
-.toolbar-right{
+.events-actions{
     display:flex;
     align-items:center;
     gap:18px;
@@ -276,13 +283,15 @@
 
 #sort-select{
     border:none;
-    background:white;
 
     padding:15px 24px;
+
     border-radius:999px;
 
+    background:white;
+
     box-shadow:
-        0 12px 30px
+        0 10px 25px
         rgba(255,180,210,.08);
 }
 
@@ -291,18 +300,19 @@
     gap:10px;
 }
 
-.view-toggle button{
-    width:50px;
-    height:50px;
+.view-btn{
+    width:52px;
+    height:52px;
 
     border:none;
+
     background:white;
 
     border-radius:50%;
     cursor:pointer;
 }
 
-.view-toggle button.active{
+.view-btn.active{
     background:
         linear-gradient(
             135deg,
@@ -330,14 +340,13 @@
 ====================================================== */
 
 .event-card{
-    display:block;
-
     background:
-        rgba(255,255,255,.7);
+        rgba(255,255,255,.72);
 
-    border-radius:34px;
+    border-radius:32px;
 
     overflow:hidden;
+
     text-decoration:none;
     color:inherit;
 
@@ -349,8 +358,8 @@
 }
 
 .event-thumb{
-    height:260px;
     position:relative;
+    height:250px;
     overflow:hidden;
 }
 
@@ -362,13 +371,14 @@
 
 .event-date-badge{
     position:absolute;
-    top:18px;
-    left:18px;
+    top:16px;
+    left:16px;
 
     background:white;
 
-    padding:12px 14px;
     border-radius:18px;
+
+    padding:12px 14px;
 
     min-width:70px;
     text-align:center;
@@ -379,8 +389,8 @@
 }
 
 .event-info h2{
-    font-size:1.35rem;
-    line-height:1.45;
+    font-size:1.55rem;
+    line-height:1.4;
     color:#2f3555;
 
     margin-bottom:14px;
@@ -397,7 +407,7 @@
 }
 
 /* ======================================================
-   LIST VIEW
+   LIST
 ====================================================== */
 
 .events-grid.list-view{
@@ -419,53 +429,65 @@
 ====================================================== */
 
 .events-footer{
-    padding-top:80px;
+    padding-top:60px;
 }
 
 .footer-message{
-    background:
-        rgba(255,255,255,.72);
+    background:rgba(255,255,255,.72);
 
-    border-radius:42px;
+    border-radius:36px;
 
-    padding:45px 60px;
+    padding:35px 55px;
+
+    min-height:190px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
+
+    position:relative;
+    overflow:hidden;
 }
 
 .footer-copy{
-    max-width:620px;
+    max-width:460px;
+}
+
+.footer-heart{
+    display:block;
+    margin-bottom:10px;
 }
 
 .footer-copy h2{
-    font-size:3rem;
-    line-height:1.1;
-    color:#2f3555;
-    margin-bottom:20px;
+    font-size:2.5rem;
+    line-height:1.15;
+
+    color:#ff6aa8;
+
+    margin-bottom:12px;
 }
 
 .footer-copy p{
     color:#7d8398;
-    line-height:1.8;
-    margin-bottom:10px;
+    line-height:1.7;
+    margin-bottom:4px;
 }
 
 .footer-divider{
-    width:80px;
+    width:60px;
     height:1px;
     background:#ffd7e5;
-    margin:30px 0;
+
+    margin:20px 0;
 }
 
 .footer-copy small{
     color:#9ea1b5;
-    line-height:1.8;
+    line-height:1.6;
 }
 
 .footer-mascot img{
-    width:150px;
+    width:180px;
 }
 
 /* ======================================================
@@ -494,8 +516,8 @@
     }
 
     .hero-image img{
-        margin:0;
         width:420px;
+        margin:0;
     }
 
     .latest-card{
@@ -509,11 +531,11 @@
     .footer-message{
         flex-direction:column;
         text-align:center;
-        gap:40px;
+        gap:30px;
     }
 
     .footer-divider{
-        margin:30px auto;
+        margin:20px auto;
     }
 }
 
@@ -528,10 +550,10 @@
     }
 
     .footer-copy h2{
-        font-size:2.3rem;
+        font-size:2rem;
     }
 
     .footer-mascot img{
-        width:120px;
+        width:130px;
     }
 }
