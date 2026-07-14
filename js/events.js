@@ -2,43 +2,25 @@
    ELEMENTS
 ========================================== */
 
-const eventsList =
-    document.getElementById("events-list");
+const eventsList = document.getElementById("events-list");
+const latestCard = document.getElementById("latest-event-card");
 
-const latestCard =
-    document.getElementById(
-        "latest-event-card"
-    );
-
-const monthFilter =
-    document.getElementById(
-        "month-filter"
-    );
+const monthFilter = document.getElementById("month-filter");
 
 const totalEvents =
-    document.getElementById(
-        "total-events"
-    );
+    document.getElementById("total-events");
 
 const totalPhotos =
-    document.getElementById(
-        "total-photos"
-    );
+    document.getElementById("total-photos");
 
 const sortSelect =
-    document.getElementById(
-        "sort-select"
-    );
+    document.getElementById("sort-select");
 
 const gridBtn =
-    document.getElementById(
-        "grid-view"
-    );
+    document.getElementById("grid-view");
 
 const listBtn =
-    document.getElementById(
-        "list-view"
-    );
+    document.getElementById("list-view");
 
 
 /* ==========================================
@@ -46,7 +28,6 @@ const listBtn =
 ========================================== */
 
 let events = [];
-
 let currentMonth = "all";
 
 
@@ -59,38 +40,30 @@ async function loadEvents() {
     try {
 
         const response =
-            await fetch(
-                "../data/gallery.json"
-            );
+            await fetch("../data/gallery.json");
 
         events =
             await response.json();
 
         events.sort(
-            (a,b) =>
-                parseDate(b.date)
-                -
+            (a, b) =>
+                parseDate(b.date) -
                 parseDate(a.date)
         );
 
         updateStats();
-
         renderLatest();
-
         createFilters();
-
         renderEvents();
-
     }
 
-    catch(error){
+    catch (error) {
 
         console.error(error);
 
         eventsList.innerHTML =
-
             `
-            <p>
+            <p class="empty">
                 Failed to load events.
             </p>
             `;
@@ -104,7 +77,7 @@ loadEvents();
    DATE
 ========================================== */
 
-function parseDate(dateString){
+function parseDate(dateString) {
 
     return new Date(
         dateString.replace(
@@ -122,35 +95,28 @@ function parseDate(dateString){
 function animateNumber(
     element,
     target
-){
+) {
 
     let current = 0;
 
     const step =
-        Math.ceil(
-            target / 40
-        );
+        Math.ceil(target / 40);
 
     const timer =
         setInterval(() => {
 
             current += step;
 
-            if(
-                current >= target
-            ){
+            if (current >= target) {
 
                 current = target;
-
-                clearInterval(
-                    timer
-                );
+                clearInterval(timer);
             }
 
             element.textContent =
                 current.toLocaleString();
 
-        },20);
+        }, 20);
 }
 
 
@@ -158,11 +124,11 @@ function animateNumber(
    STATS
 ========================================== */
 
-function updateStats(){
+function updateStats() {
 
     const photoCount =
         events.reduce(
-            (sum,item)=>
+            (sum, item) =>
                 sum + item.photos,
             0
         );
@@ -183,14 +149,11 @@ function updateStats(){
    LATEST EVENT
 ========================================== */
 
-function renderLatest(){
+function renderLatest() {
 
-    if(
-        !events.length
-    ) return;
+    if (!events.length) return;
 
-    const item =
-        events[0];
+    const item = events[0];
 
     latestCard.innerHTML =
 
@@ -216,17 +179,17 @@ function renderLatest(){
                 </h2>
 
                 <p>
-                    ${item.date}
+                    📅 ${item.date}
                 </p>
 
                 <p>
-                    ${item.photos}
+                    📷 ${item.photos}
                     photos archived
                 </p>
 
                 <a
-                    class="latest-btn"
-                    href="detail.html?id=${item.id}">
+                    href="detail.html?id=${item.id}"
+                    class="latest-btn">
 
                     View Gallery →
                 </a>
@@ -239,10 +202,10 @@ function renderLatest(){
 
 
 /* ==========================================
-   MONTH FILTER
+   FILTER
 ========================================== */
 
-function createFilters(){
+function createFilters() {
 
     const months = [
 
@@ -252,15 +215,13 @@ function createFilters(){
 
             events.map(item =>
 
-                parseDate(
-                    item.date
-                )
-                .toLocaleString(
-                    "en-US",
-                    {
-                        month:"long"
-                    }
-                )
+                parseDate(item.date)
+                    .toLocaleString(
+                        "en-US",
+                        {
+                            month: "long"
+                        }
+                    )
             )
         )
     ];
@@ -273,37 +234,31 @@ function createFilters(){
             <button
                 data-month="${month}"
                 class="${
-                    month==="all"
-                    ? "active"
-                    : ""
+                    month === "all"
+                        ? "active"
+                        : ""
                 }">
 
                 ${
-                    month==="all"
-                    ? "All"
-                    : month
+                    month === "all"
+                        ? "All"
+                        : month
                 }
 
             </button>
             `
-        )
-        .join("");
+        ).join("");
 
     monthFilter
-        .querySelectorAll(
-            "button"
-        )
+        .querySelectorAll("button")
         .forEach(button => {
 
             button.onclick = () => {
 
                 monthFilter
-                    .querySelectorAll(
-                        "button"
-                    )
-                    .forEach(
-                        b =>
-                        b.classList.remove(
+                    .querySelectorAll("button")
+                    .forEach(btn =>
+                        btn.classList.remove(
                             "active"
                         )
                     );
@@ -322,47 +277,46 @@ function createFilters(){
 
 
 /* ==========================================
-   EVENTS
+   RENDER EVENTS
 ========================================== */
 
-function renderEvents(){
+function renderEvents() {
 
     let filtered =
         [...events];
 
-    if(
+    if (
         currentMonth !== "all"
-    ){
+    ) {
 
         filtered =
-            filtered.filter(
-                item => {
+            filtered.filter(item => {
 
-                    const month =
-                        parseDate(
-                            item.date
-                        )
+                const month =
+                    parseDate(item.date)
                         .toLocaleString(
                             "en-US",
                             {
-                                month:"long"
+                                month: "long"
                             }
                         );
 
-                    return (
-                        month ===
-                        currentMonth
-                    );
-                }
-            );
+                return (
+                    month === currentMonth
+                );
+            });
     }
 
-    if(
+    if (
         sortSelect.value ===
         "oldest"
-    ){
+    ) {
 
-        filtered.reverse();
+        filtered.sort(
+            (a, b) =>
+                parseDate(a.date) -
+                parseDate(b.date)
+        );
     }
 
     eventsList.innerHTML =
@@ -370,9 +324,7 @@ function renderEvents(){
         filtered.map(item => {
 
             const date =
-                parseDate(
-                    item.date
-                );
+                parseDate(item.date);
 
             const day =
                 date.getDate();
@@ -381,9 +333,12 @@ function renderEvents(){
                 date.toLocaleString(
                     "en-US",
                     {
-                        month:"short"
+                        month: "short"
                     }
                 );
+
+            const year =
+                date.getFullYear();
 
             return `
 
@@ -408,6 +363,10 @@ function renderEvents(){
                             ${month}
                         </span>
 
+                        <small>
+                            ${year}
+                        </small>
+
                     </div>
 
                 </div>
@@ -422,8 +381,7 @@ function renderEvents(){
                         ${item.date}
                     </p>
 
-                    <p
-                        class="event-photos">
+                    <p class="event-photos">
 
                         📷
                         ${item.photos}
@@ -445,42 +403,48 @@ function renderEvents(){
    SORT
 ========================================== */
 
-sortSelect.addEventListener(
-    "change",
-    renderEvents
-);
+if (sortSelect) {
+
+    sortSelect.addEventListener(
+        "change",
+        renderEvents
+    );
+}
 
 
 /* ==========================================
-   GRID / LIST
+   VIEW MODE
 ========================================== */
 
-gridBtn.onclick = () => {
+if (gridBtn && listBtn) {
 
-    eventsList.classList.remove(
-        "list-view"
-    );
+    gridBtn.onclick = () => {
 
-    gridBtn.classList.add(
-        "active"
-    );
+        eventsList.classList.remove(
+            "list-view"
+        );
 
-    listBtn.classList.remove(
-        "active"
-    );
-};
+        gridBtn.classList.add(
+            "active"
+        );
 
-listBtn.onclick = () => {
+        listBtn.classList.remove(
+            "active"
+        );
+    };
 
-    eventsList.classList.add(
-        "list-view"
-    );
+    listBtn.onclick = () => {
 
-    listBtn.classList.add(
-        "active"
-    );
+        eventsList.classList.add(
+            "list-view"
+        );
 
-    gridBtn.classList.remove(
-        "active"
-    );
-};
+        listBtn.classList.add(
+            "active"
+        );
+
+        gridBtn.classList.remove(
+            "active"
+        );
+    };
+}
