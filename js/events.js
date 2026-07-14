@@ -22,30 +22,57 @@ const gridBtn =
 const listBtn =
     document.getElementById("list-view");
 
+
 let events = [];
 let currentMonth = "all";
 
+
 /* ==========================================
-   LOAD
+   LOAD DATA
 ========================================== */
 
 async function loadEvents() {
 
-    const response =
-        await fetch("../data/gallery.json");
+    try {
 
-    events = await response.json();
+        const response =
+            await fetch("../data/gallery.json");
 
-    updateStats();
+        events =
+            await response.json();
 
-    renderLatest();
 
-    createMonthFilters();
+        events.sort((a, b) => {
 
-    renderEvents();
+            return (
+                new Date(b.date) -
+                new Date(a.date)
+            );
+
+        });
+
+        updateStats();
+
+        renderLatest();
+
+        createMonthFilters();
+
+        renderEvents();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Cannot load gallery.json",
+            error
+        );
+
+    }
 }
 
 loadEvents();
+
 
 /* ==========================================
    STATS
@@ -56,7 +83,7 @@ function updateStats() {
     totalEvents.textContent =
         events.length;
 
-    const photos =
+    const total =
         events.reduce(
             (sum, item) =>
                 sum + item.photos,
@@ -64,11 +91,12 @@ function updateStats() {
         );
 
     totalPhotos.textContent =
-        photos.toLocaleString() + "+";
+        total.toLocaleString() + "+";
 }
 
+
 /* ==========================================
-   LATEST
+   LATEST EVENT
 ========================================== */
 
 function renderLatest() {
@@ -85,30 +113,43 @@ function renderLatest() {
 
                 <img
                     src="../assets/events/${latest.folder}/${latest.cover}.${latest.format}"
-                    alt="${latest.title}">
+                    alt="${latest.title}"
+
+                    onerror="
+                    this.src='../assets/images/events.png'
+                    ">
 
             </div>
 
             <div class="latest-content">
 
                 <span class="latest-tag">
+
                     ⭐ LATEST EVENT
+
                 </span>
 
                 <h2>
+
                     ${latest.title}
+
                 </h2>
 
                 <p>
+
                     🗓 ${latest.date}
+
                 </p>
 
                 <p>
-                    ${latest.photos} photos archived.
+
+                    ${latest.photos}
+                    photos archived.
+
                 </p>
 
                 <a
-                    href="../events/detail.html?id=${latest.id}"
+                    href="./detail.html?id=${latest.id}"
                     class="latest-btn">
 
                     View Gallery →
@@ -122,14 +163,29 @@ function renderLatest() {
     `;
 }
 
+
 /* ==========================================
-   FILTER BUTTONS
+   MONTH FILTER
 ========================================== */
 
 function createMonthFilters() {
 
+    const order = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+
     const months = [
-        "all",
         ...new Set(
             events.map(event => {
 
@@ -138,7 +194,7 @@ function createMonthFilters() {
                 ).toLocaleString(
                     "en-US",
                     {
-                        month:"long"
+                        month: "long"
                     }
                 );
 
@@ -146,26 +202,34 @@ function createMonthFilters() {
         )
     ];
 
-    monthFilter.innerHTML =
-        months.map(month => `
+    months.sort(
+        (a, b) =>
+            order.indexOf(a) -
+            order.indexOf(b)
+    );
+
+    monthFilter.innerHTML = `
+
+        <button
+            class="active"
+            data-month="all">
+
+            All
+
+        </button>
+
+        ${months.map(month => `
 
             <button
-                class="${
-                    month === "all"
-                    ? "active"
-                    : ""
-                }"
                 data-month="${month}">
 
-                ${
-                    month === "all"
-                    ? "All"
-                    : month
-                }
+                ${month}
 
             </button>
 
-        `).join("");
+        `).join("")}
+
+    `;
 
     monthFilter
         .querySelectorAll("button")
@@ -175,12 +239,13 @@ function createMonthFilters() {
 
                 monthFilter
                     .querySelectorAll("button")
-                    .forEach(
-                        b =>
-                        b.classList.remove(
+                    .forEach(btn => {
+
+                        btn.classList.remove(
                             "active"
-                        )
-                    );
+                        );
+
+                    });
 
                 button.classList.add(
                     "active"
@@ -191,18 +256,23 @@ function createMonthFilters() {
 
                 renderEvents();
             };
+
         });
 }
 
+
 /* ==========================================
-   RENDER EVENTS
+   RENDER
 ========================================== */
 
 function renderEvents() {
 
-    let filtered = [...events];
+    let filtered =
+        [...events];
 
-    if (currentMonth !== "all") {
+    if (
+        currentMonth !== "all"
+    ) {
 
         filtered =
             filtered.filter(event => {
@@ -213,14 +283,16 @@ function renderEvents() {
                     ).toLocaleString(
                         "en-US",
                         {
-                            month:"long"
+                            month: "long"
                         }
                     );
 
                 return (
                     month === currentMonth
                 );
+
             });
+
     }
 
     if (
@@ -244,49 +316,78 @@ function renderEvents() {
                 date.toLocaleString(
                     "en-US",
                     {
-                        month:"short"
+                        month: "short"
                     }
                 );
+
+            const year =
+                date.getFullYear();
 
             return `
 
             <a
-                href="../events/detail.html?id=${event.id}"
+                href="./detail.html?id=${event.id}"
                 class="event-card">
 
                 <div class="event-thumb">
 
                     <img
                         src="../assets/events/${event.folder}/${event.cover}.${event.format}"
-                        alt="${event.title}">
 
-                    <div class="event-date-badge">
+                        alt="${event.title}"
+
+                        onerror="
+                        this.src='../assets/images/events.png'
+                        ">
+
+                    <div
+                        class="event-date-badge">
 
                         <strong>
+
                             ${day}
+
                         </strong>
 
                         <span>
+
                             ${month}
+
                         </span>
+
+                        <small>
+
+                            ${year}
+
+                        </small>
 
                     </div>
 
                 </div>
 
-                <div class="event-info">
+                <div
+                    class="event-info">
 
                     <h2>
+
                         ${event.title}
+
                     </h2>
 
-                    <p class="event-date">
+                    <p
+                        class="event-date">
+
                         ${event.date}
+
                     </p>
 
-                    <p class="event-photos">
-                        📷 ${event.photos}
+                    <p
+                        class="event-photos">
+
+                        📷
+                        ${event.photos}
                         Photos
+
                     </p>
 
                 </div>
@@ -296,7 +397,45 @@ function renderEvents() {
             `;
 
         }).join("");
+
+    fadeCards();
 }
+
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+function fadeCards() {
+
+    const cards =
+        document.querySelectorAll(
+            ".event-card"
+        );
+
+    cards.forEach(
+        (card, index) => {
+
+            card.style.opacity = "0";
+            card.style.transform =
+                "translateY(20px)";
+
+            setTimeout(() => {
+
+                card.style.transition =
+                    ".45s ease";
+
+                card.style.opacity = "1";
+
+                card.style.transform =
+                    "translateY(0px)";
+
+            }, index * 60);
+
+        }
+    );
+}
+
 
 /* ==========================================
    SORT
@@ -306,6 +445,7 @@ sortSelect.addEventListener(
     "change",
     renderEvents
 );
+
 
 /* ==========================================
    VIEW
@@ -325,6 +465,7 @@ gridBtn.onclick = () => {
         "active"
     );
 };
+
 
 listBtn.onclick = () => {
 
