@@ -2,8 +2,15 @@
    CONTAINER
 ========================================== */
 
+body{
+
+    background:#fdf5fa;
+    color:#303452;
+    overflow-x:hidden;
+}
+
 .container{
-    width:min(92%,1400px);
+    width:min(1280px,92%);
     margin:auto;
 }
 
