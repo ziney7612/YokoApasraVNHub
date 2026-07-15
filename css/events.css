@@ -367,6 +367,7 @@
     width:100%;
     height:100%;
     object-fit:cover;
+    object-position: center;
 }
 
 .event-date-badge{
@@ -433,11 +434,13 @@
 }
 
 .footer-message{
+
     background:rgba(255,255,255,.72);
+    backdrop-filter:blur(20px);
 
     border-radius:36px;
 
-    padding:35px 55px;
+    padding:35px 60px;
 
     min-height:190px;
 
@@ -445,115 +448,140 @@
     justify-content:space-between;
     align-items:center;
 
-    position:relative;
     overflow:hidden;
 }
 
 .footer-copy{
-    max-width:460px;
+    max-width:520px;
 }
 
 .footer-heart{
     display:block;
     margin-bottom:10px;
+
+    font-size:1.1rem;
 }
 
 .footer-copy h2{
-    font-size:2.5rem;
-    line-height:1.15;
 
-    color:#ff6aa8;
+    font-size:3rem;
+    line-height:1.1;
 
-    margin-bottom:12px;
+    color:#2f3555;
+
+    margin-bottom:16px;
 }
 
 .footer-copy p{
+
     color:#7d8398;
-    line-height:1.7;
+    line-height:1.8;
+
     margin-bottom:4px;
+
+    font-size:1rem;
+}
+
+.footer-slogan{
+    margin-top:6px;
 }
 
 .footer-divider{
-    width:60px;
-    height:1px;
-    background:#ffd7e5;
-
-    margin:20px 0;
+    display:none;
 }
 
 .footer-copy small{
-    color:#9ea1b5;
-    line-height:1.6;
+    display:none;
+}
+
+.footer-mascot{
+
+    flex-shrink:0;
 }
 
 .footer-mascot img{
-    width:180px;
+
+    width:170px;
+    display:block;
 }
 
 /* ======================================================
-   RESPONSIVE
+   SITE CREDIT
 ====================================================== */
 
-@media(max-width:1200px){
+.site-credit{
 
-    .events-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
+    margin-top:28px;
 
-    .hero-stats{
-        width:auto;
-    }
+    padding:14px 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffeaf2,
+            #ffe3ec
+        );
+
+    border-top:
+        1px solid rgba(255,255,255,.6);
+
+    text-align:center;
+
+    font-size:.92rem;
+    font-weight:500;
+
+    color:#b56e8c;
+
+    white-space:nowrap;
 }
+
+/* ======================================================
+   RESPONSIVE FOOTER
+====================================================== */
 
 @media(max-width:992px){
 
-    .hero-layout{
-        grid-template-columns:1fr;
-    }
-
-    .hero-image{
-        justify-content:center;
-    }
-
-    .hero-image img{
-        width:420px;
-        margin:0;
-    }
-
-    .latest-card{
-        grid-template-columns:1fr;
-    }
-
-    .events-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
     .footer-message{
+
         flex-direction:column;
         text-align:center;
+
         gap:30px;
+
+        padding:35px;
     }
 
-    .footer-divider{
-        margin:20px auto;
+    .footer-copy{
+
+        max-width:100%;
+    }
+
+    .footer-mascot img{
+
+        width:145px;
+    }
+
+    .site-credit{
+
+        white-space:normal;
+        line-height:1.8;
     }
 }
 
 @media(max-width:640px){
 
-    .events-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero-title{
-        font-size:4.5rem;
-    }
-
     .footer-copy h2{
-        font-size:2rem;
+
+        font-size:2.2rem;
+    }
+
+    .footer-copy p{
+
+        font-size:.95rem;
     }
 
     .footer-mascot img{
-        width:130px;
+
+        width:120px;
     }
 }
