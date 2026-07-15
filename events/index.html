@@ -96,6 +96,21 @@
 
 <main class="events-page">
 
+    <!-- Floating Bubbles -->
+
+    <div class="events-bubbles">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
     <!-- HERO -->
 
     <section class="events-hero">
@@ -128,7 +143,6 @@
 
                 </p>
 
-
                 <div class="hero-stats">
 
                     <div class="hero-stat">
@@ -139,17 +153,12 @@
 
                         <div>
 
-                            <strong
-                                id="total-events">
-
-                                11
-
+                            <strong id="total-events">
+                                0
                             </strong>
 
                             <span>
-
                                 Events Archived
-
                             </span>
 
                         </div>
@@ -165,17 +174,12 @@
 
                         <div>
 
-                            <strong
-                                id="total-photos">
-
-                                1,167
-
+                            <strong id="total-photos">
+                                0
                             </strong>
 
                             <span>
-
                                 Photos Archived
-
                             </span>
 
                         </div>
@@ -192,15 +196,11 @@
                         <div>
 
                             <strong>
-
                                 100%
-
                             </strong>
 
                             <span>
-
                                 Yoko Love
-
                             </span>
 
                         </div>
@@ -224,9 +224,9 @@
 
     </section>
 
-    <!-- LATEST -->
+    <!-- LATEST EVENT -->
 
-    <section class="latest-event">
+    <section class="latest-section">
 
         <div class="container">
 
@@ -249,61 +249,50 @@
 
                 <h2>
 
-                    Browse All Events
-                    🤍
+                    Browse All Events 🤍
 
                 </h2>
 
             </div>
 
 
-
             <div class="events-toolbar">
 
                 <div
                     id="month-filter"
-                    class="events-filter">
+                    class="month-filter">
 
                 </div>
 
 
-                <div class="events-actions">
+                <div class="toolbar-right">
 
-                    <div class="events-sort">
+                    <select
+                        id="sort-select">
 
-                        <select
-                            id="sort-select">
+                        <option value="newest">
+                            Newest First
+                        </option>
 
-                            <option value="newest">
+                        <option value="oldest">
+                            Oldest First
+                        </option>
 
-                                Newest First
-
-                            </option>
-
-                            <option value="oldest">
-
-                                Oldest First
-
-                            </option>
-
-                        </select>
-
-                    </div>
+                    </select>
 
 
                     <div class="view-toggle">
 
                         <button
                             id="grid-view"
-                            class="view-btn active">
+                            class="active">
 
                             ⊞
 
                         </button>
 
                         <button
-                            id="list-view"
-                            class="view-btn">
+                            id="list-view">
 
                             ☰
 
@@ -314,6 +303,7 @@
                 </div>
 
             </div>
+
 
             <div
                 id="events-list"
@@ -327,64 +317,79 @@
 
     <!-- FOOTER -->
 
-  <section class="events-footer">
+    <section class="events-footer">
 
-    <div class="container">
+        <div class="container">
 
-        <div class="footer-message">
+            <div class="footer-message">
 
-            <div class="footer-copy">
+                <div class="footer-copy">
 
-                <span class="footer-heart">
-                    🤍
-                </span>
+                    <span class="footer-heart">
 
-                <h2>
-                    WITH YO,<br>
-                    THROUGH EVERY CHAPTER
-                </h2>
+                        🤍
 
-                <p>
-                    Vietnamese space for people who love
-                    Yoko Apasra 🤍🫧
-                </p>
+                    </span>
 
-                <p class="footer-slogan">
-                    Powered by love, protein &
-                    sunny-side-up behavior 🍳
-                </p>
+                    <h2>
 
-            </div>
+                        WITH YO,<br>
+                        THROUGH EVERY CHAPTER
 
-            <div class="footer-mascot">
+                    </h2>
 
-                <img
-                    src="../assets/images/chibi.png"
-                    alt="Mascot">
+                    <p>
+
+                        Vietnamese space for people
+                        who love Yoko Apasra 🤍🫧
+
+                    </p>
+
+                    <p class="footer-slogan">
+
+                        Powered by love,
+                        protein &
+                        sunny-side-up behavior 🍳
+
+                    </p>
+
+                </div>
+
+
+                <div class="footer-mascot">
+
+                    <span class="footer-bubble"></span>
+                    <span class="footer-bubble"></span>
+                    <span class="footer-bubble"></span>
+
+                    <img
+                        src="../assets/images/chibi.png"
+                        alt="Mascot">
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
 
-<footer class="site-credit">
+    <footer class="site-credit">
 
-    © 2026 Yoko Apasra VNHub.
-    Made with 🤍 by Vietnamese Fans •
-    Unofficial fan-made archive •
-    Non-commercial project.
+        © 2026 Yoko Apasra VNHub.
+        Made with 🤍 by Vietnamese Fans •
+        Unofficial fan-made archive •
+        Non-commercial project.
 
-</footer>
+    </footer>
 
 </main>
 
 <script
     src="../js/events.js">
-
 </script>
 
 </body>
+
 </html>
