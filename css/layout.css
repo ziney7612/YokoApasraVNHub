@@ -1,241 +1,42 @@
 /* ==========================================
    CONTAINER
 ========================================== */
+
 .container{
     width:min(1320px,92%);
     margin:auto;
 }
 
+
 /* ==========================================
-   GLOBAL
+   SECTION
 ========================================== */
 
 .section-title{
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: #2d3553;
-    text-align: center;
-    margin-bottom: 14px;
+
+    font-size:2.6rem;
+    font-weight:700;
+
+    color:#2d3553;
+
+    text-align:center;
+
+    margin-bottom:14px;
 }
 
 .section-desc{
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-    color: #6e7185;
-    line-height: 1.8;
+
+    max-width:700px;
+
+    margin:0 auto;
+
+    text-align:center;
+
+    color:#6e7185;
+
+    line-height:1.8;
 }
 
-/* ==========================================
-   SCHEDULE
-========================================== */
-
-.schedule{
-    padding-top: 60px;
-    padding-bottom: 90px;
-}
-
-.schedule-card{
-
-    background: rgba(255,255,255,.10);
-
-    border: 1px solid rgba(255,255,255,.30);
-
-    backdrop-filter: blur(24px);
-
-    border-radius: 30px;
-
-    padding: 60px;
-
-    box-shadow: 0 18px 55px rgba(255,120,180,.08);
-
-    transition: .35s ease;
-
-}
-
-.schedule-card:hover{
-
-    transform: translateY(-6px);
-
-    box-shadow: 0 24px 70px rgba(255,120,180,.12);
-
-}
-
-.schedule-header{
-
-    margin-bottom: 55px;
-
-}
-
-.schedule-content{
-
-    display: grid;
-
-    grid-template-columns: 380px 1fr;
-
-    gap: 70px;
-
-    align-items: center;
-
-}
-
-/* ==========================================
-   POSTER
-========================================== */
-
-.schedule-poster{
-
-    border-radius: 24px;
-
-    overflow: hidden;
-
-}
-
-.schedule-poster img{
-
-    width: 100%;
-
-    display: block;
-
-    border-radius: 24px;
-
-    transition: .4s ease;
-
-}
-
-.schedule-poster:hover img{
-
-    transform: scale(1.03);
-
-}
-
-/* ==========================================
-   INFO
-========================================== */
-
-.schedule-info h2{
-
-    font-size: 2rem;
-
-    color: #2d3553;
-
-    margin-bottom: 36px;
-
-}
-
-.schedule-item{
-
-    display: flex;
-
-    gap: 28px;
-
-    margin-bottom: 34px;
-
-}
-
-.schedule-date{
-
-    width: 90px;
-
-    font-size: 1rem;
-
-    font-weight: 700;
-
-    color: #ff5a9d;
-
-    flex-shrink: 0;
-
-}
-
-.schedule-detail h3{
-
-    font-size: 1.2rem;
-
-    color: #2d3553;
-
-    margin-bottom: 8px;
-
-}
-
-.schedule-detail p{
-
-    color: #666;
-
-    margin-bottom: 6px;
-
-}
-
-.schedule-detail small{
-
-    color: #999;
-
-}
-
-.schedule-source{
-
-    margin-top: 36px;
-
-    font-size: .95rem;
-
-    color: #999;
-
-}
-
-/* ==========================================
-   LATEST GALLERY
-========================================== */
-
-.latest-event{
-
-    padding-top: 0;
-
-    padding-bottom: 30px;
-
-}
-
-/* ==========================================
-   ABOUT
-========================================== */
-
-.about{
-
-    padding-top: 0;
-
-    padding-bottom: 110px;
-
-}
-
-.about-card{
-
-    background: rgba(255,255,255,.10);
-
-    border: 1px solid rgba(255,255,255,.30);
-
-    backdrop-filter: blur(24px);
-
-    border-radius: 30px;
-
-    padding: 60px;
-
-    text-align: center;
-
-    box-shadow: 0 18px 55px rgba(255,120,180,.08);
-
-    transition: .35s ease;
-
-}
-
-.about-card:hover{
-
-    transform: translateY(-6px);
-
-}
-
-.about-card .section-desc{
-
-    margin-bottom: 36px;
-
-}
 
 /* ==========================================
    BUTTON
@@ -243,102 +44,29 @@
 
 .hero-button{
 
-    display: inline-flex;
+    display:inline-flex;
 
-    align-items: center;
+    align-items:center;
+    justify-content:center;
 
-    justify-content: center;
+    padding:14px 30px;
 
-    padding: 14px 30px;
+    border-radius:999px;
 
-    border-radius: 999px;
+    background:#ff6ba5;
 
-    background: #ff6ba5;
+    color:#fff;
 
-    color: #fff;
+    font-weight:600;
 
-    font-weight: 600;
-
-    transition: .3s ease;
-
+    transition:.3s ease;
 }
 
 .hero-button:hover{
 
-    transform: translateY(-3px);
+    transform:translateY(-3px);
 
-    box-shadow: 0 12px 30px rgba(255,107,165,.25);
-
-}
-
-/* ==========================================
-   FOOTER
-========================================== */
-
-.footer{
-
-    padding: 50px 0;
-
-    border-top: 1px solid rgba(0,0,0,.06);
-
-    text-align: center;
-
-}
-
-.footer p{
-
-    color: #777;
-
-    line-height: 1.8;
-
-}
-
-.logo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    text-decoration:none;
-
-}
-
-.logo img{
-
-    width:54px;
-
-    height:auto;
-
-    object-fit:contain;
-
-}
-
-.logo-text{
-
-    display:flex;
-
-    flex-direction:column;
-
-    line-height:1.2;
-
-}
-
-.logo-title{
-
-    font-size:1rem;
-
-    font-weight:700;
-
-    color:#ff5a9d;
-
-}
-
-.logo-subtitle{
-
-    font-size:.78rem;
-
-    color:#888;
-
+    box-shadow:
+        0 12px 30px
+        rgba(255,107,165,.25);
 }
