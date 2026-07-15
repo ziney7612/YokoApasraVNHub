@@ -331,3 +331,116 @@
     }
 
 }
+
+/* =========================
+   Footer Mobile Fix
+========================= */
+@media (max-width:768px){
+
+    .events-footer{
+        padding-top:70px;
+    }
+
+    .footer-message{
+        padding:40px 28px;
+        border-radius:32px;
+
+        flex-direction:column;
+        text-align:center;
+        gap:28px;
+    }
+
+    .footer-copy{
+        max-width:100%;
+    }
+
+    .footer-copy h2{
+        font-size:2.1rem;
+        line-height:1.2;
+    }
+
+    .footer-copy p{
+        font-size:.95rem;
+        line-height:1.7;
+    }
+
+    .footer-mascot img{
+        width:130px;
+    }
+
+    /* giảm kích thước bubbles */
+
+    .footer-message::before{
+        width:60px;
+        height:60px;
+
+        top:18px;
+        right:25px;
+    }
+
+    .footer-message::after{
+        width:38px;
+        height:38px;
+
+        top:80px;
+        right:80px;
+    }
+
+    .footer-bubble:nth-child(1){
+        width:70px;
+        height:70px;
+    }
+
+    .footer-bubble:nth-child(2){
+        width:35px;
+        height:35px;
+    }
+
+    .footer-bubble:nth-child(3){
+        width:50px;
+        height:50px;
+    }
+}
+
+/* =========================
+   Small Phone
+========================= */
+@media (max-width:576px){
+
+    .footer-message{
+        padding:32px 20px;
+        border-radius:28px;
+    }
+
+    .footer-copy h2{
+        font-size:1.7rem;
+    }
+
+    .footer-copy p{
+        font-size:.88rem;
+    }
+
+    .footer-heart{
+        margin-bottom:10px;
+    }
+
+    .footer-mascot img{
+        width:105px;
+    }
+
+    .footer-message::before{
+        width:45px;
+        height:45px;
+
+        top:15px;
+        right:20px;
+    }
+
+    .footer-message::after{
+        width:28px;
+        height:28px;
+
+        top:65px;
+        right:65px;
+    }
+}
