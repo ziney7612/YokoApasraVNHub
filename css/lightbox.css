@@ -357,7 +357,7 @@ body.lightbox-open{
     position:fixed;
 
     left:50%;
-    bottom:38px;
+    bottom:18px;
 
     transform:
         translateX(-50%);
