@@ -425,23 +425,36 @@
    ABOUT
 ====================================================== */
 
+.about-home{
+    padding-bottom:60px;
+}
+
 .about-card{
 
-    display:grid;
+    position:relative;
 
-    grid-template-columns:
-        220px 1fr auto;
-
+    display:flex;
     align-items:center;
+    justify-content:space-between;
 
     gap:50px;
 
-    padding:45px 60px;
+    padding:60px;
+
+    overflow:hidden;
 }
 
 .about-chibi{
 
-    width:180px;
+    width:190px;
+    flex-shrink:0;
+
+    animation:
+        mascotFloat 5s ease-in-out infinite;
+}
+
+.about-content{
+    flex:1;
 }
 
 .about-content h2{
@@ -450,10 +463,12 @@
 
     color:#2f3555;
 
-    margin-bottom:16px;
+    margin-bottom:20px;
 }
 
 .about-content p{
+
+    max-width:650px;
 
     color:#7c8196;
 
@@ -462,42 +477,53 @@
 
 .about-slogan{
 
-    color:#ff88bb;
+    margin-top:16px;
+
+    color:#ff7fb5;
+
+    font-size:1.15rem;
+
+    font-family:
+        "Playfair Display",
+        serif;
 
     font-style:italic;
-
-    margin-top:14px;
 }
+
+.about-card .hero-button{
+    margin-top:30px;
+}
+
 
 /* ======================================================
    SOCIAL
 ====================================================== */
 
+.social-footer{
+    padding-bottom:60px;
+}
+
 .social-card{
 
     position:relative;
 
-    display:grid;
-
-    grid-template-columns:
-        1fr 1px 1fr;
-
+    display:flex;
     align-items:center;
+    justify-content:center;
 
     gap:60px;
 
-    padding:55px 70px;
+    padding:60px 260px 60px 60px;
 
     overflow:hidden;
 }
 
-.social-divider{
+.social-left,
+.social-right{
 
-    width:1px;
-    height:130px;
+    flex:1;
 
-    background:
-        rgba(255,190,220,.45);
+    z-index:2;
 }
 
 .social-title{
@@ -506,48 +532,121 @@
 
     color:#ff6cae;
 
+    font-size:.9rem;
     font-weight:700;
 
-    margin-bottom:30px;
+    letter-spacing:.15em;
+
+    margin-bottom:28px;
 }
 
 .social-row{
 
     display:flex;
+    flex-direction:column;
 
-    gap:55px;
+    gap:18px;
 }
 
 .social-row a{
 
     display:flex;
-    flex-direction:column;
-
     align-items:center;
 
-    gap:14px;
+    gap:16px;
+
+    width:max-content;
+
+    padding:16px 24px;
+
+    border-radius:999px;
+
+    background:white;
+
+    border:
+        1px solid
+        rgba(255,190,220,.35);
+
+    transition:.35s;
+}
+
+.social-row a:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(255,180,220,.15);
 }
 
 .social-row i{
 
-    font-size:2rem;
+    font-size:1.35rem;
 
-    color:#53597c;
+    width:24px;
+
+    text-align:center;
+
+    color:#ff6cae;
 }
 
 .social-row span{
 
-    color:#7c8196;
+    color:#2f3555;
+
+    font-weight:600;
+}
+
+.social-divider{
+
+    width:1px;
+    height:170px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(255,180,220,.45),
+            transparent
+        );
+
+    flex-shrink:0;
 }
 
 .social-chibi{
 
     position:absolute;
 
-    right:25px;
-    bottom:-5px;
+    right:35px;
+    bottom:-10px;
 
-    width:170px;
+    width:220px;
+
+    pointer-events:none;
+
+    animation:
+        mascotFloat 5s ease-in-out infinite;
+}
+
+
+/* ======================================================
+   FLOAT
+====================================================== */
+
+@keyframes mascotFloat{
+
+    0%,
+    100%{
+
+        transform:
+            translateY(0);
+    }
+
+    50%{
+
+        transform:
+            translateY(-12px);
+    }
 }
 
 /* ======================================================
