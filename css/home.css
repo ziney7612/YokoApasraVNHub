@@ -110,18 +110,24 @@
 }
 
 .home-latest-card{
-    display:grid;
-    grid-template-columns:420px 1fr;
-    gap:50px;
+  
+   background:
+        rgba(255,255,255,.92);
 
-    padding:40px;
+    backdrop-filter:blur(24px);
 
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(25px);
-
-    border:1px solid rgba(255,255,255,.55);
+    border:1px solid
+        rgba(255,255,255,.45);
 
     border-radius:42px;
+
+    padding:28px;
+
+    display:grid;
+    grid-template-columns:
+        460px 1fr;
+
+    gap:45px;
 
     box-shadow:
         0 20px 60px
@@ -152,7 +158,7 @@
 
     position:absolute;
     right:10px;
-    top:-15px;
+    top:-10px;
 
     font-size:8rem;
     font-weight:700;
@@ -163,7 +169,7 @@
 .home-latest-badge{
     width:max-content;
 
-    padding:10px 22px;
+    padding:10px 18px;
 
     border-radius:999px;
 
@@ -176,8 +182,7 @@
 }
 
 .home-latest-content h2{
-    font-size:4rem;
-    line-height:1.05;
+    font-size:3rem;
     color:#2f3555;
     margin-bottom:20px;
 }
@@ -193,16 +198,39 @@
 }
 
 .home-latest-content p{
-    max-width:550px;
-    line-height:1.9;
     color:#7d8398;
-    margin-bottom:30px;
+    margin-bottom:10px;
 }
 
 .home-latest-content .hero-button{
-    width:260px;
+    width:max-content;
+
+    margin-top:20px;
+
+    padding:16px 34px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5fa7,
+            #ff9b8b
+        );
+
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+
+    transition:.3s;
 }
 
+.home-latest-content .hero-button:hover{
+      transform:translateY(-3px);
+       box-shadow:
+        0 12px 30px
+        rgba(255,120,180,.25);
+}
 
 /* ======================================================
    SCHEDULE
