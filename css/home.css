@@ -308,33 +308,68 @@ body.home-page{
 
 .home-hero-button{
     display:inline-flex;
-    justify-content:center;
     align-items:center;
+    gap:18px;
 
-    padding:16px 34px;
+    padding:14px 14px 14px 30px;
 
     border-radius:999px;
-    text-decoration:none;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ff6ba8,
-            #ff9588
-        );
+    background:linear-gradient(
+        135deg,
+        #ff72a8,
+        #ff9a9e
+    );
 
     color:#fff;
-    font-weight:700;
+    text-decoration:none;
 
-    transition:.35s;
+    font-weight:700;
+    font-size:1rem;
+
+    box-shadow:
+        0 12px 28px rgba(255,120,170,.28);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
 }
 
 .home-hero-button:hover{
     transform:translateY(-4px);
 
     box-shadow:
-        0 14px 35px
-        rgba(255,120,180,.25);
+        0 18px 35px rgba(255,120,170,.38);
+}
+
+.home-hero-button .arrow{
+    transition:transform .35s ease;
+}
+
+.home-hero-button:hover .arrow{
+    transform:translateX(4px);
+}
+
+.home-hero-button .moon{
+    width:46px;
+    height:46px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.18);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    backdrop-filter:blur(10px);
+
+    font-size:1.3rem;
+
+    box-shadow:
+        inset 0 0 10px rgba(255,255,255,.2);
 }
 
 .home-hero-visual{
