@@ -155,17 +155,13 @@ function renderLatest() {
 
     const item = events[0];
 
-    latestCard.innerHTML =
-
-        `
+    latestCard.innerHTML = `
         <div class="latest-card">
 
             <div class="latest-image">
-
                 <img
                     src="../assets/events/${item.folder}/${item.cover}.${item.format}"
                     alt="${item.title}">
-
             </div>
 
             <div class="latest-content">
@@ -187,30 +183,29 @@ function renderLatest() {
                     photos archived
                 </p>
 
-               <a href="detail.html?id=${event.id}"
-   class="latest-btn">
+                <a
+                    href="detail.html?id=${item.id}"
+                    class="latest-btn">
 
-    <span>
-        View Gallery
-    </span>
+                    <span>
+                        View Gallery
+                    </span>
 
-    <span class="arrow">
-        →
-    </span>
+                    <span class="arrow">
+                        →
+                    </span>
 
-    <span class="moon">
-        ☾
-    </span>
+                    <span class="moon">
+                        ☾
+                    </span>
 
-</a>
+                </a>
 
             </div>
 
         </div>
-        `;
+    `;
 }
-
-
 /* ==========================================
    FILTER
 ========================================== */
