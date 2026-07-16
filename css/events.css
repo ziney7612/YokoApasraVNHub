@@ -345,139 +345,176 @@
     margin-bottom:-150px;
 }
 
-/* ======================================================
-   LATEST EVENT
-====================================================== */
-
-.latest-event{
-    position:relative;
-    margin-top:-50px;
-    padding-bottom:90px;
-}
+/* ===========================
+   LATEST EVENT CARD
+=========================== */
 
 .latest-card{
-    background:
-        rgba(255,255,255,.92);
-
-    backdrop-filter:blur(24px);
-
-    border:1px solid
-        rgba(255,255,255,.45);
-
-    border-radius:42px;
-
-    padding:28px;
-
     display:grid;
-    grid-template-columns:
-        460px 1fr;
+    grid-template-columns:420px 1fr;
+    gap:60px;
 
-    gap:45px;
+    align-items:center;
+
+    padding:36px;
+
+    background:#fff;
+    border-radius:36px;
 
     box-shadow:
-        0 20px 60px
-        rgba(255,180,210,.08);
+        0 20px 50px rgba(230,190,210,.15);
 }
 
-.latest-image{
-    height:320px;
-    border-radius:28px;
-    overflow:hidden;
-}
+/* IMAGE */
 
 .latest-image img{
     width:100%;
-    height:100%;
+    height:320px;
+
     object-fit:cover;
+
+    border-radius:28px;
+
+    display:block;
 }
+
+
+/* CONTENT */
 
 .latest-content{
     display:flex;
     flex-direction:column;
     justify-content:center;
-    position:relative;
+
+    padding:20px 0;
 }
 
-.latest-content::after{
-   
-    position:absolute;
 
-    right:10px;
-    top:-10px;
-
-    font-size:8rem;
-    font-weight:700;
-
-    color:#f6dce6;
-}
+/* TAG */
 
 .latest-tag{
-    width:max-content;
+    display:inline-flex;
+    align-items:center;
+
+    width:fit-content;
 
     padding:10px 18px;
 
     border-radius:999px;
 
-    background:#ffe8f2;
-    color:#ff69ab;
+    background:#ffe6f0;
 
-    font-size:.8rem;
+    color:#ff6ca9;
+
+    font-size:.85rem;
     font-weight:700;
 
-    margin-bottom:25px;
+    margin-bottom:28px;
 }
+
+
+/* TITLE */
 
 .latest-content h2{
-    font-size:3rem;
-    color:#2f3555;
-    margin-bottom:18px;
+    margin:0;
+
+    font-size:clamp(
+        3rem,
+        4vw,
+        4.5rem
+    );
+
+    line-height:1.18;
+    font-weight:800;
+
+    color:#30345f;
+
+    margin-bottom:38px;
 }
+
+
+/* META */
 
 .latest-content p{
-    color:#7d8398;
-    margin-bottom:10px;
+    margin:0;
+
+    color:#8a8ea7;
+
+    font-size:1.08rem;
+
+    line-height:1.9;
 }
 
+.latest-content p:last-of-type{
+    margin-bottom:45px;
+}
+
+
+/* BUTTON */
+
 .latest-btn{
-    display:inline-flex; /* quan trọng */
+    display:inline-flex;
     align-items:center;
     gap:18px;
 
     width:fit-content;
 
-    padding:14px 18px 14px 28px;
+    padding:
+        14px
+        16px
+        14px
+        28px;
 
     border-radius:999px;
 
-    background:linear-gradient(
-        135deg,
-        #f6a9c8,
-        #ee8db6
-    );
-
-    color:#fff;
     text-decoration:none;
-    font-weight:600;
+    color:#fff;
+
+    font-size:1rem;
+    font-weight:700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f871a8,
+            #f58b98
+        );
 
     box-shadow:
-        0 12px 30px rgba(238,141,182,.28);
+        0 14px 35px
+        rgba(
+            244,
+            124,
+            170,
+            .25
+        );
 
     transition:.35s;
 }
 
 .latest-btn:hover{
-    transform:translateY(-3px);
+    transform:
+        translateY(-4px);
+
     box-shadow:
-        0 18px 35px rgba(238,141,182,.35);
+        0 20px 40px
+        rgba(
+            244,
+            124,
+            170,
+            .35
+        );
 }
+
+
+/* ARROW */
 
 .latest-btn .arrow{
-    transition:transform .35s ease;
+    font-size:1.15rem;
 }
 
-.latest-btn:hover .arrow{
-    transform:translateX(4px);
-}
+
+/* MOON */
 
 .latest-btn .moon{
     width:42px;
@@ -490,12 +527,24 @@
     border-radius:50%;
 
     background:
-        rgba(255,255,255,.18);
+        rgba(
+            255,
+            255,
+            255,
+            .18
+        );
 
     border:
-        1px solid rgba(255,255,255,.25);
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .25
+        );
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:
+        blur(10px);
 
     font-size:1.1rem;
 
