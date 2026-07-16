@@ -572,48 +572,46 @@
     margin-top: 8px;
 }
 
-/* ======================================================
-   LUNAR BUTTON
-====================================================== */
+/* ==========================================
+   VIEW GALLERY BUTTON
+========================================== */
 
 .exclusive-btn{
-
     position:relative;
 
     display:inline-flex;
     align-items:center;
+    justify-content:space-between;
 
-    gap:26px;
+    min-width:260px;
 
-    padding:12px 14px 12px 28px;
+    padding:10px 10px 10px 28px;
 
     border-radius:999px;
-
-    text-decoration:none;
-
-    color:#fff;
-
-    overflow:hidden;
 
     background:
         linear-gradient(
             135deg,
-            #6fc2ff 0%,
-            #8fd2ff 35%,
-            #b7c6ff 70%,
-            #d8b8ff 100%
+            #f6a7c7 0%,
+            #ee8cb7 55%,
+            #d5c5ff 100%
         );
 
-    box-shadow:
-        0 10px 28px
-        rgba(125,190,255,.30),
+    color:#fff;
+    text-decoration:none;
 
-        0 8px 24px
-        rgba(210,185,255,.20);
+    font-size:1rem;
+    font-weight:600;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 12px 30px
+        rgba(238,140,183,.28);
 
     transition:
-        transform .45s ease,
-        box-shadow .45s ease;
+        transform .35s ease,
+        box-shadow .35s ease;
 }
 
 .exclusive-btn:hover{
@@ -623,14 +621,95 @@
 
     box-shadow:
         0 18px 40px
-        rgba(125,190,255,.42),
-
-        0 12px 30px
-        rgba(210,185,255,.30);
+        rgba(225,145,200,.38);
 }
 
 
-/* shine */
+/* text */
+
+.exclusive-btn .btn-text{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    z-index:2;
+}
+
+.exclusive-btn .btn-arrow{
+
+    font-size:1.15rem;
+
+    transition:
+        transform .35s ease;
+}
+
+.exclusive-btn:hover .btn-arrow{
+
+    transform:
+        translateX(5px);
+}
+
+
+/* moon icon */
+
+.exclusive-btn .moon-icon{
+
+    width:48px;
+    height:48px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.18);
+
+    backdrop-filter:
+        blur(10px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    box-shadow:
+
+        inset
+        0 0 15px
+        rgba(255,255,255,.25),
+
+        0 0 18px
+        rgba(190,220,255,.45);
+
+    font-size:1.4rem;
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+}
+
+.exclusive-btn:hover .moon-icon{
+
+    transform:
+        rotate(18deg)
+        scale(1.08);
+
+    box-shadow:
+
+        inset
+        0 0 20px
+        rgba(255,255,255,.35),
+
+        0 0 25px
+        rgba(180,220,255,.65);
+}
+
+
+/* shimmer */
 
 .exclusive-btn::before{
 
@@ -638,147 +717,30 @@
 
     position:absolute;
 
-    inset:0;
+    top:0;
+    left:-120%;
+
+    width:60%;
+    height:100%;
 
     background:
         linear-gradient(
-            120deg,
-            transparent 20%,
-            rgba(255,255,255,.25) 50%,
-            transparent 80%
+            90deg,
+            transparent,
+            rgba(255,255,255,.35),
+            transparent
         );
 
     transform:
-        translateX(-140%);
+        skewX(-20deg);
 
     transition:
-        1s;
+        left .8s ease;
 }
 
 .exclusive-btn:hover::before{
 
-    transform:
-        translateX(140%);
-}
-
-
-/* text */
-
-.exclusive-btn-text{
-
-    position:relative;
-    z-index:2;
-
-    font-weight:600;
-}
-
-
-/* arrow */
-
-.exclusive-arrow{
-
-    position:relative;
-    z-index:2;
-
-    font-size:1.15rem;
-
-    opacity:.95;
-
-    transition:.4s;
-}
-
-.exclusive-btn:hover
-.exclusive-arrow{
-
-    transform:
-        translateX(4px);
-}
-
-
-/* moon bubble */
-
-.exclusive-btn-moon{
-
-    position:relative;
-    z-index:2;
-
-    width:52px;
-    height:52px;
-
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:1.8rem;
-
-    color:#fff;
-
-    background:
-        radial-gradient(
-            circle at 30% 30%,
-            rgba(255,255,255,.35),
-            rgba(255,255,255,.08)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.20);
-
-    backdrop-filter:
-        blur(10px);
-
-    box-shadow:
-
-        inset
-        0 1px 2px
-        rgba(255,255,255,.30),
-
-        0 6px 18px
-        rgba(140,190,255,.20);
-
-    transition:
-        transform .45s ease;
-}
-
-.exclusive-btn:hover
-.exclusive-btn-moon{
-
-    transform:
-        rotate(15deg)
-        scale(1.08);
-}
-
-.exclusive-btn::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: -120%;
-
-    width: 60%;
-
-    height: 100%;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.45),
-        transparent
-    );
-
-    transform: skewX(-20deg);
-
-    transition: left .7s ease;
-}
-
-.exclusive-btn:hover::before {
-
-    left: 140%;
+    left:140%;
 }
 
 
