@@ -187,12 +187,22 @@ function renderLatest() {
                     photos archived
                 </p>
 
-                <a
-                    href="detail.html?id=${item.id}"
-                    class="latest-btn">
+               <a href="detail.html?id=${event.id}"
+   class="event-btn">
 
-                    View Gallery →
-                </a>
+    <span>
+        View Gallery
+    </span>
+
+    <span class="arrow">
+        →
+    </span>
+
+    <span class="moon">
+        ☾
+    </span>
+
+</a>
 
             </div>
 
