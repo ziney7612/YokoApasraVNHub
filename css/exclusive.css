@@ -147,50 +147,6 @@
 }
 
 /* ======================================================
-   ANIMATION
-====================================================== */
-
-@keyframes bubbleRise {
-
-    0% {
-        transform:
-            translateY(0)
-            translateX(0)
-            scale(.8);
-
-        opacity: 0;
-    }
-
-    10% {
-        opacity: .55;
-    }
-
-    35% {
-        transform:
-            translateY(-35vh)
-            translateX(35px)
-            scale(1);
-    }
-
-    65% {
-        transform:
-            translateY(-70vh)
-            translateX(-25px)
-            scale(1.08);
-    }
-
-    100% {
-        transform:
-            translateY(-125vh)
-            translateX(40px)
-            scale(1.2);
-
-        opacity: 0;
-    }
-}
-
-
-/* ======================================================
    INTRO
 ====================================================== */
 
@@ -1043,4 +999,47 @@
     pointer-events: none;
 
     opacity: .7;
+}
+
+/* ======================================================
+   ANIMATION
+====================================================== */
+
+@keyframes bubbleRise {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(.8);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .55;
+    }
+
+    35% {
+        transform:
+            translateY(-35vh)
+            translateX(35px)
+            scale(1);
+    }
+
+    65% {
+        transform:
+            translateY(-70vh)
+            translateX(-25px)
+            scale(1.08);
+    }
+
+    100% {
+        transform:
+            translateY(-125vh)
+            translateX(40px)
+            scale(1.2);
+
+        opacity: 0;
+    }
 }
