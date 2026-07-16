@@ -1,18 +1,35 @@
 .exclusive-page {
     position: relative;
     overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(255,214,232,.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(255,233,245,.22),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            #fffdfd 0%,
+            #fff8fb 100%
+        );
 }
 
-/* bubble layer */
 .exclusive-bubbles {
     position: absolute;
     inset: 0;
-    overflow: hidden;
+
     pointer-events: none;
-    z-index: 0;
+    overflow: hidden;
+
+    z-index: 1;
 }
 
-/* toàn bộ nội dung nằm trên bubble */
 .exclusive-intro,
 .exclusive-featured {
     position: relative;
@@ -22,91 +39,103 @@
    FLOATING BUBBLES
 ====================================================== */
 
-/* bubble */
+.exclusive-bubbles span {
+    position: absolute;
 
-.exclusive-bubbles span{
-    position:absolute;
-    bottom:-150px;
+    top: 110%;
 
-    width:100px;
-    height:100px;
+    border-radius: 50%;
 
-    border-radius:50%;
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(255,255,255,.9),
+            rgba(255,255,255,.25) 45%,
+            rgba(255,220,236,.12) 80%,
+            transparent
+        );
 
-    background:red;
+    border:
+        1px solid rgba(255,255,255,.45);
 
-    opacity:.5;
+    box-shadow:
+        inset 0 0 15px rgba(255,255,255,.35),
+        0 10px 30px rgba(255,214,232,.25);
 
-    animation:bubbleRise 15s linear infinite;
+    backdrop-filter: blur(6px);
+
+    opacity: .65;
+
+    animation:
+        bubbleRise linear infinite;
 }
 /* ======================================================
    INDIVIDUAL BUBBLES
 ====================================================== */
 
-.exclusive-bubbles span:nth-child(1) {
-    width: 120px;
-    height: 120px;
-    left: 6%;
-    animation-duration: 24s;
-    animation-delay: 0s;
+.exclusive-bubbles span:nth-child(1){
+    width:80px;
+    height:80px;
+    left:8%;
+    animation-duration:22s;
+    animation-delay:-2s;
 }
 
-.exclusive-bubbles span:nth-child(2) {
-    width: 60px;
-    height: 60px;
-    left: 18%;
-    animation-duration: 17s;
-    animation-delay: -4s;
+.exclusive-bubbles span:nth-child(2){
+    width:45px;
+    height:45px;
+    left:18%;
+    animation-duration:16s;
+    animation-delay:-8s;
 }
 
-.exclusive-bubbles span:nth-child(3) {
-    width: 90px;
-    height: 90px;
-    left: 34%;
-    animation-duration: 22s;
-    animation-delay: -8s;
+.exclusive-bubbles span:nth-child(3){
+    width:110px;
+    height:110px;
+    left:34%;
+    animation-duration:28s;
+    animation-delay:-6s;
 }
 
-.exclusive-bubbles span:nth-child(4) {
-    width: 45px;
-    height: 45px;
-    left: 50%;
-    animation-duration: 15s;
-    animation-delay: -2s;
+.exclusive-bubbles span:nth-child(4){
+    width:55px;
+    height:55px;
+    left:52%;
+    animation-duration:18s;
+    animation-delay:-12s;
 }
 
-.exclusive-bubbles span:nth-child(5) {
-    width: 140px;
-    height: 140px;
-    left: 64%;
-    animation-duration: 28s;
-    animation-delay: -10s;
+.exclusive-bubbles span:nth-child(5){
+    width:95px;
+    height:95px;
+    left:65%;
+    animation-duration:24s;
+    animation-delay:-4s;
 }
 
-.exclusive-bubbles span:nth-child(6) {
-    width: 75px;
-    height: 75px;
-    left: 76%;
-    animation-duration: 18s;
-    animation-delay: -6s;
+.exclusive-bubbles span:nth-child(6){
+    width:60px;
+    height:60px;
+    left:78%;
+    animation-duration:20s;
+    animation-delay:-9s;
 }
 
-.exclusive-bubbles span:nth-child(7) {
-    width: 55px;
-    height: 55px;
-    left: 88%;
-    animation-duration: 16s;
-    animation-delay: -1s;
+.exclusive-bubbles span:nth-child(7){
+    width:35px;
+    height:35px;
+    left:88%;
+    animation-duration:14s;
+    animation-delay:-5s;
 }
 
-.exclusive-bubbles span:nth-child(8) {
-    width: 100px;
-    height: 100px;
-    left: 45%;
-    animation-duration: 26s;
-    animation-delay: -13s;
+.exclusive-bubbles span:nth-child(8){
+    width:130px;
+    height:130px;
+    left:48%;
+    animation-duration:30s;
+    animation-delay:-15s;
 }
-
 /* ======================================================
    INTRO
 ====================================================== */
@@ -978,27 +1007,27 @@
     }
 
     10% {
-        opacity: .55;
+        opacity: .5;
     }
 
     35% {
         transform:
             translateY(-35vh)
-            translateX(35px)
+            translateX(25px)
             scale(1);
     }
 
     65% {
         transform:
             translateY(-70vh)
-            translateX(-25px)
+            translateX(-20px)
             scale(1.08);
     }
 
     100% {
         transform:
-            translateY(-125vh)
-            translateX(40px)
+            translateY(-140vh)
+            translateX(35px)
             scale(1.2);
 
         opacity: 0;
