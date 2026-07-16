@@ -399,8 +399,7 @@
 }
 
 .latest-content::after{
-    content:"01";
-
+   
     position:absolute;
 
     right:10px;
