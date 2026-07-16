@@ -1,7 +1,6 @@
 .exclusive-page {
     position: relative;
     overflow: hidden;
-    z-index: 2;
 
     background:
         radial-gradient(circle at top right,
@@ -16,11 +15,18 @@
             #fff8fb 100%
         );
 }
-
    .exclusive-bubbles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
     z-index: 1;
 }
 
+.exclusive-page > *:not(.exclusive-bubbles) {
+    position: relative;
+    z-index: 2;
+}
 /* ======================================================
    FLOATING BUBBLES
 ====================================================== */
