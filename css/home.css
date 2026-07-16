@@ -8,12 +8,26 @@
     left:0;
 
     width:100%;
+    min-height:100%;
     height:4200px;
+
+    pointer-events:none;
+    z-index:1;
+    overflow:hidden;
+}
+
+/* cho các section nổi lên trên bubbles */
+.home-hero,
+.schedule-home,
+.featured-home,
+.about-home,
+.site-credit{
+    position:relative;
+    z-index:2;
 }
 
 .home-bubbles span{
     position:absolute;
-
     border-radius:50%;
 
     background:
@@ -25,34 +39,23 @@
             rgba(255,190,220,.18) 100%
         );
 
-    border:
-        2px solid
-        rgba(255,185,220,.45);
+    border:2px solid rgba(255,185,220,.45);
 
     box-shadow:
-        inset
-        -12px -12px 20px
-        rgba(255,255,255,.35),
-
-        inset
-        10px 10px 20px
-        rgba(255,200,225,.25),
-
-        0 0 30px
-        rgba(255,190,220,.35);
+        inset -12px -12px 20px rgba(255,255,255,.35),
+        inset 10px 10px 20px rgba(255,200,225,.25),
+        0 0 30px rgba(255,190,220,.35);
 
     backdrop-filter:blur(8px);
 
     opacity:.95;
 
     animation:
-        bubbleFloat
-        5s ease-in-out infinite;
+        bubbleFloat 7s ease-in-out infinite;
 }
 
 .home-bubbles span::before{
     content:"";
-
     position:absolute;
 
     width:28%;
@@ -62,16 +65,13 @@
     left:20%;
 
     border-radius:50%;
-
-    background:
-        rgba(255,255,255,.95);
+    background:rgba(255,255,255,.95);
 
     filter:blur(2px);
 }
 
 .home-bubbles span::after{
     content:"";
-
     position:absolute;
 
     width:14%;
@@ -81,13 +81,10 @@
     left:35%;
 
     border-radius:50%;
-
-    background:
-        rgba(255,255,255,.75);
+    background:rgba(255,255,255,.75);
 
     filter:blur(1px);
 }
-
 
 /* HERO */
 
@@ -105,7 +102,7 @@
     width:180px;
     height:180px;
 
-    top:350px;
+    top:420px;
     right:-60px;
 
     animation-delay:1s;
@@ -117,7 +114,7 @@
     width:140px;
     height:140px;
 
-    top:900px;
+    top:950px;
     left:5%;
 
     animation-delay:2s;
@@ -127,7 +124,7 @@
     width:210px;
     height:210px;
 
-    top:1200px;
+    top:1350px;
     right:-80px;
 
     animation-delay:1.5s;
@@ -139,7 +136,7 @@
     width:130px;
     height:130px;
 
-    top:1650px;
+    top:1900px;
     left:-30px;
 
     animation-delay:3s;
@@ -149,7 +146,7 @@
     width:170px;
     height:170px;
 
-    top:1850px;
+    top:2200px;
     right:4%;
 
     animation-delay:2.5s;
@@ -159,7 +156,7 @@
     width:110px;
     height:110px;
 
-    top:2200px;
+    top:2500px;
     left:8%;
 
     animation-delay:4s;
@@ -171,7 +168,7 @@
     width:190px;
     height:190px;
 
-    top:2500px;
+    top:2900px;
     right:-60px;
 
     animation-delay:1s;
@@ -181,29 +178,29 @@
     width:120px;
     height:120px;
 
-    top:2750px;
+    top:3200px;
     left:10%;
 
     animation-delay:3.5s;
 }
 
-/* FOOTER */
+/* EXTRA */
 
 .home-bubbles span:nth-child(10){
-    width:160px;
-    height:160px;
+    width:150px;
+    height:150px;
 
-    bottom:280px;
-    right:8%;
+    top:3500px;
+    right:12%;
 
-    animation-delay:2s;
+    animation-delay:2.2s;
 }
 
 .home-bubbles span:nth-child(11){
     width:110px;
     height:110px;
 
-    bottom:120px;
+    top:3800px;
     left:-30px;
 
     animation-delay:1.5s;
@@ -213,7 +210,7 @@
     width:220px;
     height:220px;
 
-    bottom:-70px;
+    top:4050px;
     right:-80px;
 
     animation-delay:4s;
