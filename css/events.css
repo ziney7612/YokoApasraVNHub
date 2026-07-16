@@ -733,12 +733,12 @@
     position:relative;
 
     display:flex;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items:center;
 
-    gap:40px;
+    gap:200px;
     flex-wrap:wrap;
-    padding:48px 60px;
+    padding:20px 30px;
 
     border-radius:40px;
 
