@@ -5,6 +5,7 @@
 .home-hero{
     position:relative;
     padding-top:40px;
+    overflow:hidden;
 }
 
 .hero-layout{
@@ -14,79 +15,65 @@
     min-height:760px;
 }
 
+.hero-copy{
+    margin-top:-350px;
+    position:relative;
+    z-index:2;
+}
+
 .hero-kicker{
     display:inline-block;
-
     padding:10px 22px;
-
     border-radius:999px;
-
-    background:
-        rgba(255,255,255,.65);
-
+    background:rgba(255,255,255,.65);
     backdrop-filter:blur(20px);
-
     color:#ff69ab;
-
     font-size:.9rem;
-
     margin-bottom:30px;
 }
 
 .hero-title{
-
     font-size:6rem;
     line-height:.9;
-
     color:#2f3555;
-
     margin-bottom:28px;
 }
 
 .hero-title span{
-
     color:#ff69ab;
 }
 
 .hero-desc{
-
     max-width:430px;
-
     line-height:1.9;
-
     color:#7d8398;
-
     margin-bottom:14px;
 }
 
 .hero-slogan{
-
     color:#9aa0b5;
-
     font-style:italic;
-
     margin-bottom:40px;
 }
 
 .hero-button{
-
     display:inline-flex;
-
     align-items:center;
     justify-content:center;
 
     padding:16px 34px;
 
+    border:none;
     border-radius:999px;
 
     background:
-        linear-gradient(
-            135deg,
-            #ff6ba8,
-            #ff9588
-        );
+    linear-gradient(
+        135deg,
+        #ff6ba8,
+        #ff9588
+    );
 
-    color:white;
+    color:#fff;
     text-decoration:none;
     font-weight:700;
 
@@ -94,7 +81,6 @@
 }
 
 .hero-button:hover{
-
     transform:translateY(-4px);
 
     box-shadow:
@@ -103,16 +89,13 @@
 }
 
 .hero-visual{
-
     display:flex;
     justify-content:flex-end;
 }
 
 .hero-visual img{
-
-    width:700px;
-
-    margin-bottom:-400px;
+    width:720px;
+    margin-top:-20px;
 }
 
 
@@ -121,29 +104,22 @@
 ====================================================== */
 
 .latest-home{
-
-    padding-top:70px;
+    margin-top:-370px;
+    position:relative;
+    z-index:5;
 }
 
 .home-latest-card{
-
     display:grid;
-
-    grid-template-columns:
-        420px 1fr;
-
+    grid-template-columns:420px 1fr;
     gap:50px;
 
-    padding:36px;
+    padding:40px;
 
-    background:
-        rgba(255,255,255,.68);
-
+    background:rgba(255,255,255,.70);
     backdrop-filter:blur(25px);
 
-    border:
-        1px solid
-        rgba(255,255,255,.55);
+    border:1px solid rgba(255,255,255,.55);
 
     border-radius:42px;
 
@@ -153,57 +129,45 @@
 }
 
 .home-latest-image{
-
-    height:320px;
-
-    border-radius:28px;
-
+    height:350px;
     overflow:hidden;
+    border-radius:30px;
 }
 
 .home-latest-image img{
-
     width:100%;
     height:100%;
-
     object-fit:cover;
-    object-position:center;
 }
 
 .home-latest-content{
-
     display:flex;
     flex-direction:column;
     justify-content:center;
-
     position:relative;
 }
 
 .home-latest-content::after{
-
     content:"01";
 
     position:absolute;
+    right:10px;
+    top:-15px;
 
-    top:-10px;
-    right:20px;
-
-    font-size:7rem;
+    font-size:8rem;
     font-weight:700;
 
     color:#f6dce6;
 }
 
 .home-latest-badge{
-
     width:max-content;
 
-    padding:10px 20px;
+    padding:10px 22px;
 
     border-radius:999px;
 
     background:#ffe8f2;
-
     color:#ff69ab;
 
     font-weight:700;
@@ -212,37 +176,31 @@
 }
 
 .home-latest-content h2{
-
-    font-size:3rem;
-
-    line-height:1.15;
-
+    font-size:4rem;
+    line-height:1.05;
     color:#2f3555;
-
     margin-bottom:20px;
 }
 
 .home-latest-meta{
-
     display:flex;
-    gap:28px;
-
+    gap:25px;
     flex-wrap:wrap;
 
-    margin-bottom:20px;
-
     color:#8d91a8;
+
+    margin-bottom:20px;
 }
 
 .home-latest-content p{
-
-    color:#7d8398;
-
+    max-width:550px;
     line-height:1.9;
-
-    max-width:500px;
-
+    color:#7d8398;
     margin-bottom:30px;
+}
+
+.home-latest-content .hero-button{
+    width:260px;
 }
 
 
@@ -251,68 +209,61 @@
 ====================================================== */
 
 .schedule-home{
-
-    padding-top:90px;
+    padding-top:50px;
 }
 
 .schedule-card{
+    display:grid;
+    grid-template-columns:420px 1fr;
+    gap:70px;
 
-    background:
-        rgba(255,255,255,.65);
+    justify-items:center;
 
+    padding:50px;
+
+    background:rgba(255,255,255,.65);
     backdrop-filter:blur(24px);
-
-    border:
-        1px solid
-        rgba(255,220,235,.7);
 
     border-radius:42px;
 
-    padding:45px;
+    border:1px solid rgba(255,220,235,.7);
+}
 
-    display:grid;
-
-    grid-template-columns:
-        280px 1fr;
-
-    gap:60px;
+.schedule-copy{
+    text-align:center;
 }
 
 .schedule-copy h2{
-
-    font-size:2.5rem;
-
+    font-size:3rem;
     color:#2f3555;
-
-    margin-bottom:30px;
-}
-
-.schedule-poster img{
-
-    width:260px;
-
-    border-radius:26px;
-
-    display:block;
-}
-
-.schedule-highlights h2{
-
-    font-size:2rem;
-
-    color:#2f3555;
-
     margin-bottom:35px;
 }
 
-.schedule-item{
+.schedule-poster img{
+    width:340px;
+    border-radius:28px;
+    display:block;
+}
 
+.schedule-highlights{
+    width:100%;
+}
+
+.schedule-highlights h2{
+    text-align:center;
+
+    font-size:3rem;
+    color:#2f3555;
+
+    margin-bottom:45px;
+}
+
+.schedule-item{
     display:flex;
     align-items:center;
+    gap:35px;
 
-    gap:30px;
-
-    padding:22px 0;
+    padding:28px 0;
 
     border-bottom:
         1px solid
@@ -320,46 +271,35 @@
 }
 
 .schedule-date{
-
-    width:80px;
-
+    width:90px;
     text-align:center;
 }
 
 .schedule-date strong{
-
     display:block;
-
-    font-size:2.2rem;
-
+    font-size:3rem;
     color:#ff69ab;
 }
 
 .schedule-date span{
-
     color:#8d91a8;
-
     font-weight:700;
+    letter-spacing:.1em;
 }
 
 .schedule-detail h3{
-
-    font-size:1.5rem;
-
+    font-size:1.7rem;
     color:#2f3555;
-
     margin-bottom:8px;
 }
 
 .schedule-detail p{
-
     color:#8d91a8;
+    font-size:1.1rem;
 }
 
 .schedule-note{
-
-    margin-top:28px;
-
+    margin-top:30px;
     color:#9aa0b5;
 }
 
@@ -369,24 +309,18 @@
 ====================================================== */
 
 .featured-home{
-
-    padding-top:90px;
+    padding-top:50px;
 }
 
 .featured-card{
-
-    background:
-        rgba(255,255,255,.65);
-
+    background:rgba(255,255,255,.65);
     backdrop-filter:blur(24px);
 
     border-radius:42px;
-
     padding:40px;
 }
 
 .featured-head{
-
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -395,30 +329,44 @@
 }
 
 .featured-head h2{
-
-    font-size:2.4rem;
-
+    font-size:2.5rem;
     color:#2f3555;
 }
 
+.view-all-btn{
+    padding:14px 30px;
+    border-radius:999px;
+
+    background:rgba(255,255,255,.8);
+
+    color:#2f3555;
+    text-decoration:none;
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.view-all-btn:hover{
+    background:
+        linear-gradient(
+            135deg,
+            #ff6ba8,
+            #ff9588
+        );
+
+    color:#fff;
+}
+
 .featured-grid{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:18px;
 }
 
 .featured-grid img{
-
     width:100%;
-
     aspect-ratio:3/4;
-
     object-fit:cover;
-
     border-radius:22px;
 }
 
@@ -428,61 +376,47 @@
 ====================================================== */
 
 .about-home{
-
-    padding-top:90px;
+    padding-top:50px;
 }
 
 .about-card{
-
     display:flex;
     align-items:center;
+    justify-content:center;
 
-    gap:45px;
+    gap:35px;
 
-    padding:40px 60px;
+    padding:30px 50px;
 
-    background:
-        rgba(255,255,255,.65);
-
+    background:rgba(255,255,255,.65);
     backdrop-filter:blur(24px);
 
-    border-radius:42px;
+    border-radius:40px;
 }
 
 .about-chibi{
-
-    width:120px;
-
+    width:180px;
     flex-shrink:0;
 }
 
 .about-content{
-
     flex:1;
 }
 
 .about-content h2{
-
-    font-size:3rem;
-
+    font-size:1.5rem;
     color:#2f3555;
-
-    margin-bottom:18px;
+    margin-bottom:12px;
 }
 
 .about-content p{
-
-    max-width:560px;
-
-    line-height:1.9;
-
+    font-size:small;
+    line-height:1.8;
     color:#7d8398;
 }
 
 .about-slogan{
-
-    margin-top:12px;
-
+    margin-top:8px;
     font-style:italic;
 }
 
@@ -492,71 +426,52 @@
 ====================================================== */
 
 .social-footer{
-
-    padding-top:70px;
+    padding-top:40px;
 }
 
 .social-card{
-
     display:flex;
-
     align-items:center;
     justify-content:space-between;
 
-    gap:40px;
+    gap:35px;
 
-    padding:35px 50px;
+    padding:10px 30px;
 
-    background:
-        rgba(255,255,255,.6);
-
+    background:rgba(255,255,255,.6);
     backdrop-filter:blur(24px);
 
     border-radius:40px;
 }
 
 .social-title{
-
     display:block;
 
     margin-bottom:18px;
 
-    font-size:.9rem;
-
-    letter-spacing:.12em;
-
     color:#ff69ab;
+    font-weight:800;
+    font-size:1rem;
+    letter-spacing:.08em;
 }
 
 .social-row{
-
     display:flex;
-    gap:24px;
     flex-wrap:wrap;
+    gap:20px;
 }
 
 .social-row a{
-
     display:flex;
     align-items:center;
     gap:10px;
 
     text-decoration:none;
-
     color:#7d8398;
 }
 
-.social-divider{
-
-    width:1px;
-    height:70px;
-
-    background:#f5d8e5;
-}
-
 .social-chibi{
-
-    width:100px;
+    width:180px;
 }
 
 
@@ -565,15 +480,12 @@
 ====================================================== */
 
 .site-credit{
-
-    padding:30px 0 15px;
+    padding:25px 0 15px;
 
     text-align:center;
 
     color:#9ea2b6;
-
     font-size:.85rem;
-
     line-height:1.8;
 }
 
@@ -589,34 +501,35 @@
     .schedule-card,
     .about-card,
     .social-card{
-
-        grid-template-columns:1fr;
+        display:flex;
         flex-direction:column;
     }
 
-    .featured-grid{
-
-        grid-template-columns:
-            repeat(2,1fr);
+    .hero-copy,
+    .latest-home{
+        margin:0;
     }
 
     .hero-title{
-
         font-size:4rem;
     }
 
-    .home-latest-content h2{
-
-        font-size:2.3rem;
+    .home-latest-content h2,
+    .schedule-highlights h2{
+        font-size:2.4rem;
     }
 
-    .about-content h2{
-
-        font-size:2.3rem;
+    .featured-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .social-divider{
+    .hero-visual img{
+        width:100%;
+        margin-top:0;
+    }
 
-        display:none;
+    .schedule-poster img{
+        width:100%;
+        max-width:320px;
     }
 }
