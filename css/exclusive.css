@@ -4,6 +4,7 @@
 
 .exclusive-page {
     position: relative;
+    z-index: 2;
     overflow: hidden;
     background:
         radial-gradient(circle at top right,
@@ -16,7 +17,176 @@
             180deg,
             #fffdfd 0%,
             #fff8fb 100%
+           }
+
+   .exclusive-bubbles {
+    z-index: 1;
+}
+
+/* ======================================================
+   FLOATING BUBBLES
+====================================================== */
+
+.exclusive-page {
+    position: relative;
+    overflow: hidden;
+}
+
+/* layer */
+
+.exclusive-bubbles {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+/* bubble */
+
+.exclusive-bubbles span {
+    position: absolute;
+
+    bottom: -180px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(255,255,255,.95),
+            rgba(255,255,255,.25) 45%,
+            rgba(255,220,236,.12) 75%,
+            transparent 100%
         );
+
+    border:
+        1px solid rgba(255,255,255,.35);
+
+    backdrop-filter: blur(8px);
+
+    box-shadow:
+        inset 0 0 18px rgba(255,255,255,.35),
+        0 10px 30px rgba(255,214,232,.18);
+
+    opacity: .7;
+
+    animation:
+        bubbleRise linear infinite;
+}
+
+/* ======================================================
+   INDIVIDUAL BUBBLES
+====================================================== */
+
+.exclusive-bubbles span:nth-child(1) {
+    width: 120px;
+    height: 120px;
+    left: 6%;
+    animation-duration: 24s;
+    animation-delay: 0s;
+}
+
+.exclusive-bubbles span:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    left: 18%;
+    animation-duration: 17s;
+    animation-delay: -4s;
+}
+
+.exclusive-bubbles span:nth-child(3) {
+    width: 90px;
+    height: 90px;
+    left: 34%;
+    animation-duration: 22s;
+    animation-delay: -8s;
+}
+
+.exclusive-bubbles span:nth-child(4) {
+    width: 45px;
+    height: 45px;
+    left: 50%;
+    animation-duration: 15s;
+    animation-delay: -2s;
+}
+
+.exclusive-bubbles span:nth-child(5) {
+    width: 140px;
+    height: 140px;
+    left: 64%;
+    animation-duration: 28s;
+    animation-delay: -10s;
+}
+
+.exclusive-bubbles span:nth-child(6) {
+    width: 75px;
+    height: 75px;
+    left: 76%;
+    animation-duration: 18s;
+    animation-delay: -6s;
+}
+
+.exclusive-bubbles span:nth-child(7) {
+    width: 55px;
+    height: 55px;
+    left: 88%;
+    animation-duration: 16s;
+    animation-delay: -1s;
+}
+
+.exclusive-bubbles span:nth-child(8) {
+    width: 100px;
+    height: 100px;
+    left: 45%;
+    animation-duration: 26s;
+    animation-delay: -13s;
+}
+
+/* ======================================================
+   ANIMATION
+====================================================== */
+
+@keyframes bubbleRise {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(.8);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .55;
+    }
+
+    35% {
+        transform:
+            translateY(-35vh)
+            translateX(35px)
+            scale(1);
+    }
+
+    65% {
+        transform:
+            translateY(-70vh)
+            translateX(-25px)
+            scale(1.08);
+    }
+
+    100% {
+        transform:
+            translateY(-125vh)
+            translateX(40px)
+            scale(1.2);
+
+        opacity: 0;
+    }
 }
 
 
