@@ -112,7 +112,7 @@
 
     width:700px;
 
-    margin-bottom:-170px;
+    margin-bottom:-400px;
 }
 
 
@@ -167,6 +167,7 @@
     height:100%;
 
     object-fit:cover;
+    object-position:center;
 }
 
 .home-latest-content{
