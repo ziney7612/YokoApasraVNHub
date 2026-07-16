@@ -1,23 +1,21 @@
-/* ======================================================
-   EXCLUSIVE PAGE
-====================================================== */
-
 .exclusive-page {
     position: relative;
-    z-index: 2;
     overflow: hidden;
+    z-index: 2;
+
     background:
         radial-gradient(circle at top right,
-            rgba(255, 214, 232, .18),
+            rgba(255,214,232,.18),
             transparent 35%),
         radial-gradient(circle at bottom left,
-            rgba(255, 233, 245, .22),
+            rgba(255,233,245,.22),
             transparent 40%),
         linear-gradient(
             180deg,
             #fffdfd 0%,
             #fff8fb 100%
-           }
+        );
+}
 
    .exclusive-bubbles {
     z-index: 1;
@@ -26,11 +24,6 @@
 /* ======================================================
    FLOATING BUBBLES
 ====================================================== */
-
-.exclusive-page {
-    position: relative;
-    overflow: hidden;
-}
 
 /* layer */
 
