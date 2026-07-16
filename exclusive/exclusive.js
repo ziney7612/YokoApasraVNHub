@@ -145,14 +145,19 @@ function renderAlbums(albums) {
 
                 <div class="exclusive-action">
 
-                    <a
-                        href="detail.html?id=${album.id}"
-                        class="exclusive-btn">
+                  <a
+    href="detail.html?id=${album.id}"
+    class="exclusive-btn">
 
-                        View Gallery →
+    <span>
+        View Gallery
+    </span>
 
-                    </a>
+    <div class="exclusive-btn-moon">
+        🌙
+    </div>
 
+</a>
                 </div>
 
             </div>
