@@ -198,6 +198,7 @@
 
     gap:16px;
 
+   text-align:left;
 }
 
 .meta-icon{
@@ -496,124 +497,227 @@
 @media (max-width:992px){
 
     .exclusive-hero{
-
         grid-template-columns:1fr;
-
-        gap:40px;
-
+        gap:45px;
+        margin-bottom:70px;
     }
 
     .exclusive-poster{
-
-        max-width:520px;
-
+        max-width:480px;
         margin:auto;
-
     }
 
     .exclusive-info{
-
         align-items:center;
-
         text-align:center;
+    }
 
+    .exclusive-title{
+        font-size:2.8rem;
+    }
+
+    .exclusive-subtitle{
+        max-width:650px;
     }
 
     .exclusive-meta{
-
         width:100%;
+        max-width:560px;
+    }
 
-        max-width:500px;
+    /* location không căn giữa */
 
+    .meta-item{
+        text-align:left;
     }
 
     .download-album{
-
         width:100%;
-
         max-width:420px;
-
     }
-
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width:768px){
 
     .exclusive-detail-page{
+        padding:35px 0 70px;
+    }
 
-        padding:40px 0 80px;
+    .back-link{
+        margin-bottom:35px;
+        font-size:.92rem;
+    }
 
+    .exclusive-hero{
+        gap:35px;
+        margin-bottom:60px;
+    }
+
+    .exclusive-poster{
+        max-width:360px;
     }
 
     .exclusive-title{
-
-        font-size:2.4rem;
-
-    }
-
-    .gallery-divider h2{
-
-        font-size:1.6rem;
-
-    }
-
-    .exclusive-gallery .gallery{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-        gap:18px;
-
-    }
-
-}
-
-@media (max-width:480px){
-
-    .exclusive-title{
-
-        font-size:2rem;
-
+        font-size:2.2rem;
+        line-height:1.2;
     }
 
     .exclusive-subtitle{
-
-        font-size:.95rem;
-
-    }
-
-    .gallery-divider{
-
+        font-size:.96rem;
         margin-bottom:35px;
-
     }
 
-    .gallery-divider h2{
-
-        font-size:1.35rem;
-
-    }
-
-    .exclusive-gallery .gallery{
-
-        grid-template-columns:1fr;
-
+    .exclusive-meta{
+        gap:18px;
     }
 
     .meta-item{
-
-        gap:12px;
-
+        gap:14px;
+        align-items:flex-start;
+        text-align:left;
     }
 
     .meta-icon{
-
-        width:46px;
-
-        height:46px;
-
+        width:48px;
+        height:48px;
         font-size:1rem;
-
     }
 
+    .download-album{
+        padding:15px 26px;
+        font-size:.95rem;
+    }
+
+    .gallery-divider{
+        gap:16px;
+        margin-bottom:35px;
+    }
+
+    .gallery-divider h2{
+        font-size:1.45rem;
+    }
+
+    .exclusive-gallery .gallery{
+        grid-template-columns:repeat(2,1fr);
+        gap:16px;
+    }
+
+    .exclusive-gallery .gallery img{
+        border-radius:18px;
+    }
+}
+
+
+/* =========================
+   SMALL PHONE
+========================= */
+
+@media (max-width:576px){
+
+    .exclusive-detail-page{
+        padding:30px 0 60px;
+    }
+
+    .exclusive-poster{
+        max-width:300px;
+    }
+
+    .exclusive-title{
+        font-size:1.9rem;
+    }
+
+    .exclusive-subtitle{
+        font-size:.9rem;
+        line-height:1.8;
+    }
+
+    .exclusive-badge{
+        font-size:.72rem;
+        padding:7px 16px;
+    }
+
+    .meta-item{
+        gap:12px;
+    }
+
+    .meta-icon{
+        width:44px;
+        height:44px;
+        font-size:.95rem;
+    }
+
+    .meta-item strong{
+        font-size:.85rem;
+    }
+
+    .meta-item p{
+        font-size:.9rem;
+    }
+
+    .download-album{
+        width:100%;
+        max-width:none;
+        padding:15px 20px;
+        font-size:.92rem;
+    }
+
+    .gallery-divider h2{
+        font-size:1.25rem;
+    }
+
+    .exclusive-gallery .gallery{
+        gap:14px;
+    }
+}
+
+
+/* =========================
+   EXTRA SMALL
+========================= */
+
+@media (max-width:430px){
+
+    .exclusive-title{
+        font-size:1.65rem;
+    }
+
+    .exclusive-subtitle{
+        font-size:.86rem;
+    }
+
+    .exclusive-poster{
+        max-width:260px;
+    }
+
+    .exclusive-gallery .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-divider{
+        margin-bottom:28px;
+    }
+
+    .gallery-divider h2{
+        font-size:1.1rem;
+    }
+
+    .meta-item{
+        align-items:flex-start;
+    }
+
+    .meta-icon{
+        width:42px;
+        height:42px;
+    }
+
+    .download-album{
+        font-size:.88rem;
+        border-radius:22px;
+    }
+}
 }
