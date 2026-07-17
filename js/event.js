@@ -73,9 +73,13 @@ document.addEventListener(
                 downloadResponse
             ] = await Promise.all([
 
-                fetch("../data/gallery.json"),
+                fetch(
+                    "../data/gallery.json"
+                ),
 
-                fetch("../data/download.json")
+                fetch(
+                    "../data/download.json"
+                )
 
             ]);
 
@@ -109,13 +113,15 @@ document.addEventListener(
 
         catch (error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
 
             titleElement.textContent =
                 "Loading failed";
 
             metaElement.innerHTML =
-                "<span>Unable to load data.</span>";
+                "<span>Unable to load event data.</span>";
 
             return;
 
@@ -178,23 +184,33 @@ document.addEventListener(
 
         metaElement.innerHTML = `
 
-            <span>📅 ${date}</span>
+            <div class="event-meta-info">
 
-            <span>📷 ${photos} Photos</span>
+                <span>
+                    📅 ${date}
+                </span>
 
-            ${downloadLink ? `
+                <span>
+                    📷 ${photos} Photos
+                </span>
 
-                <a
-                    href="${downloadLink}"
-                    class="download-album"
-                    target="_blank"
-                    rel="noopener">
+            </div>
 
-                    ⬇ Download Full Album
+            ${
+                downloadLink
+                    ? `
+                    <a
+                        href="${downloadLink}"
+                        class="download-album"
+                        target="_blank"
+                        rel="noopener">
 
-                </a>
+                        ⬇ Download Full Album
 
-            ` : ""}
+                    </a>
+                    `
+                    : ""
+            }
 
         `;
 
@@ -254,7 +270,7 @@ document.addEventListener(
             image.draggable =
                 false;
 
-            image.onerror =
+                    image.onerror =
                 () => {
 
                     console.warn(
@@ -319,7 +335,9 @@ document.addEventListener(
         }
 
         console.log(
+
             `Loaded "${title}" (${photos} photos)`
+
         );
 
     }
