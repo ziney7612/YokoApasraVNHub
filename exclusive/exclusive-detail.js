@@ -42,16 +42,39 @@ async function loadAlbum() {
 
     try {
 
-        const response =
-            await fetch("../data/exclusive.json");
+        const [
+
+            albumResponse,
+            downloadResponse
+
+        ] = await Promise.all([
+
+            fetch(
+                "../data/exclusive.json"
+            ),
+
+            fetch(
+                "../data/download.json"
+            )
+
+        ]);
+
 
         const albums =
-            await response.json();
+            await albumResponse.json();
+
+        const downloadData =
+            await downloadResponse.json();
+
 
         const album =
-            albums.find(item =>
-                item.id === albumId
+            albums.find(
+
+                item =>
+                    item.id === albumId
+
             );
+
 
         if (!album) {
 
@@ -59,17 +82,18 @@ async function loadAlbum() {
 
                 `
                 <p class="empty">
-
                     Album not found.
-
                 </p>
                 `;
 
             return;
-
         }
 
-        renderAlbum(album);
+
+        renderAlbum(
+            album,
+            downloadData
+        );
 
     }
 
@@ -81,14 +105,10 @@ async function loadAlbum() {
 
             `
             <p class="empty">
-
                 Failed to load album.
-
             </p>
             `;
-
     }
-
 }
 
 loadAlbum();
@@ -98,11 +118,13 @@ loadAlbum();
    RENDER
 ========================================== */
 
-function renderAlbum(album) {
+function renderAlbum(
+    album,
+    downloadData
+) {
 
     document.title =
         `${album.title} • Yoko Apasra VNHub`;
-
 
 
     /* ==========================
@@ -120,7 +142,6 @@ function renderAlbum(album) {
         album.title;
 
 
-
     /* ==========================
        Title
     ========================== */
@@ -132,7 +153,6 @@ function renderAlbum(album) {
         album.subtitle;
 
 
-
     /* ==========================
        Meta
     ========================== */
@@ -140,29 +160,18 @@ function renderAlbum(album) {
     metaElement.innerHTML =
 
         `
-
         <div class="meta-item">
 
             <span class="meta-icon">
-
                 📅
-
             </span>
 
             <div>
-
-                <strong>
-
-                    Date
-
-                </strong>
+                <strong>Date</strong>
 
                 <p>
-
                     ${album.date}
-
                 </p>
-
             </div>
 
         </div>
@@ -171,25 +180,15 @@ function renderAlbum(album) {
         <div class="meta-item">
 
             <span class="meta-icon">
-
                 📍
-
             </span>
 
             <div>
-
-                <strong>
-
-                    Location
-
-                </strong>
+                <strong>Location</strong>
 
                 <p>
-
                     ${album.location}
-
                 </p>
-
             </div>
 
         </div>
@@ -198,67 +197,93 @@ function renderAlbum(album) {
         <div class="meta-item">
 
             <span class="meta-icon">
-
                 📷
-
             </span>
 
             <div>
-
-                <strong>
-
-                    Collection
-
-                </strong>
+                <strong>Collection</strong>
 
                 <p>
-
                     ${album.photos}
                     Photo${album.photos > 1 ? "s" : ""}
-
                 </p>
-
             </div>
 
         </div>
-
         `;
 
 
-
     /* ==========================
-       Download
+       Download Link
     ========================== */
 
-    downloadButton.href =
-        album.zip;
+    const downloadLink =
 
+        downloadData.exclusive?.[
+            album.id
+        ] || "";
+
+
+    if (downloadLink) {
+
+        downloadButton.href =
+            downloadLink;
+
+        downloadButton.target =
+            "_blank";
+
+        downloadButton.rel =
+            "noopener noreferrer";
+
+        downloadButton.style.display =
+            "inline-flex";
+
+    }
+    else {
+
+        downloadButton.style.display =
+            "none";
+    }
 
 
     /* ==========================
        Gallery
     ========================== */
 
-    gallery.innerHTML =
+    gallery.innerHTML = "";
 
-        `
+    for (
 
-        <img
+        let i = 1;
+        i <= album.photos;
+        i++
 
-            src="${posterImage}"
+    ) {
 
-            alt="${album.title}"
+        const number =
 
-            class="gallery-img"
+            String(i).padStart(
+                3,
+                "0"
+            );
 
-            loading="lazy"
+        const imagePath =
 
-            data-full="${posterImage}"
+            `../assets/exclusive/${album.folder}/${number}.${album.format}`;
 
-            data-caption="${album.title}"
 
-        >
+        gallery.innerHTML +=
 
-        `;
+            `
+            <img
+                src="${imagePath}"
+                alt="${album.title} ${number}"
+                class="gallery-img"
+                loading="lazy"
+                data-full="${imagePath}"
+                data-caption="${album.title}"
+            >
+            `;
+    }
 
 }
