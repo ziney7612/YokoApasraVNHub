@@ -60,19 +60,28 @@ document.addEventListener(
         }
 
         /*==================================
-        =          Load JSON              =
+        =      Load Gallery + Download    =
         ==================================*/
 
         let events = [];
+        let downloads = {};
 
         try {
 
-            const response =
-                await fetch(
-                    "../data/gallery.json"
-                );
+            const [
+                galleryResponse,
+                downloadResponse
+            ] = await Promise.all([
 
-            if (!response.ok) {
+                fetch("../data/gallery.json"),
+
+                fetch("../data/download.json")
+
+            ]);
+
+            if (
+                !galleryResponse.ok
+            ) {
 
                 throw new Error(
                     "Unable to load gallery.json"
@@ -80,22 +89,33 @@ document.addEventListener(
 
             }
 
+            if (
+                !downloadResponse.ok
+            ) {
+
+                throw new Error(
+                    "Unable to load download.json"
+                );
+
+            }
+
             events =
-                await response.json();
+                await galleryResponse.json();
+
+            downloads =
+                await downloadResponse.json();
 
         }
 
         catch (error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
             titleElement.textContent =
                 "Loading failed";
 
             metaElement.innerHTML =
-                "<span>Unable to load events.</span>";
+                "<span>Unable to load data.</span>";
 
             return;
 
@@ -130,21 +150,21 @@ document.addEventListener(
         const {
 
             title,
-
             date,
-
             folder,
-
             photos,
-
             format,
-
             cover
 
         } = currentEvent;
 
         const extension =
             format || "jpg";
+
+        const downloadLink =
+            downloads.events?.[
+                eventId
+            ] || "";
 
         document.title =
             `${title} | Yoko Apasra VNHub`;
@@ -157,8 +177,25 @@ document.addEventListener(
             title;
 
         metaElement.innerHTML = `
+
             <span>📅 ${date}</span>
+
             <span>📷 ${photos} Photos</span>
+
+            ${downloadLink ? `
+
+                <a
+                    href="${downloadLink}"
+                    class="download-album"
+                    target="_blank"
+                    rel="noopener">
+
+                    ⬇ Download Full Album
+
+                </a>
+
+            ` : ""}
+
         `;
 
         /*==================================
