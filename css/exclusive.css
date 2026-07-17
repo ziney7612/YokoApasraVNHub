@@ -1354,3 +1354,26 @@
         line-height:1.7;
     }
 }
+
+@media (max-width:992px){
+
+    .exclusive-meta{
+        align-items:flex-start;
+    }
+
+    .exclusive-meta p{
+        justify-content:flex-start;
+    }
+}
+
+@media (max-width:768px){
+
+    .exclusive-card{
+        text-align:left;
+    }
+
+    .exclusive-content{
+        align-items:flex-start;
+        text-align:left;
+    }
+}
