@@ -15,7 +15,7 @@
    BACK LINK
 ====================================================== */
 
-.back-link{
+.exclusive-detail-page .back-link{
 
     display:inline-flex;
     align-items:center;
@@ -33,7 +33,7 @@
     transition:var(--transition);
 }
 
-.back-link:hover{
+.exclusive-detail-page .back-link:hover{
 
     transform:translateX(-4px);
 
@@ -114,7 +114,7 @@
 
 
 /* ======================================================
-   BADGE POSITION ONLY
+   BADGE
 ====================================================== */
 
 .exclusive-info .badge{
@@ -158,7 +158,7 @@
 
 
 /* ======================================================
-   META LAYOUT
+   META
 ====================================================== */
 
 .exclusive-meta{
@@ -173,10 +173,15 @@
 
 /* ======================================================
    DOWNLOAD BUTTON
+   Scoped để không ảnh hưởng Event Detail
 ====================================================== */
 
-.download-album{
+.exclusive-detail-page .download-album{
+
+    width:fit-content;
+
     align-self:flex-start;
+
     min-width:360px;
 }
 
@@ -195,7 +200,6 @@
     display:grid;
 
     grid-template-columns:
-
         repeat(
             auto-fill,
             minmax(260px,1fr)
@@ -228,7 +232,7 @@
 
     width:100%;
 
-    aspect-ratio:3 / 2;
+    aspect-ratio:3/2;
 
     object-fit:cover;
 
@@ -336,10 +340,12 @@
         max-width:560px;
     }
 
-    .download-album{
+    .exclusive-detail-page .download-album{
 
         width:100%;
         max-width:360px;
+
+        min-width:unset;
 
         justify-content:center;
 
@@ -423,13 +429,14 @@
         gap:12px;
     }
 
-    .download-album{
+    .exclusive-detail-page .download-album{
 
         width:100%;
+
         max-width:none;
     }
 
-    .back-link{
+    .exclusive-detail-page .back-link{
 
         margin-bottom:26px;
     }
