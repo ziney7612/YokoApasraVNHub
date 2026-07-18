@@ -174,15 +174,12 @@ function updateStats() {
 
 function renderLatest() {
 
-    if (!latestCard) return;
+    if (!latestCard || !events.length)
+        return;
 
-    if (!events.length) return;
-
-    const item =
-        events[0];
+    const item = events[0];
 
     latestCard.innerHTML = `
-
         <article class="latest-card glass-card">
 
             <div class="latest-image">
@@ -193,53 +190,38 @@ function renderLatest() {
 
             </div>
 
-
             <div class="latest-content">
 
                 <span class="badge">
-
                     ✦ LATEST EVENT
-
                 </span>
 
-
                 <h2>
-
                     ${item.title}
-
                 </h2>
 
-
-                <p>
-
+                <p class="latest-meta">
                     📅 ${item.date}
-
                 </p>
 
-
-                <p>
-
-                    📷
-                    ${item.photos}
-                    photos archived
-
+                <p class="latest-meta">
+                    📷 ${item.photos} photos archived
                 </p>
-
 
                 <a
                     href="detail.html?id=${item.id}"
                     class="btn-primary latest-btn">
 
                     <span>
+                        View Gallery
+                    </span>
 
-                        View Gallery →
-
+                    <span class="arrow">
+                        →
                     </span>
 
                     <span class="moon">
-
                         ☾
-
                     </span>
 
                 </a>
@@ -247,10 +229,8 @@ function renderLatest() {
             </div>
 
         </article>
-
     `;
 }
-
 
 /* ======================================================
    MONTH FILTER
