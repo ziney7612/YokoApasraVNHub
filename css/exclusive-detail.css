@@ -176,12 +176,8 @@
 ====================================================== */
 
 .download-album{
-
-    width:fit-content;
-
-    min-width:320px;
-
     align-self:flex-start;
+    min-width:360px;
 }
 
 
