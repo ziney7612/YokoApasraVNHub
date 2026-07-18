@@ -4,23 +4,31 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-Event Detail • Yoko Apasra VNHub
-
-</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>
+        Event Detail • Yoko Apasra VNHub
+    </title>
 
     <link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
-rel="stylesheet">
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
 
 </head>
 
@@ -31,36 +39,56 @@ rel="stylesheet">
     <div class="container header-container">
 
         <a
-href="/YokoApasraVNHub/"
-class="logo">
+            href="../index.html"
+            class="logo">
 
-<img
-src="/YokoApasraVNHub/assets/logo/logo.png"
-alt="Yoko Apasra VNHub">
+            <img
+                src="../assets/logo/logo.png"
+                alt="Yoko Apasra VNHub">
 
-<div class="logo-text">
+            <div class="logo-text">
 
-<span class="logo-title">
+                <span class="logo-title">
+                    Yoko Apasra VNHub
+                </span>
 
-Yoko Apasra VNHub
+            </div>
 
-</span>
+        </a>
 
-</div>
-
-</a>
 
         <nav>
 
             <ul class="nav-menu">
 
-                <li><a href="/YokoApasraVNHub/">Home</a></li>
-                <li><a
-href="/YokoApasraVNHub/events/"
-class="active"
-aria-current="page">Events</a></li>
-                <li><a href="/YokoApasraVNHub/exclusive/">Exclusive</a></li>
-                <li><a href="/YokoApasraVNHub/about/">About</a></li>
+                <li>
+                    <a href="../index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="./"
+                        class="active"
+                        aria-current="page">
+
+                        Events
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../exclusive/">
+                        Exclusive
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../about/">
+                        About
+                    </a>
+                </li>
 
             </ul>
 
@@ -70,39 +98,86 @@ aria-current="page">Events</a></li>
 
 </header>
 
+
 <main class="gallery-page">
 
     <div class="container">
 
+        <!-- BACK -->
+
+        <a
+            href="index.html"
+            class="btn-secondary back-link">
+
+            ← Back to Events
+
+        </a>
+
+
+        <!-- HEADER -->
+
         <div class="gallery-header">
 
-            <a href="index.html" class="back-link">
-                ← Back to Events
-            </a>
+            <span class="badge">
 
-            <h1 id="event-title"></h1>
+                📷 EVENT GALLERY
+
+            </span>
+
+
+            <h1
+                id="event-title">
+
+            </h1>
+
 
             <div
                 id="event-meta"
                 class="gallery-meta">
+
             </div>
 
         </div>
 
+
+        <!-- DIVIDER -->
+
+        <div class="section-divider">
+
+            <span></span>
+
+            <h2>
+
+                Gallery
+
+            </h2>
+
+            <span></span>
+
+        </div>
+
+
+        <!-- GALLERY -->
+
         <div
             id="gallery"
-            class="gallery">
+            class="gallery"
+            aria-live="polite">
+
         </div>
 
     </div>
 
 </main>
 
+
 <!-- ==========================================
      LIGHTBOX
 ========================================== -->
 
-<div id="lightbox" class="lightbox">
+<div
+    id="lightbox"
+    class="lightbox">
 
     <button
         type="button"
@@ -113,10 +188,13 @@ aria-current="page">Events</a></li>
 
     </button>
 
+
     <div
         id="lightbox-counter"
         class="lightbox-counter">
+
     </div>
+
 
     <button
         type="button"
@@ -127,14 +205,16 @@ aria-current="page">Events</a></li>
 
     </button>
 
+
     <div class="lightbox-stage">
 
-       <img
-id="lightbox-image"
-alt=""
-draggable="false">
+        <img
+            id="lightbox-image"
+            alt=""
+            draggable="false">
 
     </div>
+
 
     <button
         type="button"
@@ -145,37 +225,49 @@ draggable="false">
 
     </button>
 
-<a
-id="lightbox-download"
-class="lightbox-download"
-href=""
-download>
 
-<span class="moon-icon">
+    <a
+        id="lightbox-download"
+        class="btn-primary lightbox-download"
+        href=""
+        download>
 
-🌙
+        <span>
 
-</span>
+            Download Original
 
-<span>
+        </span>
 
-Download Original
+        <span class="moon-icon">
 
-</span>
+            🌙
 
-<i class="bubble"></i>
-<i class="bubble"></i>
-<i class="bubble"></i>
+        </span>
 
-</a>
+    </a>
+
+
     <p
         id="lightbox-caption"
         class="lightbox-caption">
+
     </p>
 
 </div>
 
+
+<footer class="site-credit">
+
+    © 2026 Yoko Apasra VNHub.
+    Made with 🤍 by Vietnamese Fans •
+    Unofficial fan-made archive •
+    Non-commercial project.
+
+</footer>
+
+
 <script src="../js/event.js"></script>
+
 <script src="../js/lightbox.js"></script>
 
 </body>
