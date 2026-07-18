@@ -409,7 +409,7 @@
         blur(20px);
 
     color:#fff;
-
+    font-weight:600;
     box-shadow:
         0 12px 30px
         rgba(255,190,220,.18);
