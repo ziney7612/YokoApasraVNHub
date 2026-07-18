@@ -1,21 +1,38 @@
-/* ==========================================
+/* ======================================================
+   EXCLUSIVE
+   Yoko Apasra VNHub
+====================================================== */
+
+/* ======================================================
    ELEMENTS
-========================================== */
+====================================================== */
 
 const exclusiveList =
-    document.getElementById("exclusive-list");
+    document.getElementById(
+        "exclusive-list"
+    );
 
 
-/* ==========================================
+/* ======================================================
    LOAD
-========================================== */
+====================================================== */
 
 async function loadExclusive() {
 
     try {
 
         const response =
-            await fetch("../data/exclusive.json");
+            await fetch(
+                "../data/exclusive.json"
+            );
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load exclusive.json"
+            );
+
+        }
 
         const albums =
             await response.json();
@@ -28,21 +45,26 @@ async function loadExclusive() {
 
         console.error(error);
 
-        exclusiveList.innerHTML = `
+        exclusiveList.innerHTML =
 
+            `
             <div class="exclusive-empty">
 
                 <h2>
+
                     Unable to load collection.
+
                 </h2>
 
                 <p>
+
                     Please try again later.
+
                 </p>
 
             </div>
+            `;
 
-        `;
     }
 
 }
@@ -50,16 +72,23 @@ async function loadExclusive() {
 loadExclusive();
 
 
-/* ==========================================
+/* ======================================================
    RENDER
-========================================== */
+====================================================== */
 
 function renderAlbums(albums) {
 
-    if (!albums.length) {
+    if (
 
-        exclusiveList.innerHTML = `
+        !albums ||
 
+        !albums.length
+
+    ) {
+
+        exclusiveList.innerHTML =
+
+            `
             <div class="exclusive-empty">
 
                 <h2>
@@ -70,101 +99,137 @@ function renderAlbums(albums) {
 
                 <p>
 
-                    Coming soon...
+                    Coming Soon...
 
                 </p>
 
             </div>
-
-        `;
+            `;
 
         return;
 
     }
 
+    exclusiveList.innerHTML =
 
-    exclusiveList.innerHTML = albums.map(album => `
+        albums.map(album => {
 
-        <article class="exclusive-card">
+            const extension =
 
-            <div class="exclusive-cover">
+                album.format || "jpg";
 
-                <img
-                    src="../assets/exclusive/${album.folder}/${album.cover}.${album.format}"
-                    alt="${album.title}"
-                    loading="lazy">
+            const poster =
 
-            </div>
+                `../assets/exclusive/${album.folder}/poster.${extension}`;
+
+            return `
+
+            <article class="exclusive-card">
+
+                <div class="exclusive-cover">
+
+                    <img
+
+                        src="${poster}"
+
+                        alt="${album.title}"
+
+                        loading="lazy"
+
+                        decoding="async"
+
+                        draggable="false"
+
+                        onerror="this.src='../assets/logo/logo.png'">
+
+                </div>
 
 
-            <div class="exclusive-content">
+                <div class="exclusive-content">
 
-                <h2 class="exclusive-title">
+                    <h2 class="exclusive-title">
 
-                    ${album.title}
+                        ${album.title}
 
-                </h2>
-
-
-                <p class="exclusive-subtitle">
-
-                    ${album.subtitle}
-
-                </p>
+                    </h2>
 
 
-                <div class="exclusive-meta">
+                    <p class="exclusive-subtitle">
 
-                    <p>
-
-                        <span>📅</span>
-
-                        ${album.date}
+                        ${album.subtitle || ""}
 
                     </p>
 
 
-                    <p>
+                    <div class="exclusive-meta">
 
-                        <span>📍</span>
+                        <p>
 
-                        ${album.location}
+                            <span>📅</span>
 
-                    </p>
+                            ${album.date}
+
+                        </p>
 
 
-                  <p>
+                        <p>
 
-                        <span>📷</span>
+                            <span>📍</span>
 
-                        ${album.photos} Photos
+                            ${album.location}
 
-                </p>
+                        </p>
+
+
+                        <p>
+
+                            <span>📷</span>
+
+                            ${album.photos}
+
+                            Photo${album.photos > 1 ? "s" : ""}
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="exclusive-action">
+
+                        <a
+
+                            href="detail.html?id=${album.id}"
+
+                            class="exclusive-btn">
+
+                            <span class="btn-text">
+
+                                View Gallery
+
+                                <span class="btn-arrow">
+
+                                    →
+
+                                </span>
+
+                            </span>
+
+                            <span class="moon-icon">
+
+                                ☾
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
                 </div>
 
+            </article>
 
-                <div class="exclusive-action">
+            `;
 
-<a
-    href="detail.html?id=${album.id}"
-    class="exclusive-btn">
-
-    <span class="btn-text">
-        View Gallery
-        <span class="btn-arrow">→</span>
-    </span>
-
-    <span class="moon-icon">
-        ☾
-    </span>
-
-</a>
-                </div>
-
-            </div>
-
-        </article>
-
-    `).join("");
+        }).join("");
 
 }
