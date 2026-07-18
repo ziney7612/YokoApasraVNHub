@@ -3,13 +3,14 @@
 ====================================================== */
 
 .event-card{
-
     position:relative;
 
     display:flex;
     flex-direction:column;
 
     overflow:hidden;
+
+    text-decoration:none;
 
     background:
         rgba(255,255,255,.82);
@@ -22,38 +23,39 @@
 
     border-radius:38px;
 
-    text-decoration:none;
-
     box-shadow:
         0 20px 45px rgba(255,190,220,.14),
         0 0 40px rgba(255,220,235,.25);
 
-    transition:var(--transition);
+    transition:
+        transform .4s,
+        box-shadow .4s,
+        border-color .4s;
 
+    will-change:transform;
 }
 
 .event-card:hover{
-
     transform:
         translateY(-10px);
+
+    border-color:
+        rgba(255,180,220,.7);
 
     box-shadow:
         0 28px 60px rgba(255,190,220,.22),
         0 0 50px rgba(255,210,230,.35);
-
 }
 
 
 /* ======================================================
-   GLOW
+   OUTER GLOW
 ====================================================== */
 
 .event-card::before{
-
     content:"";
 
     position:absolute;
-
     inset:-2px;
 
     z-index:-1;
@@ -61,19 +63,13 @@
     border-radius:40px;
 
     background:
-
         linear-gradient(
-
             135deg,
-
             rgba(255,200,230,.45),
-
             rgba(255,255,255,.18)
-
         );
 
     filter:blur(28px);
-
 }
 
 
@@ -82,17 +78,14 @@
 ====================================================== */
 
 .event-thumb{
-
     position:relative;
 
     overflow:hidden;
 
     height:270px;
-
 }
 
 .event-thumb img{
-
     display:block;
 
     width:100%;
@@ -102,15 +95,11 @@
 
     transition:
         transform 1s ease;
-
 }
 
-.event-card:hover
-.event-thumb img{
-
+.event-card:hover .event-thumb img{
     transform:
         scale(1.06);
-
 }
 
 
@@ -119,31 +108,20 @@
 ====================================================== */
 
 .event-thumb::after{
-
     content:"";
 
     position:absolute;
-
     inset:0;
-
-    z-index:1;
 
     pointer-events:none;
 
     background:
-
         linear-gradient(
-
             to top,
-
             rgba(255,185,220,.72),
-
             rgba(255,185,220,.18) 35%,
-
             transparent 70%
-
         );
-
 }
 
 
@@ -152,7 +130,6 @@
 ====================================================== */
 
 .event-thumb::before{
-
     content:"";
 
     position:absolute;
@@ -166,21 +143,13 @@
     z-index:2;
 
     background:
-
         linear-gradient(
-
             90deg,
-
             transparent,
-
             rgba(255,255,255,.08),
-
             rgba(255,255,255,.55),
-
             rgba(255,255,255,.08),
-
             transparent
-
         );
 
     transform:
@@ -191,17 +160,15 @@
     mix-blend-mode:screen;
 
     animation:
-        shimmerMove
-        8s linear infinite;
-
+        shimmerMove 8s linear infinite;
 }
 
+
 /* ======================================================
-   GLASS BUBBLES
+   FLOATING BUBBLES
 ====================================================== */
 
 .event-card .bubble{
-
     position:absolute;
 
     border-radius:50%;
@@ -211,8 +178,7 @@
     background:
         rgba(255,255,255,.22);
 
-    backdrop-filter:
-        blur(18px);
+    backdrop-filter:blur(18px);
 
     border:
         1px solid
@@ -220,11 +186,9 @@
 
     box-shadow:
         0 0 25px rgba(255,255,255,.18);
-
 }
 
 .event-card .bubble::before{
-
     content:"";
 
     position:absolute;
@@ -241,16 +205,9 @@
         rgba(255,255,255,.85);
 
     filter:blur(2px);
-
 }
 
-
-/* ======================================================
-   FLOATING BUBBLES
-====================================================== */
-
 .b1{
-
     width:55px;
     height:55px;
 
@@ -258,23 +215,18 @@
     right:35px;
 
     animation:
-        bubbleFloat
-        6s ease-in-out infinite;
-
+        bubbleFloat 6s ease-in-out infinite;
 }
 
 .b2{
+    width:72px;
+    height:72px;
 
-    width:90px;
-    height:90px;
-
-    right:-20px;
-    bottom:120px;
+    right:-18px;
+    bottom:110px;
 
     animation:
-        bubbleFloat
-        8s ease-in-out infinite;
-
+        bubbleFloat 8s ease-in-out infinite;
 }
 
 
@@ -283,7 +235,6 @@
 ====================================================== */
 
 .event-date-badge{
-
     position:absolute;
 
     top:18px;
@@ -311,23 +262,18 @@
 
     box-shadow:
         0 14px 35px rgba(0,0,0,.12);
-
 }
 
 .event-date-badge strong{
-
     display:block;
 
     font-size:2rem;
-
     line-height:1;
 
     color:#fff;
-
 }
 
 .event-date-badge span{
-
     display:block;
 
     margin-top:8px;
@@ -336,18 +282,15 @@
 
     color:
         rgba(255,255,255,.92);
-
 }
 
 .event-date-badge small{
-
     display:block;
 
     margin-top:10px;
 
     color:
-        rgba(255,255,255,.70);
-
+        rgba(255,255,255,.72);
 }
 
 
@@ -356,310 +299,233 @@
 ====================================================== */
 
 .event-info{
-
     display:flex;
-
     flex-direction:column;
 
     flex:1;
 
     padding:30px;
-
 }
 
 .event-info h2{
+    margin:0 0 20px;
 
-    margin:0 0 22px;
-
-    font-size:2rem;
-
-    line-height:1.25;
+    font-size:1.8rem;
+    line-height:1.3;
 
     color:var(--text-dark);
-
 }
 
-.event-date{
-
+.event-meta{
     margin-bottom:28px;
-
-    font-size:1.05rem;
 
     color:var(--text-light);
 
+    line-height:1.7;
 }
 
 .event-photos{
-
     display:inline-flex;
-
     align-items:center;
 
     gap:8px;
 
     margin-top:auto;
 
-    font-size:1.15rem;
-
+    font-size:1.05rem;
     font-weight:700;
 
     color:var(--primary);
 
-    transition:var(--transition);
-
+    transition:.35s;
 }
 
 .event-card:hover .event-photos{
-
     transform:
         translateX(10px);
-
 }
+
 
 /* ======================================================
    LIST VIEW
 ====================================================== */
 
 .events-grid.list-view{
-
     grid-template-columns:1fr;
-
 }
 
 .events-grid.list-view .event-card{
-
     flex-direction:row;
 
     align-items:center;
 
     padding:20px;
-
 }
 
 .events-grid.list-view .event-thumb{
-
     flex-shrink:0;
 
     width:320px;
-
     height:220px;
 
-    border-radius:30px;
-
+    border-radius:28px;
 }
 
 .events-grid.list-view .event-info{
-
     flex:1;
-
 }
 
 
 /* ======================================================
-   SHIMMER ANIMATION
+   ANIMATION
 ====================================================== */
 
 @keyframes shimmerMove{
 
     0%{
-
         left:-150%;
-
         opacity:0;
-
     }
 
     10%{
-
         opacity:1;
-
     }
 
     25%{
-
         left:150%;
-
         opacity:1;
-
     }
 
     26%{
-
         opacity:0;
-
     }
 
     100%{
-
         left:150%;
-
         opacity:0;
-
     }
-
 }
-
-
-/* ======================================================
-   FLOATING BUBBLE
-====================================================== */
 
 @keyframes bubbleFloat{
 
     0%{
-
         transform:
             translateY(0)
             scale(1);
-
     }
 
     50%{
-
         transform:
             translateY(-18px)
             scale(1.08);
-
     }
 
     100%{
-
         transform:
             translateY(0)
             scale(1);
-
     }
-
 }
 
+
 /* ======================================================
-   RESPONSIVE
+   TABLET
 ====================================================== */
 
 @media (max-width:992px){
 
     .event-info{
-
         padding:26px;
-
     }
 
     .event-info h2{
-
-        font-size:1.75rem;
-
+        font-size:1.6rem;
     }
-
 }
 
+
+/* ======================================================
+   MOBILE
+====================================================== */
 
 @media (max-width:768px){
 
     .events-grid.list-view .event-card{
-
         flex-direction:column;
-
         padding:0;
-
     }
 
     .events-grid.list-view .event-thumb{
-
         width:100%;
-
         height:240px;
 
         border-radius:0;
-
     }
 
     .events-grid.list-view .event-info{
-
         width:100%;
-
     }
 
     .event-thumb{
-
         height:240px;
-
     }
 
     .event-date-badge{
-
         width:82px;
-
         padding:16px 8px;
-
     }
 
     .event-date-badge strong{
-
         font-size:1.7rem;
-
     }
-
 }
 
+
+/* ======================================================
+   SMALL MOBILE
+====================================================== */
 
 @media (max-width:576px){
 
     .event-card{
-
-        border-radius:28px;
-
+        border-radius:30px;
     }
 
     .event-thumb{
-
         height:220px;
-
     }
 
     .event-info{
-
         padding:22px;
-
     }
 
     .event-info h2{
-
-        font-size:1.45rem;
-
+        font-size:1.4rem;
     }
 
-    .event-date{
-
+    .event-meta{
         font-size:.95rem;
-
     }
 
     .event-photos{
-
         font-size:1rem;
-
     }
 
     .b1{
-
         width:42px;
         height:42px;
 
         top:18px;
         right:22px;
-
     }
 
     .b2{
-
-        width:70px;
-        height:70px;
+        width:60px;
+        height:60px;
 
         bottom:95px;
         right:-18px;
-
     }
-
 }
 
 
@@ -670,24 +536,12 @@
 @media (prefers-reduced-motion:reduce){
 
     .event-card,
-
     .event-thumb img,
-
     .event-photos,
-
     .bubble,
-
     .event-thumb::before{
 
         animation:none !important;
-
         transition:none !important;
-
     }
-
 }
-
-
-/* ======================================================
-   END
-====================================================== */
