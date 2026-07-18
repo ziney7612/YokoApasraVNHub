@@ -194,44 +194,51 @@ document.addEventListener(
 
         metaElement.innerHTML =
 
-            `
-            <div class="event-meta-info">
+`
+<div class="event-meta-info">
 
-                <span>
-                    📅 ${date}
-                </span>
+    <span>
+        📅 ${date}
+    </span>
 
-                <span>
-                    📷 ${photos.toLocaleString()} Photos
-                </span>
+    <span>
+        📷 ${photos.toLocaleString()} Photos
+    </span>
 
-            </div>
+</div>
 
-            ${
+${
+    downloadLink
 
-                downloadLink
+        ?
 
-                    ?
+        `
+        <a
+            href="${downloadLink}"
+            class="download-album btn-download"
+            target="_blank"
+            rel="noopener noreferrer">
 
-                    `
-                    <a
-                        href="${downloadLink}"
-                        class="download-album"
-                        target="_blank"
-                        rel="noopener noreferrer">
+            <span class="moon-icon">
 
-                        ⬇ Download Full Album
+                🌙
 
-                    </a>
-                    `
+            </span>
 
-                    :
+            <span>
 
-                    ""
+                Download Full Album
 
-            }
+            </span>
 
-            `;
+        </a>
+        `
+
+        :
+
+        ""
+}
+`;
 
 
         /* ======================================================
