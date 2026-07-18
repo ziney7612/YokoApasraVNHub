@@ -1,13 +1,22 @@
+/* ======================================================
+   LIGHTBOX V6
+   Yoko Apasra VNHub
+====================================================== */
+
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+
+        /* ======================================================
+           ELEMENTS
+        ====================================================== */
 
         const lightbox =
             document.getElementById(
                 "lightbox"
             );
 
-        const image =
+        const lightboxImage =
             document.getElementById(
                 "lightbox-image"
             );
@@ -37,31 +46,50 @@ document.addEventListener(
                 "lightbox-caption"
             );
 
-        const download =
+        const downloadButton =
             document.getElementById(
                 "lightbox-download"
             );
 
         if (
-            !lightbox ||
-            !image
-        ) return;
 
-        let images = [];
+            !lightbox ||
+
+            !lightboxImage
+
+        ) {
+
+            console.warn(
+                "Lightbox not found."
+            );
+
+            return;
+
+        }
+
+
+        /* ======================================================
+           STATE
+        ====================================================== */
+
+        let gallery = [];
 
         let currentIndex = 0;
 
-        let isAnimating = false;
-
         let zoom = 1;
 
-        /*=============================*/
-        /* COLLECT */
-        /*=============================*/
+        let isLoading = false;
 
-        function collectImages() {
+        let touchStartX = 0;
 
-            images = [
+
+        /* ======================================================
+           COLLECT IMAGES
+        ====================================================== */
+
+        function collectGallery() {
+
+            gallery = [
 
                 ...document.querySelectorAll(
                     ".lightbox-trigger"
@@ -71,20 +99,27 @@ document.addEventListener(
 
         }
 
+
         window.refreshLightbox =
-            collectImages;
+            collectGallery;
 
-        /*=============================*/
 
-        function getImageSrc(item) {
+        /* ======================================================
+           GET SOURCE
+        ====================================================== */
+
+        function getSource(item) {
+
+            if (!item)
+                return "";
 
             return (
 
-                item.href ||
+                item.getAttribute(
+                    "href"
+                ) ||
 
                 item.dataset.src ||
-
-                item.src ||
 
                 ""
 
@@ -92,91 +127,68 @@ document.addEventListener(
 
         }
 
-        /*=============================*/
+
+        /* ======================================================
+           GET IMAGE
+        ====================================================== */
+
+        function getImage(item) {
+
+            return (
+
+                item.querySelector(
+                    "img"
+                ) ||
+
+                item
+
+            );
+
+        }
+
+
+        /* ======================================================
+           RESET ZOOM
+        ====================================================== */
 
         function resetZoom() {
 
             zoom = 1;
 
-            image.style.transform =
+            lightboxImage.style.transform =
                 "scale(1)";
 
         }
 
-        /*=============================*/
 
-        function updateUI() {
-
-            const item =
-                images[currentIndex];
-
-            if (!item)
-                return;
-
-            const img =
-                item.querySelector(
-                    "img"
-                ) ||
-
-                item;
-
-            const src =
-                getImageSrc(
-                    item
-                );
-
-            if (counter) {
-
-                counter.textContent =
-                    `${currentIndex + 1} / ${images.length}`;
-
-            }
-
-            if (caption) {
-
-                caption.textContent =
-                    img?.alt || "";
-
-            }
-
-            if (download) {
-
-                download.href =
-                    src;
-
-                download.download =
-
-                    item.dataset.filename ||
-
-                    src
-                        .split("/")
-                        .pop();
-
-            }
-
-        }
-
-        /*=============================*/
+        /* ======================================================
+           PRELOAD
+        ====================================================== */
 
         function preload(index) {
 
             if (
+
                 index < 0 ||
-                index >= images.length
-            ) return;
 
-            const item =
-                images[index];
+                index >= gallery.length
 
-            const img =
+            ) {
+
+                return;
+
+            }
+
+            const preloadImage =
                 new Image();
 
-            img.src =
-                getImageSrc(
-                    item
+            preloadImage.src =
+                getSource(
+                    gallery[index]
                 );
 
         }
+
 
         function preloadNearby() {
 
@@ -188,30 +200,96 @@ document.addEventListener(
                 currentIndex + 1
             );
 
-        }
+                    /* ======================================================
+           UPDATE UI
+        ====================================================== */
 
-        /*=============================*/
-
-        function showImage(index) {
-
-            if (
-                isAnimating
-            ) return;
+        function updateUI() {
 
             const item =
-                images[index];
+                gallery[currentIndex];
 
             if (!item)
                 return;
 
+            const img =
+                getImage(item);
+
             const src =
-                getImageSrc(
-                    item
+                getSource(item);
+
+            if (counter) {
+
+                counter.textContent =
+                    `${currentIndex + 1} / ${gallery.length}`;
+
+            }
+
+            if (caption) {
+
+                caption.textContent =
+                    img.alt || "";
+
+            }
+
+            if (downloadButton) {
+
+                downloadButton.href =
+                    src;
+
+                downloadButton.target =
+                    "_blank";
+
+                downloadButton.rel =
+                    "noopener noreferrer";
+
+                downloadButton.removeAttribute(
+                    "download"
                 );
 
-            isAnimating = true;
+            }
 
-            image.classList.add(
+        }
+
+
+        /* ======================================================
+           SHOW IMAGE
+        ====================================================== */
+
+        function showImage(index) {
+
+            if (
+
+                isLoading ||
+
+                !gallery.length
+
+            ) {
+
+                return;
+
+            }
+
+            isLoading = true;
+
+            const item =
+                gallery[index];
+
+            if (!item) {
+
+                isLoading = false;
+
+                return;
+
+            }
+
+            const src =
+                getSource(item);
+
+            const img =
+                getImage(item);
+
+            lightboxImage.classList.add(
                 "loading"
             );
 
@@ -221,18 +299,12 @@ document.addEventListener(
             loader.onload =
                 () => {
 
-                    image.src =
+                    lightboxImage.src =
                         loader.src;
 
-                    const img =
-                        item.querySelector(
-                            "img"
-                        ) ||
+                    lightboxImage.alt =
 
-                        item;
-
-                    image.alt =
-                        img?.alt ||
+                        img.alt ||
 
                         `Photo ${index + 1}`;
 
@@ -248,23 +320,26 @@ document.addEventListener(
                     requestAnimationFrame(
                         () => {
 
-                            image.classList.remove(
+                            lightboxImage.classList.remove(
                                 "loading"
                             );
 
                         }
                     );
 
-                    isAnimating =
-                        false;
+                    isLoading = false;
 
                 };
 
             loader.onerror =
                 () => {
 
-                    isAnimating =
-                        false;
+                    console.warn(
+                        "Unable to load:",
+                        src
+                    );
+
+                    isLoading = false;
 
                 };
 
@@ -273,17 +348,17 @@ document.addEventListener(
 
         }
 
-        /*=============================*/
 
-        function openLightbox(
-            index
-        ) {
+        /* ======================================================
+           OPEN
+        ====================================================== */
 
-            collectImages();
+        function openLightbox(index) {
 
-            if (
-                !images.length
-            ) return;
+            collectGallery();
+
+            if (!gallery.length)
+                return;
 
             lightbox.classList.add(
                 "show"
@@ -293,11 +368,14 @@ document.addEventListener(
                 "lightbox-open"
             );
 
-            showImage(
-                index
-            );
+            showImage(index);
 
         }
+
+
+        /* ======================================================
+           CLOSE
+        ====================================================== */
 
         function closeLightbox() {
 
@@ -313,15 +391,21 @@ document.addEventListener(
 
         }
 
-        /*=============================*/
+
+        /* ======================================================
+           NEXT
+        ====================================================== */
 
         function nextImage() {
 
             currentIndex++;
 
             if (
+
                 currentIndex >=
-                images.length
+
+                gallery.length
+
             ) {
 
                 currentIndex = 0;
@@ -334,16 +418,23 @@ document.addEventListener(
 
         }
 
-        function prevImage() {
+
+        /* ======================================================
+           PREVIOUS
+        ====================================================== */
+
+        function previousImage() {
 
             currentIndex--;
 
             if (
+
                 currentIndex < 0
+
             ) {
 
                 currentIndex =
-                    images.length - 1;
+                    gallery.length - 1;
 
             }
 
@@ -353,9 +444,9 @@ document.addEventListener(
 
         }
 
-        /*=============================*/
-        /* OPEN */
-        /*=============================*/
+                    /* ======================================================
+           CLICK TO OPEN
+        ====================================================== */
 
         document.addEventListener(
             "click",
@@ -371,27 +462,30 @@ document.addEventListener(
 
                 event.preventDefault();
 
-                collectImages();
+                collectGallery();
 
                 const index =
-                    images.indexOf(
+                    gallery.indexOf(
                         target
                     );
 
                 if (
-                    index === -1
-                ) return;
+                    index >= 0
+                ) {
 
-                openLightbox(
-                    index
-                );
+                    openLightbox(
+                        index
+                    );
+
+                }
 
             }
         );
 
-        /*=============================*/
-        /* BUTTONS */
-        /*=============================*/
+
+        /* ======================================================
+           BUTTON EVENTS
+        ====================================================== */
 
         closeButton?.addEventListener(
             "click",
@@ -404,6 +498,7 @@ document.addEventListener(
             }
         );
 
+
         nextButton?.addEventListener(
             "click",
             (event) => {
@@ -415,26 +510,32 @@ document.addEventListener(
             }
         );
 
+
         prevButton?.addEventListener(
             "click",
             (event) => {
 
                 event.stopPropagation();
 
-                prevImage();
+                previousImage();
 
             }
         );
 
-        /*=============================*/
+
+        /* ======================================================
+           CLICK OUTSIDE
+        ====================================================== */
 
         lightbox.addEventListener(
             "click",
             (event) => {
 
                 if (
+
                     event.target ===
                     lightbox
+
                 ) {
 
                     closeLightbox();
@@ -444,37 +545,45 @@ document.addEventListener(
             }
         );
 
-        /*=============================*/
-        /* KEYBOARD */
-        /*=============================*/
+
+        /* ======================================================
+           KEYBOARD
+        ====================================================== */
 
         document.addEventListener(
             "keydown",
             (event) => {
 
                 if (
+
                     !lightbox.classList.contains(
                         "show"
                     )
-                ) return;
 
-                switch (
-                    event.key
                 ) {
+
+                    return;
+
+                }
+
+                switch (event.key) {
 
                     case "Escape":
 
                         closeLightbox();
+
                         break;
 
                     case "ArrowRight":
 
                         nextImage();
+
                         break;
 
                     case "ArrowLeft":
 
-                        prevImage();
+                        previousImage();
+
                         break;
 
                 }
@@ -482,49 +591,60 @@ document.addEventListener(
             }
         );
 
-        /*=============================*/
-        /* SWIPE */
-        /*=============================*/
 
-        let touchStartX = 0;
+        /* ======================================================
+           SWIPE
+        ====================================================== */
 
         lightbox.addEventListener(
             "touchstart",
             (event) => {
 
                 touchStartX =
+
                     event.changedTouches[0]
                         .screenX;
 
             },
+
             {
-                passive:true
+                passive: true
             }
+
         );
+
 
         lightbox.addEventListener(
             "touchend",
             (event) => {
 
                 const touchEndX =
+
                     event.changedTouches[0]
                         .screenX;
 
                 const distance =
+
                     touchEndX -
                     touchStartX;
 
                 if (
-                    Math.abs(
-                        distance
-                    ) < 60
-                ) return;
 
-                if (
-                    distance > 0
+                    Math.abs(distance) < 60
+
                 ) {
 
-                    prevImage();
+                    return;
+
+                }
+
+                if (
+
+                    distance > 0
+
+                ) {
+
+                    previousImage();
 
                 }
 
@@ -535,55 +655,70 @@ document.addEventListener(
                 }
 
             },
+
             {
-                passive:true
+                passive: true
             }
+
         );
 
-        /*=============================*/
-        /* CLICK TO ZOOM */
-        /*=============================*/
 
-        image.addEventListener(
+        /* ======================================================
+           CLICK TO ZOOM
+        ====================================================== */
+
+        lightboxImage.addEventListener(
             "click",
             (event) => {
 
                 event.stopPropagation();
 
                 zoom =
-                    zoom === 1
-                    ? 2
-                    : 1;
 
-                image.style.transform =
+                    zoom === 1
+                        ? 2
+                        : 1;
+
+                lightboxImage.style.transform =
+
                     `scale(${zoom})`;
 
             }
         );
 
-        /*=============================*/
-        /* MOUSE WHEEL */
-        /*=============================*/
+
+        /* ======================================================
+           MOUSE WHEEL ZOOM
+        ====================================================== */
 
         lightbox.addEventListener(
             "wheel",
             (event) => {
 
                 if (
+
                     !lightbox.classList.contains(
                         "show"
                     )
-                ) return;
+
+                ) {
+
+                    return;
+
+                }
 
                 event.preventDefault();
 
                 zoom +=
 
                     event.deltaY > 0
-                    ? -0.15
-                    : 0.15;
+
+                        ? -0.15
+
+                        : 0.15;
 
                 zoom =
+
                     Math.max(
                         1,
                         Math.min(
@@ -592,16 +727,32 @@ document.addEventListener(
                         )
                     );
 
-                image.style.transform =
+                lightboxImage.style.transform =
+
                     `scale(${zoom})`;
 
             },
+
             {
-                passive:false
+                passive: false
             }
+
         );
 
-        collectImages();
+
+        /* ======================================================
+           INITIALIZE
+        ====================================================== */
+
+        collectGallery();
+
+        console.log(
+
+            `Lightbox ready (${gallery.length} images).`
+
+        );
 
     }
+
 );
+        }
