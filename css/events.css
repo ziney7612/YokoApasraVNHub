@@ -350,7 +350,7 @@
     border-radius:999px;
 
     text-decoration:none;
-
+    font-weight: 600;
     color:#fff;
 
     background:
@@ -381,6 +381,58 @@
         rgba(255,255,255,.18);
 
     backdrop-filter:blur(10px);
+}
+
+.latest-tag{
+
+    display:inline-flex;
+    align-items:center;
+
+    padding:12px 22px;
+
+    border-radius:999px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.85),
+            rgba(255,235,245,.85)
+        );
+
+    border:
+        1px solid
+        rgba(255,190,220,.45);
+
+    backdrop-filter:
+        blur(20px);
+
+    color:#ff69ab;
+
+    box-shadow:
+        0 12px 30px
+        rgba(255,190,220,.18);
+}
+
+.latest-image{
+    position:relative;
+}
+
+.latest-image::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    border-radius:28px;
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(255,185,220,.25),
+            transparent 60%
+        );
 }
 
 /* ======================================================
