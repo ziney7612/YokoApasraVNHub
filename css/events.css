@@ -326,7 +326,8 @@
 .latest-content h2{
     font-size:2rem;
     color:#30345f;
-    margin-bottom:35px;
+    margin-bottom:15px;
+   margin-top:15px
 }
 
 .latest-content p{
@@ -396,8 +397,8 @@
 
         linear-gradient(
             135deg,
-            rgba(255,255,255,.85),
-            rgba(255,235,245,.85)
+            #f871a8,
+            #f58b98
         );
 
     border:
