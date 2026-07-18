@@ -40,9 +40,9 @@
             href="../index.html"
             class="logo">
 
-            <img
-                src="../assets/logo/logo.png"
-                alt="Logo">
+           <img
+    src="../assets/logo/logo.png"
+    alt="Yoko Apasra VNHub">
 
             <div class="logo-text">
 
@@ -98,7 +98,9 @@
 
     <!-- Floating Bubbles -->
 
-    <div class="events-bubbles">
+<div
+    class="events-bubbles"
+    aria-hidden="true">
 
         <span></span>
         <span></span>
@@ -123,7 +125,7 @@
 
             <div class="hero-copy">
 
-                <span class="hero-kicker">
+                <span class="badge">
 
                     🤍 YOKO APASRA
 
@@ -218,9 +220,9 @@
 
             <div class="hero-image">
 
-                <img
-                    src="../assets/images/events.png"
-                    alt="Yoko">
+          <img
+    src="../assets/images/events.png"
+    alt="Yoko Apasra Events">
 
             </div>
 
@@ -234,10 +236,11 @@
 
         <div class="container">
 
-            <div
-                id="latest-event-card">
+         <div
+           id="latest-event-card"
+           class="latest-event">
 
-            </div>
+        </div>
 
         </div>
 
@@ -249,7 +252,7 @@
 
         <div class="container">
 
-            <div class="events-heading">
+            <div class="section-divider">
 
                 <h2>
 
@@ -272,7 +275,8 @@
                 <div class="toolbar-right">
 
                     <select
-                        id="sort-select">
+                            id="sort-select"
+                            aria-label="Sort events">
 
                         <option value="newest">
                             Newest First
@@ -288,15 +292,19 @@
                     <div class="view-toggle">
 
                         <button
-                            id="grid-view"
-                            class="active">
+    type="button"
+    id="grid-view"
+    class="active"
+    aria-label="Grid View">
 
                             ⊞
 
                         </button>
 
                         <button
-                            id="list-view">
+    type="button"
+    id="list-view"
+    aria-label="List View">
 
                             ☰
 
@@ -310,11 +318,10 @@
 
 
             <div
-                id="events-list"
-                class="events-grid">
-
-            </div>
-
+    id="events-list"
+    class="events-grid"
+    aria-live="polite">
+</div>
         </div>
 
     </section>
