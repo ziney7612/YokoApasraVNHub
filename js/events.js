@@ -353,10 +353,13 @@ function renderEvents() {
 
     <div class="event-thumb">
 
-        <img
-            src="../assets/events/${item.folder}/${item.cover}.${item.format}"
-            alt="${item.title}">
+    <span class="bubble b1"></span>
+    <span class="bubble b2"></span>
 
+    <img
+        src="../assets/events/${item.folder}/${item.cover}.${item.format}"
+        alt="${item.title}">
+        
         <div class="event-date-badge">
 
             <strong>
