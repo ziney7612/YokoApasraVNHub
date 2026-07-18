@@ -41,9 +41,29 @@ document.addEventListener(
             );
 
         const download =
-            document.getElementById(
-                "lightbox-download"
-            );
+    document.getElementById(
+        "lightbox-download"
+    );
+
+
+/* ==================================
+   ADD DOWNLOAD BUBBLES
+================================== */
+
+if (download) {
+
+    download.insertAdjacentHTML(
+
+        "afterbegin",
+
+        `
+        <span class="bubble"></span>
+        <span class="bubble"></span>
+        <span class="bubble"></span>
+        `
+    );
+
+}
 
         let gallery = [];
         let current = 0;
