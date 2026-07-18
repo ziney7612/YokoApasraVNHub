@@ -15,42 +15,9 @@
 }
 
 
-/* ======================================
-   BACK LINK
-====================================== */
-
-.back-link{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    margin-bottom:45px;
-
-    color:#d97da4;
-
-    font-weight:600;
-
-    text-decoration:none;
-
-    transition:.3s;
-
-}
-
-.back-link:hover{
-
-    color:#c85a8c;
-
-    transform:translateX(-5px);
-
-}
-
-
-/* ======================================
+/* ======================================================
    HERO
-====================================== */
+====================================================== */
 
 .exclusive-hero{
 
@@ -58,30 +25,33 @@
 
     grid-template-columns:500px 1fr;
 
-    gap:70px;
-
     align-items:center;
+
+    gap:70px;
 
     margin-bottom:90px;
 
 }
 
 
-/* ======================================
+/* ======================================================
    POSTER
-====================================== */
+====================================================== */
 
 .exclusive-poster{
 
     position:relative;
 
+    animation:
+        fadeUp .8s ease both;
+
 }
 
 .exclusive-poster img{
 
-    width:100%;
-
     display:block;
+
+    width:100%;
 
     border-radius:28px;
 
@@ -89,13 +59,14 @@
 
         0 20px 60px rgba(0,0,0,.12);
 
-    transition:.35s;
+    transition:var(--transition);
 
 }
 
 .exclusive-poster img:hover{
 
-    transform:translateY(-8px);
+    transform:
+        translateY(-8px);
 
     box-shadow:
 
@@ -104,9 +75,9 @@
 }
 
 
-/* ======================================
+/* ======================================================
    INFO
-====================================== */
+====================================================== */
 
 .exclusive-info{
 
@@ -116,75 +87,51 @@
 
     justify-content:center;
 
-}
-
-.exclusive-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    width:max-content;
-
-    padding:8px 18px;
-
-    border-radius:999px;
-
-    background:#fff0f6;
-
-    color:#d86b98;
-
-    font-size:.8rem;
-
-    font-weight:700;
-
-    letter-spacing:.08em;
-
-    text-transform:uppercase;
-
-    margin-bottom:24px;
+    animation:
+        fadeUp .8s .15s ease both;
 
 }
+
+
+/* ======================================================
+   TITLE
+====================================================== */
 
 .exclusive-title{
 
-    font-family:"Playfair Display",serif;
+    margin:0 0 16px;
+
+    font-family:var(--font-heading);
 
     font-size:3.3rem;
 
     line-height:1.15;
 
-    color:#262626;
-
-    margin-bottom:16px;
+    color:var(--text-dark);
 
 }
 
 .exclusive-subtitle{
 
+    margin:0 0 42px;
+
     font-size:1.2rem;
 
-    line-height:0.5;
+    line-height:1.7;
 
-    color:#7a7a7a;
-
-    margin-bottom:42px;
+    color:var(--text-light);
 
 }
 
-/* ======================================
+/* ======================================================
    META
-====================================== */
+====================================================== */
 
 .exclusive-meta{
 
-    display:flex;
+    display:grid;
 
-    flex-direction:column;
-
-    gap:20px;
+    gap:18px;
 
     margin-bottom:40px;
 
@@ -196,20 +143,19 @@
 
     align-items:flex-start;
 
-    gap:16px;
+    gap:18px;
 
-   text-align:left;
+    padding:18px 22px;
+
+    border-radius:var(--radius-lg);
+
+    background:var(--surface);
+
+    box-shadow:var(--shadow-soft);
+
 }
 
 .meta-icon{
-
-    width:52px;
-
-    height:52px;
-
-    border-radius:50%;
-
-    background:#fff4f8;
 
     display:flex;
 
@@ -217,13 +163,19 @@
 
     justify-content:center;
 
+    width:48px;
+
+    height:48px;
+
     flex-shrink:0;
 
-    font-size:1.15rem;
+    border-radius:50%;
 
-    box-shadow:
+    background:
 
-        0 8px 20px rgba(255,190,215,.22);
+        rgba(255,219,232,.45);
+
+    font-size:1.25rem;
 
 }
 
@@ -233,11 +185,11 @@
 
     margin-bottom:4px;
 
-    font-size:.92rem;
+    color:var(--text-dark);
 
-    color:#333;
+    font-size:1rem;
 
-    font-weight:600;
+    font-weight:700;
 
 }
 
@@ -245,135 +197,31 @@
 
     margin:0;
 
-    color:#777;
+    color:var(--text-light);
 
     line-height:1.7;
 
-    font-size:.96rem;
-
 }
 
 
-/* ======================================
-   DOWNLOAD BUTTON
-====================================== */
+/* ======================================================
+   DOWNLOAD
+====================================================== */
 
 .download-album{
 
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:10px;
-
-    width:max-content;
-
-    padding:16px 34px;
-
-    border-radius:999px;
-
-    background:linear-gradient(
-        135deg,
-        #ffd9e8,
-        #ffc7de
-    );
-
-    color:#5f4753;
-
-    text-decoration:none;
-
-    font-weight:700;
-
-    letter-spacing:.02em;
-
-    box-shadow:
-
-        0 12px 30px rgba(255,184,208,.35);
-
-    transition:
-        transform .3s,
-        box-shadow .3s,
-        background .3s;
-
-}
-
-.download-album:hover{
-
-    transform:translateY(-3px);
-
-    background:linear-gradient(
-        135deg,
-        #ffd2e4,
-        #ffbdd8
-    );
-
-    box-shadow:
-
-        0 18px 40px rgba(255,184,208,.45);
-
-}
-
-.download-album:active{
-
-    transform:translateY(0);
+    align-self:flex-start;
 
 }
 
 
-/* ======================================
-   DIVIDER
-====================================== */
-
-.gallery-divider{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:24px;
-
-    margin-bottom:50px;
-
-}
-
-.gallery-divider span{
-
-    flex:1;
-
-    height:1px;
-
-    background:linear-gradient(
-        to right,
-        transparent,
-        #ead8e2,
-        transparent
-    );
-
-}
-
-.gallery-divider h2{
-
-    font-family:"Playfair Display",serif;
-
-    font-size:2rem;
-
-    color:#444;
-
-    white-space:nowrap;
-
-    margin:0;
-
-}
-
-/* ======================================
+/* ======================================================
    GALLERY
-====================================== */
+====================================================== */
 
 .exclusive-gallery{
 
-    margin-bottom:90px;
+    margin-top:20px;
 
 }
 
@@ -382,428 +230,292 @@
     display:grid;
 
     grid-template-columns:
-        repeat(auto-fill,minmax(260px,1fr));
 
-    gap:24px;
+        repeat(
+            auto-fill,
+            minmax(260px,1fr)
+        );
+
+    gap:22px;
 
 }
 
-.exclusive-gallery .gallery img{
-
-    width:100%;
+.exclusive-gallery .lightbox-trigger{
 
     display:block;
+
+    overflow:hidden;
 
     border-radius:22px;
 
-    cursor:pointer;
+    background:var(--surface);
+
+    box-shadow:var(--shadow-soft);
+
+    transition:var(--transition);
+
+}
+
+.exclusive-gallery .lightbox-trigger:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-large);
+
+}
+
+.exclusive-gallery img{
+
+    display:block;
+
+    width:100%;
+
+    aspect-ratio:3 / 2;
+
+    object-fit:cover;
 
     transition:
-        transform .35s,
-        box-shadow .35s;
 
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
+        transform .45s ease;
 
 }
 
-.exclusive-gallery .gallery img:hover{
+.exclusive-gallery .lightbox-trigger:hover img{
 
-    transform:
-        translateY(-6px)
-        scale(1.02);
-
-    box-shadow:
-        0 22px 45px rgba(0,0,0,.16);
+    transform:scale(1.05);
 
 }
 
-
-/* ======================================
-   EMPTY GALLERY
-====================================== */
-
-.empty{
-
-    grid-column:1/-1;
-
-    max-width:720px;
-
-    margin:20px auto;
-
-    padding:70px 40px;
-
-    text-align:center;
-
-    border:2px dashed #ffd6e4;
-
-    border-radius:28px;
-
-    background:linear-gradient(
-        180deg,
-        #fffefe 0%,
-        #fff8fb 100%
-    );
-
-    box-shadow:
-        0 12px 40px rgba(255,193,218,.12);
-
-}
-
-.empty h3{
-
-    margin:0 0 18px;
-
-    font-size:1.8rem;
-
-    font-weight:700;
-
-    color:#d77ea5;
-
-    letter-spacing:.02em;
-
-}
-
-.empty p{
-
-    margin:0;
-
-    font-size:1rem;
-
-    line-height:1.9;
-
-    color:#777;
-
-}
-
-.empty small{
-
-    display:block;
-
-    margin-top:18px;
-
-    font-size:.95rem;
-
-    color:#999;
-
-    font-style:italic;
-
-    letter-spacing:.02em;
-
-}
-
-.empty::before{
-
-    content:"☾";
-
-    display:block;
-
-    font-size:2.6rem;
-
-    margin-bottom:18px;
-
-    color:#f3b8cf;
-
-}
-
-@media(max-width:768px){
-
-    .empty{
-
-        padding:55px 25px;
-
-    }
-
-    .empty h3{
-
-        font-size:1.5rem;
-
-    }
-
-    .empty p{
-
-        font-size:.95rem;
-
-    }
-
-}
-
-/* ======================================
-   FADE IN
-====================================== */
-
-.exclusive-poster{
-
-    animation:
-        fadeUp .8s ease both;
-
-}
-
-.exclusive-info{
-
-    animation:
-        fadeUp .8s .15s ease both;
-
-}
-
-.exclusive-gallery{
-
-    animation:
-        fadeUp .8s .3s ease both;
-
-}
-
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(25px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-/* ======================================
+/* ======================================================
    RESPONSIVE
-====================================== */
+====================================================== */
 
-@media (max-width:992px){
+@media (max-width:1100px){
 
     .exclusive-hero{
-        grid-template-columns:1fr;
-        gap:45px;
-        margin-bottom:70px;
-    }
 
-    .exclusive-poster{
-        max-width:480px;
-        margin:auto;
-    }
+        grid-template-columns:420px 1fr;
 
-    .exclusive-info{
-        align-items:center;
-        text-align:center;
+        gap:50px;
+
     }
 
     .exclusive-title{
+
         font-size:2.8rem;
+
     }
 
-    .exclusive-subtitle{
-        max-width:650px;
-    }
-
-    .exclusive-meta{
-        width:100%;
-        max-width:560px;
-    }
-
-    /* location không căn giữa */
-
-    .meta-item{
-        text-align:left;
-    }
-
-    .download-album{
-        width:100%;
-        max-width:420px;
-    }
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+@media (max-width:900px){
+
+    .exclusive-hero{
+
+        grid-template-columns:1fr;
+
+        gap:40px;
+
+        text-align:center;
+
+    }
+
+    .exclusive-poster{
+
+        max-width:520px;
+
+        margin:0 auto;
+
+    }
+
+    .exclusive-info{
+
+        align-items:center;
+
+    }
+
+    .exclusive-title{
+
+        font-size:2.5rem;
+
+    }
+
+    .exclusive-subtitle{
+
+        max-width:680px;
+
+    }
+
+    .exclusive-meta{
+
+        width:100%;
+
+        max-width:560px;
+
+    }
+
+    .download-album{
+
+        width:100%;
+
+        max-width:360px;
+
+        justify-content:center;
+
+    }
+
+}
+
 
 @media (max-width:768px){
 
     .exclusive-detail-page{
-        padding:35px 0 70px;
-    }
 
-    .back-link{
-        margin-bottom:35px;
-        font-size:.92rem;
+        padding:50px 0 80px;
+
     }
 
     .exclusive-hero{
-        gap:35px;
-        margin-bottom:60px;
-    }
 
-    .exclusive-poster{
-        max-width:360px;
+        margin-bottom:70px;
+
+        gap:34px;
+
     }
 
     .exclusive-title{
-        font-size:2.2rem;
-        line-height:1.2;
+
+        font-size:2.1rem;
+
     }
 
     .exclusive-subtitle{
-        font-size:.96rem;
-        margin-bottom:35px;
-    }
 
-    .exclusive-meta{
-        gap:18px;
+        font-size:1rem;
+
+        margin-bottom:32px;
+
     }
 
     .meta-item{
-        gap:14px;
-        align-items:flex-start;
-        text-align:left;
+
+        padding:16px 18px;
+
     }
 
     .meta-icon{
-        width:48px;
-        height:48px;
-        font-size:1rem;
-    }
 
-    .download-album{
-        padding:15px 26px;
-        font-size:.95rem;
-    }
+        width:42px;
 
-    .gallery-divider{
-        gap:16px;
-        margin-bottom:35px;
-    }
+        height:42px;
 
-    .gallery-divider h2{
-        font-size:1.45rem;
+        font-size:1.05rem;
+
     }
 
     .exclusive-gallery .gallery{
-        grid-template-columns:repeat(2,1fr);
-        gap:16px;
+
+        grid-template-columns:
+
+            repeat(2,1fr);
+
+        gap:14px;
+
     }
 
-    .exclusive-gallery .gallery img{
-        border-radius:18px;
-    }
 }
 
 
-/* =========================
-   SMALL PHONE
-========================= */
-
-@media (max-width:576px){
+@media (max-width:480px){
 
     .exclusive-detail-page{
-        padding:30px 0 60px;
-    }
 
-    .exclusive-poster{
-        max-width:300px;
+        padding:40px 0 70px;
+
     }
 
     .exclusive-title{
-        font-size:1.9rem;
+
+        font-size:1.8rem;
+
     }
 
     .exclusive-subtitle{
-        font-size:.9rem;
-        line-height:1.8;
-    }
 
-    .exclusive-badge{
-        font-size:.72rem;
-        padding:7px 16px;
-    }
-
-    .meta-item{
-        gap:12px;
-    }
-
-    .meta-icon{
-        width:44px;
-        height:44px;
         font-size:.95rem;
-    }
 
-    .meta-item strong{
-        font-size:.85rem;
-    }
-
-    .meta-item p{
-        font-size:.9rem;
-    }
-
-    .download-album{
-        width:100%;
-        max-width:none;
-        padding:15px 20px;
-        font-size:.92rem;
-    }
-
-    .gallery-divider h2{
-        font-size:1.25rem;
-    }
-
-    .exclusive-gallery .gallery{
-        gap:14px;
-    }
-}
-
-
-/* =========================
-   EXTRA SMALL
-========================= */
-
-@media (max-width:430px){
-
-    .exclusive-title{
-        font-size:1.65rem;
-    }
-
-    .exclusive-subtitle{
-        font-size:.86rem;
-    }
-
-    .exclusive-poster{
-        max-width:260px;
-    }
-
-    .exclusive-gallery .gallery{
-        grid-template-columns:1fr;
-    }
-
-    .gallery-divider{
-        margin-bottom:28px;
-    }
-
-    .gallery-divider h2{
-        font-size:1.1rem;
     }
 
     .meta-item{
-        align-items:flex-start;
+
+        gap:14px;
+
     }
 
     .meta-icon{
-        width:42px;
-        height:42px;
+
+        width:38px;
+
+        height:38px;
+
+        font-size:1rem;
+
+    }
+
+    .exclusive-gallery .gallery{
+
+        gap:10px;
+
     }
 
     .download-album{
-        font-size:.88rem;
-        border-radius:22px;
+
+        width:100%;
+
+        max-width:none;
+
     }
+
 }
+
+
+/* ======================================================
+   ACCESSIBILITY
+====================================================== */
+
+.exclusive-poster img{
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
 }
+
+
+/* ======================================================
+   REDUCED MOTION
+====================================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    .exclusive-poster,
+
+    .exclusive-info,
+
+    .exclusive-poster img,
+
+    .exclusive-gallery img{
+
+        animation:none !important;
+
+        transition:none !important;
+
+    }
+
+}
+
+
+/* ======================================================
+   END
+====================================================== */
