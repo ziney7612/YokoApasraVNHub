@@ -314,6 +314,14 @@
     line-height:1.3;
 
     color:var(--text-dark);
+
+    min-height:95px;
+
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+
+    overflow:hidden;
 }
 
 .event-meta{
@@ -322,6 +330,8 @@
     color:var(--text-light);
 
     line-height:1.7;
+
+    margin-top:auto;
 }
 
 .event-photos{
@@ -347,8 +357,12 @@
 
 .download-album{
     width:fit-content;
-    align-self:flex-start;
-    margin-top:24px;
+
+    min-width:unset;
+
+    margin:28px auto 0;
+
+    align-self:center;
 }
 
 
