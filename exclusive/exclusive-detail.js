@@ -74,7 +74,7 @@ document.addEventListener(
 
 
         /* ======================================================
-           GET ID
+           GET ALBUM ID
         ====================================================== */
 
         const params =
@@ -124,7 +124,9 @@ document.addEventListener(
             ]);
 
             if (
+
                 !albumResponse.ok
+
             ) {
 
                 throw new Error(
@@ -137,7 +139,9 @@ document.addEventListener(
                 await albumResponse.json();
 
             if (
+
                 downloadResponse.ok
+
             ) {
 
                 downloadData =
@@ -196,13 +200,14 @@ document.addEventListener(
 
         }
 
+
         document.title =
 
             `${album.title} | Yoko Apasra VNHub`;
 
 
         /* ======================================================
-           PATH
+           FILE PATH
         ====================================================== */
 
         const extension =
@@ -224,6 +229,15 @@ document.addEventListener(
         posterElement.alt =
             album.title;
 
+        posterElement.onload =
+            () => {
+
+                posterElement.classList.add(
+                    "loaded"
+                );
+
+            };
+
         posterLink.href =
             posterPath;
 
@@ -232,11 +246,7 @@ document.addEventListener(
         );
 
         posterLink.dataset.filename =
-
             `${album.folder}-poster.${extension}`;
-
-        posterLink.dataset.caption =
-            album.title;
 
 
         /* ======================================================
@@ -266,16 +276,21 @@ document.addEventListener(
                 <div>
 
                     <strong>
+
                         Date
+
                     </strong>
 
                     <p>
+
                         ${album.date}
+
                     </p>
 
                 </div>
 
             </div>
+
 
             <div class="meta-item">
 
@@ -286,16 +301,21 @@ document.addEventListener(
                 <div>
 
                     <strong>
+
                         Location
+
                     </strong>
 
                     <p>
+
                         ${album.location}
+
                     </p>
 
                 </div>
 
             </div>
+
 
             <div class="meta-item">
 
@@ -306,12 +326,16 @@ document.addEventListener(
                 <div>
 
                     <strong>
+
                         Collection
+
                     </strong>
 
                     <p>
+
                         ${album.photos}
                         Photo${album.photos > 1 ? "s" : ""}
+
                     </p>
 
                 </div>
@@ -320,8 +344,9 @@ document.addEventListener(
 
             `;
 
-           /* ======================================================
-           DOWNLOAD BUTTON
+
+        /* ======================================================
+           DOWNLOAD
         ====================================================== */
 
         const downloadLink =
@@ -360,101 +385,100 @@ document.addEventListener(
 
         galleryElement.innerHTML = "";
 
-
-        /* ======================================================
+           /* ======================================================
            RENDER GALLERY
         ====================================================== */
 
-        for (
+        if (album.photos > 0) {
 
-            let i = 1;
+            for (
 
-            i <= album.photos;
+                let i = 1;
 
-            i++
+                i <= album.photos;
 
-        ) {
+                i++
 
-            const fileNumber =
+            ) {
 
-                String(i).padStart(
-                    3,
-                    "0"
+                const fileNumber =
+
+                    String(i).padStart(
+                        3,
+                        "0"
+                    );
+
+                const imagePath =
+
+                    `../assets/exclusive/${album.folder}/${fileNumber}.${extension}`;
+
+                const link =
+
+                    document.createElement(
+                        "a"
+                    );
+
+                link.href =
+                    imagePath;
+
+                link.className =
+                    "lightbox-trigger";
+
+                link.dataset.filename =
+
+                    `${album.folder}-${fileNumber}.${extension}`;
+
+                const image =
+
+                    document.createElement(
+                        "img"
+                    );
+
+                image.src =
+                    imagePath;
+
+                image.alt =
+
+                    `${album.title} ${fileNumber}`;
+
+                image.loading =
+                    "lazy";
+
+                image.decoding =
+                    "async";
+
+                image.draggable =
+                    false;
+
+                image.onload =
+                    () => {
+
+                        image.classList.add(
+                            "loaded"
+                        );
+
+                    };
+
+                image.onerror =
+                    () => {
+
+                        console.warn(
+                            `Missing image: ${imagePath}`
+                        );
+
+                        link.remove();
+
+                    };
+
+                link.appendChild(
+                    image
                 );
 
-            const imagePath =
-
-                `../assets/exclusive/${album.folder}/${fileNumber}.${extension}`;
-
-            const link =
-
-                document.createElement(
-                    "a"
+                galleryElement.appendChild(
+                    link
                 );
 
-            link.href =
-                imagePath;
-
-            link.className =
-                "lightbox-trigger";
-
-            link.dataset.filename =
-
-                `${album.folder}-${fileNumber}.${extension}`;
-
-            link.dataset.caption =
-
-                `${album.title} • ${fileNumber}`;
-
-            const image =
-
-                document.createElement(
-                    "img"
-                );
-
-            image.src =
-                imagePath;
-
-            image.alt =
-
-                `${album.title} ${fileNumber}`;
-
-            image.loading =
-                "lazy";
-
-            image.decoding =
-                "async";
-
-            image.draggable =
-                false;
-
-            image.onload = () => {
-
-                image.classList.add(
-                    "loaded"
-                );
-
-            };
-
-            image.onerror = () => {
-
-                console.warn(
-
-                    `Missing image: ${imagePath}`
-
-                );
-
-                link.remove();
-
-            };
-
-            link.appendChild(
-                image
-            );
-
-            galleryElement.appendChild(
-                link
-            );
+            }
 
         }
 
@@ -494,7 +518,12 @@ document.addEventListener(
         );
 
         console.log(
-            "Photos:",
+            "Poster:",
+            posterPath
+        );
+
+        console.log(
+            "Gallery:",
             album.photos
         );
 
