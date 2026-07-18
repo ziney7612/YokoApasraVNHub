@@ -379,110 +379,140 @@ document.addEventListener(
         }
 
 
-        /* ======================================================
-           CLEAR GALLERY
-        ====================================================== */
+/* ======================================================
+   CLEAR GALLERY
+====================================================== */
 
-        galleryElement.innerHTML = "";
+galleryElement.innerHTML = "";
 
-           /* ======================================================
-           RENDER GALLERY
-        ====================================================== */
+/* ======================================================
+   EMPTY GALLERY
+====================================================== */
 
-        if (album.photos > 0) {
+if (album.photos === 0) {
 
-            for (
+galleryElement.innerHTML = `
 
-                let i = 1;
+    <div class="empty">
 
-                i <= album.photos;
+        <h3>
 
-                i++
+            📸 Gallery Coming Soon
 
-            ) {
+        </h3>
 
-                const fileNumber =
+        <p>
 
-                    String(i).padStart(
-                        3,
-                        "0"
-                    );
+            Photos from this event
+            will be uploaded soon.
 
-                const imagePath =
+        </p>
 
-                    `../assets/exclusive/${album.folder}/${fileNumber}.${extension}`;
+        <small>
 
-                const link =
+            Please come back later 🤍
 
-                    document.createElement(
-                        "a"
-                    );
+        </small>
 
-                link.href =
-                    imagePath;
+    </div>
 
-                link.className =
-                    "lightbox-trigger";
+`;
 
-                link.dataset.filename =
+}
+else {
 
-                    `${album.folder}-${fileNumber}.${extension}`;
+    /* ======================================================
+       RENDER GALLERY
+    ====================================================== */
 
-                const image =
+    for (
 
-                    document.createElement(
-                        "img"
-                    );
+        let i = 1;
 
-                image.src =
-                    imagePath;
+        i <= album.photos;
 
-                image.alt =
+        i++
 
-                    `${album.title} ${fileNumber}`;
+    ) {
 
-                image.loading =
-                    "lazy";
+        const fileNumber =
 
-                image.decoding =
-                    "async";
+            String(i).padStart(
+                3,
+                "0"
+            );
 
-                image.draggable =
-                    false;
+        const imagePath =
 
-                image.onload =
-                    () => {
+            `../assets/exclusive/${album.folder}/${fileNumber}.${extension}`;
 
-                        image.classList.add(
-                            "loaded"
-                        );
+        const link =
 
-                    };
+            document.createElement(
+                "a"
+            );
 
-                image.onerror =
-                    () => {
+        link.href =
+            imagePath;
 
-                        console.warn(
-                            `Missing image: ${imagePath}`
-                        );
+        link.className =
+            "lightbox-trigger";
 
-                        link.remove();
+        link.dataset.filename =
 
-                    };
+            `${album.folder}-${fileNumber}.${extension}`;
 
-                link.appendChild(
-                    image
-                );
+        const image =
 
-                galleryElement.appendChild(
-                    link
-                );
+            document.createElement(
+                "img"
+            );
 
-            }
+        image.src =
+            imagePath;
 
-        }
+        image.alt =
 
+            `${album.title} ${fileNumber}`;
 
+        image.loading =
+            "lazy";
+
+        image.decoding =
+            "async";
+
+        image.draggable =
+            false;
+
+        image.onload = () => {
+
+            image.classList.add(
+                "loaded"
+            );
+
+        };
+
+        image.onerror = () => {
+
+            console.warn(
+                `Missing image: ${imagePath}`
+            );
+
+            link.remove();
+
+        };
+
+        link.appendChild(
+            image
+        );
+
+        galleryElement.appendChild(
+            link
+        );
+
+    }
+
+} 
         /* ======================================================
            REFRESH LIGHTBOX
         ====================================================== */
