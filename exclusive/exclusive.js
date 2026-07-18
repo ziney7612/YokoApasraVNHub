@@ -205,7 +205,7 @@ return `
                         →
                     </span>
 
-                    <span class="moon-icon">
+                    <span class="moon">
                         ☾
                     </span>
             </a>
