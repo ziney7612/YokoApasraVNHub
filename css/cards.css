@@ -1,102 +1,76 @@
-/* ==================================================
+/* =====================================================
    EVENT CARD
-================================================== */
+===================================================== */
 
 .event-card{
     position:relative;
-
-    display:block;
     overflow:hidden;
 
+    display:flex;
+    flex-direction:column;
+
     background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.92),
-            rgba(255,248,252,.88)
-        );
+        rgba(255,255,255,.82);
+
+    backdrop-filter:blur(20px);
 
     border:
         1px solid
-        rgba(255,210,230,.65);
+        rgba(255,190,220,.55);
 
     border-radius:38px;
 
     text-decoration:none;
-    color:inherit;
-
-    backdrop-filter:blur(28px);
 
     box-shadow:
-        0 18px 45px rgba(255,185,215,.12),
-        inset 0 1px 0 rgba(255,255,255,.9);
+        0 20px 45px rgba(255,190,220,.15),
+        0 0 35px rgba(255,220,235,.25);
 
-    transition:.45s ease;
+    transition:.45s;
 }
 
-/* moon glow */
+.event-card:hover{
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 30px 60px rgba(255,190,220,.22),
+        0 0 45px rgba(255,220,235,.35);
+}
+
+/* glow */
 
 .event-card::before{
     content:"";
 
     position:absolute;
+    inset:-2px;
 
-    width:180px;
-    height:180px;
-
-    top:-70px;
-    right:-70px;
-
-    border-radius:50%;
+    border-radius:40px;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(255,248,200,.55),
-            transparent 70%
+        linear-gradient(
+            135deg,
+            rgba(255,200,230,.45),
+            rgba(255,255,255,.25)
         );
 
-    opacity:.8;
+    filter:blur(25px);
 
-    pointer-events:none;
+    z-index:-1;
 }
 
-/* stars */
 
-.event-card::after{
-    content:"✦";
-
-    position:absolute;
-
-    top:28px;
-    right:30px;
-
-    font-size:1rem;
-
-    color:#ffd56f;
-
-    opacity:.8;
-}
-
-/* hover */
-
-.event-card:hover{
-    transform:
-        translateY(-12px);
-
-    box-shadow:
-        0 30px 70px rgba(255,170,210,.18);
-}
-
-/* ==================================================
-   THUMB
-================================================== */
+/* =====================================================
+   IMAGE
+===================================================== */
 
 .event-thumb{
     position:relative;
-
     overflow:hidden;
 
-    height:280px;
+    height:270px;
 }
 
 .event-thumb img{
@@ -105,16 +79,20 @@
 
     object-fit:cover;
 
-    transition:.8s ease;
+    transition:1s;
 }
 
-.event-card:hover .event-thumb img{
-    transform:scale(1.08);
+.event-card:hover img{
+    transform:scale(1.05);
 }
 
-/* soft gradient */
+
+/* =====================================================
+   PINK OVERLAY
+===================================================== */
 
 .event-thumb::after{
+
     content:"";
 
     position:absolute;
@@ -124,63 +102,46 @@
 
         linear-gradient(
             to top,
-            rgba(40,25,55,.35),
-            transparent 45%
+            rgba(255,185,220,.72),
+            rgba(255,185,220,.22) 35%,
+            transparent 70%
         );
+
+    pointer-events:none;
 }
 
-/* ==================================================
-   TAG
-================================================== */
 
-.event-tag{
-    position:absolute;
-
-    top:20px;
-    right:20px;
-
-    padding:10px 18px;
-
-    border-radius:999px;
-
-    background:
-        rgba(255,255,255,.78);
-
-    backdrop-filter:blur(15px);
-
-    color:#ff74b5;
-
-    font-size:.75rem;
-    font-weight:700;
-
-    z-index:3;
-}
-
-/* ==================================================
+/* =====================================================
    DATE BADGE
-================================================== */
+===================================================== */
 
 .event-date-badge{
+
     position:absolute;
 
-    left:22px;
-    bottom:22px;
+    top:18px;
+    left:18px;
 
-    width:88px;
+    width:95px;
 
-    padding:14px;
-
-    text-align:center;
+    padding:18px 10px;
 
     border-radius:28px;
 
-    background:
-        rgba(255,255,255,.82);
+    text-align:center;
 
-    backdrop-filter:blur(20px);
+    background:
+        rgba(255,255,255,.18);
+
+    backdrop-filter:
+        blur(20px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
 
     box-shadow:
-        0 12px 35px rgba(0,0,0,.08);
+        0 12px 35px rgba(0,0,0,.12);
 
     z-index:3;
 }
@@ -188,171 +149,221 @@
 .event-date-badge strong{
     display:block;
 
-    font-size:1.6rem;
-    font-weight:800;
-
-    color:#2f3555;
+    font-size:2rem;
+    color:white;
 }
 
 .event-date-badge span{
+
     display:block;
 
-    color:#ff74b5;
+    color:
+        rgba(255,255,255,.9);
 
-    text-transform:uppercase;
-    font-size:.8rem;
+    margin-top:6px;
+
+    font-weight:600;
 }
 
 .event-date-badge small{
+
     display:block;
 
-    margin-top:3px;
+    margin-top:10px;
 
-    color:#9ba0b2;
+    color:
+        rgba(255,255,255,.75);
 }
 
-/* ==================================================
+
+/* =====================================================
    INFO
-================================================== */
+===================================================== */
 
 .event-info{
-    position:relative;
-
-    padding:28px;
+    padding:30px;
 }
 
 .event-info h2{
-    font-size:1.32rem;
-    line-height:1.45;
 
-    color:#2f3555;
+    font-size:2rem;
+    line-height:1.25;
 
-    margin-bottom:16px;
+    color:#34385c;
 
-    min-height:70px;
+    margin-bottom:22px;
 }
 
 .event-date{
-    color:#8f95a9;
-    margin-bottom:10px;
-}
 
-.event-location{
-    color:#b0a4d8;
+    color:#8f93ab;
 
     margin-bottom:18px;
 
-    font-size:.92rem;
+    font-size:1.05rem;
 }
 
-/* photos */
-
 .event-photos{
-    display:inline-flex;
-    align-items:center;
 
-    gap:8px;
+    margin-top:35px;
 
-    padding:10px 16px;
-
-    border-radius:999px;
-
-    background:
-        rgba(255,240,247,.85);
-
-    color:#ff74b5;
+    color:#ff69ab;
 
     font-weight:700;
 
-    transition:.35s;
+    font-size:1.15rem;
+
+    transition:.3s;
 }
 
 .event-card:hover .event-photos{
-    transform:translateX(6px);
+
+    transform:
+        translateX(8px);
 }
 
-/* ==================================================
-   FLOATING BUBBLES INSIDE CARD
-================================================== */
 
-.event-info::before,
-.event-info::after{
+/* =====================================================
+   FLOATING BUBBLES
+===================================================== */
+
+.event-card::after{
+
     content:"";
 
     position:absolute;
 
+    width:90px;
+    height:90px;
+
+    right:-20px;
+    bottom:120px;
+
     border-radius:50%;
 
-    pointer-events:none;
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.8),
+            rgba(255,220,235,.25)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.4);
+
+    filter:blur(2px);
+
+    opacity:.8;
+
+    animation:
+        cardBubble
+        6s ease-in-out infinite;
 }
 
-.event-info::before{
-    width:16px;
-    height:16px;
 
-    top:25px;
+/* extra bubbles */
+
+.event-thumb::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:50px;
+    height:50px;
+
     right:35px;
+    top:35px;
+
+    border-radius:50%;
 
     background:
-        rgba(255,210,230,.45);
+        rgba(255,255,255,.35);
+
+    backdrop-filter:blur(10px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.45);
+
+    z-index:2;
+
+    animation:
+        cardBubble2
+        5s ease-in-out infinite;
 }
 
-.event-info::after{
-    width:8px;
-    height:8px;
 
-    top:55px;
-    right:60px;
+/* =====================================================
+   ANIMATION
+===================================================== */
 
-    background:
-        rgba(255,220,240,.7);
+@keyframes cardBubble{
+
+    0%{
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translateY(-18px)
+            scale(1.08);
+    }
+
+    100%{
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
-/* ==================================================
+@keyframes cardBubble2{
+
+    0%{
+        transform:
+            translateY(0);
+    }
+
+    50%{
+        transform:
+            translateY(-12px);
+    }
+
+    100%{
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
    LIST VIEW
-================================================== */
+===================================================== */
 
 .events-grid.list-view .event-card{
-    display:flex;
+
+    flex-direction:row;
+
     align-items:center;
+
+    padding:20px;
 }
 
 .events-grid.list-view .event-thumb{
-    width:360px;
-    height:240px;
+
+    width:320px;
+    height:210px;
+
+    border-radius:30px;
 
     flex-shrink:0;
 }
 
 .events-grid.list-view .event-info{
+
     flex:1;
-}
-
-.events-grid.list-view .event-info h2{
-    min-height:auto;
-    font-size:1.8rem;
-}
-
-/* ==================================================
-   MOBILE
-================================================== */
-
-@media(max-width:900px){
-
-    .events-grid.list-view .event-card{
-        flex-direction:column;
-    }
-
-    .events-grid.list-view .event-thumb{
-        width:100%;
-    }
-
-    .event-thumb{
-        height:240px;
-    }
-
-    .event-info h2{
-        min-height:auto;
-        font-size:1.15rem;
-    }
 }
