@@ -185,7 +185,7 @@ function renderLatest() {
 
                 <a
                     href="detail.html?id=${item.id}"
-                    class="latest-btn">
+                    class="btn-primary">
 
                     <span>
                         View Gallery
