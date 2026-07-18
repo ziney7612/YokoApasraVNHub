@@ -7,92 +7,31 @@
 
     display:block;
 
-    background:
-        rgba(255,255,255,.62);
-
-    border:
-        1px solid rgba(255,255,255,.45);
-
-    backdrop-filter:
-        blur(28px);
-
-    border-radius:34px;
-
     overflow:hidden;
 
     text-decoration:none;
     color:inherit;
 
-    box-shadow:
-        0 18px 55px rgba(255,140,190,.08);
-
-    transition:.45s ease;
-}
-
-/* Glow border */
-
-.event-card::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
     border-radius:34px;
 
-    padding:1px;
-
     background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.8),
-            rgba(255,180,220,.5),
-            rgba(255,255,255,.15)
-        );
+        rgba(255,255,255,.72);
 
-    mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+    border:
+        1px solid
+        rgba(255,255,255,.45);
 
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+    backdrop-filter:
+        blur(25px);
 
-    mask-composite:exclude;
-    -webkit-mask-composite:xor;
+    box-shadow:
+        0 20px 60px
+        rgba(255,170,210,.10);
 
-    opacity:0;
-
-    transition:.45s;
-
-    pointer-events:none;
-}
-
-/* shimmer */
-
-.event-card::after{
-    content:"";
-
-    position:absolute;
-
-    top:-100%;
-    left:-90%;
-
-    width:70%;
-    height:300%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.22),
-            transparent
-        );
-
-    transform:rotate(25deg);
-
-    transition:1s;
-
-    pointer-events:none;
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease,
+        border-color .45s ease;
 }
 
 .event-card:hover{
@@ -100,33 +39,60 @@
     transform:
         translateY(-10px);
 
+    border-color:
+        rgba(255,190,225,.65);
+
     box-shadow:
-        0 25px 80px rgba(255,140,200,.18),
-        0 0 40px rgba(255,190,225,.18);
+
+        0 30px 80px
+        rgba(255,170,210,.18),
+
+        0 0 40px
+        rgba(255,220,245,.45);
 }
 
-.event-card:hover::before{
-    opacity:1;
-}
-
-.event-card:hover::after{
-    left:180%;
-}
 
 /* ==========================================
-   THUMBNAIL
+   TOP LIGHT
+========================================== */
+
+.event-card::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.30),
+            transparent 45%
+        );
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+
+/* ==========================================
+   THUMB
 ========================================== */
 
 .event-thumb{
+
     position:relative;
 
     width:100%;
-    height:260px;
+    height:270px;
 
     overflow:hidden;
 }
 
 .event-thumb img{
+
     width:100%;
     height:100%;
 
@@ -135,86 +101,53 @@
     object-fit:cover;
     object-position:center;
 
-    transition:.7s ease;
+    transition:
+        transform .7s ease,
+        filter .7s ease;
 }
 
-.event-card:hover .event-thumb img{
-    transform:scale(1.06);
+.event-card:hover
+.event-thumb img{
+
+    transform:
+        scale(1.06);
+
+    filter:
+        brightness(1.05);
 }
 
-/* gradient overlay */
-
-.event-thumb::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    z-index:1;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(65,30,70,.55),
-            rgba(80,40,90,.15),
-            transparent
-        );
-}
-
-/* sparkle */
-
-.event-thumb::after{
-    content:"✨";
-
-    position:absolute;
-
-    right:18px;
-    bottom:16px;
-
-    z-index:2;
-
-    font-size:1rem;
-
-    opacity:.75;
-
-    animation:
-        sparkle 4s infinite;
-}
 
 /* ==========================================
-   EVENT TAG
+   MOON GLOW
 ========================================== */
 
-.event-tag{
+.moon-overlay{
+
     position:absolute;
 
-    top:20px;
-    right:20px;
+    top:-40px;
+    right:-40px;
 
-    z-index:3;
+    width:170px;
+    height:170px;
 
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-
-    padding:10px 18px;
-
-    border-radius:999px;
+    border-radius:50%;
 
     background:
-        rgba(255,235,245,.7);
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.55),
+            transparent 70%
+        );
 
-    backdrop-filter:
-        blur(15px);
+    filter:
+        blur(28px);
 
-    border:
-        1px solid rgba(255,255,255,.45);
+    pointer-events:none;
 
-    color:#ff5ea8;
-
-    font-size:.85rem;
-    font-weight:700;
+    z-index:2;
 }
+
 
 /* ==========================================
    DATE BADGE
@@ -224,99 +157,147 @@
 
     position:absolute;
 
-    top:18px;
-    left:18px;
+    top:20px;
+    left:20px;
 
-    z-index:3;
-
-    min-width:82px;
+    min-width:80px;
 
     padding:14px;
 
-    border-radius:24px;
+    border-radius:22px;
 
     text-align:center;
 
     background:
-        rgba(255,255,255,.18);
-
-    border:
-        1px solid rgba(255,255,255,.45);
+        rgba(255,255,255,.85);
 
     backdrop-filter:
-        blur(24px);
+        blur(15px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.65);
 
     box-shadow:
-        0 12px 35px rgba(0,0,0,.08);
+        0 15px 35px
+        rgba(255,180,220,.20);
+
+    z-index:3;
 }
 
 .event-date-badge strong{
 
     display:block;
 
-    font-size:2rem;
+    font-size:1.45rem;
+
     line-height:1;
 
-    color:white;
-
-    text-shadow:
-        0 3px 10px rgba(0,0,0,.15);
+    color:#2f3555;
 }
 
 .event-date-badge span{
 
-    font-size:.82rem;
+    display:block;
 
-    letter-spacing:.1em;
+    margin-top:4px;
 
-    color:#ffe5f1;
+    font-size:.8rem;
+
+    color:#9ea2b6;
+
+    text-transform:uppercase;
 }
+
+
+/* ==========================================
+   BUBBLE TAG
+========================================== */
+
+.event-tag{
+
+    position:absolute;
+
+    right:18px;
+    bottom:18px;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.82);
+
+    backdrop-filter:
+        blur(14px);
+
+    color:#ff77af;
+
+    font-size:.82rem;
+    font-weight:700;
+
+    z-index:3;
+
+    box-shadow:
+        0 12px 30px
+        rgba(255,180,220,.20);
+}
+
 
 /* ==========================================
    INFO
 ========================================== */
 
 .event-info{
+
+    position:relative;
+
     padding:26px;
+
+    z-index:2;
 }
 
 .event-info h2{
 
+    margin:0 0 16px;
+
     font-size:1.35rem;
+    font-weight:700;
 
     line-height:1.45;
 
     color:#2f3555;
 
-    margin-bottom:14px;
-
-    transition:.35s;
+    transition:
+        color .35s ease;
 }
 
-.event-card:hover .event-info h2{
-    color:#ff69ab;
+.event-card:hover
+.event-info h2{
+
+    color:#ff6ea9;
 }
 
-.event-date{
+
+.event-date,
+.event-location{
+
+    margin:0 0 10px;
 
     color:#8d91a8;
 
-    margin-bottom:12px;
-
     font-size:.95rem;
-}
-
-.event-location{
-
-    color:#9ea3b5;
-
-    margin-bottom:18px;
 
     line-height:1.7;
 }
 
+
 /* ==========================================
-   PHOTOS
+   VIEW GALLERY
 ========================================== */
 
 .event-photos{
@@ -324,36 +305,75 @@
     display:inline-flex;
 
     align-items:center;
-
     gap:10px;
 
-    color:#ff69ab;
+    margin-top:12px;
+
+    color:#ff72ab;
 
     font-weight:700;
 
-    transition:.35s;
+    transition:
+        transform .35s ease,
+        color .35s ease;
 }
 
-.event-card:hover .event-photos{
+.event-card:hover
+.event-photos{
 
     transform:
-        translateX(8px);
+        translateX(6px);
+
+    color:#ff5c9f;
 }
+
+
+/* ==========================================
+   FLOATING BUBBLES
+========================================== */
+
+.event-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    right:-50px;
+    bottom:-50px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.35),
+            transparent 70%
+        );
+
+    filter:
+        blur(20px);
+
+    pointer-events:none;
+}
+
 
 /* ==========================================
    LIST VIEW
 ========================================== */
 
-.events-grid.list-view .event-card{
+.events-grid.list-view
+.event-card{
 
     display:flex;
 
     align-items:center;
-
-    overflow:hidden;
 }
 
-.events-grid.list-view .event-thumb{
+.events-grid.list-view
+.event-thumb{
 
     width:340px;
     height:230px;
@@ -361,10 +381,87 @@
     flex-shrink:0;
 }
 
-.events-grid.list-view .event-info{
+.events-grid.list-view
+.event-info{
 
     flex:1;
 }
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media(max-width:900px){
+
+    .event-thumb{
+
+        height:240px;
+    }
+
+    .events-grid.list-view
+    .event-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .events-grid.list-view
+    .event-thumb{
+
+        width:100%;
+        height:240px;
+    }
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:560px){
+
+    .event-card{
+
+        border-radius:30px;
+    }
+
+    .event-thumb{
+
+        height:220px;
+    }
+
+    .event-info{
+
+        padding:22px;
+    }
+
+    .event-info h2{
+
+        font-size:1.18rem;
+    }
+
+    .event-date-badge{
+
+        min-width:70px;
+
+        padding:12px;
+    }
+
+    .event-date-badge strong{
+
+        font-size:1.25rem;
+    }
+
+    .event-tag{
+
+        font-size:.75rem;
+
+        padding:8px 14px;
+    }
+}
+
 
 /* ==========================================
    GALLERY GRID
@@ -375,7 +472,10 @@
     display:grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(280px,1fr));
+        repeat(
+            auto-fit,
+            minmax(280px,1fr)
+        );
 
     gap:24px;
 }
@@ -389,7 +489,8 @@
     background:white;
 
     box-shadow:
-        0 18px 45px rgba(255,170,210,.08);
+        0 18px 45px
+        rgba(255,180,220,.10);
 }
 
 .gallery-item img{
@@ -398,83 +499,12 @@
 
     display:block;
 
-    transition:.5s;
+    transition:
+        transform .5s ease;
 }
 
 .gallery-item:hover img{
 
-    transform:scale(1.05);
-}
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media(max-width:900px){
-
-    .events-grid.list-view .event-card{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-    }
-
-    .events-grid.list-view .event-thumb{
-
-        width:100%;
-        height:230px;
-    }
-
-    .event-info h2{
-
-        font-size:1.2rem;
-    }
-}
-
-@media(max-width:560px){
-
-    .event-thumb{
-        height:230px;
-    }
-
-    .event-info{
-        padding:22px;
-    }
-
-    .event-date-badge{
-
-        min-width:72px;
-
-        padding:12px;
-    }
-
-    .event-date-badge strong{
-        font-size:1.7rem;
-    }
-
-    .event-tag{
-        font-size:.78rem;
-        padding:8px 14px;
-    }
-}
-
-/* ==========================================
-   ANIMATION
-========================================== */
-
-@keyframes sparkle{
-
-    0%,100%{
-        transform:
-            translateY(0);
-
-        opacity:.55;
-    }
-
-    50%{
-        transform:
-            translateY(-8px);
-
-        opacity:1;
-    }
+    transform:
+        scale(1.05);
 }
