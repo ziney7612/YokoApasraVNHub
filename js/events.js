@@ -345,60 +345,73 @@ function renderEvents() {
             const year =
                 date.getFullYear();
 
-            return `
+        return `
 
-            <a
-                href="detail.html?id=${item.id}"
-                class="event-card">
+<a
+    href="detail.html?id=${item.id}"
+    class="event-card">
 
-                <div class="event-thumb">
+    <div class="event-thumb">
 
-                    <img
-                        src="../assets/events/${item.folder}/${item.cover}.${item.format}"
-                        alt="${item.title}">
+        <img
+            src="../assets/events/${item.folder}/${item.cover}.${item.format}"
+            alt="${item.title}">
 
-                    <div
-                        class="event-date-badge">
+        <div class="moon-overlay"></div>
 
-                        <strong>
-                            ${day}
-                        </strong>
+        <div class="event-date-badge">
 
-                        <span>
-                            ${month}
-                        </span>
+            <strong>
+                ${day}
+            </strong>
 
-                        <small>
-                            ${year}
-                        </small>
+            <span>
+                ${month}
+            </span>
 
-                    </div>
+        </div>
 
-                </div>
+        <div class="event-tag">
 
-                <div class="event-info">
+            🫧 Yoko Moment
 
-                    <h2>
-                        ${item.title}
-                    </h2>
+        </div>
 
-                    <p class="event-date">
-                        ${item.date}
-                    </p>
+    </div>
 
-                    <p class="event-photos">
 
-                        📷
-                        ${item.photos}
-                        photos
+    <div class="event-info">
 
-                    </p>
+        <h2>
 
-                </div>
+            ${item.title}
 
-            </a>
+        </h2>
 
-            `;
+        <p class="event-date">
+
+            📅 ${item.date}
+
+        </p>
+
+        <p class="event-location">
+
+            🌙 Event Archive
+
+        </p>
+
+        <div class="event-photos">
+
+            🫧 ${item.photos}
+            photos →
+
+        </div>
+
+    </div>
+
+</a>
+
+`;
 
         }).join("");
 }
