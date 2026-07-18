@@ -371,7 +371,14 @@
 }
 
 .latest-btn{
+
     margin-top:18px;
+
+    width:fit-content !important;
+
+    max-width:max-content !important;
+
+    align-self:flex-start;
 }
 
 .latest-meta{
