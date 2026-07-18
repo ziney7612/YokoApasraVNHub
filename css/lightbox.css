@@ -291,14 +291,15 @@ body.lightbox-open{
 
     border-radius:50%;
 
-    background:
-        rgba(255,255,255,.85);
+    background:rgba(255,255,255,.9);
 
     opacity:0;
 
     pointer-events:none;
-}
 
+    animation:
+        bubbleFloat 2.5s infinite;
+}
 .lightbox-download:hover .bubble{
 
     animation:
@@ -306,41 +307,45 @@ body.lightbox-open{
         2.2s infinite;
 }
 
-.lightbox-download .bubble:nth-child(3){
+.lightbox-download .bubble:nth-of-type(1){
 
-    left:15%;
-    bottom:8px;
-}
-
-.lightbox-download .bubble:nth-child(4){
-
-    left:35%;
-    bottom:6px;
-
-    animation-delay:.4s;
-}
-
-.lightbox-download .bubble:nth-child(5){
-
-    left:55%;
-    bottom:10px;
-
-    animation-delay:.8s;
-}
-
-.lightbox-download .bubble:nth-child(6){
-
-    left:72%;
+    left:12%;
     bottom:7px;
-
-    animation-delay:1.2s;
+    animation-delay:0s;
 }
 
-.lightbox-download .bubble:nth-child(7){
+.lightbox-download .bubble:nth-of-type(2){
+
+    left:28%;
+    bottom:10px;
+    animation-delay:.35s;
+}
+
+.lightbox-download .bubble:nth-of-type(3){
+
+    left:45%;
+    bottom:6px;
+    animation-delay:.7s;
+}
+
+.lightbox-download .bubble:nth-of-type(4){
+
+    left:60%;
+    bottom:8px;
+    animation-delay:1s;
+}
+
+.lightbox-download .bubble:nth-of-type(5){
+
+    left:75%;
+    bottom:6px;
+    animation-delay:1.3s;
+}
+
+.lightbox-download .bubble:nth-of-type(6){
 
     left:88%;
     bottom:9px;
-
     animation-delay:1.6s;
 }
 
@@ -352,11 +357,12 @@ body.lightbox-open{
 
         transform:
             translateY(0)
-            scale(.5);
+            scale(.3);
     }
 
-    25%{
-        opacity:.8;
+    20%{
+
+        opacity:.9;
     }
 
     100%{
@@ -364,8 +370,8 @@ body.lightbox-open{
         opacity:0;
 
         transform:
-            translateY(-28px)
-            scale(1.6);
+            translateY(-34px)
+            scale(1.8);
     }
 }
 
