@@ -9,20 +9,20 @@
 
     background:rgba(255,248,252,.88);
     backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
 
-    border-bottom:
-        1px solid rgba(255,220,235,.55);
+    border-bottom:1px solid rgba(255,220,235,.55);
 
     box-shadow:
         0 8px 30px rgba(255,190,220,.08);
 }
 
+
 /* ======================================================
-   CONTAINER
+   HEADER CONTAINER
 ====================================================== */
 
 .header-container{
-
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -32,12 +32,12 @@
     gap:40px;
 }
 
+
 /* ======================================================
    LOGO
 ====================================================== */
 
 .logo{
-
     display:flex;
     align-items:center;
     gap:14px;
@@ -48,41 +48,39 @@
 }
 
 .logo img{
+    display:block;
 
     width:90px;
     height:auto;
-
-    display:block;
 }
 
 .logo-title{
+    color:var(--primary-dark);
 
     font-size:1rem;
     font-weight:700;
 
-    color:#a84f74;
-
     white-space:nowrap;
 
-    transition:.3s;
+    transition:var(--transition);
 }
 
 .logo:hover .logo-title{
-    color:#ff6ea8;
+    color:var(--primary);
 }
 
+
 /* ======================================================
-   NAV
+   NAVIGATION
 ====================================================== */
 
 nav{
-    margin-left:auto;
-
-    overflow:visible;
+    display:flex;
+    justify-content:flex-end;
+    flex:1;
 }
 
 .nav-menu{
-
     display:flex;
     align-items:center;
 
@@ -95,57 +93,67 @@ nav{
     flex-shrink:0;
 }
 
-.nav-menu a{
 
+/* ======================================================
+   NAV LINK
+====================================================== */
+
+.nav-menu a{
     display:flex;
     align-items:center;
     justify-content:center;
 
-    height:46px;
-
     min-width:100px;
+    height:46px;
 
     padding:0 24px;
 
     border-radius:999px;
 
+    color:var(--text-light);
+
     font-size:.95rem;
     font-weight:700;
 
-    color:#9f5f7d;
-
-    transition:
-        .3s;
+    transition:var(--transition);
 }
 
 .nav-menu a:hover{
+    color:var(--primary);
 
-    color:#ff6ea8;
+    background:rgba(255,255,255,.75);
 
-    background:
-        rgba(255,255,255,.75);
-
-    transform:
-        translateY(-2px);
+    transform:translateY(-2px);
 }
 
-/* active */
+
+/* ======================================================
+   ACTIVE LINK
+====================================================== */
 
 .nav-menu a.active{
-
     color:#fff;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ff82b0,
-            #ffb5c9
-        );
+    background:var(--gradient-primary);
 
-    box-shadow:
-        0 10px 25px
-        rgba(255,130,180,.25);
+    box-shadow:var(--shadow-pink);
 }
+
+
+/* ======================================================
+   FOCUS
+====================================================== */
+
+.nav-menu a:focus-visible,
+.logo:focus-visible{
+
+    outline:3px solid rgba(255,184,208,.45);
+
+    outline-offset:4px;
+
+    border-radius:999px;
+}
+
 
 /* ======================================================
    TABLET
@@ -171,7 +179,6 @@ nav{
     }
 
     .nav-menu a{
-
         min-width:auto;
 
         height:42px;
@@ -180,16 +187,14 @@ nav{
 
         font-size:.86rem;
     }
-}
 
-/* ======================================================
+   /* ======================================================
    MOBILE
 ====================================================== */
 
 @media (max-width:768px){
 
     .header-container{
-
         min-height:64px;
 
         gap:12px;
@@ -206,25 +211,19 @@ nav{
     }
 
     .logo-title{
+        max-width:100px;
 
         font-size:.76rem;
-
         line-height:1.25;
-
-        max-width:100px;
 
         white-space:normal;
     }
 
     nav{
-
-        flex:1;
-
         overflow:hidden;
     }
 
     .nav-menu{
-
         justify-content:flex-end;
 
         gap:6px;
@@ -232,6 +231,10 @@ nav{
         overflow-x:auto;
 
         scrollbar-width:none;
+        -ms-overflow-style:none;
+
+        scroll-behavior:smooth;
+        overscroll-behavior-x:contain;
 
         -webkit-overflow-scrolling:touch;
     }
@@ -241,7 +244,6 @@ nav{
     }
 
     .nav-menu a{
-
         flex-shrink:0;
 
         min-width:auto;
@@ -252,7 +254,9 @@ nav{
 
         font-size:.76rem;
     }
+
 }
+
 
 /* ======================================================
    SMALL MOBILE
@@ -265,19 +269,21 @@ nav{
     }
 
     .logo-title{
-        font-size:.7rem;
         max-width:80px;
+
+        font-size:.7rem;
     }
 
     .nav-menu a{
-
         height:32px;
 
         padding:0 10px;
 
         font-size:.72rem;
     }
+
 }
+
 
 /* ======================================================
    EXTRA SMALL
@@ -294,25 +300,29 @@ nav{
     }
 
     .nav-menu a{
-
         padding:0 9px;
 
         font-size:.7rem;
     }
+
 }
 
+
 /* ======================================================
-   DESKTOP MODE ON PHONE
+   REDUCED MOTION
 ====================================================== */
 
-@media (pointer:coarse) and (min-width:769px){
+@media (prefers-reduced-motion:reduce){
 
-    html,
-    body{
-        min-width:1200px;
+    .logo-title,
+    .nav-menu a{
+        transition:none;
     }
 
-    .container{
-        min-width:1180px;
+    .nav-menu{
+        scroll-behavior:auto;
     }
+
+}
+
 }
