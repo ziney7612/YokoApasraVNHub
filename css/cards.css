@@ -299,12 +299,12 @@
 ====================================================== */
 
 .event-info{
+
     display:flex;
     flex-direction:column;
+    justify-content:flex-end;
 
-    flex:1;
-
-    padding:30px;
+    gap:10px;
 }
 
 .event-info h2{
