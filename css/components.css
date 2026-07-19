@@ -246,6 +246,16 @@
         rgba(248,113,168,.38);
 }
 
+.download-album .btn-download{
+    margin:0 auto;
+}
+
+.download-album{
+    width:fit-content;
+    min-width:unset;
+    margin:28px auto 0;
+    align-self:center;
+}
 
 /* ======================================================
    SECONDARY
