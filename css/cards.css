@@ -77,67 +77,40 @@
 ====================================================== */
 
 .event-info h2{
-    margin:0;
-
-    font-size:1.8rem;
-    line-height:1.3;
-    color:var(--text-dark);
-
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
-
-    overflow:hidden;
-
-    min-height:72px;
+    min-height:82px;
 }
-
-
-/* ======================================================
-   META
-====================================================== */
 
 .event-meta{
     margin-top:auto;
-
     display:flex;
     flex-direction:column;
-
-    justify-content:flex-end;
-
-    gap:18px;
+    gap:14px;
 }
-
-
-/* date */
 
 .event-date{
     display:flex;
     align-items:center;
-
     gap:8px;
 
     margin:0;
 
     font-size:1rem;
     color:var(--text-light);
-    margin-bottom:18px;
 }
-
-/* photos */
 
 .event-photos{
     display:inline-flex;
     align-items:center;
-
     gap:8px;
+
+    margin:0;
 
     font-size:1.05rem;
     font-weight:700;
 
     color:var(--primary);
 
-    margin:0;
+    transition:.35s;
 }
 
 .event-card:hover .event-photos{
