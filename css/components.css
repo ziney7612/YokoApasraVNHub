@@ -298,13 +298,12 @@
     color: #fff;
     margin-right: -10px; /* Dịch nhẹ ra rìa phải cho đúng tỷ lệ layout */
 }
-
 /* ======================================================
    ICON
 ====================================================== */
 
 .btn-primary .moon,
-..btn-secondary .moon,
+.btn-secondary .moon,
 .btn-download .moon-icon{
 
     width:42px;
