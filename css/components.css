@@ -48,7 +48,7 @@
     white-space: nowrap;
 
     /* THÊM VÀO ĐÂY: Tạo khoảng cách 12px với dòng tiêu đề phía dưới */
-    margin-bottom: 12px; 
+    margin-bottom: 25px; 
 }
 
 .badge::before{
