@@ -261,40 +261,43 @@
    SECONDARY
 ====================================================== */
 
-.btn-secondary{
-
-    padding:
-        13px
-        22px;
-
-    background:
-        rgba(255,255,255,.82);
-
-    backdrop-filter:blur(20px);
-
-    border:
-        1px solid
-        rgba(255,220,235,.65);
-
-    color:#ff69ab;
+.btn-secondary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 13px 22px;
+    border-radius: 999px; /* Đảm bảo nút bo tròn hoàn toàn */
+    background: rgba(255, 255, 255, .82);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 220, 235, .65);
+    color: #ff69ab;
+    font-weight: 700;
+    transition: all 0.3s ease;
 }
 
-.btn-secondary:hover{
-    background:#fff;
+.btn-secondary:hover {
+    background: #fff;
+    /* Đổ bóng nhẹ kết hợp cả 2 tone màu khi hover */
+    box-shadow: 0 8px 24px rgba(255, 105, 171, 0.15), 0 8px 24px rgba(29, 93, 134, 0.1);
 }
 
-.btn-secondary.active{
-
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff72aa,
-            #ff9b95
-        );
+/* Khi nút ở trạng thái ACTIVE: Kết hợp Hồng Web & Xanh Poster */
+.btn-secondary.active {
+    color: #fff;
+    border: none; /* Ẩn viền để màu gradient tràn viền đẹp hơn */
+    
+    /* Gradient: Hồng neon của web chuyển sang Xanh biển sâu của poster */
+    background: linear-gradient(
+        135deg,
+        #ff72aa 0%,   /* Màu hồng nguyên bản của bạn */
+        #1d5d86 100%  /* Màu xanh lấy từ bóng nước/nền poster */
+    );
+    
+    /* Đổ bóng lan tỏa theo tone màu mới */
+    box-shadow: 0 8px 24px rgba(255, 114, 170, 0.3), 0 8px 24px rgba(29, 93, 134, 0.2);
 }
-
 
 /* ======================================================
    ICON
