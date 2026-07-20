@@ -195,7 +195,7 @@ return `
 
             <a
                 href="detail.html?id=${album.id}"
-                class="btn-primary">
+                class="btn-secondary">
 
                <span>
                         View Gallery
