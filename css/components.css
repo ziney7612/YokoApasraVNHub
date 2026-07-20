@@ -34,30 +34,19 @@
 
     border-radius:999px;
 
-    background:
-        rgba(255,255,255,.72);
-
-    backdrop-filter:blur(18px);
-
-    border:
-        1px solid
-        rgba(255,220,235,.7);
-
-    box-shadow:
-        0 8px 24px
-        rgba(255,190,220,.12),
-
-        inset 0 1px 1px
-        rgba(255,255,255,.7);
-
-    color:#ff79b5;
-
-    font-size:.85rem;
-    font-weight:700;
-
-    letter-spacing:.04em;
-
-    white-space:nowrap;
+    /* Nền hồng nhạt trong suốt nhẹ */
+    background: rgba(255, 235, 243, 0.7); 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 210, 225, 0.5);
+    box-shadow: 0 4px 12px rgba(255, 210, 225, 0.15);
+    
+    /* Chữ đổi từ hồng tím sang màu hồng đậm nguyên bản của web */
+    color: rgba(233, 93, 130, 1); 
+    
+    font-size: .80rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    white-space: nowrap;
 }
 
 .badge::before{
@@ -79,18 +68,6 @@
     filter:blur(12px);
 
     z-index:-1;
-}
-
-.badge-official{
-    color:#ff73ad;
-}
-
-.badge-exclusive{
-    color:#c67cff;
-}
-
-.badge-latest{
-    color:#ff79b5;
 }
 /* ======================================================
    DIVIDER
