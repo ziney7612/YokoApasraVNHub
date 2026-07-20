@@ -141,7 +141,7 @@ return `
 
     <div class="exclusive-content">
 
-        <span class="badge badge-exclusive">
+        <span class="badge">
 
             ✦ Exclusive Collection
 
