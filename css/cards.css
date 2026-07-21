@@ -1,857 +1,439 @@
-/* ==========================================
-   CARD
-========================================== */
+/* ======================================================
+   CARD LAYOUT (Khung nền cấu trúc tổng thể)
+====================================================== */
 
-.event-card{
-    position:relative;
-    display:flex;
-    flex-direction:column;
-
-    overflow:hidden;
-
-    background:
-        rgba(255,255,255,.82);
-
-    backdrop-filter:blur(24px);
-
-    border:1px solid rgba(255,190,220,.55);
-
-    border-radius:38px;
-
-    text-decoration:none;
-
-    box-shadow:
-        0 20px 45px rgba(255,190,220,.14),
-        0 0 40px rgba(255,220,235,.25);
-
-    transition:.45s;
+.event-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    /* Giao diện kính mờ trắng tinh tế đồng bộ website */
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    
+    /* Viền mảnh hồng dâu nhẹ */
+    border: 1px solid rgba(255, 190, 220, 0.55);
+    border-radius: 38px;
+    text-decoration: none;
+    
+    /* Đổ bóng tầng mềm mại tạo độ sâu lơ lửng */
+    box-shadow: 
+        0 20px 45px rgba(255, 190, 220, 0.14),
+        0 0 40px rgba(255, 220, 235, 0.25);
+        
+    /* Chuyển động mượt mà điện ảnh khi hover */
+    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.event-card:hover{
-    transform:translateY(-10px);
-
-    box-shadow:
-        0 30px 70px rgba(255,190,220,.24),
-        0 0 60px rgba(255,220,240,.35);
+/* HIỆU ỨNG LÊN ĐÈN (Glow Neon & Nhấc Khối Khi Hover) */
+.event-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 105, 171, 0.5); /* Viền hồng sáng bừng lên */
+    
+    /* Đổ bóng phát sáng hồng neon lan tỏa theo bản phác họa */
+    box-shadow: 
+        0 30px 70px rgba(255, 190, 220, 0.24),
+        0 0 60px rgba(255, 220, 240, 0.35);
 }
 
-
-/* ==========================================
-   GLOW
-========================================== */
-
-.event-card::before{
-    content:"";
-
-    position:absolute;
-    inset:-2px;
-
-    border-radius:40px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,220,235,.45),
-            rgba(255,255,255,.15)
-        );
-
-    filter:blur(28px);
-
-    z-index:-1;
+/* ======================================================
+   NEON GLOW BACKDROP LAYER
+====================================================== */
+.event-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 40px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 220, 235, 0.45),
+        rgba(255, 255, 255, 0.1)
+    );
+    filter: blur(28px);
+    z-index: -1;
 }
 
-
-/* ==========================================
-   THUMB
-========================================== */
-
-.event-thumb{
-    position:relative;
-
-    aspect-ratio:16 / 9;
-
-    overflow:hidden;
+/* ======================================================
+   THUMBNAIL IMAGE (Hiệu ứng thu phóng ảnh sâu)
+====================================================== */
+.event-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
 }
 
-.event-thumb img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.event-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
-.event-card:hover img{
-    transform:scale(1.06);
+/* Phóng to ảnh 6% khi rê chuột vào card */
+.event-card:hover .event-thumb img {
+    transform: scale(1.06);
 }
 
-
-/* ==========================================
-   PINK OVERLAY
-========================================== */
-
-.event-thumb::after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(255,185,220,.75),
-            rgba(255,185,220,.15) 45%,
-            transparent 70%
-        );
+/* LỚP PHỦ GRADIENT HỒNG (Bộ lọc màu nguyên bản) */
+.event-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(255, 185, 220, 0.75),
+        rgba(255, 185, 220, 0.15) 45%,
+        transparent 70%
+    );
+    z-index: 2;
 }
 
-
-/* ==========================================
-   SHIMMER
-========================================== */
-
-.event-thumb::before{
-    content:"";
-
-    position:absolute;
-
-    top:-60%;
-    left:-150%;
-
-    width:65%;
-    height:220%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.1),
-            rgba(255,255,255,.65),
-            rgba(255,255,255,.1),
-            transparent
-        );
-
-    transform:rotate(25deg);
-
-    filter:blur(4px);
-
-    animation:
-        shimmerMove 8s linear infinite;
-
-    z-index:3;
+/* ======================================================
+   DATE BADGE (Hộp lịch kính tối mờ - chống lóa vạn năng)
+====================================================== */
+.event-date-badge {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    z-index: 5;
+    width: 90px;
+    padding: 18px 10px;
+    border-radius: 28px;
+    text-align: center;
+    
+    /* Kính mờ tối sâu giúp chữ trắng nổi bật trên mọi tấm poster */
+    background: rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    transition: transform 0.4s ease;
 }
 
-@keyframes shimmerMove{
-
-    0%{
-        left:-150%;
-    }
-
-    25%{
-        left:150%;
-    }
-
-    100%{
-        left:150%;
-    }
+.event-card:hover .event-date-badge {
+    transform: scale(1.04); /* Phóng nhẹ khối lịch khi hover tạo nhịp sống */
 }
 
-
-/* ==========================================
-   BUBBLE
-========================================== */
-
-.bubble{
-    position:absolute;
-
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.25);
-
-    backdrop-filter:blur(18px);
-
-    border:
-        1px solid rgba(255,255,255,.35);
-
-    box-shadow:
-        0 0 25px rgba(255,255,255,.18);
+.event-date-badge strong {
+    display: block;
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.bubble::before{
-    content:"";
-
-    position:absolute;
-
-    top:20%;
-    left:20%;
-
-    width:25%;
-    height:25%;
-
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.9);
-
-    filter:blur(2px);
+.event-date-badge span {
+    display: block;
+    margin-top: 10px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.b1{
-    width:55px;
-    height:55px;
-
-    top:25px;
-    right:35px;
-
-    animation:
-        bubbleFloat 6s ease-in-out infinite;
+.event-date-badge small {
+    display: block;
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.75);
 }
 
-.b2{
-    width:72px;
-    height:72px;
-
-    right:-18px;
-    bottom:110px;
-
-    animation:
-        bubbleFloat 8s ease-in-out infinite;
+/* ======================================================
+   BUBBLES EFFECT (Bong bóng kính 3D lơ lửng dập dềnh)
+====================================================== */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.15),
+        inset 0 -4px 10px rgba(0, 0, 0, 0.05),
+        inset 0 4px 10px rgba(255, 255, 255, 0.4);
+    z-index: 3;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes bubbleFloat{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:
-            translateY(-18px)
-            scale(1.08);
-    }
+.bubble::before {
+    content: "";
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    filter: blur(1px);
 }
 
-
-/* ==========================================
-   DATE BADGE
-========================================== */
-
-.event-date-badge{
-
-    position:absolute;
-
-    top:22px;
-    left:22px;
-
-    z-index:5;
-
-    width:90px;
-
-    padding:18px 10px;
-
-    border-radius:28px;
-
-    text-align:center;
-
-    background:
-        rgba(255,255,255,.18);
-
-    backdrop-filter:blur(25px);
-
-    border:
-        1px solid rgba(255,255,255,.35);
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.12);
+/* Đổi sắc độ bóng bóng óng ánh hơn khi hover */
+.event-card:hover .bubble {
+    border-color: rgba(243, 151, 185, 0.6);
+    box-shadow: 
+        0 0 25px rgba(243, 151, 185, 0.3),
+        inset 0 -4px 10px rgba(178, 188, 241, 0.2);
 }
 
-.event-date-badge strong{
-
-    display:block;
-
-    font-size:2rem;
-
-    color:#fff;
-
-    line-height:1;
+.b1 {
+    width: 55px;
+    height: 55px;
+    top: 25px;
+    right: 35px;
+    animation: bubbleFloatOne 6s ease-in-out infinite;
 }
 
-.event-date-badge span{
-
-    display:block;
-
-    margin-top:10px;
-
-    font-weight:700;
-
-    color:#fff;
+.b2 {
+    width: 72px;
+    height: 72px;
+    right: -18px;
+    bottom: 110px;
+    animation: bubbleFloatTwo 8s ease-in-out infinite;
 }
 
-.event-date-badge small{
+@keyframes bubbleFloatOne {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-16px) translateX(4px) scale(1.06); }
+}
 
-    display:block;
+@keyframes bubbleFloatTwo {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) translateX(-6px) scale(1.08); }
+}
 
-    margin-top:12px;
+/* ======================================================
+   EVENT INFO & TEXT (Khối nội dung thông tin chữ)
+====================================================== */
+.event-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 28px;
+}
 
-    color:
-        rgba(255,255,255,.75);
+.event-info h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    line-height: 1.3;
+    color: var(--text-dark);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    min-height: 88px;
+    transition: color 0.3s ease;
+}
+
+/* Đổi màu chữ h2 sang hồng khi lướt vào card */
+.event-card:hover .event-info h2 {
+    color: #ff69ab;
+}
+
+.event-meta {
+    display: flex;
+    flex-direction: column;
+    margin-top: 28px;
+    gap: 18px;
+    color: var(--text-light);
+}
+
+.event-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+/* ======================================================
+   PHOTOS COUNT (Nâng cấp thành hộp nút bấm kẹo ngọt)
+====================================================== */
+.event-photos {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    margin: 0;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    
+    color: var(--primary);
+    background: rgba(255, 235, 243, 0.7);
+    border: 1px solid rgba(255, 210, 225, 0.4);
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Biến hình sang dải màu Hồng-Xanh pastel mịn màng của View Gallery khi hover */
+.event-card:hover .event-photos {
+    transform: translateX(8px);
+    background: linear-gradient(135deg, #f397b9 0%, #b2bcf1 100%);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(243, 151, 185, 0.35);
 }
 
 
 /* ======================================================
-   EVENT INFO
+   💻 RESPONSIVE MÁY TÍNH BẢNG (Max-width: 992px)
 ====================================================== */
+@media (max-width: 992px) {
+    .event-card {
+        border-radius: 32px;
+    }
 
-.event-info{
-    display:flex;
-    flex-direction:column;
+    .event-card::before {
+        border-radius: 34px;
+    }
 
-    flex:1;
+    .event-thumb {
+        aspect-ratio: 16 / 10;
+    }
 
-    padding:28px;
+    /* Co giãn khối lịch nhỏ lại cho cân đối */
+    .event-date-badge {
+        width: 78px;
+        padding: 14px 8px;
+        top: 18px;
+        left: 18px;
+        border-radius: 22px;
+    }
+
+    .event-date-badge strong {
+        font-size: 1.7rem;
+    }
+
+    .event-date-badge span {
+        margin-top: 8px;
+        font-size: .8rem;
+    }
+
+    .event-date-badge small {
+        margin-top: 8px;
+        font-size: .7rem;
+    }
+
+    /* Điều chỉnh size bong bóng trên Tablet */
+    .b1 {
+        width: 46px;
+        height: 46px;
+        top: 18px;
+        right: 22px;
+    }
+
+    .b2 {
+        width: 60px;
+        height: 60px;
+        bottom: 90px;
+        right: -12px;
+    }
+
+    .event-info {
+        padding: 24px;
+    }
+
+    .event-info h2 {
+        font-size: 1.45rem;
+        min-height: 72px;
+    }
+
+    .event-meta {
+        margin-top: 18px;
+        gap: 12px;
+    }
+
+    .event-date {
+        font-size: .92rem;
+    }
+
+    .event-photos {
+        font-size: .95rem;
+    }
 }
 
 
 /* ======================================================
-   TITLE
+   📱 RESPONSIVE ĐIỆN THOẠI DI ĐỘNG (Max-width: 768px)
 ====================================================== */
-
-.event-info h2{
-    margin:0;
-
-    font-size:1.8rem;
-    line-height:1.3;
-    color:var(--text-dark);
-
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
-
-    overflow:hidden;
-
-    min-height:88px;
-}
-
-
-/* ======================================================
-   META
-====================================================== */
-
-.event-meta{
-    display:flex;
-    flex-direction:column;
-
-    margin-top:28px;
-
-    gap:18px;
-
-    color:var(--text-light);
-}
-
-
-/* ======================================================
-   DATE
-====================================================== */
-
-.event-date{
-    display:flex;
-    align-items:center;
-
-    gap:8px;
-
-    margin:0;
-
-    font-size:1rem;
-    line-height:1.5;
-
-    color:var(--text-light);
-}
-
-
-/* ======================================================
-   PHOTOS
-====================================================== */
-
-.event-photos{
-    display:inline-flex;
-    align-items:center;
-
-    gap:8px;
-
-    margin:0;
-
-    font-size:1.05rem;
-    font-weight:700;
-
-    color:var(--primary);
-
-    transition:
-        color .35s,
-        transform .35s;
-}
-
-.event-card:hover .event-photos{
-    transform:translateX(8px);
-}
-
-/* ======================================================
-   TABLET
-====================================================== */
-
-@media (max-width:992px){
-
-    .event-card{
-
-        border-radius:32px;
+@media (max-width: 768px) {
+    .event-card {
+        border-radius: 24px;
     }
 
-    .event-card::before{
-
-        border-radius:34px;
+    .event-card::before {
+        border-radius: 26px;
     }
 
-    /* ==========================
-       THUMB
-    ========================== */
-
-    .event-thumb{
-
-        aspect-ratio:16 / 10;
+    /* Ảnh chuyển sang tỉ lệ vuông 1:1 trên mobile giúp lướt xem rất gọn gọn, đẹp mắt */
+    .event-thumb {
+        aspect-ratio: 1 / 1;
     }
 
-    /* ==========================
-       DATE BADGE
-    ========================== */
-
-    .event-date-badge{
-
-        width:78px;
-
-        padding:14px 8px;
-
-        top:18px;
-        left:18px;
-
-        border-radius:22px;
+    /* Thu nhỏ khối lịch tối ưu diện tích màn hình nhỏ */
+    .event-date-badge {
+        width: 58px;
+        padding: 10px 4px;
+        top: 12px;
+        left: 12px;
+        border-radius: 16px;
     }
 
-    .event-date-badge strong{
-
-        font-size:1.7rem;
+    .event-date-badge strong {
+        font-size: 1.2rem;
     }
 
-    .event-date-badge span{
-
-        margin-top:8px;
-
-        font-size:.8rem;
+    .event-date-badge span {
+        margin-top: 4px;
+        font-size: .62rem;
     }
 
-    .event-date-badge small{
-
-        margin-top:8px;
-
-        font-size:.7rem;
+    /* Ẩn năm sinh (small text) trên mobile để đỡ chật chội */
+    .event-date-badge small {
+        display: none;
     }
 
-    /* ==========================
-       BUBBLES
-    ========================== */
-
-    .b1{
-
-        width:46px;
-        height:46px;
-
-        top:18px;
-        right:22px;
+    /* Ẩn bớt một bong bóng to b2 trên mobile để không làm mất bố cục che ảnh mặt idol */
+    .b2 {
+        display: none;
+    }
+    
+    .b1 {
+        width: 36px;
+        height: 36px;
+        top: 12px;
+        right: 16px;
     }
 
-    .b2{
-
-        width:60px;
-        height:60px;
-
-        bottom:90px;
-        right:-12px;
+    .event-info {
+        padding: 18px;
     }
 
-    /* ==========================
-       INFO
-    ========================== */
-
-    .event-info{
-
-        padding:24px;
+    .event-info h2 {
+        font-size: 1.25rem;
+        min-height: auto; /* Thả tự do dòng chữ không ép khoảng cách */
+        -webkit-line-clamp: 2;
     }
 
-    .event-info h2{
-
-        font-size:1.45rem;
-
-        min-height:72px;
-    }
-
-    .event-meta{
-
-        margin-top:18px;
-
-        gap:12px;
-    }
-
-    .event-date{
-
-        font-size:.92rem;
-    }
-
-    .event-photos{
-
-        font-size:.95rem;
-    }
-
-}
-
-/* ======================================================
-   MOBILE
-====================================================== */
-
-@media (max-width:768px){
-
-    .event-card{
-
-        border-radius:24px;
-    }
-
-    .event-card::before{
-
-        border-radius:26px;
-    }
-
-    /* ==========================
-       THUMB
-    ========================== */
-
-    .event-thumb{
-
-        aspect-ratio:1 / 1;
-    }
-
-    /* ==========================
-       BADGE
-    ========================== */
-
-    .event-date-badge{
-
-        width:58px;
-
-        padding:10px 4px;
-
-        top:12px;
-        left:12px;
-
-        border-radius:16px;
-    }
-
-    .event-date-badge strong{
-
-        font-size:1.2rem;
-    }
-
-    .event-date-badge span{
-
-        margin-top:4px;
-
-        font-size:.62rem;
-    }
-
-    .event-date-badge small{
-
-        display:none;
-    }
-
-    /* ==========================
-       BUBBLE
-    ========================== */
-
-    .b1{
-
-        width:34px;
-        height:34px;
-
-        top:12px;
-        right:14px;
-    }
-
-    .b2{
-
-        display:none;
-    }
-
-    /* ==========================
-       INFO
-    ========================== */
-
-    .event-info{
-
-        padding:16px;
-
-        min-height:auto;
-    }
-
-    .event-info h2{
-
-        font-size:1rem;
-
-        line-height:1.35;
-
-        min-height:48px;
-
-        -webkit-line-clamp:2;
-    }
-
-    .event-meta{
-
-        margin-top:12px;
-
-        gap:8px;
-    }
-
-    .event-date{
-
-        font-size:.78rem;
-    }
-
-    .event-photos{
-
-        font-size:.82rem;
-    }
-
-}
-
-/* ======================================================
-   SMALL MOBILE
-====================================================== */
-
-@media (max-width:576px){
-
-    .event-card{
-
-        border-radius:20px;
-    }
-
-    .event-card::before{
-
-        border-radius:22px;
-    }
-
-    /* ==========================
-       THUMB
-    ========================== */
-
-    .event-thumb{
-
-        aspect-ratio:1 / 1;
-    }
-
-    /* ==========================
-       DATE BADGE
-    ========================== */
-
-    .event-date-badge{
-
-        width:52px;
-
-        padding:8px 4px;
-
-        top:10px;
-        left:10px;
-
-        border-radius:14px;
-    }
-
-    .event-date-badge strong{
-
-        font-size:1.05rem;
-    }
-
-    .event-date-badge span{
-
-        margin-top:2px;
-
-        font-size:.58rem;
-    }
-
-    /* ==========================
-       BUBBLE
-    ========================== */
-
-    .b1{
-
-        width:28px;
-        height:28px;
-
-        top:10px;
-        right:10px;
-    }
-
-    /* ==========================
-       INFO
-    ========================== */
-
-    .event-info{
-
-        padding:14px;
-    }
-
-    .event-info h2{
-
-        font-size:.92rem;
-
-        line-height:1.35;
-
-        min-height:42px;
-    }
-
-    .event-meta{
-
-        margin-top:10px;
-
-        gap:6px;
-    }
-
-    .event-date{
-
-        font-size:.72rem;
-    }
-
-    .event-photos{
-
-        font-size:.75rem;
-    }
-
-}
-
-/* ======================================================
-   EXTRA SMALL
-====================================================== */
-
-@media (max-width:430px){
-
-    .event-card{
-
-        border-radius:18px;
-    }
-
-    .event-card::before{
-
-        border-radius:20px;
-    }
-
-    /* ==========================
-       THUMB
-    ========================== */
-
-    .event-thumb{
-
-        aspect-ratio:1 / 1;
-    }
-
-    .event-thumb::before{
-
-        display:none;
-    }
-
-    /* ==========================
-       DATE BADGE
-    ========================== */
-
-    .event-date-badge{
-
-        width:46px;
-
-        padding:6px 2px;
-
-        top:8px;
-        left:8px;
-
-        border-radius:12px;
-    }
-
-    .event-date-badge strong{
-
-        font-size:.9rem;
-
-        line-height:1;
-    }
-
-    .event-date-badge span{
-
-        margin-top:2px;
-
-        font-size:.52rem;
-
-        letter-spacing:0;
-    }
-
-    .event-date-badge small{
-
-        display:none;
-    }
-
-    /* ==========================
-       BUBBLE
-    ========================== */
-
-    .b1{
-
-        width:22px;
-        height:22px;
-
-        top:8px;
-        right:8px;
-    }
-
-    .b2{
-
-        display:none;
-    }
-
-    /* ==========================
-       INFO
-    ========================== */
-
-    .event-info{
-
-        padding:12px;
-    }
-
-    .event-info h2{
-
-        font-size:.86rem;
-
-        line-height:1.35;
-
-        min-height:38px;
-    }
-
-    .event-meta{
-
-        margin-top:8px;
-
-        gap:5px;
-    }
-
-    .event-date{
-
-        font-size:.68rem;
-
-        gap:5px;
-    }
-
-    .event-photos{
-
-        font-size:.7rem;
-
-        gap:5px;
-    }
-
+    .event-meta {
+        margin-top: 14px;
+        gap: 10px;
+   }
+   
+.event-date {
+font-size: 0.85rem;
+   
+   }
+   
+.event-photos {
+font-size: 0.88rem;
+padding: 5px 12px;
+   }
+   
 }
