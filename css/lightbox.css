@@ -2,90 +2,98 @@
 =          LIGHTBOX ROOT           =
 ==================================*/
 
-.lightbox{
-    position:fixed;
-    inset:0;
+.lightbox {
+    position: fixed;
+    inset: 0;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    background:rgba(8,8,15,.72);
-    backdrop-filter:blur(28px);
+    background: rgba(8,8,15,.72);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
 
-    opacity:0;
-    visibility:hidden;
+    opacity: 0;
+    visibility: hidden;
 
-    transition:.35s;
+    transition: .35s;
 
-    z-index:99999;
+    z-index: 99999;
 }
 
-.lightbox.show{
-    opacity:1;
-    visibility:visible;
+.lightbox.show {
+    opacity: 1;
+    visibility: visible;
 }
 
-body.lightbox-open{
-    overflow:hidden;
+body.lightbox-open {
+    overflow: hidden;
 }
 
 /*==================================
 =          IMAGE STAGE             =
 ==================================*/
 
-.lightbox-stage{
+.lightbox-stage {
+    position: fixed;
+    inset: 0;
 
-    position:fixed;
-    inset:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    padding: 40px;
 
-    padding:40px;
+    pointer-events: none;
 
-    pointer-events:none;
+    z-index: 1;
+}
 
-    z-index:1;
+/*==================================
+=    NEW: IMAGE CONTAINER WRAPPER  =
+==================================*/
+
+/* SỬA LỖI: Lớp bọc bảo vệ này sẽ khóa chặt vệt shimmer, không cho lướt ra nền tối */
+.lightbox-image-container {
+    position: relative !important;
+    overflow: hidden !important; 
+    border-radius: 24px; /* Trùng với bo góc của ảnh */
+    box-shadow: 0 25px 80px rgba(0,0,0,.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+    z-index: 2;
 }
 
 /*==================================
 =          MAIN IMAGE              =
 ==================================*/
 
-#lightbox-image{
+#lightbox-image {
+    max-width: 88vw;
+    max-height: 88vh;
 
-    max-width:88vw;
-    max-height:88vh;
+    object-fit: contain;
+    border-radius: 24px;
 
-    object-fit:contain;
+    cursor: zoom-in;
 
-    border-radius:24px;
+    user-select: none;
+    -webkit-user-drag: none;
 
-    cursor:zoom-in;
-
-    user-select:none;
-    -webkit-user-drag:none;
-
-    pointer-events:auto;
-
-    z-index:2;
-
-    box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.45);
+    pointer-events: auto;
+    z-index: 2;
 
     transition:
         opacity .35s ease,
         transform .35s ease;
 }
 
-#lightbox-image.loading{
-
-    opacity:0;
-    transform:scale(.96);
-
+#lightbox-image.loading {
+    opacity: 0;
+    transform: scale(.96);
 }
 
 /*==================================
@@ -97,51 +105,36 @@ body.lightbox-open{
 .lightbox-next,
 .lightbox-download,
 .lightbox-counter,
-.lightbox-caption{
-
-    z-index:1000;
+.lightbox-caption {
+    z-index: 1000;
 }
 
 .lightbox-close,
 .lightbox-prev,
 .lightbox-next,
-.lightbox-download{
+.lightbox-download {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
-    backdrop-filter:blur(20px);
+    background: rgba(255,230,245,.20);
 
-    background:
-        rgba(255,230,245,.20);
-
-    border:
-        1px solid
-        rgba(255,190,220,.18);
+    border: 1px solid rgba(255,190,220,.18);
 
     box-shadow:
+        0 0 25px rgba(255,170,210,.18),
+        0 0 50px rgba(255,170,210,.08);
 
-        0 0 25px
-        rgba(255,170,210,.18),
+    color: #fff;
 
-        0 0 50px
-        rgba(255,170,210,.08);
-
-    color:#fff;
-
-    transition:.3s ease;
+    transition: .3s ease;
 }
 
 .lightbox-close:hover,
 .lightbox-prev:hover,
 .lightbox-next:hover,
-.lightbox-download:hover{
-
-    background:
-        rgba(255,230,245,.18);
-
-    box-shadow:
-
-        0 0 40px
-        rgba(255,170,210,.35);
-
+.lightbox-download:hover {
+    background: rgba(255,230,245,.18);
+    box-shadow: 0 0 40px rgba(255,170,210,.35);
 }
 
 /*==================================
@@ -150,228 +143,146 @@ body.lightbox-open{
 
 .lightbox-close,
 .lightbox-prev,
-.lightbox-next{
+.lightbox-next {
+    position: fixed;
 
-    position:fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    width: 54px;
+    height: 54px;
 
-    width:54px;
-    height:54px;
+    border: none;
+    border-radius: 999px;
 
-    border:none;
-    border-radius:999px;
+    cursor: pointer;
 
-    cursor:pointer;
-
-    font-size:24px;
+    font-size: 24px;
 }
 
-.lightbox-close{
-
-    top:20px;
-    right:20px;
-
-    font-size:34px;
+.lightbox-close {
+    top: 20px;
+    right: 20px;
+    font-size: 34px;
 }
 
-.lightbox-prev{
-
-    top:50%;
-    left:22px;
-
-    transform:
-        translateY(-50%);
+.lightbox-prev {
+    top: 50%;
+    left: 22px;
+    transform: translateY(-50%);
 }
 
-.lightbox-next{
-
-    top:50%;
-    right:22px;
-
-    transform:
-        translateY(-50%);
+.lightbox-next {
+    top: 50%;
+    right: 22px;
+    transform: translateY(-50%);
 }
 
-.lightbox-prev:hover{
-
-    transform:
-        translateY(-50%)
-        scale(1.08);
-}
-
-.lightbox-next:hover{
-
-    transform:
-        translateY(-50%)
-        scale(1.08);
-}
-
-.lightbox-close:hover{
-
-    transform:
-        scale(1.08);
-}
+.lightbox-prev:hover { transform: translateY(-50%) scale(1.08); }
+.lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
+.lightbox-close:hover { transform: scale(1.08); }
 
 /*==================================
 =            COUNTER               =
 ==================================*/
 
-.lightbox-counter{
+.lightbox-counter {
+    position: fixed;
 
-    position:fixed;
+    top: 24px;
+    left: 24px;
 
-    top:24px;
-    left:24px;
+    padding: 10px 18px;
 
-    padding:
-        10px 18px;
+    border-radius: 999px;
 
-    border-radius:999px;
+    font-size: 13px;
+    font-weight: 600;
 
-    font-size:13px;
-    font-weight:600;
+    color: #fff;
 
-    color:#fff;
+    background: rgba(255,230,245,.20);
 
-    background:
-        rgba(255,230,245,.20);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
-    backdrop-filter:
-        blur(20px);
-
-    box-shadow:
-        0 0 25px
-        rgba(255,170,210,.15);
+    box-shadow: 0 0 25px rgba(255,170,210,.15);
 }
 
 /*==================================
 =            DOWNLOAD              =
 ==================================*/
 
-.lightbox-download{
+.lightbox-download {
+    position: fixed;
 
-    position:fixed;
+    top: 22px;
+    right: 88px;
 
-    top:22px;
-    right:88px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-    display:flex;
-    align-items:center;
-    gap:12px;
+    padding: 12px 20px;
 
-    padding:12px 20px;
+    border-radius: 999px;
 
-    border-radius:999px;
+    text-decoration: none;
 
-    text-decoration:none;
+    color: #fff;
 
-    color:#fff;
+    font-size: 14px;
+    font-weight: 600;
 
-    font-size:14px;
-    font-weight:600;
+    overflow: visible;
 
-    overflow:visible;
-
-    isolation:isolate;
+    isolation: isolate;
 }
 
 /*==================================
 =             BUBBLES              =
 ==================================*/
 
-.lightbox-download .bubble{
+.lightbox-download .bubble {
+    position: absolute;
 
-    position:absolute;
+    width: 8px;
+    height: 8px;
 
-    width:8px;
-    height:8px;
+    border-radius: 50%;
 
-    border-radius:50%;
+    background: rgba(255,255,255,.9);
 
-    background:rgba(255,255,255,.9);
+    opacity: 0;
 
-    opacity:0;
+    pointer-events: none;
 
-    pointer-events:none;
-
-    animation:
-        bubbleFloat 2.5s infinite;
-}
-.lightbox-download:hover .bubble{
-
-    animation:
-        bubbleFloat
-        2.2s infinite;
+    animation: bubbleFloat 2.5s infinite;
 }
 
-.lightbox-download .bubble:nth-of-type(1){
-
-    left:12%;
-    bottom:7px;
-    animation-delay:0s;
+.lightbox-download:hover .bubble {
+    animation: bubbleFloat 2.2s infinite;
 }
 
-.lightbox-download .bubble:nth-of-type(2){
+.lightbox-download .bubble:nth-of-type(1){ left:12%; bottom:7px; animation-delay:0s; }
+.lightbox-download .bubble:nth-of-type(2){ left:28%; bottom:10px; animation-delay:.35s; }
+.lightbox-download .bubble:nth-of-type(3){ left:45%; bottom:6px; animation-delay:.7s; }
+.lightbox-download .bubble:nth-of-type(4){ left:60%; bottom:8px; animation-delay:1s; }
+.lightbox-download .bubble:nth-of-type(5){ left:75%; bottom:6px; animation-delay:1.3s; }
+.lightbox-download .bubble:nth-of-type(6){ left:88%; bottom:9px; animation-delay:1.6s; }
 
-    left:28%;
-    bottom:10px;
-    animation-delay:.35s;
-}
-
-.lightbox-download .bubble:nth-of-type(3){
-
-    left:45%;
-    bottom:6px;
-    animation-delay:.7s;
-}
-
-.lightbox-download .bubble:nth-of-type(4){
-
-    left:60%;
-    bottom:8px;
-    animation-delay:1s;
-}
-
-.lightbox-download .bubble:nth-of-type(5){
-
-    left:75%;
-    bottom:6px;
-    animation-delay:1.3s;
-}
-
-.lightbox-download .bubble:nth-of-type(6){
-
-    left:88%;
-    bottom:9px;
-    animation-delay:1.6s;
-}
-
-@keyframes bubbleFloat{
-
-    0%{
-
-        opacity:0;
-
-        transform:
-            translateY(0)
-            scale(.3);
+@keyframes bubbleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(.3);
     }
-
-    20%{
-
-        opacity:.9;
+    20% {
+        opacity: .9;
     }
-
-    100%{
-
-        opacity:0;
-
-        transform:
-            translateY(-34px)
-            scale(1.8);
+    100% {
+        opacity: 0;
+        transform: translateY(-34px) scale(1.8);
     }
 }
 
@@ -379,84 +290,67 @@ body.lightbox-open{
 =            CAPTION               =
 ==================================*/
 
-.lightbox-caption{
+.lightbox-caption {
+    position: fixed;
 
-    position:fixed;
+    left: 50%;
+    bottom: 18px;
 
-    left:50%;
-    bottom:18px;
+    transform: translateX(-50%);
 
-    transform:
-        translateX(-50%);
+    width: 80vw;
 
-    width:80vw;
+    text-align: center;
 
-    text-align:center;
+    font-size: 16px;
+    font-weight: 700;
 
-    font-size:16px;
-    font-weight:700;
+    color: #fff;
 
-    color:#fff;
-
-    text-shadow:
-        0 3px 20px
-        rgba(0,0,0,.45);
+    text-shadow: 0 3px 20px rgba(0,0,0,.45);
 }
 
 /*==================================
 =             MOBILE               =
 ==================================*/
 
-@media (max-width:768px){
-
+@media (max-width:768px) {
     .lightbox-prev,
-    .lightbox-next{
-
-        width:48px;
-        height:48px;
-
-        font-size:22px;
+    .lightbox-next {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
     }
 
-    .lightbox-prev{
-        left:10px;
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
+
+    .lightbox-close {
+        width: 48px;
+        height: 48px;
+        top: 14px;
+        right: 14px;
     }
 
-    .lightbox-next{
-        right:10px;
+    .lightbox-download {
+        top: 14px;
+        right: 68px;
+        padding: 10px 14px;
+        font-size: 13px;
     }
 
-    .lightbox-close{
-
-        width:48px;
-        height:48px;
-
-        top:14px;
-        right:14px;
+    .lightbox-caption {
+        width: 92vw;
+        bottom: 26px;
+        font-size: 14px;
     }
 
-    .lightbox-download{
-
-        top:14px;
-        right:68px;
-
-        padding:
-            10px 14px;
-
-        font-size:13px;
+    #lightbox-image {
+        max-width: 94vw;
+        max-height: 82vh;
     }
 
-    .lightbox-caption{
-
-        width:92vw;
-        bottom:26px;
-
-        font-size:14px;
-    }
-
-    #lightbox-image{
-
-        max-width:94vw;
-        max-height:82vh;
+    .lightbox-image-container {
+        border-radius: 16px; /* Bo góc nhỏ hơn một chút trên màn hình mobile */
     }
 }
