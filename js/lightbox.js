@@ -53,7 +53,7 @@ document.addEventListener(
 
             download.innerHTML =
                 `
-                <span class="moon-icon">🌙</span>
+                <span class="moon">☾</span>
                 <span>Download Original</span>
                 `;
 
