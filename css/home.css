@@ -1572,288 +1572,87 @@ body.home-page{
 }
 
 /* ======================================================
-   MOBILE
+   📱 RESPONSIVE TRANG HOME TRÊN ĐIỆN THOẠI (Max-width: 768px)
 ====================================================== */
-
-@media (max-width:768px){
-
-    body{
-
-        padding-top:72px;
+@media (max-width: 768px) {
+    /* 1. Ép bố cục khối chứa chính chuyển sang hàng dọc */
+    .home-hero .hero-layout,
+    .home-hero .container {
+        display: flex !important;
+        flex-direction: column !important; /* Xếp dọc từ trên xuống */
+        align-items: center !important;    /* Căn giữa tất cả phần tử */
+        text-align: center !important;   /* Căn giữa chữ tiêu đề và mô tả */
+        padding-top: 20px !important;
+        gap: 20px !important;
     }
 
-    /* ==========================
-       HERO
-    ========================== */
-
-    .home-hero{
-
-        padding:36px 0 24px;
+    /* 2. Đẩy hình ảnh Yoko lên trên và căn ngay chính giữa */
+    .home-hero .hero-image {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        order: 1 !important; /* Đưa ảnh lên đầu tiên trước cụm chữ để tối ưu thị giác */
+        margin: 0 0 10px 0 !important;
     }
 
-    .home-hero-layout{
-
-        display:block;
-
-        min-height:auto;
+    .home-hero .hero-image img {
+        width: 100% !important;
+        max-width: 320px !important; /* Giới hạn độ rộng vừa vặn, không lo lồi màn hình */
+        height: auto !important;
+        margin: 0 auto !important;
+        display: block !important;
     }
 
-    /* bỏ ảnh hero */
-
-    .home-hero-visual{
-
-        display:none;
+    /* 3. Khối chữ thông tin và nút bấm nằm phía dưới */
+    .home-hero .hero-copy {
+        width: 100% !important;
+        order: 2 !important; /* Đẩy khối chữ xuống dưới ảnh */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* Căn nút bấm ra giữa */
+        gap: 12px !important;
     }
 
-    .home-hero-copy{
-
-        width:100%;
-
-        margin:0 auto;
-
-        text-align:center;
+    /* Căn giữa Badge hoặc đoạn text chào mừng nhỏ */
+    .home-hero .badge,
+    .home-hero .hero-kicker,
+    .home-hero .welcome-text {
+        margin: 0 auto !important;
+        text-align: center !important;
     }
 
-    .home-hero-kicker{
-
-        margin-bottom:16px;
+    /* Tiêu đề chính căn giữa và chỉnh lại khoảng cách dòng */
+    .home-hero .hero-title {
+        font-size: 3.2rem !important;
+        line-height: 1.15 !important;
+        margin: 10px 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
 
-    .home-hero-title{
-
-        font-size:2.8rem;
-
-        line-height:1.08;
-
-        margin-bottom:18px;
+    /* Đoạn văn mô tả ngắn */
+    .home-hero .hero-desc {
+        font-size: 0.98rem !important;
+        line-height: 1.7 !important;
+        max-width: 100% !important;
+        margin: 0 auto 10px auto !important;
     }
 
-    .home-hero-desc{
-
-        max-width:520px;
-
-        margin:0 auto 16px;
-
-        font-size:.95rem;
-
-        line-height:1.8;
+    /* Slogan in nghiêng */
+    .home-hero .about-slogan {
+        margin: 0 auto 15px auto !important;
     }
 
-    .home-hero-slogan{
-
-        margin-bottom:24px;
+    /* 4. CĂN GIỮA NÚT "EXPLORE EVENTS" KẸO NGỌT */
+    .home-hero .btn-secondary,
+    .home-hero .explore-btn,
+    .home-hero .btn-primary {
+        margin: 0 auto !important; /* Ép buộc nút nhảy ra chính giữa màn hình */
+        width: fit-content !important;
+        display: inline-flex !important;
     }
-
-    .home-hero-button{
-
-        margin:0 auto;
-    }
-
-    /* ==========================
-       SCHEDULE
-    ========================== */
-
-    .schedule-home{
-
-        margin-top:12px;
-
-        padding-bottom:12px;
-    }
-
-    .schedule-card{
-
-        grid-template-columns:1fr;
-
-        gap:32px;
-
-        padding:26px;
-
-        border-radius:30px;
-    }
-
-    .schedule-copy{
-
-        width:100%;
-
-        align-items:center;
-
-        text-align:center;
-    }
-
-    .schedule-copy h2{
-
-        justify-content:center;
-
-        font-size:1.7rem;
-
-        margin-bottom:18px;
-    }
-
-    .schedule-poster{
-
-        display:flex;
-
-        justify-content:center;
-
-        width:100%;
-    }
-
-    .schedule-poster img{
-
-        width:100%;
-
-        max-width:300px;
-    }
-
-    .schedule-highlights h2{
-
-        justify-content:center;
-
-        font-size:1.7rem;
-
-        margin-bottom:22px;
-    }
-
-    .schedule-item{
-
-        grid-template-columns:64px 1fr;
-
-        gap:16px;
-
-        padding:18px;
-    }
-
-    .schedule-date{
-
-        width:60px;
-        height:60px;
-
-        border-radius:18px;
-    }
-
-    .schedule-date strong{
-
-        font-size:1.6rem;
-    }
-
-    .schedule-date span{
-
-        font-size:.72rem;
-    }
-
-    .schedule-detail h3{
-
-        font-size:1.05rem;
-    }
-
-    .schedule-detail p{
-
-        font-size:.9rem;
-    }
-
-    .schedule-note{
-
-        margin-top:18px;
-
-        text-align:left;
-
-        font-size:.9rem;
-    }
-
-    /* ==========================
-       FEATURED
-    ========================== */
-
-    .featured-card{
-
-        padding:24px;
-
-        border-radius:28px;
-    }
-
-    .featured-head{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:18px;
-    }
-
-    .featured-head h2{
-
-        font-size:1.7rem;
-    }
-
-    .view-all-btn{
-
-        width:100%;
-    }
-
-    .featured-grid{
-
-        grid-template-columns:repeat(2,1fr);
-
-        gap:14px;
-    }
-
-    /* ==========================
-       ABOUT
-    ========================== */
-
-    .about-home{
-
-        padding-top:20px;
-    }
-
-    .about-social-card{
-
-        padding:24px;
-
-        border-radius:28px;
-    }
-
-    .about-side{
-
-        flex-direction:column;
-
-        text-align:center;
-
-        gap:18px;
-    }
-
-    .about-content{
-
-        text-align:center;
-    }
-
-    .about-content h2{
-
-        font-size:1.35rem;
-    }
-
-    .about-content p{
-
-        font-size:.92rem;
-    }
-
-    .social-side{
-
-        text-align:center;
-    }
-
-    .social-row{
-
-        justify-content:center;
-    }
-
-    .social-chibi{
-
-        display:none;
-    }
-
 }
-
 /* ======================================================
    SMALL MOBILE
 ====================================================== */
