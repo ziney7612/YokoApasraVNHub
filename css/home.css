@@ -1162,46 +1162,34 @@ body.home-page{
 }
 
 /* ======================================================
-   DESKTOP LARGE
+   1366
 ====================================================== */
 
 @media (max-width:1366px){
 
-    body{
-        padding-top:90px;
-    }
-
-    /* ---------- HERO ---------- */
-
     .home-hero{
 
-        padding-top:30px;
-        padding-bottom:120px;
-
-        overflow:visible;
+        padding-top:40px;
+        padding-bottom:180px;
     }
 
     .home-hero-layout{
 
-        display:grid;
-
         grid-template-columns:430px 1fr;
 
-        align-items:center;
+        gap:60px;
 
-        gap:70px;
-
-        min-height:640px;
+        min-height:680px;
     }
 
     .home-hero-copy{
 
-        margin-top:-120px;
+        margin-top:-180px;
     }
 
     .home-hero-title{
 
-        font-size:4.9rem;
+        font-size:4.8rem;
     }
 
     .home-hero-desc{
@@ -1209,42 +1197,23 @@ body.home-page{
         max-width:420px;
     }
 
-    .home-hero-visual{
-
-        justify-content:flex-end;
-    }
-
     .home-hero-visual img{
 
-        width:620px;
-        margin-top:0;
+        width:590px;
     }
-
-    /* ---------- SCHEDULE ---------- */
 
     .schedule-home{
 
-        margin-top:-220px;
-        position:relative;
-        z-index:10;
-
-        padding-bottom:40px;
+        margin-top:-180px;
     }
 
     .schedule-card{
 
-        grid-template-columns:400px 1fr;
+        grid-template-columns:390px 1fr;
 
         gap:46px;
 
-        padding:42px;
-    }
-
-    /* ---------- FEATURED ---------- */
-
-    .featured-card{
-
-        padding:38px;
+        padding:40px;
     }
 
     .featured-grid{
@@ -1257,110 +1226,56 @@ body.home-page{
 }
 
 /* ======================================================
-   LAPTOP
+   1200
 ====================================================== */
 
 @media (max-width:1200px){
 
-    body{
-        padding-top:86px;
-    }
-
-    /* ---------- HERO ---------- */
-
     .home-hero{
 
-        padding-top:26px;
-        padding-bottom:100px;
-
-        overflow:visible;
+        padding-top:30px;
+        padding-bottom:150px;
     }
 
     .home-hero-layout{
 
-        display:grid;
-
         grid-template-columns:390px 1fr;
-
-        align-items:center;
 
         gap:48px;
 
-        min-height:560px;
+        min-height:620px;
     }
 
     .home-hero-copy{
 
-        margin-top:-80px;
-    }
-
-    .home-hero-kicker{
-
-        margin-bottom:22px;
+        margin-top:-120px;
     }
 
     .home-hero-title{
 
-        font-size:4.2rem;
-
-        line-height:.95;
-
-        margin-bottom:24px;
+        font-size:4.1rem;
     }
 
     .home-hero-desc{
 
-        max-width:360px;
-
-        font-size:.98rem;
-    }
-
-    .home-hero-slogan{
-
-        margin-bottom:34px;
-    }
-
-    .home-hero-button{
-
-        padding:13px 13px 13px 26px;
-    }
-
-    .home-hero-button .moon{
-
-        width:42px;
-        height:42px;
-
-        font-size:1.15rem;
-    }
-
-    .home-hero-visual{
-
-        justify-content:flex-end;
+        max-width:380px;
     }
 
     .home-hero-visual img{
 
-        width:520px;
-        margin-top:0;
+        width:500px;
     }
-
-    /* ---------- SCHEDULE ---------- */
 
     .schedule-home{
 
-        margin-top:-170px;
-
-        position:relative;
-        z-index:10;
-
-        padding-bottom:34px;
+        margin-top:-150px;
     }
 
     .schedule-card{
 
         grid-template-columns:340px 1fr;
 
-        gap:36px;
+        gap:38px;
 
         padding:36px;
     }
@@ -1373,22 +1288,22 @@ body.home-page{
 
     .schedule-poster img{
 
-        max-width:320px;
+        max-width:310px;
     }
 
     .schedule-item{
 
-        grid-template-columns:76px 1fr;
+        grid-template-columns:74px 1fr;
 
-        gap:18px;
+        gap:20px;
 
         padding:20px;
     }
 
     .schedule-date{
 
-        width:72px;
-        height:72px;
+        width:70px;
+        height:70px;
     }
 
     .schedule-date strong{
@@ -1396,21 +1311,9 @@ body.home-page{
         font-size:1.9rem;
     }
 
-    .schedule-detail h3{
-
-        font-size:1.25rem;
-    }
-
-    /* ---------- FEATURED ---------- */
-
     .featured-card{
 
-        padding:34px;
-    }
-
-    .featured-head{
-
-        margin-bottom:30px;
+        padding:32px;
     }
 
     .featured-head h2{
@@ -1425,30 +1328,28 @@ body.home-page{
         gap:18px;
     }
 
-    /* ---------- ABOUT ---------- */
-
     .about-social-card{
 
-        grid-template-columns:1fr 1px 350px;
+        grid-template-columns:1fr 1px 340px;
 
-        gap:28px;
+        gap:26px;
 
         padding:28px 32px;
     }
 
     .about-chibi{
 
-        width:150px;
+        width:145px;
     }
 
     .social-side{
 
-        padding-right:110px;
+        padding-right:90px;
     }
 
     .social-chibi{
 
-        width:145px;
+        width:140px;
     }
 
 }
@@ -1460,35 +1361,30 @@ body.home-page{
 @media (max-width:992px){
 
     body{
+
         padding-top:82px;
     }
 
-    /* ---------- HERO ---------- */
-
     .home-hero{
 
-        padding-top:24px;
-        padding-bottom:80px;
-
-        overflow:visible;
+        padding-top:35px;
+        padding-bottom:130px;
     }
 
     .home-hero-layout{
 
-        display:grid;
-
-        grid-template-columns:360px 1fr;
-
-        align-items:center;
+        grid-template-columns:340px 1fr;
 
         gap:36px;
 
-        min-height:500px;
+        min-height:560px;
+
+        align-items:center;
     }
 
     .home-hero-copy{
 
-        margin-top:-40px;
+        margin-top:-70px;
     }
 
     .home-hero-kicker{
@@ -1498,36 +1394,28 @@ body.home-page{
 
     .home-hero-title{
 
-        font-size:3.5rem;
+        font-size:3.35rem;
 
         line-height:1;
-
-        margin-bottom:20px;
     }
 
     .home-hero-desc{
 
-        max-width:320px;
+        max-width:100%;
 
-        font-size:.95rem;
+        font-size:.98rem;
     }
 
     .home-hero-slogan{
 
-        margin-bottom:28px;
+        margin-top:18px;
+
+        margin-bottom:26px;
     }
 
     .home-hero-button{
 
-        padding:12px 12px 12px 24px;
-    }
-
-    .home-hero-button .moon{
-
-        width:40px;
-        height:40px;
-
-        font-size:1.1rem;
+        margin-top:6px;
     }
 
     .home-hero-visual{
@@ -1537,29 +1425,25 @@ body.home-page{
 
     .home-hero-visual img{
 
-        width:420px;
-        max-width:100%;
+        width:390px;
 
-        margin-top:0;
+        margin-right:-20px;
     }
 
-    /* ---------- SCHEDULE ---------- */
+    /* Schedule vẫn đè lên Hero */
 
     .schedule-home{
 
-        margin-top:-140px;
+        margin-top:-125px;
 
-        position:relative;
-        z-index:20;
-
-        padding-bottom:28px;
+        padding-bottom:20px;
     }
 
     .schedule-card{
 
         grid-template-columns:280px 1fr;
 
-        gap:28px;
+        gap:30px;
 
         padding:30px;
     }
@@ -1567,17 +1451,26 @@ body.home-page{
     .schedule-copy h2,
     .schedule-highlights h2{
 
-        font-size:1.8rem;
+        font-size:1.75rem;
+    }
+
+    .schedule-poster{
+
+        display:flex;
+
+        justify-content:center;
     }
 
     .schedule-poster img{
+
+        width:100%;
 
         max-width:260px;
     }
 
     .schedule-item{
 
-        grid-template-columns:70px 1fr;
+        grid-template-columns:68px 1fr;
 
         gap:16px;
 
@@ -1586,8 +1479,8 @@ body.home-page{
 
     .schedule-date{
 
-        width:66px;
-        height:66px;
+        width:64px;
+        height:64px;
     }
 
     .schedule-date strong{
@@ -1595,29 +1488,15 @@ body.home-page{
         font-size:1.7rem;
     }
 
-    .schedule-date span{
-
-        font-size:.72rem;
-    }
-
     .schedule-detail h3{
 
-        font-size:1.12rem;
+        font-size:1.08rem;
     }
 
     .schedule-detail p{
 
         font-size:.9rem;
     }
-
-    .schedule-note{
-
-        margin-top:18px;
-
-        font-size:.9rem;
-    }
-
-    /* ---------- FEATURED ---------- */
 
     .featured-card{
 
@@ -1626,12 +1505,12 @@ body.home-page{
 
     .featured-head{
 
-        align-items:center;
+        margin-bottom:28px;
     }
 
     .featured-head h2{
 
-        font-size:1.9rem;
+        font-size:1.8rem;
     }
 
     .featured-grid{
@@ -1641,13 +1520,11 @@ body.home-page{
         gap:18px;
     }
 
-    /* ---------- ABOUT ---------- */
-
     .about-social-card{
 
         grid-template-columns:1fr;
 
-        gap:34px;
+        gap:32px;
 
         padding:30px;
     }
@@ -1659,14 +1536,20 @@ body.home-page{
 
     .about-side{
 
-        flex-direction:column;
+        flex-direction:row;
 
-        text-align:center;
+        align-items:center;
+
+        justify-content:center;
+
+        text-align:left;
+
+        gap:22px;
     }
 
     .about-content{
 
-        text-align:center;
+        text-align:left;
     }
 
     .social-side{
@@ -1695,16 +1578,17 @@ body.home-page{
 @media (max-width:768px){
 
     body{
+
         padding-top:72px;
     }
 
-    /* ---------- HERO ---------- */
+    /* ==========================
+       HERO
+    ========================== */
 
     .home-hero{
 
-        padding:36px 0 10px;
-
-        overflow:visible;
+        padding:36px 0 24px;
     }
 
     .home-hero-layout{
@@ -1713,6 +1597,8 @@ body.home-page{
 
         min-height:auto;
     }
+
+    /* bỏ ảnh hero */
 
     .home-hero-visual{
 
@@ -1730,27 +1616,27 @@ body.home-page{
 
     .home-hero-kicker{
 
-        display:inline-block;
-
-        margin-bottom:18px;
+        margin-bottom:16px;
     }
 
     .home-hero-title{
 
         font-size:2.8rem;
 
-        line-height:1.05;
+        line-height:1.08;
 
         margin-bottom:18px;
     }
 
     .home-hero-desc{
 
-        max-width:100%;
+        max-width:520px;
 
-        margin:0 auto 12px;
+        margin:0 auto 16px;
 
         font-size:.95rem;
+
+        line-height:1.8;
     }
 
     .home-hero-slogan{
@@ -1760,27 +1646,29 @@ body.home-page{
 
     .home-hero-button{
 
-        margin:auto;
+        margin:0 auto;
     }
 
-    /* ---------- SCHEDULE ---------- */
+    /* ==========================
+       SCHEDULE
+    ========================== */
 
     .schedule-home{
 
-        margin-top:0;
+        margin-top:12px;
 
-        padding-bottom:20px;
+        padding-bottom:12px;
     }
 
     .schedule-card{
 
-        display:grid;
-
         grid-template-columns:1fr;
 
-        gap:30px;
+        gap:32px;
 
-        padding:24px;
+        padding:26px;
+
+        border-radius:30px;
     }
 
     .schedule-copy{
@@ -1788,6 +1676,8 @@ body.home-page{
         width:100%;
 
         align-items:center;
+
+        text-align:center;
     }
 
     .schedule-copy h2{
@@ -1796,7 +1686,7 @@ body.home-page{
 
         font-size:1.7rem;
 
-        margin-bottom:20px;
+        margin-bottom:18px;
     }
 
     .schedule-poster{
@@ -1812,7 +1702,7 @@ body.home-page{
 
         width:100%;
 
-        max-width:320px;
+        max-width:300px;
     }
 
     .schedule-highlights h2{
@@ -1821,44 +1711,78 @@ body.home-page{
 
         font-size:1.7rem;
 
-        margin-bottom:20px;
+        margin-bottom:22px;
     }
 
     .schedule-item{
 
-        grid-template-columns:70px 1fr;
+        grid-template-columns:64px 1fr;
 
         gap:16px;
 
         padding:18px;
     }
 
-    .schedule-note{
+    .schedule-date{
 
-        text-align:center;
+        width:60px;
+        height:60px;
+
+        border-radius:18px;
     }
 
-    /* ---------- FEATURED ---------- */
+    .schedule-date strong{
+
+        font-size:1.6rem;
+    }
+
+    .schedule-date span{
+
+        font-size:.72rem;
+    }
+
+    .schedule-detail h3{
+
+        font-size:1.05rem;
+    }
+
+    .schedule-detail p{
+
+        font-size:.9rem;
+    }
+
+    .schedule-note{
+
+        margin-top:18px;
+
+        text-align:left;
+
+        font-size:.9rem;
+    }
+
+    /* ==========================
+       FEATURED
+    ========================== */
 
     .featured-card{
 
         padding:24px;
+
+        border-radius:28px;
     }
 
     .featured-head{
 
         flex-direction:column;
 
-        align-items:center;
-
-        text-align:center;
+        align-items:flex-start;
 
         gap:18px;
     }
 
     .featured-head h2{
 
-        font-size:1.8rem;
+        font-size:1.7rem;
     }
 
     .view-all-btn{
@@ -1873,18 +1797,20 @@ body.home-page{
         gap:14px;
     }
 
-    /* ---------- ABOUT ---------- */
+    /* ==========================
+       ABOUT
+    ========================== */
 
     .about-home{
 
-        padding-top:24px;
+        padding-top:20px;
     }
 
     .about-social-card{
 
         padding:24px;
 
-        border-radius:30px;
+        border-radius:28px;
     }
 
     .about-side{
@@ -1896,14 +1822,34 @@ body.home-page{
         gap:18px;
     }
 
-    .about-chibi{
-
-        width:130px;
-    }
-
     .about-content{
 
         text-align:center;
+    }
+
+    .about-content h2{
+
+        font-size:1.35rem;
+    }
+
+    .about-content p{
+
+        font-size:.92rem;
+    }
+
+    .social-side{
+
+        text-align:center;
+    }
+
+    .social-row{
+
+        justify-content:center;
+    }
+
+    .social-chibi{
+
+        display:none;
     }
 
 }
@@ -1914,19 +1860,66 @@ body.home-page{
 
 @media (max-width:576px){
 
+    body{
+
+        padding-top:68px;
+    }
+
+    /* ==========================
+       HERO
+    ========================== */
+
+    .home-hero{
+
+        padding:28px 0 18px;
+    }
+
+    .home-hero-kicker{
+
+        font-size:.78rem;
+    }
+
     .home-hero-title{
 
-        font-size:2.2rem;
+        font-size:2.25rem;
     }
 
     .home-hero-desc{
 
         font-size:.9rem;
+
+        line-height:1.75;
+    }
+
+    .home-hero-slogan{
+
+        font-size:.9rem;
+
+        margin-bottom:20px;
+    }
+
+    .home-hero-button{
+
+        width:100%;
+        max-width:260px;
+    }
+
+    /* ==========================
+       SCHEDULE
+    ========================== */
+
+    .schedule-home{
+
+        margin-top:10px;
     }
 
     .schedule-card{
 
-        padding:20px;
+        padding:22px;
+
+        gap:28px;
+
+        border-radius:24px;
     }
 
     .schedule-copy h2,
@@ -1937,7 +1930,63 @@ body.home-page{
 
     .schedule-poster img{
 
-        max-width:270px;
+        max-width:260px;
+    }
+
+    .schedule-item{
+
+        grid-template-columns:56px 1fr;
+
+        gap:14px;
+
+        padding:16px;
+    }
+
+    .schedule-date{
+
+        width:54px;
+        height:54px;
+
+        border-radius:16px;
+    }
+
+    .schedule-date strong{
+
+        font-size:1.35rem;
+    }
+
+    .schedule-date span{
+
+        font-size:.68rem;
+    }
+
+    .schedule-detail h3{
+
+        font-size:.96rem;
+    }
+
+    .schedule-detail p{
+
+        font-size:.84rem;
+    }
+
+    .schedule-note{
+
+        font-size:.85rem;
+    }
+
+    /* ==========================
+       FEATURED
+    ========================== */
+
+    .featured-card{
+
+        padding:20px;
+    }
+
+    .featured-head h2{
+
+        font-size:1.5rem;
     }
 
     .featured-grid{
@@ -1945,18 +1994,45 @@ body.home-page{
         gap:12px;
     }
 
+    /* ==========================
+       ABOUT
+    ========================== */
+
+    .about-social-card{
+
+        padding:20px;
+
+        border-radius:24px;
+    }
+
     .about-chibi{
 
-        width:110px;
+        width:115px;
+    }
+
+    .about-content h2{
+
+        font-size:1.2rem;
+    }
+
+    .about-content p{
+
+        font-size:.88rem;
     }
 
 }
+
 
 /* ======================================================
    EXTRA SMALL
 ====================================================== */
 
 @media (max-width:430px){
+
+    .home-hero{
+
+        padding:24px 0 14px;
+    }
 
     .home-hero-title{
 
@@ -1968,44 +2044,103 @@ body.home-page{
         font-size:.85rem;
     }
 
+    .home-hero-button{
+
+        max-width:220px;
+    }
+
     .schedule-card{
 
         padding:18px;
+
+        gap:22px;
+
+        border-radius:20px;
+    }
+
+    .schedule-copy h2,
+    .schedule-highlights h2{
+
+        font-size:1.25rem;
+    }
+
+    .schedule-poster img{
+
+        max-width:220px;
     }
 
     .schedule-item{
 
-        grid-template-columns:60px 1fr;
+        grid-template-columns:52px 1fr;
 
-        gap:12px;
+        gap:10px;
 
         padding:14px;
     }
 
     .schedule-date{
 
-        width:56px;
-        height:56px;
+        width:50px;
+        height:50px;
     }
 
     .schedule-date strong{
 
-        font-size:1.4rem;
+        font-size:1.2rem;
+    }
+
+    .schedule-date span{
+
+        font-size:.62rem;
+    }
+
+    .schedule-detail h3{
+
+        font-size:.9rem;
+    }
+
+    .schedule-detail p{
+
+        font-size:.8rem;
     }
 
     .featured-grid{
 
         grid-template-columns:1fr;
+
+        gap:12px;
+    }
+
+    .featured-card{
+
+        padding:18px;
+    }
+
+    .about-social-card{
+
+        padding:18px;
     }
 
     .about-chibi{
 
-        width:90px;
+        width:95px;
+    }
+
+    .about-content h2{
+
+        font-size:1.1rem;
+    }
+
+    .about-content p{
+
+        font-size:.82rem;
     }
 
     .site-credit{
 
         font-size:.75rem;
+
+        line-height:1.6;
     }
 
 }
