@@ -411,19 +411,22 @@
 
     .hero-image img {
         width: 100%;
-        max-width: 550px;
-        margin-right: 0;
-        margin-bottom: 0;
+        max-width: 500px;
+        margin-right: 0 !important;
+        margin-bottom: 0 !important;
     }
 
-    .hero-stats {
-        width: 100%;
-        max-width: 750px;
-        margin: 40px auto 0 auto;
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        gap: 30px;
+    /* Thanh số liệu dàn ngang thu gọn trên Laptop/Tablet */
+    .events-page .hero-stats {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        width: 100% !important;
+        max-width: 750px !important;
+        margin: 40px auto 0 auto !important;
+        gap: 20px !important;
+        height: auto !important;
+        padding: 20px 30px !important;
     }
 
     .latest-section {
@@ -443,6 +446,7 @@
     }
 }
 
+
 /* ======================================================
    📱 RESPONSIVE ĐIỆN THOẠI DI ĐỘNG (Max-width: 768px)
 ====================================================== */
@@ -451,96 +455,135 @@
         padding-bottom: 60px;
     }
 
-    /* 1. ÉP BỐ CỤC HERO CHUYỂN DỌC HOÀN TOÀN */
+    /* 1. ÉP BỐ CỤC HERO CHUYỂN DỌC HOÀN TOÀN (Ẩn ảnh cồng kềnh) */
+    .events-hero .hero-image {
+        display: none !important; /* Ẩn ảnh khổng lồ bị lệch trên mobile */
+    }
+
+    .events-hero {
+        padding: 24px 0 0 0 !important;
+    }
+
     .hero-layout {
-        display: grid !important;
-        grid-template-columns: 1fr !important; /* Chuyển từ 2 cột thành 1 cột đứng */
-        gap: 30px !important;
-        text-align: center !important; /* Căn giữa toàn bộ chữ cho đẹp mắt */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 16px !important;
         min-height: auto !important;
-        padding-top: 40px !important;
+        padding-top: 0 !important;
     }
 
-    /* Căn giữa dòng mô tả sự kiện */
-    .hero-desc {
-        margin: 0 auto !important;
-        font-size: 0.98rem;
-        line-height: 1.7;
+    .hero-copy {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
 
-    /* Thu nhỏ chữ tiêu đề trang để vừa khít màn hình dọc */
     .hero-title {
-        font-size: 3.2rem !important;
-        margin: 15px 0 !important;
+        font-size: 2.8rem !important;
+        margin: 10px 0 !important;
+        line-height: 1.2 !important;
+    }
+
+    .hero-desc {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        margin: 0 auto !important;
+    }
+
+    /* 2. THANH SỐ LIỆU SỰ KIỆN DÀN NGANG TINH TẾ TRÊN MOBILE */
+    .events-page .hero-stats {
+        display: flex !important;
+        flex-direction: row !important; /* GIỮ HÀNG NGANG */
+        justify-content: space-around !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 12px 8px !important; /* Cực kỳ mỏng gọn */
+        border-radius: 20px !important;
+        gap: 8px !important;
+        margin: 20px 0 0 0 !important; /* Reset biên độ đè khối */
+    }
+
+    .events-page .hero-stat {
+        flex-direction: column !important; /* Icon trên, số dưới cho khít hàng */
+        gap: 4px !important;
+        text-align: center !important;
+        flex: 1 !important;
+    }
+
+    .events-page .hero-stat-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.95rem !important;
+    }
+
+    .events-page .hero-stat strong {
+        font-size: 1.1rem !important;
         line-height: 1.1 !important;
     }
 
-    /* 2. SỬA TRIỆT ĐỂ LỖI HÌNH ẢNH YOKO BỊ LỆCH RÌA */
-    .hero-image {
-        display: flex !important;
-        justify-content: center !important; /* Căn hình ảnh chính giữa màn hình */
-        width: 100% !important;
-        margin-top: 20px !important;
+    .events-page .hero-stat span {
+        font-size: 0.62rem !important;
+        white-space: nowrap !important;
     }
 
-    .hero-image img {
-        width: 100% !important;
-        max-width: 340px !important; /* Giới hạn độ rộng vừa vặn với chiều ngang điện thoại */
-        height: auto !important;
-        margin: 0 auto !important; /* Reset hoàn toàn các khoảng cách âm cũ */
-        display: block !important;
-    }
-
-    /* 3. ĐIỀU CHỈNH KHỐI THỐNG KÊ SỐ LIỆU */
-    .hero-stats {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 20px !important;
-        gap: 20px !important;
-        border-radius: 24px !important;
-        margin: 30px 0 0 0 !important; /* Reset margin âm để không đè lên phần khác */
-        flex-direction: column !important; /* Xếp dọc các dòng thông số */
-    }
-
-    .hero-stat {
-        width: 100% !important;
-        justify-content: flex-start !important;
-        gap: 14px !important;
-    }
-
-    .hero-stat-icon {
-        width: 52px !important;
-        height: 52px !important;
-        font-size: 1.2rem !important;
-    }
-
-    .hero-stat strong {
-        font-size: 1.5rem !important;
-    }
-
-    /* 4. ĐIỀU CHỈNH LATEST CARD TRÊN MOBILE */
+    /* 3. ĐẨY KHỐI LATEST CARD CÁCH BIỆT THOÁNG ĐÃNG */
     .latest-section {
-        margin-top: 40px !important;
+        margin-top: 24px !important; /* Tạo khoảng trống cách biệt thanh số */
     }
 
-    /* 5. CHỈNH SỬA TOOLBAR & BỘ LỌC THÁNG */
+    .events-page .latest-card {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        padding: 20px !important;
+        margin-top: 0 !important;
+    }
+
+    .events-page .latest-card .latest-image {
+        width: 100% !important;
+        height: 220px !important;
+    }
+
+    /* 4. 🌟 SỬA TRIỆT ĐỂ LỖI VỠ DÒNG ICON TIM BROWSE EVENTS */
+    .section-divider {
+        display: block !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin-bottom: 24px !important;
+    }
+
+    .section-divider h2 {
+        font-size: 1.45rem !important;
+        display: block !important;
+        text-align: center !important;
+        
+        /* KHÓA CHẶT: Cấm văn bản gãy dòng chữ xuống trái tim lung tung */
+        white-space: nowrap !important; 
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    /* 5. TOOLBAR BỘ LỌC THÁNG */
     .events-toolbar {
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 20px !important;
-        margin-bottom: 35px !important;
+        gap: 16px !important;
+        padding: 0 !important;
     }
 
     .month-filter {
-        gap: 8px !important;
+        gap: 6px !important;
     }
 
     .month-filter button {
-        padding: 8px 14px !important;
-        font-size: 0.85rem !important;
+        padding: 8px 10px !important;
+        font-size: 0.8rem !important;
         flex: 1 !important;
         text-align: center !important;
-        min-width: calc(33.33% - 8px) !important;
+        min-width: calc(33.33% - 6px) !important;
     }
 
     .toolbar-right {
@@ -552,11 +595,41 @@
     .filter-select-wrapper, 
     .filter-select-wrapper select {
         width: 100% !important;
-        max-width: 180px !important;
+        max-width: 160px !important;
     }
 
-    /* Ẩn bớt 50% bong bóng động nền trang trên Mobile để cuộn trang mượt hơn */
-    .events-bubbles span:nth-child(even) {
+    .events-bubbles span {
         display: none !important;
+    }
+}
+
+
+/* ======================================================
+   📱 RESPONSIVE ĐIỆN THOẠI SIÊU NHỎ (Max-width: 430px)
+====================================================== */
+@media (max-width: 430px) {
+    .hero-title {
+        font-size: 2.2rem !important;
+    }
+
+    .hero-desc {
+        font-size: 0.88rem !important;
+    }
+
+    .section-divider h2 {
+        font-size: 1.25rem !important; /* Hạ nhỏ thêm một chút để khít viền màn hình hẹp */
+    }
+
+    .events-page .hero-stats {
+        padding: 10px 4px !important;
+        gap: 4px !important;
+    }
+
+    .events-page .hero-stat strong {
+        font-size: 1rem !important;
+    }
+
+    .events-page .hero-stat span {
+        font-size: 0.58rem !important;
     }
 }
