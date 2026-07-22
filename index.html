@@ -547,56 +547,52 @@
 </footer>
 
 
-<!-- ==========================================
-     LIGHTBOX
-========================================== -->
+<!-- ======================================================
+     LIGHTBOX PHIÊN BẢN PREMIUM (Đồng bộ cấu trúc mới cho Trang Chủ)
+====================================================== -->
+<div id="lightbox" class="lightbox">
 
-<div
-    id="lightbox"
-    class="lightbox">
+    <!-- TOP CONTROL BAR: Thanh điều khiển phía trên trong suốt -->
+    <div class="lightbox-top-bar">
+        <!-- 1. Thanh tiến trình góc trái -->
+        <div id="lightbox-counter" class="lightbox-counter"></div>
 
-    <button class="lightbox-close">
-
-        ✕
-
-    </button>
-
-    <button class="lightbox-prev">
-
-        ❮
-
-    </button>
-
-    <img
-        id="lightbox-image"
-        src=""
-        alt="">
-
-    <button class="lightbox-next">
-
-        ❯
-
-    </button>
-
-    <div
-        id="lightbox-counter"
-        class="lightbox-counter">
+        <!-- 2. Cụm nút hành động góc phải (Đã bỏ nút Tim tối giản) -->
+        <div class="lightbox-action-buttons">
+            <a id="lightbox-download" class="btn-download lightbox-download" href="" target="_blank" rel="noopener noreferrer">
+                <span>Download Original</span>
+                <div class="moon">☾</div>
+            </a>
+            <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+        </div>
     </div>
 
-    <p
-        id="lightbox-caption"
-        class="lightbox-caption">
-    </p>
+    <!-- MAIN STAGE: Khu vực ảnh trung tâm kèm tính năng click để Zoom -->
+    <div class="lightbox-stage">
+        <button type="button" class="lightbox-prev" aria-label="Previous image">❮</button>
 
-    <a
-        id="lightbox-download"
-        class="lightbox-download"
-        href="#"
-        download>
+        <div class="lightbox-image-container">
+            <img id="lightbox-image" alt="" draggable="false">
+            <button type="button" class="lightbox-zoom-btn" aria-label="Zoom image">⛶</button>
+        </div>
 
-        Download Original
+        <button type="button" class="lightbox-next" aria-label="Next image">❯</button>
+    </div>
 
-    </a>
+    <!-- BOTTOM INFO & THUMBNAILS: Khu vực dạt đáy màn hình -->
+    <div class="lightbox-bottom-wrapper">
+        <!-- Tiêu đề ảnh hiển thị ở giữa -->
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        
+        <!-- Thanh Thumbnail Strip lướt ảnh nhỏ linh hồn của thiết bị -->
+        <div class="lightbox-thumbnails-container">
+            <button type="button" class="thumb-nav thumb-prev">❮</button>
+            <div id="lightbox-thumbs-list" class="lightbox-thumbs-list">
+                <!-- Các ảnh thu nhỏ của Featured Gallery sẽ tự động được JS bơm vào đây -->
+            </div>
+            <button type="button" class="thumb-nav thumb-next">❯</button>
+        </div>
+    </div>
 
 </div>
 
