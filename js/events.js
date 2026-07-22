@@ -136,7 +136,7 @@ function renderLatest() {
                 📷 ${item.photos} photos archived
             </p>
 
-            <a href="detail.html?id=${item.id}" class="btn-prrimary latest-btn">
+            <a href="detail.html?id=${item.id}" class="btn-primary latest-btn">
                 <span>View Gallery &nbsp; →</span>
                 <div class="moon">
                     ☾
