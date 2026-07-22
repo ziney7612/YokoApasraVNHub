@@ -2,51 +2,20 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        const lightbox =
-            document.getElementById(
-                "lightbox"
-            );
+        const lightbox = document.getElementById("lightbox");
+        const image = document.getElementById("lightbox-image");
 
-        const image =
-            document.getElementById(
-                "lightbox-image"
-            );
+        if (!lightbox || !image) return;
 
-        if (!lightbox || !image)
-            return;
-
-        const closeBtn =
-            document.querySelector(
-                ".lightbox-close"
-            );
-
-        const prevBtn =
-            document.querySelector(
-                ".lightbox-prev"
-            );
-
-        const nextBtn =
-            document.querySelector(
-                ".lightbox-next"
-            );
-
-        const counter =
-            document.getElementById(
-                "lightbox-counter"
-            );
-
-        const caption =
-            document.getElementById(
-                "lightbox-caption"
-            );
-
-        const download =
-            document.getElementById(
-                "lightbox-download"
-            );
+        const closeBtn = document.querySelector(".lightbox-close");
+        const prevBtn = document.querySelector(".lightbox-prev");
+        const nextBtn = document.querySelector(".lightbox-next");
+        const counter = document.getElementById("lightbox-counter");
+        const caption = document.getElementById("lightbox-caption");
+        const download = document.getElementById("lightbox-download");
 
         /* ======================================================
-           1. HÀM TẢI FILE NHỊ PHÂN (BLOB) - VƯỢT LỖI CORS & ĐỔI TÊN FILE
+           1. HÀM TẢI FILE NHỊ PHÂN (BLOB) & ĐỔI TÊN THEO SỐ ẢNH MƯỢT MÀ
         ====================================================== */
         async function downloadFileBlob(url, customName) {
             try {
@@ -55,14 +24,10 @@ document.addEventListener(
                 
                 const blob = await response.blob();
                 const blobUrl = URL.createObjectURL(blob);
-                
-                // Tự động lấy đuôi định dạng ảnh gốc (.jpg, .png...) từ link nguồn
                 const extension = url.substring(url.lastIndexOf('.')) || '.jpg';
                 
                 const tempLink = document.createElement("a");
                 tempLink.href = blobUrl;
-                
-                // Đổi tên file tải về chính xác dạng: "Special Day 2026 - 003.jpg"
                 tempLink.download = `${customName}${extension}`;
                 
                 document.body.appendChild(tempLink);
@@ -77,56 +42,33 @@ document.addEventListener(
         }
 
         /* ======================================================
-           2. KHỞI TẠO NÚT BẤM DOWNLOAD CÓ ICON MẶT TRĂNG VÀ BONG BÓNG
+           2. SỰ KIỆN KHỞI TẠO NÚT BẤM DOWNLOAD CỐ ĐỊNH FORM HTML
         ====================================================== */
         if (download) {
-
-            // Gán cấu trúc chữ và vòng tròn chứa mặt trăng đúng chuẩn giao diện mới
-            download.innerHTML =
-                `
-                <span>Download Original</span>
-                <div class="icon-circle">🌙</div>
-                `;
-
-            // Vòng lặp tự động tạo ra 6 hạt bong bóng kính 3D dập dềnh
-            for (
-                let i = 0;
-                i < 6;
-                i++
-            ) {
-                const bubble =
-                    document.createElement(
-                        "span"
-                    );
-                bubble.className =
-                    "bubble";
-                download.appendChild(
-                    bubble
-                );
+            // Chỉ sinh 6 hạt bong bóng, KHÔNG viết đè innerHTML để giữ cấu trúc thẻ div mặt trăng của file HTML
+            for (let i = 0; i < 6; i++) {
+                const bubble = document.createElement("span");
+                bubble.className = "bubble";
+                download.appendChild(bubble);
             }
 
-            // Gán sự kiện click tải ảnh nhị phân nâng cao
             download.addEventListener("click", async (e) => {
                 e.preventDefault();
-                
                 const src = image.src;
                 if (!src) return;
 
-                // Thay đổi trạng thái chữ tạm thời khi đang tải
-                const textSpan = download.querySelector("span:not(.icon-circle)");
+                const textSpan = download.querySelector("span");
                 const originalText = textSpan ? textSpan.textContent : "Download Original";
                 if (textSpan) textSpan.textContent = "Downloading...";
                 download.style.pointerEvents = "none";
 
                 try {
-                    // Trích xuất con số thứ tự từ thuộc tính alt của ảnh hiện tại
+                    // ĐÃ SỬA: Lấy con số thứ tự ảnh chuẩn dựa trên tên file nguồn (Ví dụ: 001.jpg, 002.jpg)
                     let photoNumber = String(current + 1).padStart(3, '0');
-                    if (image.alt) {
-                        const matchNumber = image.alt.match(/\d+/);
-                        if (matchNumber) photoNumber = String(matchNumber).padStart(3, '0');
-                    }
+                    const fileBaseName = src.substring(src.lastIndexOf('/') + 1);
+                    const matchNumber = fileBaseName.match(/\d+/);
+                    if (matchNumber) photoNumber = String(matchNumber[0]).padStart(3, '0');
 
-                    // Gọi hàm ép tải xuống máy kèm đổi tên file mong muốn
                     await downloadFileBlob(src, `Special Day 2026 - ${photoNumber}`);
                 } catch (error) {
                     console.error("Process download error:", error);
@@ -138,40 +80,23 @@ document.addEventListener(
             });
         }
 
-        /* ======================================================
-           3. ĐỊNH NGHĨA BIẾN TRẠNG THÁI VÀ BỘ KHUNG GỌI DỮ LIỆU LIGHTBOX
-        ====================================================== */
         let gallery = [];
         let current = 0;
         let zoom = 1;
         let touchStart = 0;
 
         function collect() {
-            gallery = [
-                ...document.querySelectorAll(
-                    ".lightbox-trigger"
-                )
-            ];
+            gallery = [...document.querySelectorAll(".lightbox-trigger")];
         }
 
         window.refreshLightbox = collect;
 
         function getSrc(item) {
-            return (
-                item.getAttribute(
-                    "href"
-                ) ||
-                item.dataset.src ||
-                ""
-            );
+            return item.getAttribute("href") || item.dataset.src || "";
         }
 
         function getImg(item) {
-            return (
-                item.querySelector(
-                    "img"
-                )
-            );
+            return item.querySelector("img");
         }
 
         function resetZoom() {
@@ -191,27 +116,26 @@ document.addEventListener(
         }
 
         /* ======================================================
-           4. ĐỒNG BỘ GIAO DIỆN TEXT: TIÊU ĐỀ HÌNH ẢNH DẠNG CHUẨN MỚI
+           3. ĐỒNG BỘ TIÊU ĐỀ CHỮ: SỬA LỖI NHẢY SỐ NĂM 2026
         ====================================================== */
         function updateUI() {
             const item = gallery[current];
             if (!item) return;
 
-            const img = getImg(item);
             const src = getSrc(item);
 
             if (counter) {
                 counter.textContent = `${current + 1} / ${gallery.length}`;
             }
 
-            // Tự động gán dòng tiêu đề chuẩn: Yoko @ Special Day 2026 - Photo 003
             if (caption) {
+                // ĐÃ SỬA TRIỆT ĐỂ: Cắt bỏ tên mục để dò số từ đuôi file ảnh (ví dụ: 002.jpg -> 002), tránh bắt nhầm năm 2026
                 let photoNumber = String(current + 1).padStart(3, '0');
-                const altText = img?.alt || "";
-                const matchNumber = altText.match(/\d+/);
+                const fileBaseName = src.substring(src.lastIndexOf('/') + 1);
+                const matchNumber = fileBaseName.match(/\d+/);
                 
                 if (matchNumber) {
-                    photoNumber = String(matchNumber).padStart(3, '0');
+                    photoNumber = String(matchNumber[0]).padStart(3, '0');
                 }
                 
                 caption.textContent = `Yoko @ Special Day 2026 - Photo ${photoNumber}`;
@@ -265,25 +189,19 @@ document.addEventListener(
 
         function next() {
             current++;
-            if (current >= gallery.length) {
-                current = 0;
-            }
+            if (current >= gallery.length) current = 0;
             show(current);
         }
 
         function prev() {
             current--;
-            if (current < 0) {
-                current = gallery.length - 1;
-            }
+            if (current < 0) current = gallery.length - 1;
             show(current);
         }
 
         /* ======================================================
-           5. LẮNG NGHE CÁC SỰ KIỆN ĐIỀU KHIỂN & SỰ KIỆN VUỐT CHUYỂN ẢNH
+           4. SỰ KIỆN CLICK ĐÓNG MỞ & VUỐT DI ĐỘNG
         ====================================================== */
-
-        // Nhấn chuột vào các hình ảnh thu nhỏ (.lightbox-trigger) để kích hoạt mở Lightbox
         document.addEventListener("click", e => {
             const trigger = e.target.closest(".lightbox-trigger");
             if (!trigger) return;
@@ -292,50 +210,37 @@ document.addEventListener(
             collect();
 
             const index = gallery.indexOf(trigger);
-            if (index >= 0) {
-                open(index);
-            }
+            if (index >= 0) open(index);
         });
 
         closeBtn?.addEventListener("click", close);
         nextBtn?.addEventListener("click", next);
         prevBtn?.addEventListener("click", prev);
 
-        // Click chuột ra ngoài khu vực ảnh (Click vào vùng nền tối hoặc stage trống) để tắt Lightbox
         lightbox.addEventListener("click", e => {
             if (e.target === lightbox || e.target.classList.contains("lightbox-stage")) {
                 close();
             }
         });
 
-        // Sử dụng phím điều hướng mũi tên và nút Esc trên bàn phím máy tính
-document.addEventListener("keydown", e => {
-if (!lightbox.classList.contains("show")) return;
-switch (e.key) {
-case "Escape":
-close();
-break;
-case "ArrowRight":
-next();
-break;
-case "ArrowLeft":
-prev();
-break;
-}
-});
-// Cử chỉ vuốt màn hình (Touch Swipe) mượt mà trên Điện thoại/Máy tính bảng
-lightbox.addEventListener("touchstart", e => {
-touchStart = e.changedTouches[0].screenX;
-});
-lightbox.addEventListener("touchend", e => {
-const touchEnd = e.changedTouches[0].screenX;
-const distance = touchEnd - touchStart;
-// Kiểm tra biên độ biên dịch vuốt ngang màn hình lớn hơn 50px
-if (distance > 50) {
-prev(); // Vuốt từ trái qua phải: Lùi về ảnh cũ
-} else if (distance < -50) {
-next(); // Vuốt từ phải qua trái: Tiến tới ảnh tiếp theo
-}
-});
-}
+        document.addEventListener("keydown", e => {
+            if (!lightbox.classList.contains("show")) return;
+            switch (e.key) {
+                case "Escape": close(); break;
+                case "ArrowRight": next(); break;
+                case "ArrowLeft": prev(); break;
+            }
+        });
+
+        lightbox.addEventListener("touchstart", e => {
+            touchStart = e.changedTouches[0].screenX;
+        });
+
+        lightbox.addEventListener("touchend", e => {
+            const touchEnd = e.changedTouches[0].screenX;
+            const distance = touchEnd - touchStart;
+            if (distance > 50) prev();
+            else if (distance < -50) next();
+        });
+    }
 );
