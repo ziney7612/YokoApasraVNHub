@@ -1,401 +1,97 @@
 /* ======================================================
    RESPONSIVE GLOBAL ARCHIVE
-   PART 1: Desktop → Tablet
-   1366px | 1200px | 992px
+   PART 1: Desktop → Tablet (Giữ nguyên cấu trúc gốc của bạn)
 ====================================================== */
 
-/* ======================================================
-   💻 KÍCH THƯỚC MÀN HÌNH MÁY TÍNH NHỎ (<=1366px)
-====================================================== */
 @media (max-width:1366px){
-
-    .container{
-        width:min(94%,1200px);
-    }
-
-    /* ---------- HOME ---------- */
-    .home-hero{
-        padding:120px 0 80px;
-    }
-
-    .home-hero-layout{
-        grid-template-columns:480px 1fr;
-        gap:30px;
-    }
-
-    .home-hero-copy{
-        margin-top:-120px;
-    }
-
-    .home-hero-title{
-        font-size:4.7rem;
-    }
-
-    .home-hero-desc{
-        max-width:500px;
-    }
-
-    .home-hero-visual img{
-        width:610px;
-    }
-
-    /* CÂN CHỈNH ĐẨY CAO LAPTOP: Đẩy lịch trình sát chân ảnh Hero */
-    .schedule-home{
-        margin-top:-240px !important; 
-    }
-
-    /* ---------- EVENTS ---------- */
-    .hero-layout{
-        grid-template-columns:520px 1fr;
-        gap:30px;
-    }
-
-    .hero-title{
-        font-size:4.4rem;
-    }
-
-    /* Tối ưu ảnh nhích gọn vào trong */
-    .events-page .hero-image img {
-        width: 100% !important;
-        max-width: 500px !important;
-        margin-right: 0 !important;
-        margin-bottom: 0 !important;
-    }
-
-    /* Ép thanh số dàn hàng ngang trên Laptop */
-    .events-page .hero-stats {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-around !important;
-        width: 100% !important;
-        max-width: 750px !important;
-        margin: 40px auto 0 auto !important;
-        gap: 18px !important;
-    }
-
-    .latest-card{
-        gap:34px;
-    }
-
-    /* ---------- EXCLUSIVE ---------- */
-    .exclusive-intro{
-        padding:90px 0 45px;
-    }
-
-    .exclusive-hero{
-        gap:42px;
-    }
-
-    .exclusive-poster{
-        width:340px;
-    }
-
-    /* ---------- ABOUT ---------- */
-    .about-hero{
-        padding:90px 0;
-    }
-
-    .about-wrapper{
-        gap:50px;
-    }
+    .container{ width:min(94%,1200px); }
+    .home-hero{ padding:120px 0 80px; }
+    .home-hero-layout{ grid-template-columns:480px 1fr; gap:30px; }
+    .home-hero-copy{ margin-top:-120px; }
+    .home-hero-title{ font-size:4.7rem; }
+    .home-hero-desc{ max-width:500px; }
+    .home-hero-visual img{ width:610px; }
+    .schedule-home{ margin-top:-210px; }
+    .hero-layout{ grid-template-columns:520px 1fr; gap:30px; }
+    .hero-title{ font-size:4.4rem; }
+    .hero-image img{ width:500px; }
+    .hero-stats{ gap:18px; }
+    .latest-card{ gap:34px; }
+    .exclusive-intro{ padding:90px 0 45px; }
+    .exclusive-hero{ gap:42px; }
+    .exclusive-poster{ width:340px; }
+    .about-hero{ padding:90px 0; }
+    .about-wrapper{ gap:50px; }
 }
 
-/* ======================================================
-   💻 KÍCH THƯỚC MÀN HÌNH PC VỪA (<=1200px)
-====================================================== */
 @media (max-width:1200px){
-
-    .container{
-        width:min(94%,1100px);
-    }
-
-    /* ---------- HEADER ---------- */
-    .header-container{
-        gap:30px;
-    }
-
-    .nav-menu{
-        gap:24px;
-    }
-
-    /* ---------- HOME ---------- */
-    .home-hero-layout{
-        grid-template-columns:430px 1fr;
-    }
-
-    .home-hero-title{
-        font-size:4rem;
-    }
-
-    .home-hero-desc{
-        font-size:1.05rem;
-    }
-
-    .home-hero-visual img{
-        width:520px;
-    }
-
-    .home-gallery-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    /* ---------- EVENTS ---------- */
-    .hero-layout{
-        grid-template-columns:460px 1fr;
-    }
-
-    .hero-title{
-        font-size:3.8rem;
-    }
-
-    .events-page .hero-image img {
-        width: 100% !important;
-        max-width: 430px !important;
-        margin-right: 0 !important;
-    }
-
-    .events-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .events-page .hero-stats {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-around !important;
-        width: 100% !important;
-        grid-template-columns: none !important;
-    }
-
-    /* ---------- EVENT DETAIL ---------- */
-    .gallery{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    /* ---------- EXCLUSIVE ---------- */
-    .exclusive-list{
-        gap:28px;
-    }
-
-    .exclusive-card{
-        padding:30px;
-    }
-
-    .exclusive-hero{
-        gap:36px;
-    }
-
-    .exclusive-poster{
-        width:300px;
-    }
-
-    /* ---------- ABOUT ---------- */
-    .about-gallery{
-        grid-template-columns:repeat(2,1fr);
-    }
+    .container{ width:min(94%,1100px); }
+    .header-container{ gap:30px; }
+    .nav-menu{ gap:24px; }
+    .home-hero-layout{ grid-template-columns:430px 1fr; }
+    .home-hero-title{ font-size:4rem; }
+    .home-hero-desc{ font-size:1.05rem; }
+    .home-hero-visual img{ width:520px; }
+    .home-gallery-grid{ grid-template-columns:repeat(3,1fr); }
+    .hero-layout{ grid-template-columns:460px 1fr; }
+    .hero-title{ font-size:3.8rem; }
+    .hero-image img{ width:430px; }
+    .events-grid{ grid-template-columns:repeat(2,1fr); }
+    .hero-stats{ grid-template-columns:repeat(3,1fr); }
+    .gallery{ grid-template-columns:repeat(3,1fr); }
+    .exclusive-list{ gap:28px; }
+    .exclusive-card{ padding:30px; }
+    .exclusive-hero{ gap:36px; }
+    .exclusive-poster{ width:300px; }
+    .about-gallery{ grid-template-columns:repeat(2,1fr); }
 }
 
-/* ======================================================
-   💻 KÍCH THƯỚC MÁY TÍNH BẢNG / TABLET (<=992px)
-====================================================== */
 @media (max-width:992px){
-
-    body{
-        padding-top:82px;
-    }
-
-    /* ---------- HEADER ---------- */
-    .header{
-        height:82px;
-    }
-
-    .header-container{
-        min-height:82px;
-    }
-
-    .logo img{
-        width:105px;
-    }
-
-    .logo-title{
-        font-size:1rem;
-    }
-
-    .nav-menu{
-        gap:18px;
-    }
-
-    .nav-menu a{
-        font-size:.95rem;
-    }
-
-    /* ---------- HOME ---------- */
-    .home-hero{
-        padding:80px 0 70px;
-    }
-
-    .home-hero-layout{
-        display:flex;
-        align-items:center;
-        gap:45px;
-    }
-
-    .home-hero-copy{
-        flex:1;
-        margin-top:0;
-        text-align:left;
-    }
-
-    .home-hero-title{
-        font-size:3.25rem;
-    }
-
-    .home-hero-desc{
-        max-width:unset;
-    }
-
-    .home-hero-visual{
-        flex:1;
-        display:flex;
-        justify-content:center;
-    }
-
-    .home-hero-visual img{
-        width:100%;
-        max-width:320px;
-        height:auto;
-    }
-
-    .schedule-home{
-        margin-top:40px !important;
-    }
-
-    .home-gallery-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    /* ---------- EVENTS ---------- */
-    .events-hero{
-        padding:70px 0;
-    }
-
-    .hero-layout{
-        display:flex;
-        align-items:center;
-        gap:40px;
-    }
-
-    .hero-copy{
-        flex:1;
-    }
-
-    .events-page .hero-image{
-        flex:1;
-        display:flex;
-        justify-content:center;
-    }
-
-    .events-page .hero-image img{
-        width:100%;
-        max-width:300px;
-        height:auto;
-    }
-
-    .hero-title{
-        font-size:3.2rem;
-    }
-
-    .hero-desc{
-        max-width:unset;
-    }
-
-    .events-page .hero-stats {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-around !important;
-        grid-template-columns: none !important;
-        gap:15px;
-    }
-
-    .latest-card{
-        flex-direction:row;
-        align-items:center;
-    }
-
-    .events-toolbar{
-        flex-direction:column;
-        align-items:stretch;
-        gap:18px;
-    }
-
-    .toolbar-right{
-        justify-content:space-between;
-    }
-
-    .events-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    /* ---------- EVENT DETAIL ---------- */
-    .gallery-header{
-        text-align:center;
-    }
-
-    .gallery{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    /* ---------- EXCLUSIVE ---------- */
-    .exclusive-hero{
-        display:flex;
-        align-items:center;
-        gap:40px;
-    }
-
-    .exclusive-poster{
-        flex:0 0 260px;
-        width:260px;
-    }
-
-    .exclusive-info{
-        flex:1;
-        text-align:left;
-    }
-
-    .exclusive-meta{
-        justify-content:flex-start;
-    }
-
-    .exclusive-list{
-        grid-template-columns:1fr;
-    }
-
-    /* ---------- ABOUT ---------- */
-    .about-wrapper{
-        display:flex;
-        gap:40px;
-    }
-
-    .about-content{
-        flex:1;
-    }
-
-    .about-image{
-        flex:1;
-    }
-
-    .about-gallery{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .site-credit{
-        font-size:.9rem;
-    }
+    body{ padding-top:82px; }
+    .header{ height:82px; }
+    .header-container{ min-height:82px; }
+    .logo img{ width:105px; }
+    .logo-title{ font-size:1rem; }
+    .nav-menu{ gap:18px; }
+    .nav-menu a{ font-size:.95rem; }
+    .home-hero{ padding:80px 0 70px; }
+    .home-hero-layout{ display:flex; align-items:center; gap:45px; }
+    .home-hero-copy{ flex:1; margin-top:0; text-align:left; }
+    .home-hero-title{ font-size:3.25rem; }
+    .home-hero-desc{ max-width:unset; }
+    .home-hero-visual{ flex:1; display:flex; justify-content:center; }
+    .home-hero-visual img{ width:100%; max-width:320px; height:auto; }
+    .schedule-home{ margin-top:40px; }
+    .home-gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .events-hero{ padding:70px 0; }
+    .hero-layout{ display:flex; align-items:center; gap:40px; }
+    .hero-copy{ flex:1; }
+    .hero-image{ flex:1; display:flex; justify-content:center; }
+    .hero-image img{ width:100%; max-width:300px; height:auto; }
+    .hero-title{ font-size:3.2rem; }
+    .hero-desc{ max-width:unset; }
+    .hero-stats { display: flex !important; flex-direction: row !important; justify-content: space-around !important; gap:15px; }
+    .latest-card{ flex-direction:row; align-items:center; }
+    .events-toolbar{ flex-direction:column; align-items:stretch; gap:18px; }
+    .toolbar-right{ justify-content:space-between; }
+    .events-grid{ grid-template-columns:repeat(2,1fr); }
+    .gallery-header{ text-align:center; }
+    .gallery{ grid-template-columns:repeat(3,1fr); }
+    .exclusive-hero{ display:flex; align-items:center; gap:40px; }
+    .exclusive-poster{ flex:0 0 260px; width:260px; }
+    .exclusive-info{ flex:1; text-align:left; }
+    .exclusive-meta{ justify-content:flex-start; }
+    .exclusive-list{ grid-template-columns:1fr; }
+    .about-wrapper{ display:flex; gap:40px; }
+    .about-content{ flex:1; }
+    .about-image{ flex:1; }
+    .about-gallery{ grid-template-columns:repeat(2,1fr); }
+    .site-credit{ font-size:.9rem; }
 }
 
 
 /* ======================================================
-   📱 KÍCH THƯỚC ĐIỆN THOẠI DI ĐỘNG / MOBILE (<=768px)
-   Vá lỗi Menu ẩn Home | Ẩn Hero ảnh | Dàn ngang số Events
+   📱 CHỈ SỬA TRÊN ĐIỆN THOẠI DI ĐỘNG / MOBILE (<=768px)
 ====================================================== */
 @media (max-width:768px){
 
@@ -407,31 +103,31 @@
         width:min(100% - 36px,1200px);
     }
 
-    /* ---------- 1. SỬA LỖI MENU MOBILE: HIỆN LẠI NÚT HOME VÀ CHO VUỐT TRƯỢT MƯỢT MÀ ---------- */
+    /* ---------- FIX MENU MOBILE: HIỆN LẠI NÚT HOME VÀ CHO TRƯỢT NGANG ---------- */
     .header-container nav {
         width: 100% !important;
-        overflow-x: auto !important; /* Kích hoạt thanh cuộn ẩn */
+        overflow-x: auto !important;
         scrollbar-width: none;
-        -webkit-overflow-scrolling: touch; /* Lướt quán tính cực nhạy trên iOS */
+        -webkit-overflow-scrolling: touch;
     }
     
     .header-container nav::-webkit-scrollbar {
-        display: none; /* Giấu vệt thanh cuộn thô thiển */
+        display: none;
     }
 
     .nav-menu {
         display: flex !important;
-        flex-direction: row !important; /* Trói hàng ngang cố định */
-        flex-wrap: nowrap !important; /* KHÔNG cho gãy dòng */
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
         justify-content: flex-start !important;
         align-items: center !important;
         gap: 8px !important;
         padding: 4px 10px !important;
-        width: max-content !important; /* Kéo dãn rộng tự do theo tổng số nút */
+        width: max-content !important;
     }
 
     .nav-menu li {
-        flex-shrink: 0 !important; /* CẤM trình duyệt bóp nghẹt thu nhỏ nút Home */
+        flex-shrink: 0 !important;
     }
 
     .nav-menu a {
@@ -441,121 +137,96 @@
         white-space: nowrap !important;
     }
 
-    /* ---------- Header Tĩnh ---------- */
     .header-container{ min-height:76px; }
     .logo img{ width:84px; }
     .logo-text{ display:none; }
 
-    /* ==========================================
-       TRANG HOME MOBILE (Giữ chữ sát đầu - Ẩn ảnh)
-    ========================================== */
-    .home-hero-visual {
-        display: none !important; /* Ẩn ảnh cồng kềnh lệch phải */
-    }
-
-    .home-hero {
-        padding: 24px 0 0 0 !important; /* Đẩy chữ lên sát Header thoáng đạt */
-    }
-
-    .home-hero-layout {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        gap: 16px !important;
-        min-height: auto !important;
-    }
-
-    .home-hero-copy {
-        margin: 0 !important;
-        max-width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-
+    /* ---------- HOME MOBILE ---------- */
+    .home-hero-visual { display: none !important; }
+    .home-hero { padding: 24px 0 0 0 !important; }
+    .home-hero-layout { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; gap: 16px !important; min-height: auto !important; }
+    .home-hero-copy { margin: 0 !important; max-width: 100% !important; display: flex !important; flex-direction: column !important; align-items: center !important; }
     .home-hero-title { font-size: 2.8rem !important; line-height: 1.2 !important; }
     .home-hero-desc { margin-inline: auto !important; font-size: 0.95rem !important; }
     .home-hero-buttons { justify-content: center !important; margin: 10px auto 0 auto !important; }
     .home-hero-buttons .btn-secondary { margin: 0 auto !important; }
-.schedule-home {
-margin-top: 35px !important; /* Tạo khoảng dãn gối đầu mượt với khối chữ ở trên */
-}
-/* ==========================================
-TRANG EVENTS MOBILE (Giữ chữ - Dàn ngang số)
-========================================== /
-.events-hero .hero-image {
-display: none !important; / Ẩn ảnh lớn lỗi lề */
-}
-.events-hero {
-padding: 24px 0 0 0 !important;
-}
-.hero-layout {
-display: flex !important;
-flex-direction: column !important;
-text-align: center !important;
-gap: 16px !important;
-}
-.hero-copy {
-align-items: center !important;
-display: flex !important;
-flex-direction: column !important;
-}
-.hero-title { font-size: 2.8rem !important; margin: 10px 0 !important; }
-.hero-desc { margin-inline: auto !important; font-size: 0.95rem !important; }
-/* Thanh số hiệu dàn hàng ngang mỏng nhẹ trên điện thoại */
-.events-page .hero-stats {
-display: flex !important;
-flex-direction: row !important;
-justify-content: space-around !important;
-align-items: center !important;
-width: 100% !important;
-max-width: 100% !important;
-padding: 12px 8px !important;
-border-radius: 20px !important;
-gap: 8px !important;
-margin: 20px 0 0 0 !important;
-}
-.events-page .hero-stat {
-flex-direction: column !important;
-gap: 4px !important;
-text-align: center !important;
-flex: 1 !important;
-}
-.events-page .hero-stat-icon { width: 36px !important; height: 36px !important; font-size: 0.95rem !important; }
-.events-page .hero-stat strong { font-size: 1.1rem !important; }
-.events-page .hero-stat span { font-size: 0.62rem !important; white-space: nowrap !important; }
-/* ---------- Latest Card & Grid ---------- /
-.latest-section {
-margin-top: 24px !important; / Khoảng dãn thoáng đạt khỏi thanh số */
-}
-.latest-card {
-grid-template-columns: 1fr !important;
-gap: 24px !important;
-padding: 20px !important;
-margin-top: 0 !important;
-}
-.latest-cover { max-width: 320px; margin: auto !important; }
-/* 🌟 SỬA LỖI CHỮ BROWSE EVENTS BỊ NHẢY DÒNG RƠI TRÁI TIM /
-.section-divider h2 {
-font-size: 1.45rem !important;
-white-space: nowrap !important; / Khóa cứng chuỗi văn bản trên 1 hàng ngang */
-text-align: center !important;
-width: 100% !important;
-}
-/* ---------- Toolbar ---------- */
-.events-toolbar {
-flex-direction: column !important;
-align-items: stretch !important;
-gap: 16px !important;
-}
-.month-filter { gap: 6px !important; }
-.month-filter button { padding: 8px 12px !important; font-size: 0.8rem !important; flex: 1 !important; min-width: calc(33.33% - 6px) !important; }
-.toolbar-right { width: 100% !important; justify-content: space-between !important; }
+
+    /* Nút View All Photos nhích nhẹ */
+    .featured-head { display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; margin-bottom: 24px !important; gap: 12px !important; }
+    .featured-head h2 { font-size: 1.35rem !important; margin: 0 !important; text-align: left !important; white-space: nowrap !important; }
+    .featured-head .btn-secondary, .featured-head .view-all-btn, .featured-head a { font-size: 0.82rem !important; padding: 8px 14px !important; width: max-content !important; margin: 0 !important; margin-right: 4px !important; white-space: nowrap !important; }
+
+    .schedule-home { margin-top: 35px !important; }
+
+    /* ---------- EVENTS MOBILE ---------- */
+    .events-hero .hero-image { display: none !important; }
+    .events-hero { padding: 24px 0 0 0 !important; }
+    .hero-layout { display: flex !important; flex-direction: column !important; text-align: center !important; gap: 16px !important; }
+    .hero-copy { align-items: center !important; display: flex !important; flex-direction: column !important; }
+    .hero-title { font-size: 2.8rem !important; margin: 10px 0 !important; }
+    .hero-desc { margin-inline: auto !important; font-size: 0.95rem !important; }
+
+    /* Thanh số di động hàng ngang mỏng */
+    .events-page .hero-stats {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 12px 8px !important;
+        border-radius: 20px !important;
+        gap: 8px !important;
+        margin: 20px 0 0 0 !important;
+    }
+
+    .events-page .hero-stat { flex-direction: column !important; gap: 4px !important; text-align: center !important; flex: 1 !important; }
+    .events-page .hero-stat-icon { width: 36px !important; height: 36px !important; font-size: 0.95rem !important; }
+    .events-page .hero-stat strong { font-size: 1.1rem !important; }
+    .events-page .hero-stat span { font-size: 0.62rem !important; white-space: nowrap !important; }
+
+    .latest-section { margin-top: 24px !important; }
+    .latest-card { grid-template-columns: 1fr !important; gap: 24px !important; padding: 20px !important; margin-top: 0 !important; }
+    .latest-cover { max-width: 320px; margin: auto !important; }
+
+    /* KHÓA CHỮ TIÊU ĐỀ KHÔNG BỊ VỠ TIM */
+    .section-divider h2 {
+        font-size: 1.45rem !important;
+        white-space: nowrap !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    /* Khóa tiêu đề Exclusive kịch bản không gãy tim */
+    .exclusive-section-title {
+        font-size: 1.3rem !important;
+        text-align: center !important;
+        margin-bottom: 24px !important;
+        white-space: nowrap !important;
+        display: block !important;
+        width: 100% !important;
+    }
+
+    /* Ép dọc dải thông số exclusive trên mobile */
+    .exclusive-detail-page .exclusive-meta {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 14px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .exclusive-detail-page .exclusive-meta p { justify-content: center !important; text-align: center !important; }
+
+    /* ---------- Toolbar ---------- */
+    .events-toolbar { flex-direction: column !important; align-items: stretch !important; gap: 16px !important; padding: 0 !important; }
+    .month-filter { gap: 6px !important; }
+    .month-filter button { padding: 8px 12px !important; font-size: 0.8rem !important; flex: 1 !important; min-width: calc(33.33% - 6px) !important; }
+    .toolbar-right { width: 100% !important; justify-content: space-between !important; }
 .filter-select-wrapper, .filter-select-wrapper select { width: 100% !important; max-width: 160px !important; }
-/* ---------- Global Grids ---------- */
-.featured-grid { grid-template-columns: repeat(2, 1fr) !important; }
-.gallery { grid-template-columns: repeat(2, 1fr) !important; }
+/* Lưới ảnh 2 cột thon gọn trên Mobile */
+.featured-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+.gallery { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
 .exclusive-hero { grid-template-columns: 1fr !important; text-align: center !important; gap: 36px !important; }
 .exclusive-poster { max-width: 260px; margin: auto !important; }
 .exclusive-meta { justify-content: center !important; }
@@ -563,78 +234,3 @@ gap: 16px !important;
 .footer-copy { margin: auto !important; }
 .events-bubbles span { display: none !important; }
 }
-/* ======================================================
-💻 ĐOẠN CODE BỔ SUNG CHUYÊN BIỆT DÀNH RIÊNG CHO PC (MÁY TÍNH GỐC)
-Đẩy cao tổng thể Schedule trang chủ | Vá ngang Events PC tinh tế
-====================================================== */
-@media (min-width: 1201px) {
-/* 1. TRANG CHỦ: Ép đè đẩy cao tổng thể Schedule đè sát ảnh nền Hero lộng lẫy /
-.schedule-home {
-margin-top: -280px !important; / Tăng từ -180px lên -280px kéo toàn bộ phần dưới lên cao */
-position: relative !important;
-z-index: 5 !important;
-}
-/* 2. TRANG EVENTS: Ép thanh số dàn ngang, nhích hình Yoko lùi gọn vào trong layout /
-.events-page .hero-stats {
-display: flex !important;
-flex-direction: row !important; / ÉP DÀN HÀNG NGANG TRÊN MÁY TÍNH PC */
-justify-content: space-between !important;
-align-items: center !important;
-width: 520px !important; /* Rộng vừa khít bằng khối chữ giới thiệu bên trái /
-height: 90px !important; / Mỏng gọn, thanh mảnh */
-padding: 0 28px !important;
-border-radius: 28px !important;
-background: rgba(255, 255, 255, 0.68) !important;
-backdrop-filter: blur(25px) !important;
--webkit-backdrop-filter: blur(25px) !important;
-box-shadow: 0 20px 50px rgba(255, 180, 210, 0.12) !important;
-margin-top: 40px !important;
-margin-bottom: -100px !important; /* Tạo khoảng đệm gối đầu lên khối dưới */
-position: relative !important;
-z-index: 5 !important;
-}
-.events-page .hero-stat {
-display: flex !important;
-flex-direction: row !important;
-align-items: center !important;
-gap: 12px !important;
-flex: 1 !important;
-}
-.events-page .hero-stat-icon {
-width: 44px !important;
-height: 44px !important;
-font-size: 1.1rem !important;
-}
-.events-page .hero-stat strong {
-font-size: 1.5rem !important;
-}
-.events-page .hero-stat span {
-font-size: 0.8rem !important;
-white-space: nowrap !important;
-}
-/* KÉO ẢNH IDOL NHÍCH GỌN VÀO TRONG LAYOUT, BỎ MARGIN PHẢI ÂM GÂY TRÀN RÌA SCREEN */
-.events-page .hero-image {
-display: flex !important;
-justify-content: center !important;
-align-items: center !important;
-width: 100% !important;
-}
-.events-page .hero-image img {
-width: 100% !important;
-max-width: 540px !important; /* Giảm nhẹ size ảnh để lùi gọn gàng vào trong /
-height: auto !important;
-margin-right: 0 !important; / Reset hoàn toàn lệnh đẩy văng ảnh ra sát mép phải cũ */
-margin-bottom: -150px !important;
-display: block !important;
-}
-/* Đảm bảo khối Latest Event gối đầu đè khối điện ảnh mượt mà trên PC */
-.events-page .latest-card {
-display: grid !important;
-grid-template-columns: 420px 1fr !important;
-gap: 60px !important;
-margin-top: -120px !important;
-position: relative !important;
-z-index: 10 !important;
-}
-}
-
