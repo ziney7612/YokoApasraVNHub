@@ -22,6 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentEventTitle = "Yoko Apasra";
 
     /* ======================================================
+       🌟 ĐÃ SỬA: KHAI BÁO HÀM COLLECT TRÊN ĐẦU ĐỂ TRIỆT TIÊU LỖI DẤU X ĐỎ
+    ====================================================== */
+    function collect() {
+        gallery = [...document.querySelectorAll(".lightbox-trigger")];
+    }
+
+    // Đăng ký hàm ra ngoài window để các file khác gọi nếu cần
+    window.refreshLightbox = collect;
+
+    /* ======================================================
        1. HÀM TỰ ĐỘNG TRÍCH XUẤT TÊN SỰ KIỆN - SẠCH LỖI LẶP TỪ
     ====================================================== */
     function detectEventTitle(triggerElement) {
@@ -171,8 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const src = gallery[index].getAttribute("href") || gallery[index].dataset.src || "";
         const img = gallery[index].querySelector("img");
 
-        /* ĐÃ SỬA TRIỆT ĐỂ: Loại bỏ hoàn toàn chữ image thừa kế sai cú pháp cũ, 
-           sử dụng đúng đối tượng lightbox gốc của hệ thống */
         lightbox.classList.remove("fullscreen-mode"); 
         if (zoomBtn) zoomBtn.innerHTML = "⛶";
         
@@ -189,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function open(index, triggerElement) {
-        collect();
+        collect(); // Hàm chạy mượt mà không lo báo lỗi chưa định nghĩa
         if (!gallery.length) return;
         
         currentEventTitle = detectEventTitle(triggerElement);
@@ -239,22 +247,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     thumbPrev?.addEventListener("click", () => { if (thumbsList) thumbsList.scrollLeft -= 150; });
-    thumbNext?.addEventListener("click", () => { if (thumbsList) thumbsList.scrollLeft += 150; });
-
-    // ĐÃ SỬA: Thay thế đoạn click lỗi bằng đoạn code chạy trực tiếp không qua trung gian
-    document.addEventListener("click", e => {
-        const trigger = e.target.closest(".lightbox-trigger");
-        
-        if (trigger) {
-            e.preventDefault();
-            
-            // ĐÃ SỬA: Gom thẳng lệnh gom ảnh vào đây để sửa lỗi gạch chân đỏ "collect is not defined"
-            gallery = [...document.querySelectorAll(".lightbox-trigger")];
-            
-            open(gallery.indexOf(trigger), trigger);
-        }
-    });
-
+thumbNext?.addEventListener("click", () => { if (thumbsList) thumbsList.scrollLeft += 150; });
+document.addEventListener("click", e => {
+const trigger = e.target.closest(".lightbox-trigger");
+if (trigger) {
+e.preventDefault();
+open(gallery.indexOf(trigger), trigger);
+}
+});
 closeBtn?.addEventListener("click", close);
 nextBtn?.addEventListener("click", () => { current = (current + 1) % gallery.length; show(current); });
 prevBtn?.addEventListener("click", () => { current = (current - 1 + gallery.length) % gallery.length; show(current); });
