@@ -21,20 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
     // Biến lưu trữ tên sự kiện động hiện tại
     let currentEventTitle = "Yoko Apasra";
 
-    // Hàm tự động trích xuất tên sự kiện động dựa theo ngữ cảnh click
+    /* ======================================================
+       1. HÀM TỰ ĐỘNG TRÍCH XUẤT TÊN SỰ KIỆN - VÁ LỖI LẶP TỪ CHỮ YOKO @
+    ====================================================== */
     function detectEventTitle(triggerElement) {
-        // 1. Nếu đang ở trang chi tiết sự kiện hoặc exclusive, lấy thẳng từ tiêu đề trang h1
+        // A. Nếu đang ở trang chi tiết hoặc exclusive, lấy thẳng từ tiêu đề h1 của trang
         const pageTitleEl = document.getElementById("event-title") || 
                             document.querySelector(".hero-title") || 
                             document.querySelector(".exclusive-title");
         
         if (pageTitleEl && pageTitleEl.textContent.trim() !== "") {
             let title = pageTitleEl.textContent.trim();
-            // Loại bỏ chữ phụ nếu tiêu đề bị dính chữ Archive của Hero
-            return title.replace(/Archive/gi, "").trim();
+            // Lọc bỏ chữ "Archive" và cụm "Yoko @" dính kèm nếu có
+            title = title.replace(/Archive/gi, "").trim();
+            return title.replace(/Yoko\s*@\s*/gi, "").trim();
         }
 
-        // 2. Nếu đang ở trang danh sách hoặc trang chủ, dò ngược tìm thẻ card chứa bức ảnh đó
+        // B. Nếu đang ở trang danh sách hoặc trang chủ, dò ngược tìm thẻ card chứa ảnh
         const cardParent = triggerElement.closest(".event-card") || 
                            triggerElement.closest(".featured-card") || 
                            triggerElement.closest(".latest-card");
@@ -43,18 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const cardTitleEl = cardParent.querySelector("h2") || cardParent.querySelector("h3");
             if (cardTitleEl) {
                 let title = cardTitleEl.textContent.trim();
-                // Loại bỏ tiền tố "Yoko @ " nếu code HTML của bạn có chèn sẵn để tên file tải về sạch sẽ
-                return title.replace(/^Yoko\s*@\s*/i, "").trim();
+                
+                /* ĐÃ SỬA TRIỆT ĐỂ: Sử dụng cờ quét toàn cục /gi để xóa sạch bóng 
+                   tất cả các chữ "Yoko @" dính trong thẻ h2, trả lại tên sự kiện sạch */
+                return title.replace(/Yoko\s*@\s*/gi, "").trim();
             }
         }
 
         return "Yoko Apasra";
     }
 
-    function collect() {
-        gallery = [...document.querySelectorAll(".lightbox-trigger")];
-    }
-
+    /* ======================================================
+       2. HÀM TẢI FILE NHỊ PHÂN (BLOB) - VƯỢT LỖI CORS & ĐỔI TÊN ĐỘNG
+    ====================================================== */
     async function downloadFileBlob(url, customName) {
         try {
             const response = await fetch(url);
@@ -75,7 +79,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Sinh bong bóng song song với mặt trăng mảnh trơn ☾ yêu thích của bạn
+    /* ======================================================
+       3. KHỞI TẠO BONG BÓNG KÍNH 3D CHO NÚT DOWNLOAD ORIGINAL
+    ====================================================== */
     function initDownloadBubbles() {
         if (!download) return;
         download.innerHTML = `<span>Download Original</span><div class="moon">☾</div>`;
@@ -86,6 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    /* ======================================================
+       4. GENERATE DẢI THUMBNAIL STRIP DƯỚI ĐÁY MÀN HÌNH
+    ====================================================== */
     function buildThumbnails() {
         if (!thumbsList) return;
         thumbsList.innerHTML = gallery.map((item, index) => {
@@ -98,19 +107,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /* ======================================================
+       5. CƠ CHẾ BẬT/TẮT FULL SCREEN ĐIỆN ẢNH (ẢNH BỰ TRÀN VIỀN)
+    ====================================================== */
     function toggleFullscreenMode() {
         if (lightbox.classList.contains("fullscreen-mode")) {
             lightbox.classList.remove("fullscreen-mode");
-            if (zoomBtn) zoomBtn.innerHTML = "⛶";
+            if (zoomBtn) zoomBtn.innerHTML = "⛶"; 
         } else {
             lightbox.classList.add("fullscreen-mode");
-            if (zoomBtn) zoomBtn.innerHTML = "⛵";
+            if (zoomBtn) zoomBtn.innerHTML = "⛵"; 
         }
     }
 
     if (zoomBtn) {
         zoomBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
+            e.stopPropagation(); 
             toggleFullscreenMode();
         });
     }
@@ -121,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ======================================================
-       ĐỒNG BỘ TIÊU ĐỀ THEO TÊN SỰ KIỆN ĐỘNG TRỰC TIẾP TỪ THẺ CARD
+       6. ĐỒNG BỘ TEXT TIÊU ĐỀ CHUẨN XÁC, SẠCH LỖI LẶP TỪ
     ====================================================== */
     function updateUI() {
         if (!gallery[current]) return;
@@ -130,19 +142,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (counter) counter.textContent = `${current + 1} / ${gallery.length}`;
         
-        // Trích xuất số thứ tự ảnh tự động từ tên tệp tin nguồn
+        // Trích xuất số thứ tự ảnh chuẩn xác từ đuôi file
         let photoNumber = String(current + 1).padStart(3, '0');
         const fileBaseName = src.substring(src.lastIndexOf('/') + 1);
         const matchNumber = fileBaseName.match(/\d+/);
         if (matchNumber) photoNumber = String(matchNumber).padStart(3, '0');
 
-        // Gán chuỗi tiêu đề hiển thị động chuẩn xác từng sự kiện
+        // Gán chuỗi tiêu đề động theo định dạng sạch không nhân đôi Yoko @
         if (caption) {
             caption.textContent = `Yoko @ ${currentEventTitle} - Photo ${photoNumber}`;
         }
 
         if (download) download.href = src;
 
+        // Cập nhật viền sáng active cho ô ảnh thu nhỏ dưới đáy
         if (thumbsList) {
             const thumbs = thumbsList.querySelectorAll("img");
             thumbs.forEach(t => t.classList.remove("active"));
@@ -158,8 +171,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const src = gallery[index].getAttribute("href") || gallery[index].dataset.src || "";
         const img = gallery[index].querySelector("img");
 
-        image.classList.add("loading");
+        image.lightbox.classList.remove("fullscreen-mode"); // Trả lại thanh strip khi chuyển hình
+        if (zoomBtn) zoomBtn.innerHTML = "⛶";
         
+        image.classList.add("loading");
         const loader = new Image();
         loader.onload = () => {
             image.src = src;
@@ -175,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
         collect();
         if (!gallery.length) return;
         
-        // Cập nhật lại tên sự kiện động ngay tại thời điểm click mở ảnh
+        // Bắt chính xác tên sự kiện động ngay khi click mở ảnh
         currentEventTitle = detectEventTitle(triggerElement);
         
         buildThumbnails();
@@ -186,16 +201,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function close() {
         lightbox.classList.remove("show");
-        lightbox.classList.remove("fullscreen-mode");
+        lightbox.classList.remove("fullscreen-mode"); 
         if (zoomBtn) zoomBtn.innerHTML = "⛶";
         document.body.classList.remove("lightbox-open");
     }
 
     /* ======================================================
-       TẢI ẢNH XUỐNG VỚI TÊN FILE KHỚP ĐỘNG VỚI SỰ KIỆN ĐANG XEM
+       7. SỰ KIỆN CLICK NÚT DOWNLOAD: ĐỔI TÊN ĐỘNG THEO SỰ KIỆN SẠCH
     ====================================================== */
     if (download) {
-        initDownloadBubbles();
+        initDownloadBubbles(); 
+        
         download.addEventListener("click", async (e) => {
             e.preventDefault();
             const src = image.src;
@@ -211,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const matchNumber = fileBaseName.match(/\d+/);
                 if (matchNumber) photoNumber = String(matchNumber).padStart(3, '0');
 
-                // Tên file tải về tự động khớp khít theo tên sự kiện trích xuất từ thẻ
+                // Tên file tải về tự động khớp sạch sẽ theo tên sự kiện động
                 await downloadFileBlob(src, `${currentEventTitle} - ${photoNumber}`);
             } catch (error) {
                 window.open(src, "_blank");
@@ -223,29 +239,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     thumbPrev?.addEventListener("click", () => { if (thumbsList) thumbsList.scrollLeft -= 150; });
-    thumbNext?.addEventListener("click", () => { if (thumbsList) thumbsList.scrollLeft += 150; });
-
-    document.addEventListener("click", e => {
-        const trigger = e.target.closest(".lightbox-trigger");
-        if (trigger) { 
-            e.preventDefault(); 
-            collect(); 
-            // Truyền thêm phần tử click vào hàm open để dò ngược lấy tiêu đề h2
-            open(gallery.indexOf(trigger), trigger); 
-        }
-    });
-
-    closeBtn?.addEventListener("click", close);
-    nextBtn?.addEventListener("click", () => { current = (current + 1) % gallery.length; show(current); });
-    prevBtn?.addEventListener("click", () => { current = (current - 1 + gallery.length) % gallery.length; show(current); });
-
-    lightbox.addEventListener("click", e => {
-        if (e.target === lightbox || e.target.classList.contains("lightbox-stage")) close();
-    });
-
-    document.addEventListener("keydown", e => {
-        if (!lightbox.classList.contains("show")) return;
-        if (e.key === "Escape") close();
+thumbNext?.addEventListener("click", () => { if (thumbsList) thumbsList.scrollLeft += 150; });
+document.addEventListener("click", e => {
+const trigger = e.target.closest(".lightbox-trigger");
+if (trigger) {
+e.preventDefault();
+collect();
+// Truyền thêm thẻ click trigger để bóc tách tiêu đề h2 động sạch
+open(gallery.indexOf(trigger), trigger);
+}
+});
+closeBtn?.addEventListener("click", close);
+nextBtn?.addEventListener("click", () => { current = (current + 1) % gallery.length; show(current); });
+prevBtn?.addEventListener("click", () => { current = (current - 1 + gallery.length) % gallery.length; show(current); });
+lightbox.addEventListener("click", e => {
+if (e.target === lightbox || e.target.classList.contains("lightbox-stage")) close();
+});
+document.addEventListener("keydown", e => {
+if (!lightbox.classList.contains("show")) return;
+if (e.key === "Escape") close();
 if (e.key === "ArrowRight") { current = (current + 1) % gallery.length; show(current); }
 if (e.key === "ArrowLeft") { current = (current - 1 + gallery.length) % gallery.length; show(current); }
 });
