@@ -10,15 +10,19 @@
         content="width=device-width, initial-scale=1.0">
 
     <title>
-        Exclusive • Yoko Apasra VNHub
+
+        Exclusive Gallery • Yoko Apasra VNHub
+
     </title>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
@@ -32,6 +36,10 @@
 
 <body>
 
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
 <header class="header">
 
     <div class="container header-container">
@@ -42,7 +50,7 @@
 
             <img
                 src="../assets/logo/logo.png"
-                alt="Logo">
+                alt="Yoko Apasra VNHub">
 
             <div class="logo-text">
 
@@ -61,45 +69,32 @@
             <ul class="nav-menu">
 
                 <li>
-
                     <a href="../index.html">
-
                         Home
-
                     </a>
-
                 </li>
 
                 <li>
-
                     <a href="../events/">
-
                         Events
-
                     </a>
-
                 </li>
 
                 <li>
-
                     <a
                         href="./"
-                        class="active">
+                        class="active"
+                        aria-current="page">
 
                         Exclusive
 
                     </a>
-
                 </li>
 
                 <li>
-
                     <a href="../about/">
-
                         About
-
                     </a>
-
                 </li>
 
             </ul>
@@ -111,13 +106,15 @@
 </header>
 
 
+<!-- ======================================================
+     MAIN
+====================================================== -->
+
 <main class="exclusive-detail-page">
 
     <div class="container">
 
-        <!-- ==========================
-             BACK
-        =========================== -->
+        <!-- BACK -->
 
         <a
             href="index.html"
@@ -128,29 +125,35 @@
         </a>
 
 
-        <!-- ==========================
-             HERO
-        =========================== -->
+        <!-- HERO -->
 
-        <section class="exclusive-hero">
+        <section class="exclusive-hero glass-card">
 
-            <!-- Poster -->
+            <!-- POSTER -->
 
             <div class="exclusive-poster">
 
-                <img
-                    id="poster-image"
-                    src=""
-                    alt="Poster">
+                <a
+                    id="poster-link"
+                    href=""
+                    class="lightbox-trigger">
+
+                    <img
+                        id="poster-image"
+                        src=""
+                        alt="Poster"
+                        draggable="false">
+
+                </a>
 
             </div>
 
 
-            <!-- Album Info -->
+            <!-- INFO -->
 
             <div class="exclusive-info">
 
-                <span class="exclusive-badge">
+                <span class="badge badge-exclusive">
 
                     ✦ Exclusive Collection
 
@@ -159,28 +162,37 @@
                 <h1
                     id="event-title"
                     class="exclusive-title">
-
                 </h1>
 
                 <p
                     id="event-subtitle"
                     class="exclusive-subtitle">
-
                 </p>
 
                 <div
                     id="event-meta"
                     class="exclusive-meta">
-
                 </div>
+
 
                 <a
                     id="download-album"
-                    class="download-album"
+                    class="btn-download"
                     href=""
-                    download>
+                    target="_blank"
+                    rel="noopener noreferrer">
 
-                    ⭳ Download Full Album
+                    <span class="moon">
+
+                        ☾
+
+                    </span>
+
+                    <span>
+
+                        Download Full Album
+
+                    </span>
 
                 </a>
 
@@ -188,11 +200,10 @@
 
         </section>
 
-                <!-- ==========================
-             GALLERY DIVIDER
-        =========================== -->
 
-        <section class="gallery-divider">
+        <!-- GALLERY TITLE -->
+
+        <div class="section-divider">
 
             <span></span>
 
@@ -204,18 +215,17 @@
 
             <span></span>
 
-        </section>
+        </div>
 
 
-        <!-- ==========================
-             GALLERY
-        =========================== -->
+        <!-- GALLERY -->
 
         <section class="exclusive-gallery">
 
             <div
                 id="gallery"
-                class="gallery">
+                class="gallery"
+                aria-live="polite">
 
             </div>
 
@@ -226,9 +236,9 @@
 </main>
 
 
-<!-- ==========================
-     FOOTER
-========================== -->
+<!-- ======================================================
+     FOOTER MESSAGE
+====================================================== -->
 
 <section class="events-footer">
 
@@ -299,9 +309,10 @@
 
 </footer>
 
-    <!-- ==========================================
+
+<!-- ======================================================
      LIGHTBOX
-========================================== -->
+====================================================== -->
 
 <div
     id="lightbox"
@@ -338,7 +349,9 @@
 
         <img
             id="lightbox-image"
-            alt="">
+            src=""
+            alt=""
+            draggable="false">
 
     </div>
 
@@ -355,15 +368,22 @@
 
     <a
         id="lightbox-download"
-        class="lightbox-download"
+        class="btn-download lightbox-download"
         href=""
-        download>
+        target="_blank"
+        rel="noopener noreferrer">
 
-        Download Original
+        <span class="moon-icon">
 
-        <i class="bubble"></i>
-        <i class="bubble"></i>
-        <i class="bubble"></i>
+            🌙
+
+        </span>
+
+        <span>
+
+            Download Original
+
+        </span>
 
     </a>
 
@@ -377,9 +397,9 @@
 </div>
 
 
-<!-- ==========================================
+<!-- ======================================================
      SCRIPTS
-========================================== -->
+====================================================== -->
 
 <script src="exclusive-detail.js"></script>
 

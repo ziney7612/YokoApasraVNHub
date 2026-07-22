@@ -12,17 +12,20 @@ document.addEventListener(
                 "lightbox-image"
             );
 
-        const closeButton =
+        if (!lightbox || !image)
+            return;
+
+        const closeBtn =
             document.querySelector(
                 ".lightbox-close"
             );
 
-        const prevButton =
+        const prevBtn =
             document.querySelector(
                 ".lightbox-prev"
             );
 
-        const nextButton =
+        const nextBtn =
             document.querySelector(
                 ".lightbox-next"
             );
@@ -42,57 +45,125 @@ document.addEventListener(
                 "lightbox-download"
             );
 
-        if (
-            !lightbox ||
-            !image
-        ) return;
+        /* ============================
+           DOWNLOAD BUBBLES
+        ============================ */
 
-        let images = [];
+        if (download) {
 
-        let currentIndex = 0;
+            download.innerHTML =
+                `
+                <span class="moon">☾</span>
+                <span>Download Original</span>
+                `;
 
-        let isAnimating = false;
+            for (
+                let i = 0;
+                i < 6;
+                i++
+            ) {
 
+                const bubble =
+                    document.createElement(
+                        "span"
+                    );
+
+                bubble.className =
+                    "bubble";
+
+                download.appendChild(
+                    bubble
+                );
+
+            }
+
+            /* ======================================================
+               NEW: ADVANCED BLOB DOWNLOAD (Sửa lỗi không tự động tải ảnh)
+            ====================================================== */
+            download.addEventListener("click", async (e) => {
+                e.preventDefault(); // Ngăn trình duyệt mở liên kết sang tab mới
+                
+                const src = image.src;
+                if (!src) return;
+
+                // Thay đổi trạng thái nút tạm thời để người dùng biết hệ thống đang xử lý
+                const originalText = download.querySelector("span:not(.moon-icon)").textContent;
+                download.querySelector("span:not(.moon-icon)").textContent = "Downloading...";
+                download.style.pointerEvents = "none";
+
+                try {
+                    const response = await fetch(src);
+                    if (!response.ok) throw new Error("Network error");
+                    
+                    // Chuyển dữ liệu ảnh sang dạng mã nhị phân Blob an toàn
+                    const blob = await response.blob();
+                    const objectUrl = URL.createObjectURL(blob);
+                    
+                    // Trích xuất tên file ảnh (ví dụ: 001.jpg) từ đường dẫn nguồn
+                    const fileName = src.substring(src.lastIndexOf('/') + 1) || "yoko-photo.jpg";
+                    
+                    // Tạo thẻ liên kết ảo để ép trình duyệt lưu tệp xuống thư mục máy
+                    const tempLink = document.createElement("a");
+                    tempLink.href = objectUrl;
+                    tempLink.download = `Yoko_${fileName}`;
+                    
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    
+                    // Giải phóng bộ nhớ
+                    document.body.removeChild(tempLink);
+                    URL.revokeObjectURL(objectUrl);
+                } catch (error) {
+                    console.error("Download failed, opening origin link instead:", error);
+                    // Phương án dự phòng nếu dính lỗi bảo mật CORS: Mở ảnh trực tiếp ở tab mới
+                    window.open(src, "_blank");
+                } finally {
+                    // Trả lại trạng thái chữ ban đầu cho nút bấm
+                    download.querySelector("span:not(.moon-icon)").textContent = originalText;
+                    download.style.pointerEvents = "auto";
+                }
+            });
+        }
+
+        let gallery = [];
+        let current = 0;
         let zoom = 1;
+        let touchStart = 0;
 
-        /*=============================*/
-        /* COLLECT */
-        /*=============================*/
+        function collect() {
 
-        function collectImages() {
-
-            images = [
-
+            gallery = [
                 ...document.querySelectorAll(
                     ".lightbox-trigger"
                 )
-
             ];
 
         }
 
         window.refreshLightbox =
-            collectImages;
+            collect;
 
-        /*=============================*/
-
-        function getImageSrc(item) {
+        function getSrc(item) {
 
             return (
-
-                item.href ||
-
+                item.getAttribute(
+                    "href"
+                ) ||
                 item.dataset.src ||
-
-                item.src ||
-
                 ""
-
             );
 
         }
 
-        /*=============================*/
+        function getImg(item) {
+
+            return (
+                item.querySelector(
+                    "img"
+                )
+            );
+
+        }
 
         function resetZoom() {
 
@@ -103,32 +174,55 @@ document.addEventListener(
 
         }
 
-        /*=============================*/
+        function preload(index) {
+
+            if (
+                index < 0 ||
+                index >=
+                    gallery.length
+            )
+                return;
+
+            const img =
+                new Image();
+
+            img.src =
+                getSrc(
+                    gallery[index]
+                );
+
+        }
+
+        function preloadNearby() {
+
+            preload(
+                current - 1
+            );
+
+            preload(
+                current + 1
+            );
+
+        }
 
         function updateUI() {
 
             const item =
-                images[currentIndex];
+                gallery[current];
 
             if (!item)
                 return;
 
             const img =
-                item.querySelector(
-                    "img"
-                ) ||
-
-                item;
+                getImg(item);
 
             const src =
-                getImageSrc(
-                    item
-                );
+                getSrc(item);
 
             if (counter) {
 
                 counter.textContent =
-                    `${currentIndex + 1} / ${images.length}`;
+                    `${current + 1} / ${gallery.length}`;
 
             }
 
@@ -140,76 +234,25 @@ document.addEventListener(
             }
 
             if (download) {
-
-                download.href =
-                    src;
-
-                download.download =
-
-                    item.dataset.filename ||
-
-                    src
-                        .split("/")
-                        .pop();
-
+                // Giữ thuộc tính href mặc định làm phương án dự phòng
+                download.href = src;
             }
 
         }
 
-        /*=============================*/
-
-        function preload(index) {
-
-            if (
-                index < 0 ||
-                index >= images.length
-            ) return;
+        function show(index) {
 
             const item =
-                images[index];
-
-            const img =
-                new Image();
-
-            img.src =
-                getImageSrc(
-                    item
-                );
-
-        }
-
-        function preloadNearby() {
-
-            preload(
-                currentIndex - 1
-            );
-
-            preload(
-                currentIndex + 1
-            );
-
-        }
-
-        /*=============================*/
-
-        function showImage(index) {
-
-            if (
-                isAnimating
-            ) return;
-
-            const item =
-                images[index];
+                gallery[index];
 
             if (!item)
                 return;
 
             const src =
-                getImageSrc(
-                    item
-                );
+                getSrc(item);
 
-            isAnimating = true;
+            const img =
+                getImg(item);
 
             image.classList.add(
                 "loading"
@@ -222,21 +265,13 @@ document.addEventListener(
                 () => {
 
                     image.src =
-                        loader.src;
-
-                    const img =
-                        item.querySelector(
-                            "img"
-                        ) ||
-
-                        item;
+                        src;
 
                     image.alt =
                         img?.alt ||
+                        "";
 
-                        `Photo ${index + 1}`;
-
-                    currentIndex =
+                    current =
                         index;
 
                     updateUI();
@@ -255,35 +290,20 @@ document.addEventListener(
                         }
                     );
 
-                    isAnimating =
-                        false;
-
                 };
 
-            loader.onerror =
-                () => {
-
-                    isAnimating =
-                        false;
-
-                };
-
-            loader.src =
-                src;
+            loader.src = src;
 
         }
 
-        /*=============================*/
+        function open(index) {
 
-        function openLightbox(
-            index
-        ) {
-
-            collectImages();
+            collect();
 
             if (
-                !images.length
-            ) return;
+                !gallery.length
+            )
+                return;
 
             lightbox.classList.add(
                 "show"
@@ -293,13 +313,11 @@ document.addEventListener(
                 "lightbox-open"
             );
 
-            showImage(
-                index
-            );
+            show(index);
 
         }
 
-        function closeLightbox() {
+        function close() {
 
             lightbox.classList.remove(
                 "show"
@@ -313,295 +331,156 @@ document.addEventListener(
 
         }
 
-        /*=============================*/
+        function next() {
 
-        function nextImage() {
-
-            currentIndex++;
+            current++;
 
             if (
-                currentIndex >=
-                images.length
+                current >=
+                gallery.length
             ) {
 
-                currentIndex = 0;
+                current = 0;
 
             }
 
-            showImage(
-                currentIndex
-            );
+            show(current);
 
         }
 
-        function prevImage() {
+        function prev() {
 
-            currentIndex--;
+            current--;
 
             if (
-                currentIndex < 0
+                current < 0
             ) {
 
-                currentIndex =
-                    images.length - 1;
+                current =
+                    gallery.length -
+                    1;
 
             }
 
-            showImage(
-                currentIndex
-            );
+            show(current);
 
         }
 
-        /*=============================*/
-        /* OPEN */
-        /*=============================*/
+        /* ============================
+           OPEN
+        ============================ */
 
         document.addEventListener(
             "click",
-            (event) => {
+            e => {
 
-                const target =
-                    event.target.closest(
+                const trigger =
+                    e.target.closest(
                         ".lightbox-trigger"
                     );
 
-                if (!target)
+                if (!trigger)
                     return;
 
-                event.preventDefault();
+                e.preventDefault();
 
-                collectImages();
+                collect();
 
                 const index =
-                    images.indexOf(
-                        target
+                    gallery.indexOf(
+                        trigger
                     );
 
                 if (
-                    index === -1
-                ) return;
-
-                openLightbox(
-                    index
-                );
-
-            }
-        );
-
-        /*=============================*/
-        /* BUTTONS */
-        /*=============================*/
-
-        closeButton?.addEventListener(
-            "click",
-            (event) => {
-
-                event.stopPropagation();
-
-                closeLightbox();
-
-            }
-        );
-
-        nextButton?.addEventListener(
-            "click",
-            (event) => {
-
-                event.stopPropagation();
-
-                nextImage();
-
-            }
-        );
-
-        prevButton?.addEventListener(
-            "click",
-            (event) => {
-
-                event.stopPropagation();
-
-                prevImage();
-
-            }
-        );
-
-        /*=============================*/
-
-        lightbox.addEventListener(
-            "click",
-            (event) => {
-
-                if (
-                    event.target ===
-                    lightbox
+                    index >= 0
                 ) {
 
-                    closeLightbox();
+                    open(index);
 
                 }
 
             }
         );
 
-        /*=============================*/
-        /* KEYBOARD */
-        /*=============================*/
+        closeBtn?.addEventListener(
+            "click",
+            close
+        );
+
+        nextBtn?.addEventListener(
+            "click",
+            next
+        );
+
+        prevBtn?.addEventListener(
+            "click",
+            prev
+        );
+
+        lightbox.addEventListener(
+            "click",
+            e => {
+                // Sửa logic click vùng tối để tắt: Nếu click trúng vùng ngoài rìa hộp ảnh thì đóng lightbox
+                if (e.target === lightbox || e.target.classList.contains("lightbox-stage")) {
+                    close();
+                }
+            }
+        );
+
+        /* ============================
+           KEYBOARD
+        ============================ */
 
         document.addEventListener(
             "keydown",
-            (event) => {
+            e => {
 
                 if (
                     !lightbox.classList.contains(
                         "show"
-                    )
-                ) return;
-
-                switch (
-                    event.key
-                ) {
-
-                    case "Escape":
-
-                        closeLightbox();
-                        break;
-
-                    case "ArrowRight":
-
-                        nextImage();
-                        break;
-
-                    case "ArrowLeft":
-
-                        prevImage();
-                        break;
-
-                }
-
-            }
-        );
-
-        /*=============================*/
-        /* SWIPE */
-        /*=============================*/
-
-        let touchStartX = 0;
-
-        lightbox.addEventListener(
-            "touchstart",
-            (event) => {
-
-                touchStartX =
-                    event.changedTouches[0]
-                        .screenX;
-
-            },
-            {
-                passive:true
-            }
-        );
-
-        lightbox.addEventListener(
-            "touchend",
-            (event) => {
-
-                const touchEndX =
-                    event.changedTouches[0]
-                        .screenX;
-
-                const distance =
-                    touchEndX -
-                    touchStartX;
-
-                if (
-                    Math.abs(
-                        distance
-                    ) < 60
-                ) return;
-
-                if (
-                    distance > 0
-                ) {
-
-                    prevImage();
-
-                }
-
-                else {
-
-                    nextImage();
-
-                }
-
-            },
-            {
-                passive:true
-            }
-        );
-
-        /*=============================*/
-        /* CLICK TO ZOOM */
-        /*=============================*/
-
-        image.addEventListener(
-            "click",
-            (event) => {
-
-                event.stopPropagation();
-
-                zoom =
-                    zoom === 1
-                    ? 2
-                    : 1;
-
-                image.style.transform =
-                    `scale(${zoom})`;
-
-            }
-        );
-
-        /*=============================*/
-        /* MOUSE WHEEL */
-        /*=============================*/
-
-        lightbox.addEventListener(
-            "wheel",
-            (event) => {
-
-                if (
-                    !lightbox.classList.contains(
-                        "show"
-                    )
-                ) return;
-
-                event.preventDefault();
-
-                zoom +=
-
-                    event.deltaY > 0
-                    ? -0.15
-                    : 0.15;
-
-                zoom =
-                    Math.max(
-                        1,
-                        Math.min(
-                            zoom,
-                            4
-                        )
-                    );
-
-                image.style.transform =
-                    `scale(${zoom})`;
-
-            },
-            {
-                passive:false
-            }
-        );
-
-        collectImages();
-
-    }
+)
+)
+return;
+switch (
+e.key
+) {
+case "Escape":
+close();
+break;
+case "ArrowRight":
+next();
+break;
+case "ArrowLeft":
+prev();
+break;
+}
+}
+);
+/* ============================
+TOUCH SWIPE (Bổ sung phần code khuyết hoàn chỉnh)
+============================ */
+lightbox.addEventListener(
+"touchstart",
+e => {
+touchStart =
+e.changedTouches[0]
+.screenX;
+}
+);
+lightbox.addEventListener(
+"touchend",
+e => {
+const touchEnd =
+e.changedTouches[0]
+.screenX;
+const distance = touchEnd - touchStart;
+// Nếu vuốt ngang màn hình một khoảng lớn hơn 50px thì chuyển ảnh
+if (distance > 50) {
+prev(); // Vuốt từ trái sang phải: Quay lại ảnh cũ
+} else if (distance < -50) {
+next(); // Vuốt từ phải sang trái: Xem ảnh tiếp theo
+}
+}
+);
+}
 );

@@ -1,4 +1,12 @@
 /* ======================================================
+   HOME
+   Part 1
+   - Bubbles
+   - Hero
+====================================================== */
+
+
+/* ======================================================
    HOME BUBBLES
 ====================================================== */
 
@@ -17,8 +25,14 @@ body.home-page{
 }
 
 .home-bubbles span{
+
     position:absolute;
+
     border-radius:50%;
+
+    opacity:.95;
+
+    backdrop-filter:blur(8px);
 
     background:
         radial-gradient(
@@ -34,36 +48,28 @@ body.home-page{
         rgba(255,185,220,.45);
 
     box-shadow:
-        inset
-        -12px -12px 20px
-        rgba(255,255,255,.35),
-
-        inset
-        10px 10px 20px
-        rgba(255,200,225,.25),
-
-        0 0 30px
-        rgba(255,190,220,.35);
-
-    backdrop-filter:blur(8px);
-
-    opacity:.95;
+        inset -12px -12px 20px rgba(255,255,255,.35),
+        inset 10px 10px 20px rgba(255,200,225,.25),
+        0 0 30px rgba(255,190,220,.35);
 
     animation:
         bubbleFloat
         5s ease-in-out infinite;
 }
 
+/* Bubble highlight */
+
 .home-bubbles span::before{
+
     content:"";
 
     position:absolute;
 
-    width:28%;
-    height:28%;
-
     top:18%;
     left:20%;
+
+    width:28%;
+    height:28%;
 
     border-radius:50%;
 
@@ -73,15 +79,16 @@ body.home-page{
 }
 
 .home-bubbles span::after{
+
     content:"";
 
     position:absolute;
 
-    width:14%;
-    height:14%;
-
     top:42%;
     left:35%;
+
+    width:14%;
+    height:14%;
 
     border-radius:50%;
 
@@ -91,9 +98,10 @@ body.home-page{
 }
 
 
-/* HERO */
+/* ---------- HERO ---------- */
 
 .home-bubbles span:nth-child(1){
+
     width:260px;
     height:260px;
 
@@ -104,6 +112,7 @@ body.home-page{
 }
 
 .home-bubbles span:nth-child(2){
+
     width:180px;
     height:180px;
 
@@ -114,9 +123,10 @@ body.home-page{
 }
 
 
-/* SCHEDULE */
+/* ---------- SCHEDULE ---------- */
 
 .home-bubbles span:nth-child(3){
+
     width:150px;
     height:150px;
 
@@ -127,6 +137,7 @@ body.home-page{
 }
 
 .home-bubbles span:nth-child(4){
+
     width:210px;
     height:210px;
 
@@ -137,9 +148,10 @@ body.home-page{
 }
 
 
-/* FEATURED */
+/* ---------- FEATURED ---------- */
 
 .home-bubbles span:nth-child(5){
+
     width:130px;
     height:130px;
 
@@ -150,6 +162,7 @@ body.home-page{
 }
 
 .home-bubbles span:nth-child(6){
+
     width:170px;
     height:170px;
 
@@ -160,6 +173,7 @@ body.home-page{
 }
 
 .home-bubbles span:nth-child(7){
+
     width:110px;
     height:110px;
 
@@ -170,9 +184,10 @@ body.home-page{
 }
 
 
-/* ABOUT */
+/* ---------- ABOUT ---------- */
 
 .home-bubbles span:nth-child(8){
+
     width:190px;
     height:190px;
 
@@ -183,6 +198,7 @@ body.home-page{
 }
 
 .home-bubbles span:nth-child(9){
+
     width:120px;
     height:120px;
 
@@ -193,9 +209,10 @@ body.home-page{
 }
 
 
-/* FOOTER */
+/* ---------- FOOTER ---------- */
 
 .home-bubbles span:nth-child(10){
+
     width:160px;
     height:160px;
 
@@ -206,6 +223,7 @@ body.home-page{
 }
 
 .home-bubbles span:nth-child(11){
+
     width:110px;
     height:110px;
 
@@ -216,6 +234,7 @@ body.home-page{
 }
 
 .home-bubbles span:nth-child(12){
+
     width:220px;
     height:220px;
 
@@ -226,7 +245,7 @@ body.home-page{
 }
 
 
-/* tốc độ khác nhau */
+/* Bubble speed */
 
 .home-bubbles span:nth-child(even){
     animation-duration:9s;
@@ -235,12 +254,17 @@ body.home-page{
 .home-bubbles span:nth-child(3n){
     animation-duration:11s;
 }
+
+
+
 /* ======================================================
-   HOME HERO
+   HERO
 ====================================================== */
 
 .home-hero{
+
     position:relative;
+
     overflow:hidden;
 
     padding-top:40px;
@@ -248,84 +272,118 @@ body.home-page{
 }
 
 .home-hero-layout{
+
     display:grid;
+
     grid-template-columns:520px 1fr;
+
     align-items:center;
 
     min-height:760px;
 }
 
 .home-hero-copy{
-    margin-top:-350px;
+
     position:relative;
+
     z-index:2;
+
+    margin-top:-350px;
 }
 
+
+/* Kicker */
+
 .home-hero-kicker{
+
     display:inline-block;
 
-    padding:10px 10px;
+    margin-bottom:30px;
+
+    padding:10px;
 
     border-radius:999px;
 
     background:rgba(255,255,255,.65);
+
     backdrop-filter:blur(20px);
 
     color:#ff69ab;
+
     font-size:.9rem;
     font-weight:600;
-    margin-bottom:30px;
 }
 
+
+/* Title */
+
 .home-hero-title{
-    font-size:6rem;
-    line-height:.9;
+
+    margin-bottom:28px;
 
     color:#2f3555;
 
-    margin-bottom:28px;
+    font-size:6rem;
+
+    line-height:.9;
 }
 
 .home-hero-title span{
+
     color:#ff69ab;
 }
 
+
+/* Description */
+
 .home-hero-desc{
+
     max-width:430px;
 
-    line-height:1.9;
+    margin-bottom:14px;
+
     color:#7d8398;
 
-    margin-bottom:14px;
+    line-height:1.9;
 }
 
 .home-hero-slogan{
-    color:#9aa0b5;
-    font-style:italic;
 
     margin-bottom:40px;
+
+    color:#9aa0b5;
+
+    font-style:italic;
 }
 
+
+/* CTA */
+
 .home-hero-button{
+
     display:inline-flex;
+
     align-items:center;
+
     gap:18px;
 
     padding:14px 14px 14px 30px;
 
     border-radius:999px;
 
-    background:linear-gradient(
-        135deg,
-        #ff72a8,
-        #ff9a9e
-    );
-
-    color:#fff;
     text-decoration:none;
 
-    font-weight:700;
+    color:#fff;
+
     font-size:1rem;
+    font-weight:700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff72a8,
+            #ff9a9e
+        );
 
     box-shadow:
         0 12px 28px rgba(255,120,170,.28);
@@ -336,6 +394,7 @@ body.home-page{
 }
 
 .home-hero-button:hover{
+
     transform:translateY(-4px);
 
     box-shadow:
@@ -343,22 +402,31 @@ body.home-page{
 }
 
 .home-hero-button .arrow{
+
     transition:transform .35s ease;
 }
 
 .home-hero-button:hover .arrow{
+
     transform:translateX(4px);
 }
 
+
+/* Moon icon */
+
 .home-hero-button .moon{
+
     width:46px;
     height:46px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     border-radius:50%;
+
+    font-size:1.3rem;
 
     background:rgba(255,255,255,.18);
 
@@ -366,28 +434,35 @@ body.home-page{
 
     backdrop-filter:blur(10px);
 
-    font-size:1.3rem;
-
     box-shadow:
         inset 0 0 10px rgba(255,255,255,.2);
 }
 
+
+/* Hero image */
+
 .home-hero-visual{
+
     display:flex;
+
     justify-content:flex-end;
 }
 
 .home-hero-visual img{
-    width:720px;
-    margin-top:-20px;
-}
 
+    width:720px;
+
+    margin-top:-20px;
+
+    display:block;
+}
 
 /* ======================================================
    SCHEDULE
 ====================================================== */
 
 .schedule-home{
+
     position:relative;
     z-index:5;
 
@@ -396,19 +471,31 @@ body.home-page{
     padding-bottom:40px;
 }
 
+
+/* ======================================================
+   CARD
+====================================================== */
+
 .schedule-card{
+
+    position:relative;
+
     display:grid;
+
     grid-template-columns:430px 1fr;
 
-    justify-items:center;
     align-items:start;
+    justify-items:center;
 
     gap:55px;
 
     padding:48px;
 
-    background:
-        rgba(255,255,255,.98);
+    overflow:hidden;
+
+    border-radius:42px;
+
+    background:rgba(255,255,255,.98);
 
     backdrop-filter:blur(26px);
 
@@ -416,80 +503,95 @@ body.home-page{
         1px solid
         rgba(255,225,238,.9);
 
-    border-radius:42px;
-
     box-shadow:
         0 20px 60px
         rgba(255,180,210,.12);
-
-    overflow:hidden;
-
-    position:relative;
 }
 
 .schedule-card::before{
+
     content:"";
 
     position:absolute;
     inset:0;
 
+    pointer-events:none;
+
     background:
         linear-gradient(
             135deg,
-            rgba(255,255,255,.2),
+            rgba(255,255,255,.20),
             transparent 60%
         );
-
-    pointer-events:none;
 }
 
-/* LEFT */
+
+/* ======================================================
+   LEFT COLUMN
+====================================================== */
 
 .schedule-copy{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
 
     position:relative;
     z-index:2;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
+
+/* Heading */
+
 .schedule-copy h2{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
 
-    font-size:2.2rem;
+    margin-bottom:30px;
+
     color:#2f3555;
 
-    margin-bottom:30px;
+    font-size:2.2rem;
 }
 
 .schedule-copy h2::before,
 .schedule-copy h2::after{
+
     content:"✦";
+
     color:#ff7dbb;
+
     font-size:1rem;
 }
 
+
+/* Poster */
+
 .schedule-poster{
+
     position:relative;
 
-    border-radius:30px;
     overflow:hidden;
 
     cursor:pointer;
+
+    border-radius:30px;
 }
 
 .schedule-poster img{
+
+    display:block;
+
     width:100%;
     max-width:390px;
 
     border-radius:30px;
 
-    display:block;
-
-    transition:.4s;
+    transition:transform .4s ease;
 
     box-shadow:
         0 20px 45px
@@ -497,6 +599,7 @@ body.home-page{
 }
 
 .schedule-poster::after{
+
     content:"🔍";
 
     position:absolute;
@@ -513,82 +616,113 @@ body.home-page{
 
     border-radius:50%;
 
+    color:#fff;
+
+    font-size:1.3rem;
+
     background:
         rgba(255,120,185,.55);
-
-    color:#fff;
-    font-size:1.3rem;
 
     opacity:0;
 
     transform:translateY(10px);
 
-    transition:.35s;
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
 }
 
 .schedule-poster:hover img{
+
     transform:scale(1.03);
 }
 
 .schedule-poster:hover::after{
+
     opacity:1;
+
     transform:translateY(0);
 }
 
 
-/* RIGHT */
+
+/* ======================================================
+   RIGHT COLUMN
+====================================================== */
 
 .schedule-highlights{
-    width:100%;
+
     position:relative;
     z-index:2;
+
+    width:100%;
 }
 
+
+/* Heading */
+
 .schedule-highlights h2{
+
     display:flex;
+
     justify-content:center;
     align-items:center;
 
     gap:12px;
 
-    font-size:2.2rem;
+    margin-bottom:40px;
+
     color:#2f3555;
 
-    margin-bottom:40px;
+    font-size:2.2rem;
 }
 
 .schedule-highlights h2::before,
 .schedule-highlights h2::after{
+
     content:"✦";
+
     color:#ff7dbb;
+
     font-size:1rem;
 }
 
+
+/* ======================================================
+   ITEM
+====================================================== */
+
 .schedule-item{
+
     display:grid;
+
     grid-template-columns:90px 1fr;
 
     align-items:center;
 
     gap:26px;
 
-    padding:26px;
-
     margin-bottom:18px;
+
+    padding:26px;
 
     border-radius:24px;
 
     background:
-        rgba(255,255,255,.6);
+        rgba(255,255,255,.60);
 
     border:
         1px solid
         rgba(255,228,240,.75);
 
-    transition:.3s;
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
 }
 
 .schedule-item:hover{
+
     transform:translateX(8px);
 
     background:
@@ -599,11 +733,19 @@ body.home-page{
         rgba(255,170,210,.18);
 }
 
+
+/* ======================================================
+   DATE BOX
+====================================================== */
+
 .schedule-date{
+
     display:flex;
+
     flex-direction:column;
-    justify-content:center;
+
     align-items:center;
+    justify-content:center;
 
     width:82px;
     height:82px;
@@ -623,48 +765,70 @@ body.home-page{
 }
 
 .schedule-date strong{
-    font-size:2.3rem;
+
     color:#ff69ab;
+
+    font-size:2.3rem;
+
     line-height:1;
 }
 
 .schedule-date span{
+
     margin-top:4px;
 
     color:#8d91a8;
 
     font-size:.78rem;
+
     font-weight:700;
+
     letter-spacing:.15em;
 }
 
+
+/* ======================================================
+   DETAIL
+====================================================== */
+
 .schedule-detail h3{
+
     margin-bottom:8px;
 
-    font-size:1.4rem;
     color:#2f3555;
+
+    font-size:1.4rem;
 }
 
 .schedule-detail p{
+
     color:#8d91a8;
+
     line-height:1.7;
 }
 
+
+/* ======================================================
+   NOTE
+====================================================== */
+
 .schedule-note{
+
     margin-top:30px;
 
     text-align:center;
 
     color:#9aa0b5;
+
     font-style:italic;
 }
-
 
 /* ======================================================
    FEATURED
 ====================================================== */
 
 .featured-card{
+
     padding:40px;
 
     border-radius:42px;
@@ -675,8 +839,13 @@ body.home-page{
     backdrop-filter:blur(24px);
 }
 
+
+/* ---------- HEADER ---------- */
+
 .featured-head{
+
     display:flex;
+
     justify-content:space-between;
     align-items:center;
 
@@ -684,72 +853,113 @@ body.home-page{
 }
 
 .featured-head h2{
-    font-size:2.3rem;
+
     color:#2f3555;
+
+    font-size:2.3rem;
 }
 
+
+/* ---------- VIEW ALL ---------- */
+
 .view-all-btn{
+
     display:inline-flex;
-    justify-content:center;
+
     align-items:center;
+    justify-content:center;
 
     padding:14px 30px;
 
     border-radius:999px;
 
-    border:
-        1px solid #f6d7e5;
+    text-decoration:none;
 
-    background:#fff;
+    font-weight:700;
 
     color:#a95f88;
 
-    text-decoration:none;
-    font-weight:700;
+    background:#fff;
 
-    transition:.3s;
+    border:1px solid #f6d7e5;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
 }
 
 .view-all-btn:hover{
+
+    color:#fff;
+
+    border-color:transparent;
+
     background:
         linear-gradient(
             135deg,
             #ff77b7,
             #ff9b8d
         );
-
-    color:#fff;
-
-    border-color:transparent;
 }
 
+
+/* ---------- GRID ---------- */
+
 .featured-grid{
+
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
 
     gap:18px;
 }
 
 .featured-grid img{
+
+    display:block;
+
     width:100%;
+
     aspect-ratio:3/4;
 
     object-fit:cover;
 
     border-radius:22px;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.featured-grid img:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 18px 38px
+        rgba(255,170,210,.20);
 }
 
 
+
 /* ======================================================
-   ABOUT + SOCIAL
+   ABOUT
 ====================================================== */
 
 .about-home{
+
     position:relative;
+
     z-index:2;
 
     padding-top:35px;
 }
+
+
+/* ======================================================
+   ABOUT CARD
+====================================================== */
 
 .about-social-card{
 
@@ -772,49 +982,68 @@ body.home-page{
     backdrop-filter:blur(24px);
 }
 
-/* LEFT */
+
+
+/* ======================================================
+   ABOUT LEFT
+====================================================== */
 
 .about-side{
 
     display:flex;
+
     align-items:center;
 
     gap:30px;
 }
 
 .about-chibi{
+
     width:180px;
+
     flex-shrink:0;
 }
 
 .about-content{
+
     flex:1;
 }
 
 .about-content h2{
-    font-size:1.5rem;
-    color:#2f3555;
 
     margin-bottom:12px;
+
+    color:#2f3555;
+
+    font-size:1.5rem;
 }
 
 .about-content p{
-    font-size:.95rem;
-    line-height:1.8;
 
     color:#7d8398;
+
+    font-size:.95rem;
+
+    line-height:1.8;
 }
 
 .about-slogan{
+
     margin-top:8px;
+
     font-style:italic;
 }
 
-/* DIVIDER */
+
+
+/* ======================================================
+   DIVIDER
+====================================================== */
 
 .about-divider{
 
     width:1px;
+
     background:
         linear-gradient(
             transparent,
@@ -823,15 +1052,24 @@ body.home-page{
         );
 }
 
-/* RIGHT */
+
+
+/* ======================================================
+   SOCIAL
+====================================================== */
 
 .social-side{
+
     position:relative;
 
     padding-right:150px;
 }
 
+
+/* ---------- TITLE ---------- */
+
 .social-title{
+
     display:block;
 
     margin-bottom:18px;
@@ -839,34 +1077,58 @@ body.home-page{
     color:#ff69ab;
 
     font-size:1rem;
+
     font-weight:800;
 
     letter-spacing:.08em;
 }
 
+
+/* ---------- GROUP ---------- */
+
 .social-group{
+
     margin-bottom:35px;
 }
 
+
+/* ---------- ROW ---------- */
+
 .social-row{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:18px;
 }
 
 .social-row a{
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
 
     text-decoration:none;
 
     color:#7d8398;
+
+    transition:
+        color .3s ease,
+        transform .3s ease;
 }
 
 .social-row a:hover{
+
     color:#ff69ab;
+
+    transform:translateX(4px);
 }
+
+
+/* ---------- CHIBI ---------- */
 
 .social-chibi{
 
@@ -879,11 +1141,15 @@ body.home-page{
 
     pointer-events:none;
 }
+
+
+
 /* ======================================================
    CREDIT
 ====================================================== */
 
 .site-credit{
+
     padding:25px 0 15px;
 
     text-align:center;
@@ -891,25 +1157,287 @@ body.home-page{
     color:#9ea2b6;
 
     font-size:.85rem;
+
     line-height:1.8;
 }
-
-
 /* ======================================================
-   MOBILE
+   1366
 ====================================================== */
 
-@media(max-width:992px){
+@media (max-width:1366px){
 
-    .home-hero-layout,
+    .home-hero{
+        padding-top:40px;
+        padding-bottom:180px;
+    }
+
+    .home-hero-layout{
+        grid-template-columns:430px 1fr;
+        gap:60px;
+        min-height:680px;
+    }
+
+    .home-hero-copy{
+        margin-top:-180px;
+    }
+
+    .home-hero-title{
+        font-size:4.8rem;
+    }
+
+    .home-hero-desc{
+        max-width:420px;
+    }
+
+    .home-hero-visual img{
+        width:590px;
+    }
+
+    .schedule-home{
+        margin-top:-180px;
+    }
+
     .schedule-card{
-        display:flex;
-        flex-direction:column;
+        grid-template-columns:390px 1fr;
+        gap:46px;
+        padding:40px;
+    }
+
+    .featured-grid{
+        grid-template-columns:repeat(4,1fr);
+        gap:18px;
+    }
+
+}
+
+/* ======================================================
+   1200
+====================================================== */
+
+@media (max-width:1200px){
+
+    .home-hero{
+        padding-top:30px;
+        padding-bottom:150px;
+    }
+
+    .home-hero-layout{
+        grid-template-columns:390px 1fr;
+        gap:48px;
+        min-height:620px;
+    }
+
+    .home-hero-copy{
+        margin-top:-120px;
+    }
+
+    .home-hero-title{
+        font-size:4.1rem;
+    }
+
+    .home-hero-desc{
+        max-width:380px;
+    }
+
+    .home-hero-visual img{
+        width:500px;
+    }
+
+    .schedule-home{
+        margin-top:-150px;
+    }
+
+    .schedule-card{
+        grid-template-columns:340px 1fr;
+        gap:38px;
+        padding:36px;
+    }
+
+    .schedule-copy h2,
+    .schedule-highlights h2{
+        font-size:2rem;
+    }
+
+    .schedule-poster img{
+        max-width:310px;
+    }
+
+    .schedule-item{
+        grid-template-columns:74px 1fr;
+        gap:20px;
+        padding:20px;
+    }
+
+    .schedule-date{
+        width:70px;
+        height:70px;
+    }
+
+    .schedule-date strong{
+        font-size:1.9rem;
+    }
+
+    .featured-card{
+        padding:32px;
+    }
+
+    .featured-head h2{
+        font-size:2rem;
+    }
+
+    .featured-grid{
+        grid-template-columns:repeat(3,1fr);
+        gap:18px;
     }
 
     .about-social-card{
+        grid-template-columns:1fr 1px 340px;
+        gap:26px;
+        padding:28px 32px;
+    }
 
+    .about-chibi{
+        width:145px;
+    }
+
+    .social-side{
+        padding-right:90px;
+    }
+
+    .social-chibi{
+        width:140px;
+    }
+
+}
+
+/* ======================================================
+   TABLET
+====================================================== */
+
+@media (max-width:992px){
+
+    body{
+        padding-top:82px;
+    }
+
+    .home-hero{
+        padding-top:35px;
+        padding-bottom:130px;
+    }
+
+    .home-hero-layout{
+        grid-template-columns:340px 1fr;
+        gap:36px;
+        min-height:560px;
+        align-items:center;
+    }
+
+    .home-hero-copy{
+        margin-top:-70px;
+    }
+
+    .home-hero-kicker{
+        margin-bottom:18px;
+    }
+
+    .home-hero-title{
+        font-size:3.35rem;
+        line-height:1;
+    }
+
+    .home-hero-desc{
+        max-width:100%;
+        font-size:.98rem;
+    }
+
+    .home-hero-slogan{
+        margin-top:18px;
+        margin-bottom:26px;
+    }
+
+    .home-hero-button{
+        margin-top:6px;
+    }
+
+    .home-hero-visual{
+        justify-content:flex-end;
+    }
+
+    .home-hero-visual img{
+        width:390px;
+        margin-right:-20px;
+    }
+
+    .schedule-home{
+        margin-top:-125px;
+        padding-bottom:20px;
+    }
+
+    .schedule-card{
+        grid-template-columns:280px 1fr;
+        gap:30px;
+        padding:30px;
+    }
+
+    .schedule-copy h2,
+    .schedule-highlights h2{
+        font-size:1.75rem;
+    }
+
+    .schedule-poster{
+        display:flex;
+        justify-content:center;
+    }
+
+    .schedule-poster img{
+        width:100%;
+        max-width:260px;
+    }
+
+    .schedule-item{
+        grid-template-columns:68px 1fr;
+        gap:16px;
+        padding:18px;
+    }
+
+    .schedule-date{
+        width:64px;
+        height:64px;
+    }
+
+    .schedule-date strong{
+        font-size:1.7rem;
+    }
+
+    .schedule-detail h3{
+        font-size:1.08rem;
+    }
+
+    .schedule-detail p{
+        font-size:.9rem;
+    }
+
+    .featured-card{
+        padding:28px;
+    }
+
+    .featured-head{
+        margin-bottom:28px;
+    }
+
+    .featured-head h2{
+        font-size:1.8rem;
+    }
+
+    .featured-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:18px;
+    }
+
+    .about-social-card{
         grid-template-columns:1fr;
+        gap:32px;
+        padding:30px;
     }
 
     .about-divider{
@@ -917,14 +1445,19 @@ body.home-page{
     }
 
     .about-side{
-        flex-direction:column;
-        text-align:center;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        text-align:left;
+        gap:22px;
+    }
+
+    .about-content{
+        text-align:left;
     }
 
     .social-side{
-
         padding-right:0;
-
         text-align:center;
     }
 
@@ -933,101 +1466,373 @@ body.home-page{
     }
 
     .social-chibi{
-
-        position:static;
-
-        display:block;
-
-        margin:30px auto 0;
+        display:none;
     }
 
-    .home-hero-copy{
-        margin-top:0;
-        text-align:center;
+}
+
+/* ======================================================
+   📱 RESPONSIVE TRANG HOME TRÊN ĐIỆN THOẠI (Max-width: 768px)
+   Đã đồng bộ hóa chính xác tên Class mang tiền tố home-
+====================================================== */
+@media (max-width: 768px) {
+    
+    /* Ép bố cục khối chứa chính chuyển sang hàng dọc Flexbox để kích hoạt thuộc tính order */
+    .home-hero-layout {
+        display: flex !important;
+        flex-direction: column !important; 
+        align-items: center !important;    
+        text-align: center !important;   
+        padding-top: 20px !important;
+        gap: 24px !important;
+        min-height: auto !important; /* Giải phóng chiều cao cố định trên di động */
+    }
+
+    .home-hero {
+        padding-top: 20px !important;
+        padding-bottom: 40px !important;
+    }
+
+    /* Đã sửa tên Class: Đẩy hình ảnh Yoko lên trên và căn ngay chính giữa */
+    .home-hero-visual {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        order: 1 !important; /* Đưa ảnh lên đầu tiên trước cụm chữ */
+        margin: 0 0 10px 0 !important;
+    }
+
+    .home-hero-visual img {
+        width: 100% !important;
+        max-width: 280px !important; /* Khóa chặt độ rộng ảnh vừa vặn màn hình di động */
+        height: auto !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    /* Đã sửa tên Class: Khối chữ thông tin và nút bấm nằm phía dưới */
+    .home-hero-copy {
+        width: 100% !important;
+        order: 2 !important; /* Đẩy khối chữ xuống dưới ảnh */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* Căn nút bấm ra giữa */
+        margin-top: 0 !important; /* Xóa bỏ margin-top âm của bản PC */
+    }
+
+    /* Căn giữa Badge hoặc đoạn text chào mừng nhỏ */
+    .home-hero-kicker, 
+    .home-hero .badge {
+        margin: 0 auto 12px auto !important;
+        text-align: center !important;
+    }
+
+    /* Đã sửa tên Class: Tiêu đề chính căn giữa trục dọc di động */
+    .home-hero-title {
+        font-size: 2.8rem !important;
+        line-height: 1.2 !important;
+        margin: 10px 0 !important;
+        text-align: center !important;
+    }
+
+    /* Đã sửa tên Class: Đoạn văn mô tả ngắn */
+    .home-hero-desc {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        max-width: 100% !important;
+        margin: 0 auto 10px auto !important;
+        text-align: center !important;
+    }
+
+    /* Đã sửa tên Class: Slogan in nghiêng */
+    .home-hero-slogan {
+        margin: 12px auto 20px auto !important;
+        text-align: center !important;
+    }
+
+    /* Đã sửa tên Class: CĂN GIỮA NÚT BẤM KẸO NGỌT CÓ MẶT TRĂNG */
+    .home-hero-button {
+        margin: 0 auto !important; /* Ép buộc nút nhảy ra chính giữa màn hình */
+        width: fit-content !important;
+    }
+    
+    /* Sửa lại khoảng cách khối lịch đè phía dưới không bị khoảng trống quá lớn */
+    .schedule-home {
+        margin-top: 30px !important;
+    }
+} /* Đã thêm dấu đóng ngoặc nhọn kết thúc vùng media di động an toàn */
+/* ======================================================
+   SMALL MOBILE (Màn hình điện thoại nhỏ dưới 576px)
+   Vá lỗi lệch tâm và đồng bộ hóa cấu trúc dọc gọn gàng
+====================================================== */
+
+@media (max-width:576px){
+
+    body{
+        padding-top:68px;
+    }
+
+    /* ==========================
+       HERO (Ép thẳng hàng tâm tuyệt đối trên dòng máy nhỏ)
+    ========================== */
+
+    .home-hero{
+        padding:28px 0 18px !important;
+    }
+    
+    .home-hero-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .home-hero-kicker{
+        font-size:.78rem;
     }
 
     .home-hero-title{
-        font-size:4rem;
+        font-size:2.25rem;
+        text-align: center !important;
     }
 
-    .home-hero-visual img{
-        width:100%;
-        margin-top:0;
+    .home-hero-desc{
+        font-size:.9rem;
+        line-height:1.75;
+        text-align: center !important;
+        margin-inline: auto !important;
     }
+
+    .home-hero-slogan{
+        font-size:.9rem;
+        margin-bottom:20px;
+        text-align: center !important;
+    }
+
+    .home-hero-button{
+        width:100%;
+        max-width:260px;
+        margin: 0 auto !important; /* Căn giữa nút bấm có mặt trăng */
+    }
+    
+    .home-hero-visual {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    
+    .home-hero-visual img {
+        max-width: 240px !important; /* Thu nhỏ ảnh Yoko vừa vặn màn hình đứng */
+        margin: 0 auto !important;
+    }
+
+    /* ==========================
+       SCHEDULE (Danh sách lịch trình sự kiện)
+    ========================== */
 
     .schedule-home{
-        margin-top:-150px;
+        margin-top:10px;
+    }
+
+    /* Ép khối poster và khối danh sách xếp dọc đứng */
+    .schedule-card{
+        display: flex !important;
+        flex-direction: column !important;
+        padding:22px;
+        gap:28px;
+        border-radius:24px;
+    }
+
+    .schedule-copy h2,
+    .schedule-highlights h2{
+        font-size:1.45rem;
+        text-align: center !important;
     }
 
     .schedule-poster img{
-        max-width:320px;
+        max-width:260px;
+        margin: 0 auto !important;
+    }
+
+    .schedule-item{
+        grid-template-columns:56px 1fr;
+        gap:14px;
+        padding:16px;
+    }
+
+    .schedule-date{
+        width:54px;
+        height:54px;
+        border-radius:16px;
+    }
+
+    .schedule-date strong{
+        font-size:1.35rem;
+    }
+
+    .schedule-date span{
+        font-size:.68rem;
+    }
+
+    .schedule-detail h3{
+        font-size:.96rem;
+    }
+
+    .schedule-detail p{
+        font-size:.84rem;
+    }
+
+    .schedule-note{
+        font-size:.85rem;
+    }
+
+    /* ==========================
+       FEATURED GALLERY GRID
+    ========================== */
+
+    .featured-card{
+        padding:20px;
+    }
+
+    .featured-head h2{
+        font-size:1.5rem;
+        text-align: center !important;
     }
 
     .featured-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns: 1fr !important; /* Ép card gallery thành 1 cột dọc thon gọn */
+        gap:12px;
     }
-}
 
-@media(max-width:768px){
+    /* ==========================
+       ABOUT & FOOTER SOCIAL CARD
+    ========================== */
 
-    .featured-grid{
-        grid-template-columns:1fr;
+    .about-social-card{
+        padding:20px;
+        border-radius:24px;
+    }
+
+    /* Cải tiến: Ép khối Chibi và nội dung chữ xếp dọc trên màn hình nhỏ */
+    .about-side {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 16px !important;
+    }
+    
+    .about-content {
+        text-align: center !important;
+    }
+
+    .about-chibi{
+        width:115px;
+        margin: 0 auto !important;
+    }
+
+    .about-content h2{
+        font-size:1.2rem;
+    }
+
+    .about-content p{
+        font-size:.88rem;
+    }
+
+} /* Kết thúc phân đoạn 576px */
+
+
+/* ======================================================
+   EXTRA SMALL (Màn hình siêu nhỏ dưới 430px)
+====================================================== */
+
+@media (max-width:430px){
+
+    .home-hero{
+        padding:24px 0 14px !important;
     }
 
     .home-hero-title{
-        font-size:3rem;
+        font-size:1.9rem;
     }
 
-    .schedule-highlights h2,
-    .schedule-copy h2{
-        font-size:2rem;
-        text-align:center;
+    .home-hero-desc{
+        font-size:.85rem;
+    }
+
+    .home-hero-button{
+        max-width:220px;
+    }
+
+    .schedule-card{
+        padding:18px;
+        gap:22px;
+        border-radius:20px;
+    }
+
+    .schedule-copy h2,
+    .schedule-highlights h2{
+        font-size:1.25rem;
+    }
+
+    .schedule-poster img{
+        max-width:220px;
+    }
+
+    .schedule-item{
+        grid-template-columns:52px 1fr;
+        gap:10px;
+        padding:14px;
+    }
+
+    .schedule-date{
+        width:50px;
+        height:50px;
+    }
+
+    .schedule-date strong{
+        font-size:1.2rem;
+    }
+
+    .schedule-date span{
+        font-size:.62rem;
+    }
+
+    .schedule-detail h3{
+        font-size:.9rem;
+    }
+
+    .schedule-detail p{
+        font-size:.8rem;
+    }
+
+    .featured-grid{
+        grid-template-columns:1fr !important;
+        gap:12px;
+    }
+
+    .featured-card{
+        padding:18px;
     }
 
     .about-social-card{
-        padding:25px;
+        padding:18px;
     }
 
-    .about-chibi,
-    .social-chibi{
-        width:140px;
-    }
-}
-
-@keyframes bubbleFloat{
-
-    0%{
-        transform:
-            translateY(0)
-            translateX(0)
-            scale(1);
+    .about-chibi{
+        width:95px;
     }
 
-    25%{
-        transform:
-            translateY(-18px)
-            translateX(12px)
-            scale(1.04);
+    .about-content h2{
+        font-size:1.1rem;
     }
 
-    50%{
-        transform:
-            translateY(-35px)
-            translateX(-10px)
-            scale(1.08);
+    .about-content p{
+        font-size:.82rem;
     }
 
-    75%{
-        transform:
-            translateY(-15px)
-            translateX(15px)
-            scale(1.03);
+    .site-credit{
+        font-size:.75rem;
+        line-height:1.6;
+        text-align: center !important;
     }
 
-    100%{
-        transform:
-            translateY(0)
-            translateX(0)
-            scale(1);
-    }
-}
+} /* Kết thúc phân đoạn 430px an toàn */

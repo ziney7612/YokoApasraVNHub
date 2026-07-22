@@ -1,21 +1,44 @@
+/* ======================================================
+   FOUNDATION
+====================================================== */
+
+@import url("variables.css");
+
 @import url("base.css");
 
 @import url("layout.css");
 
+
+/* ======================================================
+   COMPONENTS
+====================================================== */
+
+@import url("components.css");
+
 @import url("header.css");
-
-@import url("cards.css");
-
-@import url("gallery.css");
 
 @import url("lightbox.css");
 
+
+/* ======================================================
+   PAGES
+====================================================== */
+
 @import url("home.css");
 
+@import url("cards.css");
+
 @import url("events.css");
+
+@import url("gallery.css");
 
 @import url("exclusive.css");
 
 @import url("exclusive-detail.css");
+
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
 
 @import url("responsive.css");

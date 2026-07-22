@@ -1,259 +1,524 @@
-/* ==========================================
-   EVENT CARD
-========================================== */
+/* ======================================================
+   CARD LAYOUT (Khung nền cấu trúc tổng thể)
+====================================================== */
 
-.event-card{
-
-    display:block;
-
-    background:rgba(255,255,255,.72);
-
-    border:1px solid rgba(255,255,255,.35);
-
-    backdrop-filter:blur(24px);
-
-    border-radius:34px;
-
-    overflow:hidden;
-
-    text-decoration:none;
-    color:inherit;
-
-    box-shadow:
-        0 18px 55px rgba(255,120,180,.08);
-
-    transition:.35s ease;
+.event-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    /* Giao diện kính mờ trắng tinh tế đồng bộ website */
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    
+    /* Viền mảnh hồng dâu nhẹ */
+    border: 1px solid rgba(255, 190, 220, 0.55);
+    border-radius: 38px;
+    text-decoration: none;
+    
+    /* Đổ bóng tầng mềm mại tạo độ sâu lơ lửng */
+    box-shadow: 
+        0 20px 45px rgba(255, 190, 220, 0.14),
+        0 0 40px rgba(255, 220, 235, 0.25);
+        
+    /* Chuyển động mượt mà điện ảnh khi hover */
+    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.event-card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:
-        0 24px 70px rgba(255,120,180,.12);
+/* HIỆU ỨNG LÊN ĐÈN (Glow Neon & Nhấc Khối Khi Hover) */
+.event-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 105, 171, 0.5); /* Viền hồng sáng bừng lên */
+    
+    /* Đổ bóng phát sáng hồng neon lan tỏa theo bản phác họa */
+    box-shadow: 
+        0 30px 70px rgba(255, 190, 220, 0.24),
+        0 0 60px rgba(255, 220, 240, 0.35);
 }
 
-/* ==========================================
-   THUMBNAIL
-========================================== */
-
-.event-thumb{
-
-    position:relative;
-
-    width:100%;
-    height:260px;
-
-    overflow:hidden;
+/* ======================================================
+   NEON GLOW BACKDROP LAYER
+====================================================== */
+.event-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 40px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 220, 235, 0.45),
+        rgba(255, 255, 255, 0.1)
+    );
+    filter: blur(28px);
+    z-index: -1;
 }
 
-.event-thumb img{
-
-    width:100%;
-    height:100%;
-
-    display:block;
-
-    object-fit:cover;
-    object-position:center;
-
-    transition:.45s ease;
+/* ======================================================
+   THUMBNAIL IMAGE (Hiệu ứng thu phóng ảnh sâu)
+====================================================== */
+.event-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
 }
 
-.event-card:hover .event-thumb img{
-
-    transform:scale(1.04);
+.event-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
-/* ==========================================
-   DATE BADGE
-========================================== */
-
-.event-date-badge{
-
-    position:absolute;
-
-    top:18px;
-    left:18px;
-
-    background:white;
-
-    padding:12px 14px;
-
-    border-radius:18px;
-
-    min-width:72px;
-
-    text-align:center;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
+/* Phóng to ảnh 6% khi rê chuột vào card */
+.event-card:hover .event-thumb img {
+    transform: scale(1.06);
 }
 
-.event-date-badge strong{
-
-    display:block;
-
-    font-size:1.2rem;
-
-    color:#2f3555;
-
-    line-height:1.1;
+/* LỚP PHỦ GRADIENT HỒNG (Bộ lọc màu nguyên bản) */
+.event-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(255, 185, 220, 0.75),
+        rgba(255, 185, 220, 0.15) 45%,
+        transparent 70%
+    );
+    z-index: 2;
 }
 
-.event-date-badge span{
-
-    font-size:.8rem;
-
-    color:#8d91a8;
-
-    text-transform:uppercase;
+/* ======================================================
+   DATE BADGE (Hộp lịch kính tối mờ - chống lóa vạn năng)
+====================================================== */
+.event-date-badge {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    z-index: 5;
+    width: 90px;
+    padding: 18px 10px;
+    border-radius: 28px;
+    text-align: center;
+    
+    /* Kính mờ tối sâu giúp chữ trắng nổi bật trên mọi tấm poster */
+    background: rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    transition: transform 0.4s ease;
 }
 
-/* ==========================================
-   INFO
-========================================== */
-
-.event-info{
-
-    padding:24px;
+.event-card:hover .event-date-badge {
+    transform: scale(1.04); /* Phóng nhẹ khối lịch khi hover tạo nhịp sống */
 }
 
-.event-info h2{
-
-    font-size:1.35rem;
-
-    line-height:1.45;
-
-    color:#2f3555;
-
-    margin-bottom:14px;
+.event-date-badge strong {
+    display: block;
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.event-date{
-
-    color:#8d91a8;
-
-    margin-bottom:12px;
-
-    font-size:.95rem;
+.event-date-badge span {
+    display: block;
+    margin-top: 10px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.event-location{
-
-    color:#9fa3b5;
-
-    margin-bottom:14px;
+.event-date-badge small {
+    display: block;
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.75);
 }
 
-/* ==========================================
-   PHOTOS
-========================================== */
-
-.event-photos{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:#ff69ab;
-
-    font-weight:700;
-
-    transition:.3s ease;
+/* ======================================================
+   BUBBLES EFFECT (Bong bóng kính 3D lơ lửng dập dềnh)
+====================================================== */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.15),
+        inset 0 -4px 10px rgba(0, 0, 0, 0.05),
+        inset 0 4px 10px rgba(255, 255, 255, 0.4);
+    z-index: 3;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.event-card:hover .event-photos{
-
-    transform:translateX(5px);
+.bubble::before {
+    content: "";
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    filter: blur(1px);
 }
 
-/* ==========================================
-   LIST VIEW
-========================================== */
-
-.events-grid.list-view .event-card{
-
-    display:flex;
-
-    align-items:center;
-
-    overflow:hidden;
+/* Đổi sắc độ bóng bóng óng ánh hơn khi hover */
+.event-card:hover .bubble {
+    border-color: rgba(243, 151, 185, 0.6);
+    box-shadow: 
+        0 0 25px rgba(243, 151, 185, 0.3),
+        inset 0 -4px 10px rgba(178, 188, 241, 0.2);
 }
 
-.events-grid.list-view .event-thumb{
-
-    width:340px;
-    height:220px;
-
-    flex-shrink:0;
+.b1 {
+    width: 55px;
+    height: 55px;
+    top: 25px;
+    right: 35px;
+    animation: bubbleFloatOne 6s ease-in-out infinite;
 }
 
-.events-grid.list-view .event-info{
-
-    flex:1;
+.b2 {
+    width: 72px;
+    height: 72px;
+    right: -18px;
+    bottom: 110px;
+    animation: bubbleFloatTwo 8s ease-in-out infinite;
 }
 
-/* ==========================================
-   GALLERY GRID
-========================================== */
-
-.gallery-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(280px,1fr));
-
-    gap:24px;
+@keyframes bubbleFloatOne {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-16px) translateX(4px) scale(1.06); }
 }
 
-.gallery-item{
-
-    overflow:hidden;
-
-    border-radius:24px;
-
-    cursor:pointer;
+@keyframes bubbleFloatTwo {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) translateX(-6px) scale(1.08); }
 }
 
-.gallery-item img{
-
-    width:100%;
-
-    display:block;
-
-    transition:.35s ease;
+/* ======================================================
+   EVENT INFO & TEXT (Khối nội dung thông tin chữ)
+====================================================== */
+.event-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 28px;
 }
 
-.gallery-item:hover img{
-
-    transform:scale(1.04);
+.event-info h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    line-height: 1.3;
+    color: var(--text-dark);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    min-height: 88px;
+    transition: color 0.3s ease;
 }
 
-/* ==========================================
-   MOBILE
-========================================== */
+/* Đổi màu chữ h2 sang hồng khi lướt vào card */
+.event-card:hover .event-info h2 {
+    color: #ff69ab;
+}
 
-@media(max-width:900px){
+.event-meta {
+    display: flex;
+    flex-direction: column;
+    margin-top: 28px;
+    gap: 18px;
+    color: var(--text-light);
+}
 
-    .events-grid.list-view .event-card{
+.event-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-light);
+}
 
-        flex-direction:column;
+/* ======================================================
+   PHOTOS COUNT (Nâng cấp thành hộp nút bấm kẹo ngọt)
+====================================================== */
+.event-photos {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    margin: 0;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    
+    color: var(--primary);
+    background: rgba(255, 235, 243, 0.7);
+    border: 1px solid rgba(255, 210, 225, 0.4);
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        align-items:flex-start;
+/* Biến hình sang dải màu Hồng-Xanh pastel mịn màng của View Gallery khi hover */
+.event-card:hover .event-photos {
+    transform: translateX(8px);
+    background: linear-gradient(135deg, #f397b9 0%, #b2bcf1 100%);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(243, 151, 185, 0.35);
+}
+
+/* ======================================================
+   💻 RESPONSIVE MÁY TÍNH BẢNG (Max-width: 1024px)
+====================================================== */
+@media (max-width: 1024px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* Chia thành 2 cột cân đối */
+        gap: 24px !important;
     }
 
-    .events-grid.list-view .event-thumb{
-
-        width:100%;
-        height:230px;
+    .event-card {
+        border-radius: 32px;
     }
 
-    .event-info h2{
+    .event-thumb {
+        aspect-ratio: 16 / 10; /* Tỷ lệ hiển thị poster chuẩn */
+    }
 
-        font-size:1.2rem;
+    .event-date-badge {
+        width: 76px;
+        padding: 12px 6px;
+        top: 16px;
+        left: 16px;
+        border-radius: 20px;
+    }
+
+    .event-date-badge strong { font-size: 1.6rem; }
+    .event-date-badge span { font-size: 0.75rem; margin-top: 6px; }
+    .event-date-badge small { display: none; } /* Ẩn năm để đỡ rối */
+
+    .event-info { padding: 22px; }
+    .event-info h2 { font-size: 1.35rem; min-height: 64px; }
+}
+
+
+/* ======================================================
+   📱 RESPONSIVE ĐIỆN THOẠI DI ĐỘNG (Max-width: 768px)
+   Phân tách rõ ràng: Chế độ Lưới (2 cột) & Danh sách (1 cột)
+====================================================== */
+@media (max-width: 768px) {
+    
+    /* CHẾ ĐỘ XEM LƯỚI (GRID VIEW): Chia thành 2 cột thon gọn cực đẹp */
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* Ép chia 2 cột đều nhau */
+        gap: 16px !important; /* Thu nhỏ khoảng cách giữa các card để vừa màn hình đứng */
+        padding: 0 4px !important;
+    }
+
+    /* CHẾ ĐỘ XEM DANH SÁCH (LIST VIEW): Quay về 1 cột dọc dãn rộng dứt khoát */
+    .events-list-view,
+    .events-grid.list-view {
+        grid-template-columns: 1fr !important; /* Ép về 1 cột duy nhất */
+        gap: 24px !important;
+        padding: 0 8px !important;
+    }
+
+    /* --------------------------------------------------
+       CẤU TRÚC CARD TỰ ĐỘNG CO GIÃN THEO CHẾ ĐỘ XEM
+    -------------------------------------------------- */
+    .event-card {
+        border-radius: 20px !important; /* Bo góc nhỏ hơn một chút cho tinh tế */
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 24px rgba(255, 190, 220, 0.08);
+    }
+    
+    .event-card:hover {
+        transform: translateY(-4px); 
+    }
+
+    /* Tỷ lệ ảnh poster hiển thị (Duy trì dạng chữ nhật điện ảnh trên di động) */
+    .event-thumb {
+        aspect-ratio: 16 / 10 !important; 
+    }
+
+    /* Khối lịch mini góc trái ảnh - Thu nhỏ tối đa để không che poster khi chia 2 cột */
+    .event-date-badge {
+        width: 48px !important;
+        padding: 6px 2px !important;
+        top: 8px !important;
+        left: 8px !important;
+        border-radius: 10px !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+    }
+
+    .event-date-badge strong {
+        font-size: 1rem !important;
+    }
+
+    .event-date-badge span {
+        font-size: 0.55rem !important;
+        margin-top: 1px !important;
+    }
+
+    .event-date-badge small {
+        display: none !important;
+    }
+
+    /* Ẩn bong bóng kính trên Mobile để tránh rối mắt ở giao diện 2 cột */
+    .bubble {
+        display: none !important; 
+    }
+
+    /* Phần chữ thông tin sự kiện */
+    .event-info {
+        padding: 14px !important; /* Thu nhỏ khoảng đệm chữ */
+    }
+
+    .event-info h2 {
+        font-size: 1rem !important; /* Hạ kích thước chữ tiêu đề sự kiện */
+        line-height: 1.3 !important;
+        min-height: auto !important; 
+        margin-bottom: 8px;
+        -webkit-line-clamp: 2; /* Khóa chặt tối đa 2 dòng chữ, không lo tràn khung */
+    }
+
+    .event-meta {
+        margin-top: 8px !important;
+        gap: 8px !important;
+    }
+
+    .event-date {
+        font-size: 0.78rem !important;
+    }
+
+    /* Nút đếm số lượng ảnh kẹo ngọt dãn full chiều ngang */
+    .event-photos {
+        font-size: 0.78rem !important;
+        padding: 6px 10px !important;
+        width: 100% !important;
+        justify-content: center !important;
+        border-radius: 10px !important;
+    }
+    
+    .event-card:hover .event-photos {
+        transform: translateX(0);
+    }
+}
+
+/* ======================================================
+   📱 RESPONSIVE SMALL MOBILE (Max-width: 576px)
+   Giữ nguyên bố cục Lưới 2 cột cho các dòng điện thoại nhỏ
+====================================================== */
+@media (max-width: 576px) {
+    /* CHẾ ĐỘ XEM LƯỚI: Thu nhỏ gap thành 12px để chừa chỗ cho nội dung */
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        padding: 0 !important;
+    }
+
+    /* CHẾ ĐỘ XEM DANH SÁCH: Vẫn giữ 1 cột dãn rộng */
+    .events-list-view,
+    .events-grid.list-view {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .event-card {
+        border-radius: 16px !important;
+    }
+
+    .event-info {
+        padding: 12px !important; /* Thu nhỏ lề đệm chữ cho thoáng */
+    }
+
+    .event-info h2 {
+        font-size: 0.92rem !important; /* Hạ nhẹ kích thước tiêu đề sự kiện */
+        margin-bottom: 6px !important;
+    }
+
+    /* Hộp lịch mini tinh tế */
+    .event-date-badge {
+        width: 44px !important;
+        padding: 5px 2px !important;
+        top: 6px !important;
+        left: 6px !important;
+        border-radius: 8px !important;
+    }
+
+    .event-date-badge strong { font-size: 0.9rem !important; }
+    .event-date-badge span { font-size: 0.5rem !important; }
+
+    .event-date {
+        font-size: 0.72rem !important;
+    }
+
+    /* Nút đếm số lượng ảnh mini */
+    .event-photos {
+        font-size: 0.75rem !important;
+        padding: 5px 8px !important;
+        border-radius: 8px !important;
+    }
+}
+
+
+/* ======================================================
+   📱 RESPONSIVE EXTRA SMALL (Max-width: 430px)
+   Tối ưu hóa tuyệt đối cho màn hình siêu dọc cực hẹp
+====================================================== */
+@media (max-width: 430px) {
+    /* CHẾ ĐỘ XEM LƯỚI: Thu nhỏ gap xuống 10px để khóa chặt layout không bị tràn viền */
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    /* CHẾ ĐỘ XEM DANH SÁCH */
+    .events-list-view,
+    .events-grid.list-view {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .event-card {
+        border-radius: 14px !important;
+    }
+
+    .event-info {
+        padding: 10px !important;
+    }
+
+    .event-info h2 {
+        font-size: 0.85rem !important; /* Giúp tiêu đề hiển thị trọn vẹn 2 dòng không bị cắt cụt chữ */
+        line-height: 1.3 !important;
+        margin-bottom: 4px !important;
+    }
+
+    .event-meta {
+        margin-top: 6px !important;
+        gap: 6px !important;
+    }
+
+    .event-date {
+        font-size: 0.68rem !important;
+    }
+
+    .event-photos {
+        font-size: 0.7rem !important;
+        padding: 4px 6px !important;
+        border-radius: 6px !important;
+        letter-spacing: -0.02em; /* Thu hẹp khoảng cách chữ để vừa khít nút */
     }
 }

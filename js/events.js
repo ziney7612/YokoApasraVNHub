@@ -1,84 +1,65 @@
-/* ==========================================
+/* ======================================================
    ELEMENTS
-========================================== */
+====================================================== */
 
 const eventsList = document.getElementById("events-list");
 const latestCard = document.getElementById("latest-event-card");
-
 const monthFilter = document.getElementById("month-filter");
+const totalEvents = document.getElementById("total-events");
+const totalPhotos = document.getElementById("total-photos");
+const sortSelect = document.getElementById("sort-select");
+const gridBtn = document.getElementById("grid-view");
+const listBtn = document.getElementById("list-view");
 
-const totalEvents =
-    document.getElementById("total-events");
-
-const totalPhotos =
-    document.getElementById("total-photos");
-
-const sortSelect =
-    document.getElementById("sort-select");
-
-const gridBtn =
-    document.getElementById("grid-view");
-
-const listBtn =
-    document.getElementById("list-view");
-
-
-/* ==========================================
+/* ======================================================
    STATE
-========================================== */
+====================================================== */
 
 let events = [];
 let currentMonth = "all";
 
-
-/* ==========================================
+/* ======================================================
    LOAD
-========================================== */
+====================================================== */
 
 async function loadEvents() {
-
     try {
+        const response = await fetch("../data/gallery.json");
 
-        const response =
-            await fetch("../data/gallery.json");
+        if (!response.ok) {
+            throw new Error("Cannot load gallery.json");
+        }
 
-        events =
-            await response.json();
+        events = await response.json();
 
         events.sort(
-            (a, b) =>
-                parseDate(b.date) -
-                parseDate(a.date)
+            (a, b) => parseDate(b.date) - parseDate(a.date)
         );
 
         updateStats();
         renderLatest();
         createFilters();
         renderEvents();
-    }
-
-    catch (error) {
-
+        setupToggleView(); 
+    } catch (error) {
         console.error(error);
-
-        eventsList.innerHTML =
-            `
-            <p class="empty">
-                Failed to load events.
-            </p>
+        if (eventsList) {
+            eventsList.innerHTML = `
+                <div class="empty">
+                    Failed to load events.
+                </div>
             `;
+        }
     }
 }
 
 loadEvents();
 
-
-/* ==========================================
-   DATE
-========================================== */
+/* ======================================================
+   DATE PARSER
+====================================================== */
 
 function parseDate(dateString) {
-
     return new Date(
         dateString.replace(
             /(\d+) (\w+) (\d+)/,
@@ -87,369 +68,213 @@ function parseDate(dateString) {
     );
 }
 
+/* ======================================================
+   COUNTER ANIMATION
+====================================================== */
 
-/* ==========================================
-   COUNTER
-========================================== */
-
-function animateNumber(
-    element,
-    target
-) {
-
+function animateNumber(element, target) {
+    if (!element) return;
     let current = 0;
-
-    const step =
-        Math.ceil(target / 40);
-
-    const timer =
-        setInterval(() => {
-
-            current += step;
-
-            if (current >= target) {
-
-                current = target;
-                clearInterval(timer);
-            }
-
-            element.textContent =
-                current.toLocaleString();
-
-        }, 20);
+    const step = Math.ceil(target / 40) || 1;
+    const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+        element.textContent = current.toLocaleString();
+    }, 20);
 }
 
-
-/* ==========================================
-   STATS
-========================================== */
+/* ======================================================
+   STATS UPDATE (Đếm tổng số sự kiện và ảnh)
+====================================================== */
 
 function updateStats() {
-
-    const photoCount =
-        events.reduce(
-            (sum, item) =>
-                sum + item.photos,
-            0
-        );
-
-    animateNumber(
-        totalEvents,
-        events.length
-    );
-
-    animateNumber(
-        totalPhotos,
-        photoCount
-    );
+    const photos = events.reduce((sum, item) => sum + item.photos, 0);
+    animateNumber(totalEvents, events.length);
+    animateNumber(totalPhotos, photos);
 }
 
+/* ======================================================
+   LATEST EVENT CARD (Lấy chuẩn sự kiện mới nhất phần tử)
+====================================================== */
 
-/* ==========================================
-   LATEST EVENT
-========================================== */
+/* ======================================================
+   LATEST EVENT CARD (Đã loại bỏ thẻ article trùng lặp)
+====================================================== */
 
 function renderLatest() {
+    if (!latestCard || !events.length) return;
 
-    if (!events.length) return;
+    // Lấy chuẩn phần tử đầu tiên trong mảng dữ liệu
+    const item = events[0]; 
 
-    const item = events[0];
-
+    // ĐÃ LOẠI BỎ THẺ <article> BÊN TRONG:
+    // Bản thân thẻ div#latest-event-card ở file index.html đã mang sẵn class này rồi.
     latestCard.innerHTML = `
-        <div class="latest-card">
+        <div class="latest-image">
+            <img
+                src="../assets/events/${item.folder}/${item.cover}.${item.format}"
+                alt="${item.title}">
+        </div>
 
-            <div class="latest-image">
-                <img
-                    src="../assets/events/${item.folder}/${item.cover}.${item.format}"
-                    alt="${item.title}">
-            </div>
+        <div class="latest-content">
+            <span class="badge">
+                ✦ LATEST EVENT
+            </span>
 
-            <div class="latest-content">
+            <h2>
+                ${item.title}
+            </h2>
 
-                <span class="latest-tag">
-                    ✦ LATEST EVENT
-                </span>
+            <p class="latest-meta">
+                📅 ${item.date}
+            </p>
 
-                <h2>
-                    ${item.title}
-                </h2>
+            <p class="latest-meta">
+                📷 ${item.photos} photos archived
+            </p>
 
-                <p>
-                    📅 ${item.date}
-                </p>
-
-                <p>
-                    📷 ${item.photos}
-                    photos archived
-                </p>
-
-                <a
-                    href="detail.html?id=${item.id}"
-                    class="latest-btn">
-
-                    <span>
-                        View Gallery
-                    </span>
-
-                    <span class="arrow">
-                        →
-                    </span>
-
-                    <span class="moon">
-                        ☾
-                    </span>
-
-                </a>
-
-            </div>
-
+            <a href="detail.html?id=${item.id}" class="btn-secondary latest-btn">
+                <span>View Gallery &nbsp; →</span>
+                <div class="icon-circle">
+                    ☾
+                </div>
+            </a>
         </div>
     `;
 }
-/* ==========================================
-   FILTER
-========================================== */
+
+/* ======================================================
+   MONTH FILTER CAPTURE
+====================================================== */
 
 function createFilters() {
+    if (!monthFilter) return;
 
     const months = [
-
         "all",
-
         ...new Set(
-
             events.map(item =>
-
-                parseDate(item.date)
-                    .toLocaleString(
-                        "en-US",
-                        {
-                            month: "long"
-                        }
-                    )
+                parseDate(item.date).toLocaleString("en-US", { month: "long" })
             )
         )
     ];
 
-    monthFilter.innerHTML =
+    monthFilter.innerHTML = months.map(month => `
+        <button
+            data-month="${month}"
+            class="${month === "all" ? "active" : ""}">
+            ${month === "all" ? "All" : month}
+        </button>
+    `).join("");
 
-        months.map(month =>
-
-            `
-            <button
-                data-month="${month}"
-                class="${
-                    month === "all"
-                        ? "active"
-                        : ""
-                }">
-
-                ${
-                    month === "all"
-                        ? "All"
-                        : month
-                }
-
-            </button>
-            `
-        ).join("");
-
-    monthFilter
-        .querySelectorAll("button")
-        .forEach(button => {
-
-            button.onclick = () => {
-
-                monthFilter
-                    .querySelectorAll("button")
-                    .forEach(btn =>
-                        btn.classList.remove(
-                            "active"
-                        )
-                    );
-
-                button.classList.add(
-                    "active"
-                );
-
-                currentMonth =
-                    button.dataset.month;
-
-                renderEvents();
-            };
-        });
+    monthFilter.querySelectorAll("button").forEach(button => {
+        button.onclick = () => {
+            monthFilter.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+            currentMonth = button.dataset.month;
+            renderEvents();
+        };
+    });
 }
 
-
-/* ==========================================
-   RENDER EVENTS
-========================================== */
+/* ======================================================
+   EVENTS RENDER GRID (Render danh sách thẻ card sự kiện)
+====================================================== */
 
 function renderEvents() {
+    if (!eventsList) return;
 
-    let filtered =
-        [...events];
+    let filtered = [...events];
 
-    if (
-        currentMonth !== "all"
-    ) {
-
-        filtered =
-            filtered.filter(item => {
-
-                const month =
-                    parseDate(item.date)
-                        .toLocaleString(
-                            "en-US",
-                            {
-                                month: "long"
-                            }
-                        );
-
-                return (
-                    month === currentMonth
-                );
-            });
+    if (currentMonth !== "all") {
+        filtered = filtered.filter(item => {
+            const month = parseDate(item.date).toLocaleString("en-US", { month: "long" });
+            return month === currentMonth;
+        });
     }
 
-    if (
-        sortSelect.value ===
-        "oldest"
-    ) {
-
-        filtered.sort(
-            (a, b) =>
-                parseDate(a.date) -
-                parseDate(b.date)
-        );
+    if (sortSelect && sortSelect.value === "oldest") {
+        filtered.sort((a, b) => parseDate(a.date) - parseDate(b.date));
+    } else {
+        filtered.sort((a, b) => parseDate(b.date) - parseDate(a.date));
     }
 
-    eventsList.innerHTML =
+    if (filtered.length === 0) {
+        eventsList.innerHTML = `<div class="empty">No events found in this month.</div>`;
+        return;
+    }
 
-        filtered.map(item => {
+    eventsList.innerHTML = filtered.map(item => {
+        const date = parseDate(item.date);
+        const day = date.getDate();
+        const month = date.toLocaleString("en-US", { month: "short" });
+        const year = date.getFullYear();
 
-            const date =
-                parseDate(item.date);
-
-            const day =
-                date.getDate();
-
-            const month =
-                date.toLocaleString(
-                    "en-US",
-                    {
-                        month: "short"
-                    }
-                );
-
-            const year =
-                date.getFullYear();
-
-            return `
-
-            <a
-                href="detail.html?id=${item.id}"
-                class="event-card">
-
+        return `
+            <a href="detail.html?id=${item.id}" class="event-card">
                 <div class="event-thumb">
+                    <img 
+                        src="../assets/events/${item.folder}/${item.cover}.${item.format}" 
+                        alt="${item.title}"
+                        loading="lazy"
+                    >
+                    
+                    <div class="bubble b1"></div>
+                    <div class="bubble b2"></div>
+                    <div class="bubble b3"></div>
 
-                    <img
-                        src="../assets/events/${item.folder}/${item.cover}.${item.format}"
-                        alt="${item.title}">
-
-                    <div
-                        class="event-date-badge">
-
-                        <strong>
-                            ${day}
-                        </strong>
-
-                        <span>
-                            ${month}
-                        </span>
-
-                        <small>
-                            ${year}
-                        </small>
-
+                    <div class="event-date-badge">
+                        <strong>${day}</strong>
+                        <span>${month.toUpperCase()}</span>
+                        <small>${year}</small>
                     </div>
-
                 </div>
 
                 <div class="event-info">
-
-                    <h2>
-                        ${item.title}
-                    </h2>
-
-                    <p class="event-date">
-                        ${item.date}
-                    </p>
-
-                    <p class="event-photos">
-
-                        📷
-                        ${item.photos}
-                        photos
-
-                    </p>
-
+                    <h2>${item.title}</h2>
+                    <div class="event-meta">
+                        <p class="event-date">
+                            📅 ${item.date}
+                        </p>
+                        <span class="event-photos">
+                            📷 ${item.photos} photos &nbsp; →
+                        </span>
+                    </div>
                 </div>
-
             </a>
-
-            `;
-
-        }).join("");
+        `;
+    }).join("");
 }
 
-
-/* ==========================================
-   SORT
-========================================== */
-
+/* ======================================================
+   SORT SELECT WATCHER
+====================================================== */
 if (sortSelect) {
-
-    sortSelect.addEventListener(
-        "change",
-        renderEvents
-    );
+    sortSelect.onchange = () => {
+        renderEvents();
+    };
 }
 
-
-/* ==========================================
-   VIEW MODE
-========================================== */
-
-if (gridBtn && listBtn) {
+/* ======================================================
+   VIEW TOGGLE
+====================================================== */
+function setupToggleView() {
+    if (!gridBtn || !listBtn) return;
 
     gridBtn.onclick = () => {
-
-        eventsList.classList.remove(
-            "list-view"
-        );
-
-        gridBtn.classList.add(
-            "active"
-        );
-
-        listBtn.classList.remove(
-            "active"
-        );
+        gridBtn.classList.add("active");
+        listBtn.classList.remove("active");
+        eventsList.classList.remove("events-list-view");
+        eventsList.classList.add("events-grid");
     };
 
     listBtn.onclick = () => {
-
-        eventsList.classList.add(
-            "list-view"
-        );
-
-        listBtn.classList.add(
-            "active"
-        );
-
-        gridBtn.classList.remove(
-            "active"
-        );
+        listBtn.classList.add("active");
+        gridBtn.classList.remove("active");
+        eventsList.classList.remove("events-grid");
+        eventsList.classList.add("events-list-view");
     };
 }

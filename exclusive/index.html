@@ -32,6 +32,10 @@
 
 <body>
 
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
 <header class="header">
 
     <div class="container header-container">
@@ -42,12 +46,14 @@
 
             <img
                 src="../assets/logo/logo.png"
-                alt="Logo">
+                alt="Yoko Apasra VNHub">
 
             <div class="logo-text">
 
                 <span class="logo-title">
+
                     Yoko Apasra VNHub
+
                 </span>
 
             </div>
@@ -59,31 +65,46 @@
             <ul class="nav-menu">
 
                 <li>
+
                     <a href="../index.html">
+
                         Home
+
                     </a>
+
                 </li>
 
                 <li>
+
                     <a href="../events/">
+
                         Events
+
                     </a>
+
                 </li>
 
                 <li>
+
                     <a
                         href="./"
-                        class="active">
+                        class="active"
+                        aria-current="page">
 
                         Exclusive
 
                     </a>
+
                 </li>
 
                 <li>
+
                     <a href="../about/">
+
                         About
+
                     </a>
+
                 </li>
 
             </ul>
@@ -95,23 +116,39 @@
 </header>
 
 
+<!-- ======================================================
+     MAIN
+====================================================== -->
+
 <main class="exclusive-page">
 
-   <div class="exclusive-bubbles">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+    <!-- Floating bubbles -->
+
+    <div
+        class="exclusive-bubbles"
+        aria-hidden="true">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+
+    <!-- ======================================================
+         INTRO
+    ====================================================== -->
+
     <section class="exclusive-intro">
 
         <div class="container">
 
-            <span class="exclusive-kicker">
+            <span class="badge">
 
                 ✦ ORIGINAL PHOTOGRAPHY
 
@@ -137,12 +174,32 @@
     </section>
 
 
+    <!-- ======================================================
+         COLLECTION
+    ====================================================== -->
+
     <section class="exclusive-featured">
 
         <div class="container">
 
+            <div class="section-divider">
+
+                <span></span>
+
+                <h2>
+
+                    Original Collections 🤍
+
+                </h2>
+
+                <span></span>
+
+            </div>
+
+
             <div
-                id="exclusive-list">
+                id="exclusive-list"
+                aria-live="polite">
 
             </div>
 
@@ -150,23 +207,137 @@
 
     </section>
 
+   <!-- ==========================================
+     ABOUT + SOCIAL
+========================================== -->
 
-<footer class="site-credit">
+<section class="about-home">
 
-    © 2026 Yoko Apasra VNHub.
-    Made with 🤍 by Vietnamese Fans •
-    Unofficial fan-made archive •
-    Non-commercial project.
+    <div class="container">
 
-</footer>
+        <div class="about-social-card">
+
+            <!-- LEFT -->
+
+            <div class="about-side">
+
+                <img
+                    class="about-chibi"
+                    src="../assets/images/chibi3.png"
+                    alt="VNHub">
+
+                <div class="about-content">
+
+                    <h2>
+                        About VNHub
+                    </h2>
+
+                    <p>
+            WITH YO, THROUGH EVERY CHAPTER<br>
+            A Vietnamese space for people who love Yoko Apasra<br>
+            Powered by love, protein & sunny-side-up behavior 🍳
+        </p>
+
+                    <p class="about-slogan">
+
+                        Our memories, our love. ♡
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- DIVIDER -->
+
+            <div class="about-divider"></div>
+
+            <!-- RIGHT -->
+
+            <div class="social-side">
+
+                <div class="social-group">
+
+                    <span class="social-title">
+
+                        FOLLOW YOKO
+
+                    </span>
+
+                    <div class="social-row">
+
+                        <a href="#">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <span>@Yoko_apasra</span>
+                        </a>
+
+                        <a href="#">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>@yoko</span>
+                        </a>
+
+                        <a href="#">
+                            <i class="fa-brands fa-tiktok"></i>
+                            <span>@apasraa</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="social-group">
+
+                    <span class="social-title">
+
+                        FOLLOW VNHUB
+
+                    </span>
+
+                    <div class="social-row">
+
+                        <a href="#">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <span>@YokoApasraVNHub</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <img
+                    class="social-chibi"
+                    src="../assets/images/chibi2.png"
+                    alt="VNHub">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- ======================================================
+         SITE CREDIT
+    ====================================================== -->
+
+    <footer class="site-credit">
+
+        © 2026 Yoko Apasra VNHub.
+        Made with 🤍 by Vietnamese Fans •
+        Unofficial fan-made archive •
+        Non-commercial project.
+
+    </footer>
 
 </main>
 
 
-<script
-    src="exclusive.js">
+<!-- ======================================================
+     SCRIPT
+====================================================== -->
 
-</script>
+<script src="exclusive.js"></script>
 
 </body>
 

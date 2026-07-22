@@ -1,61 +1,192 @@
-/* ==========================================
-   ELEMENTS
-========================================== */
+/* ======================================================
+   EXCLUSIVE DETAIL
+   Yoko Apasra VNHub
+====================================================== */
 
-const titleElement =
-    document.getElementById("event-title");
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
 
-const subtitleElement =
-    document.getElementById("event-subtitle");
+        /* ======================================================
+           ELEMENTS
+        ====================================================== */
 
-const metaElement =
-    document.getElementById("event-meta");
+        const titleElement =
+            document.getElementById(
+                "event-title"
+            );
 
-const gallery =
-    document.getElementById("gallery");
+        const subtitleElement =
+            document.getElementById(
+                "event-subtitle"
+            );
 
-const poster =
-    document.getElementById("poster-image");
+        const metaElement =
+            document.getElementById(
+                "event-meta"
+            );
 
-const downloadButton =
-    document.getElementById("download-album");
+        const galleryElement =
+            document.getElementById(
+                "gallery"
+            );
+
+        const posterLink =
+            document.getElementById(
+                "poster-link"
+            );
+
+        const posterElement =
+            document.getElementById(
+                "poster-image"
+            );
+
+        const downloadButton =
+            document.getElementById(
+                "download-album"
+            );
+
+        if (
+
+            !titleElement ||
+
+            !subtitleElement ||
+
+            !metaElement ||
+
+            !galleryElement ||
+
+            !posterLink ||
+
+            !posterElement ||
+
+            !downloadButton
+
+        ) {
+
+            console.error(
+                "Exclusive Detail elements not found."
+            );
+
+            return;
+
+        }
 
 
-/* ==========================================
-   GET ID
-========================================== */
+        /* ======================================================
+           GET ALBUM ID
+        ====================================================== */
 
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
 
-const albumId =
-    params.get("id");
+        const albumId =
+            params.get("id");
+
+        if (!albumId) {
+
+            titleElement.textContent =
+                "Album not found";
+
+            return;
+
+        }
 
 
-/* ==========================================
-   LOAD
-========================================== */
+        /* ======================================================
+           LOAD JSON
+        ====================================================== */
 
-async function loadAlbum() {
+        let albums = [];
 
-    try {
+        let downloadData = {};
 
-        const response =
-            await fetch("../data/exclusive.json");
+        try {
 
-        const albums =
-            await response.json();
+            const [
+
+                albumResponse,
+
+                downloadResponse
+
+            ] = await Promise.all([
+
+                fetch(
+                    "../data/exclusive.json"
+                ),
+
+                fetch(
+                    "../data/download.json"
+                )
+
+            ]);
+
+            if (
+
+                !albumResponse.ok
+
+            ) {
+
+                throw new Error(
+                    "Unable to load exclusive.json"
+                );
+
+            }
+
+            albums =
+                await albumResponse.json();
+
+            if (
+
+                downloadResponse.ok
+
+            ) {
+
+                downloadData =
+                    await downloadResponse.json();
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            galleryElement.innerHTML =
+
+                `
+                <p class="empty">
+
+                    Failed to load album.
+
+                </p>
+                `;
+
+            return;
+
+        }
+
+
+        /* ======================================================
+           FIND ALBUM
+        ====================================================== */
 
         const album =
-            albums.find(item =>
-                item.id === albumId
+
+            albums.find(
+
+                item =>
+
+                    item.id === albumId
+
             );
 
         if (!album) {
 
-            gallery.innerHTML =
+            galleryElement.innerHTML =
 
                 `
                 <p class="empty">
@@ -69,196 +200,372 @@ async function loadAlbum() {
 
         }
 
-        renderAlbum(album);
 
-    }
+        document.title =
 
-    catch (error) {
+            `${album.title} | Yoko Apasra VNHub`;
 
-        console.error(error);
 
-        gallery.innerHTML =
+        /* ======================================================
+           FILE PATH
+        ====================================================== */
+
+        const extension =
+
+            album.format || "jpg";
+
+        const posterPath =
+
+            `../assets/exclusive/${album.folder}/poster.${extension}`;
+
+
+        /* ======================================================
+           POSTER
+        ====================================================== */
+
+        posterElement.src =
+            posterPath;
+
+        posterElement.alt =
+            album.title;
+
+        posterElement.onload =
+            () => {
+
+                posterElement.classList.add(
+                    "loaded"
+                );
+
+            };
+
+        posterLink.href =
+            posterPath;
+
+        posterLink.classList.add(
+            "lightbox-trigger"
+        );
+
+        posterLink.dataset.filename =
+            `${album.folder}-poster.${extension}`;
+
+
+        /* ======================================================
+           TITLE
+        ====================================================== */
+
+        titleElement.textContent =
+            album.title;
+
+        subtitleElement.textContent =
+            album.subtitle || "";
+
+
+        /* ======================================================
+           META
+        ====================================================== */
+
+        metaElement.innerHTML =
 
             `
-            <p class="empty">
+            <div class="meta-item">
 
-                Failed to load album.
+                <span class="meta-icon">
+                    📅
+                </span>
 
-            </p>
+                <div>
+
+                    <strong>
+
+                        Date
+
+                    </strong>
+
+                    <p>
+
+                        ${album.date}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="meta-item">
+
+                <span class="meta-icon">
+                    📍
+                </span>
+
+                <div>
+
+                    <strong>
+
+                        Location
+
+                    </strong>
+
+                    <p>
+
+                        ${album.location}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="meta-item">
+
+                <span class="meta-icon">
+                    📷
+                </span>
+
+                <div>
+
+                    <strong>
+
+                        Collection
+
+                    </strong>
+
+                    <p>
+
+                        ${album.photos}
+                        Photo${album.photos > 1 ? "s" : ""}
+
+                    </p>
+
+                </div>
+
+            </div>
+
             `;
+
+
+        /* ======================================================
+           DOWNLOAD
+        ====================================================== */
+
+        const downloadLink =
+
+            downloadData.exclusive?.[
+                album.id
+            ] || "";
+
+        if (downloadLink) {
+
+            downloadButton.href =
+                downloadLink;
+
+            downloadButton.target =
+                "_blank";
+
+            downloadButton.rel =
+                "noopener noreferrer";
+
+            downloadButton.style.display =
+                "inline-flex";
+
+        }
+
+        else {
+
+            downloadButton.style.display =
+                "none";
+
+        }
+
+
+/* ======================================================
+   CLEAR GALLERY
+====================================================== */
+
+galleryElement.innerHTML = "";
+
+/* ======================================================
+   EMPTY GALLERY
+====================================================== */
+
+if (album.photos === 0) {
+
+galleryElement.innerHTML = `
+
+    <div class="empty">
+
+        <h3>
+
+            📸 Gallery Coming Soon
+
+        </h3>
+
+        <p>
+
+            Photos from this event
+            will be uploaded soon.
+
+        </p>
+
+        <small>
+
+            Please come back later 🤍
+
+        </small>
+
+    </div>
+
+`;
+
+}
+else {
+
+    /* ======================================================
+       RENDER GALLERY
+    ====================================================== */
+
+    for (
+
+        let i = 1;
+
+        i <= album.photos;
+
+        i++
+
+    ) {
+
+        const fileNumber =
+
+            String(i).padStart(
+                3,
+                "0"
+            );
+
+        const imagePath =
+
+            `../assets/exclusive/${album.folder}/${fileNumber}.${extension}`;
+
+        const link =
+
+            document.createElement(
+                "a"
+            );
+
+        link.href =
+            imagePath;
+
+        link.className =
+            "lightbox-trigger";
+
+        link.dataset.filename =
+
+            `${album.folder}-${fileNumber}.${extension}`;
+
+        const image =
+
+            document.createElement(
+                "img"
+            );
+
+        image.src =
+            imagePath;
+
+        image.alt =
+
+            `${album.title} ${fileNumber}`;
+
+        image.loading =
+            "lazy";
+
+        image.decoding =
+            "async";
+
+        image.draggable =
+            false;
+
+        image.onload = () => {
+
+            image.classList.add(
+                "loaded"
+            );
+
+        };
+
+        image.onerror = () => {
+
+            console.warn(
+                `Missing image: ${imagePath}`
+            );
+
+            link.remove();
+
+        };
+
+        link.appendChild(
+            image
+        );
+
+        galleryElement.appendChild(
+            link
+        );
 
     }
 
-}
+} 
+        /* ======================================================
+           REFRESH LIGHTBOX
+        ====================================================== */
 
-loadAlbum();
+        if (
 
+            typeof window.refreshLightbox ===
+            "function"
 
-/* ==========================================
-   RENDER
-========================================== */
+        ) {
 
-function renderAlbum(album) {
+            window.refreshLightbox();
 
-    document.title =
-        `${album.title} • Yoko Apasra VNHub`;
+        }
 
 
+        /* ======================================================
+           DEBUG
+        ====================================================== */
 
-    /* ==========================
-       Poster
-    ========================== */
+        console.groupCollapsed(
+            "Exclusive Detail"
+        );
 
-    const posterImage =
+        console.log(
+            "Album:",
+            album.title
+        );
 
-        `../assets/exclusive/${album.folder}/poster.${album.format}`;
+        console.log(
+            "Folder:",
+            album.folder
+        );
 
-    poster.src =
-        posterImage;
+        console.log(
+            "Poster:",
+            posterPath
+        );
 
-    poster.alt =
-        album.title;
+        console.log(
+            "Gallery:",
+            album.photos
+        );
 
+        console.log(
+            "Download:",
+            downloadLink
+                ? "Available"
+                : "Unavailable"
+        );
 
+        console.groupEnd();
 
-    /* ==========================
-       Title
-    ========================== */
+    }
 
-    titleElement.textContent =
-        album.title;
-
-    subtitleElement.textContent =
-        album.subtitle;
-
-
-
-    /* ==========================
-       Meta
-    ========================== */
-
-    metaElement.innerHTML =
-
-        `
-
-        <div class="meta-item">
-
-            <span class="meta-icon">
-
-                📅
-
-            </span>
-
-            <div>
-
-                <strong>
-
-                    Date
-
-                </strong>
-
-                <p>
-
-                    ${album.date}
-
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="meta-item">
-
-            <span class="meta-icon">
-
-                📍
-
-            </span>
-
-            <div>
-
-                <strong>
-
-                    Location
-
-                </strong>
-
-                <p>
-
-                    ${album.location}
-
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="meta-item">
-
-            <span class="meta-icon">
-
-                📷
-
-            </span>
-
-            <div>
-
-                <strong>
-
-                    Collection
-
-                </strong>
-
-                <p>
-
-                    ${album.photos}
-                    Photo${album.photos > 1 ? "s" : ""}
-
-                </p>
-
-            </div>
-
-        </div>
-
-        `;
-
-
-
-    /* ==========================
-       Download
-    ========================== */
-
-    downloadButton.href =
-        album.zip;
-
-
-
-    /* ==========================
-       Gallery
-    ========================== */
-
-    gallery.innerHTML =
-
-        `
-
-        <img
-
-            src="${posterImage}"
-
-            alt="${album.title}"
-
-            class="gallery-img"
-
-            loading="lazy"
-
-            data-full="${posterImage}"
-
-            data-caption="${album.title}"
-
-        >
-
-        `;
-
-}
+);

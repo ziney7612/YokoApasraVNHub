@@ -42,7 +42,7 @@
 
             <img
                 src="../assets/logo/logo.png"
-                alt="Logo">
+                alt="Yoko Apasra VNHub">
 
             <div class="logo-text">
 
@@ -67,10 +67,10 @@
                 <li>
                     <a
                         href="./"
-                        class="active">
+                        class="active"
+                        aria-current="page">
 
                         Events
-
                     </a>
                 </li>
 
@@ -94,11 +94,13 @@
 
 </header>
 
+
 <main class="events-page">
 
-    <!-- Floating Bubbles -->
-
-    <div class="events-bubbles">
+    <!-- bubbles (Hiệu ứng bong bóng nền trang) -->
+    <div
+        class="events-bubbles"
+        aria-hidden="true">
 
         <span></span>
         <span></span>
@@ -115,6 +117,7 @@
 
     </div>
 
+
     <!-- HERO -->
 
     <section class="events-hero">
@@ -123,10 +126,8 @@
 
             <div class="hero-copy">
 
-                <span class="hero-kicker">
-
+                <span class="badge">
                     🤍 YOKO APASRA
-
                 </span>
 
                 <h1 class="hero-title">
@@ -147,7 +148,8 @@
 
                 </p>
 
-                <div class="hero-stats">
+
+                <div class="hero-stats glass-card">
 
                     <div class="hero-stat">
 
@@ -220,7 +222,7 @@
 
                 <img
                     src="../assets/images/events.png"
-                    alt="Yoko">
+                    alt="Yoko Apasra Events">
 
             </div>
 
@@ -228,20 +230,24 @@
 
     </section>
 
-    <!-- LATEST EVENT -->
+
+    <!-- LATEST -->
 
     <section class="latest-section">
 
         <div class="container">
 
+            <!-- ĐÃ SỬA: Thêm class latest-card vào đây để CSS nhận diện đè khối đè lên hình hero -->
             <div
-                id="latest-event-card">
+                id="latest-event-card"
+                class="latest-event latest-card glass-card">
 
             </div>
 
         </div>
 
     </section>
+
 
     <!-- EVENTS -->
 
@@ -249,13 +255,17 @@
 
         <div class="container">
 
-            <div class="events-heading">
+            <div class="section-divider">
+
+                <span></span>
 
                 <h2>
 
                     Browse All Events 🤍
 
                 </h2>
+
+                <span></span>
 
             </div>
 
@@ -271,32 +281,42 @@
 
                 <div class="toolbar-right">
 
-                    <select
-                        id="sort-select">
+                    <!-- BỌC NGOÀI ĐỂ CSS ĐIỀU CHỈNH MŨI TÊN CHO NEWEST FIRST -->
+                    <div class="filter-select-wrapper">
+                        <select
+                            id="sort-select"
+                            class="select-glass"
+                            aria-label="Sort events">
 
-                        <option value="newest">
-                            Newest First
-                        </option>
+                            <option value="newest">
+                                Newest First
+                            </option>
 
-                        <option value="oldest">
-                            Oldest First
-                        </option>
+                            <option value="oldest">
+                                Oldest First
+                            </option>
 
-                    </select>
+                        </select>
+                    </div>
 
 
                     <div class="view-toggle">
 
                         <button
+                            type="button"
                             id="grid-view"
-                            class="active">
+                            class="active"
+                            aria-label="Grid View">
 
                             ⊞
 
                         </button>
 
+
                         <button
-                            id="list-view">
+                            type="button"
+                            id="list-view"
+                            aria-label="List View">
 
                             ☰
 
@@ -309,9 +329,11 @@
             </div>
 
 
+            <!-- Danh sách card sẽ được render động vào đây -->
             <div
                 id="events-list"
-                class="events-grid">
+                class="events-grid"
+                aria-live="polite">
 
             </div>
 
@@ -319,49 +341,91 @@
 
     </section>
 
-    <!-- FOOTER -->
-
-<section class="events-footer">
+<section class="about-home">
 
     <div class="container">
 
-        <div class="footer-message">
+        <div class="about-social-card">
 
-            <div class="footer-copy">
+            <!-- LEFT -->
 
-                <span class="footer-heart">
-                    🤍
-                </span>
+<div class="about-side">
+    <img class="about-chibi" src="../assets/images/chibi3.png" alt="VNHub">
 
-                <h2>
-                    WITH YO,<br>
-                    THROUGH EVERY CHAPTER
-                </h2>
+    <div class="about-content">
+        <h2>About VNHub</h2>
 
-                <p>
-                    Vietnamese space for people
-                    who love Yoko Apasra 🤍
-                </p>
+        <p>
+            WITH YO, THROUGH EVERY CHAPTER<br>
+            A Vietnamese space for people who love Yoko Apasra<br>
+            Powered by love, protein & sunny-side-up behavior 🍳
+        </p>
 
-                <p class="footer-slogan">
-                    Powered by love,
-                    protein &
-                    sunny-side-up behavior 🍳
-                </p>
+        <p class="about-slogan">
+            Our memories, our love. ♡
+        </p>
+    </div>
+</div>
+            <!-- DIVIDER -->
 
-            </div>
+            <div class="about-divider"></div>
 
-            <div class="footer-mascot">
+            <!-- RIGHT -->
 
-                <span class="footer-bubble"></span>
-                <span class="footer-bubble"></span>
-                <span class="footer-bubble"></span>
-                <span class="footer-bubble"></span>
-                <span class="footer-bubble"></span>
+            <div class="social-side">
+
+                <div class="social-group">
+
+                    <span class="social-title">
+
+                        FOLLOW YOKO
+
+                    </span>
+
+                    <div class="social-row">
+
+                        <a href="#">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <span>@Yoko_apasra</span>
+                        </a>
+
+                        <a href="#">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>@yoko</span>
+                        </a>
+
+                        <a href="#">
+                            <i class="fa-brands fa-tiktok"></i>
+                            <span>@apasraa</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="social-group">
+
+                    <span class="social-title">
+
+                        FOLLOW VNHUB
+
+                    </span>
+
+                    <div class="social-row">
+
+                        <a href="#">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <span>@YokoApasraVNHub</span>
+                        </a>
+
+                    </div>
+
+                </div>
 
                 <img
-                    src="../assets/images/chibi.png"
-                    alt="Mascot">
+                    class="social-chibi"
+                    src="../assets/images/chibi2.png"
+                    alt="VNHub">
 
             </div>
 
@@ -371,22 +435,10 @@
 
 </section>
 
-
-<footer class="site-credit">
-
-    © 2026 Yoko Apasra VNHub.
-    Made with 🤍 by Vietnamese Fans •
-    Unofficial fan-made archive •
-    Non-commercial project.
-
-</footer>
-
 </main>
 
-<script
-    src="../js/events.js">
-</script>
+<!-- Đã bổ sung liên kết gọi file JS xử lý dữ liệu động của bạn ở đây -->
+<script src="../js/events.js"></script>
 
 </body>
-
 </html>

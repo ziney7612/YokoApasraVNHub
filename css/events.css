@@ -1,994 +1,562 @@
 /* ======================================================
-   EVENTS PAGE
+   EVENTS PAGE & GLOBAL LINKS
 ====================================================== */
 
-.events-page{
-    position:relative;
-    overflow:hidden;
-    padding-bottom:80px;
-
-    isolation:isolate;
-}
-
-/* ======================================================
-   BACKGROUND BUBBLES
-====================================================== */
-
-.events-bubbles{
-    position:absolute;
-    inset:0;
-
-    overflow:hidden;
-    pointer-events:none;
-
-    z-index:1;
-}
-
-.events-bubbles span{
-    position:absolute;
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle at 30% 30%,
-            rgba(255,255,255,.95) 0%,
-            rgba(255,240,248,.75) 20%,
-            rgba(255,210,230,.35) 60%,
-            rgba(255,190,220,.18) 100%
-        );
-
-    border:
-        2px solid
-        rgba(255,185,220,.45);
-
-    box-shadow:
-        inset
-        -12px -12px 20px
-        rgba(255,255,255,.35),
-
-        inset
-        10px 10px 20px
-        rgba(255,200,225,.25),
-
-        0 0 30px
-        rgba(255,190,220,.35);
-
-    backdrop-filter:
-        blur(8px);
-
-    opacity:.95;
-
-    animation:
-        bubbleFloat
-        5s ease-in-out infinite;
-}
-
-.events-bubbles span::before{
-    content:"";
-
-    position:absolute;
-
-    width:28%;
-    height:28%;
-
-    top:18%;
-    left:20%;
-
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.95);
-
-    filter:blur(2px);
-}
-
-.events-bubbles span::after{
-    content:"";
-
-    position:absolute;
-
-    width:14%;
-    height:14%;
-
-    top:42%;
-    left:35%;
-
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.75);
-
-    filter:blur(1px);
-}
-/* TOP */
-
-.events-bubbles span:nth-child(1){
-    width:260px;
-    height:260px;
-
-    top:120px;
-    left:-90px;
-
-    animation-delay:0s;
-}
-
-.events-bubbles span:nth-child(2){
-    width:180px;
-    height:180px;
-
-    top:500px;
-    right:-70px;
-
-    animation-delay:1s;
-}
-
-/* EVENT AREA */
-
-.events-bubbles span:nth-child(3){
-    width:150px;
-    height:150px;
-
-    top:1200px;
-    left:4%;
-
-    animation-delay:2s;
-}
-
-.events-bubbles span:nth-child(4){
-    width:210px;
-    height:210px;
-
-    top:1700px;
-    right:-80px;
-
-    animation-delay:1.5s;
-}
-
-.events-bubbles span:nth-child(5){
-    width:130px;
-    height:130px;
-
-    top:2200px;
-    left:-40px;
-
-    animation-delay:3s;
-}
-
-.events-bubbles span:nth-child(6){
-    width:170px;
-    height:170px;
-
-    top:2900px;
-    right:5%;
-
-    animation-delay:2.5s;
-}
-
-.events-bubbles span:nth-child(7){
-    width:120px;
-    height:120px;
-
-    top:3600px;
-    left:8%;
-
-    animation-delay:4s;
-}
-
-.events-bubbles span:nth-child(8){
-    width:190px;
-    height:190px;
-
-    bottom:400px;
-    right:-60px;
-
-    animation-delay:1s;
-}
-
-.events-bubbles span:nth-child(9){
-    width:120px;
-    height:120px;
-
-    top:2750px;
-    left:10%;
-
-    animation-delay:3.5s;
-}
-
-/* FOOTER */
-
-.events-bubbles span:nth-child(10){
-    width:160px;
-    height:160px;
-
-    bottom:280px;
-    right:8%;
-
-    animation-delay:2s;
-}
-
-.events-bubbles span:nth-child(11){
-    width:110px;
-    height:110px;
-
-    bottom:120px;
-    left:-30px;
-
-    animation-delay:1.5s;
-}
-
-.events-bubbles span:nth-child(12){
-    width:220px;
-    height:220px;
-
-    bottom:-70px;
-    right:-80px;
-
-    animation-delay:4s;
+.events-page {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding-bottom: 100px;
+    animation: fadePage .45s ease;
 }
 
 .events-hero,
 .latest-section,
 .events-archive,
 .events-footer,
-.site-credit{
-    position:relative;
-    z-index:2;
+.site-credit {
+    position: relative;
+    z-index: 2;
 }
+
+/* KHÔI PHỤC: Hiệu ứng chuyển động mượt mà cho toàn bộ liên kết Back Link trong trang */
+.events-page a {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* ======================================================
-   HERO
-   GIỮ NGUYÊN
+   BACKGROUND BUBBLES (Giữ nguyên tọa độ gốc của bạn trên PC)
 ====================================================== */
 
-.events-hero,
-.latest-section,
-.events-archive,
-.events-footer{
-    position:relative;
-    z-index:2;
+.events-bubbles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
 }
 
-.events-hero{
-    position:relative;
-}
-
-.hero-layout{
-    display:grid;
-    grid-template-columns:520px 1fr;
-    align-items:center;
-    min-height:700px;
-}
-
-.hero-copy{
-    position:relative;
-}
-
-.hero-kicker{
-    display:block;
-    font-size:.85rem;
-    letter-spacing:.15em;
-    color:#8d91a8;
-    margin-bottom:25px;
-}
-
-.hero-title{
-    font-size:6rem;
-    line-height:.9;
-    color:#2f3555;
-    margin-bottom:30px;
-}
-
-.hero-title span{
-    display:block;
-    color:#ff69ab;
-}
-
-.hero-desc{
-    max-width:420px;
-    font-size:1.15rem;
-    line-height:1.9;
-    color:#7d8398;
-}
-
-.hero-stats{
-    display:flex;
-    margin-top:50px;
-    margin-bottom:-150px;
-
-    width:820px;
-
-    background:rgba(255,255,255,.65);
-    backdrop-filter:blur(25px);
-
-    border-radius:35px;
-    padding:28px 35px;
-    gap:55px;
-}
-
-.hero-stat{
-    display:flex;
-    align-items:center;
-    gap:18px;
-}
-
-.hero-stat-icon{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:#ffe6f0;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:1.6rem;
-}
-
-.hero-stat strong{
-    display:block;
-    font-size:2rem;
-    color:#2f3555;
-}
-
-.hero-stat span{
-    color:#7d8398;
-    font-size:.9rem;
-}
-
-.hero-image{
-    display:flex;
-    justify-content:flex-end;
-}
-
-.hero-image img{
-    width:700px;
-    margin-right:-50px;
-    margin-bottom:-150px;
-}
-
-/* ===========================
-   LATEST EVENT CARD
-=========================== */
-
-.latest-card{
-    display:grid;
-    grid-template-columns:420px 1fr;
-    gap:60px;
-
-    align-items:center;
-
-    padding:36px;
-
-    background:#fff;
-    border-radius:36px;
-
-    box-shadow:
-        0 20px 50px rgba(230,190,210,.15);
-}
-
-/* IMAGE */
-
-.latest-image img{
-    width:100%;
-    height:320px;
-
-    object-fit:cover;
-    object-position:center;
-    border-radius:28px;
-
-    display:block;
-}
-
-
-/* CONTENT */
-
-.latest-content{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-    padding:20px 0;
-}
-
-
-/* TAG */
-
-.latest-tag{
-    display:inline-flex;
-    align-items:center;
-
-    width:fit-content;
-
-    padding:10px 18px;
-
-    border-radius:999px;
-
-    background:#ffe6f0;
-
-    color:#ff6ca9;
-
-    font-size:.85rem;
-    font-weight:700;
-
-    margin-bottom:28px;
-}
-
-
-/* TITLE */
-
-.latest-content h2{
-    margin:0;
-
-    font-size:2rem
+.events-bubbles span {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255,255,255,.95),
+        rgba(255,235,245,.55) 45%,
+        rgba(255,210,230,.25)
     );
-
-    line-height:1.18;
-    font-weight:800;
-
-    color:#30345f;
-
-    margin-bottom:38px;
-}
-
-
-/* META */
-
-.latest-content p{
-    margin:0;
-
-    color:#8a8ea7;
-
-    font-size:1.08rem;
-
-    line-height:1.9;
-}
-
-.latest-content p:last-of-type{
-    margin-bottom:45px;
-}
-
-
-/* BUTTON */
-
-.latest-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:18px;
-
-    width:fit-content;
-
-    padding:
-        14px
-        16px
-        14px
-        28px;
-
-    border-radius:999px;
-
-    text-decoration:none;
-    color:#fff;
-
-    font-size:1rem;
-    font-weight:700;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f871a8,
-            #f58b98
-        );
-
+    border: 2px solid rgba(255,190,225,.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow:
-        0 14px 35px
-        rgba(
-            244,
-            124,
-            170,
-            .25
-        );
-
-    transition:.35s;
+        inset -12px -12px 20px rgba(255,255,255,.45),
+        inset 10px 10px 20px rgba(255,210,230,.25),
+        0 0 35px rgba(255,190,220,.25);
+    animation: bubbleFloat 7s ease-in-out infinite;
 }
 
-.latest-btn:hover{
-    transform:
-        translateY(-4px);
+.events-bubbles span:nth-child(1) { width:260px; height:260px; top:120px; left:-90px; }
+.events-bubbles span:nth-child(2) { width:180px; height:180px; top:500px; right:-70px; animation-delay:1s; }
+.events-bubbles span:nth-child(3) { width:150px; height:150px; top:1200px; left:4%; animation-delay:2s; }
+.events-bubbles span:nth-child(4) { width:210px; height:210px; top:1700px; right:-80px; animation-delay:1.5s; }
+.events-bubbles span:nth-child(5) { width:130px; height:130px; top:2200px; left:-40px; animation-delay:3s; }
+.events-bubbles span:nth-child(6) { width:170px; height:170px; top:2900px; right:5%; animation-delay:2.5s; }
+.events-bubbles span:nth-child(7) { width:120px; height:120px; top:3600px; left:8%; animation-delay:4s; }
+.events-bubbles span:nth-child(8) { width:190px; height:190px; bottom:400px; right:-60px; }
+.events-bubbles span:nth-child(9) { width:120px; height:120px; top:2750px; left:10%; animation-delay:3s; }
+.events-bubbles span:nth-child(10){ width:160px; height:160px; bottom:280px; right:8%; animation-delay:2s; }
+.events-bubbles span:nth-child(11){ width:110px; height:110px; bottom:120px; left:-30px; animation-delay:1.5s; }
+.events-bubbles span:nth-child(12){ width:220px; height:220px; bottom:-70px; right:-80px; animation-delay:4s; }
 
-    box-shadow:
-        0 20px 40px
-        rgba(
-            244,
-            124,
-            170,
-            .35
-        );
+/* ======================================================
+   HERO STYLE
+====================================================== */
+
+.events-hero {
+    position: relative;
 }
 
-
-/* ARROW */
-
-.latest-btn .arrow{
-    font-size:1.15rem;
+.hero-layout {
+    display: grid;
+    grid-template-columns: 520px 1fr;
+    align-items: center;
+    min-height: 700px;
 }
 
+.hero-kicker {
+    display: block;
+    margin-bottom: 25px;
+    font-size: .85rem;
+    letter-spacing: .15em;
+    color: var(--text-light);
+}
 
-/* MOON */
+.hero-title {
+    margin: 30px 0;
+    font-size: 6rem;
+    line-height: .92;
+    color: var(--text-dark);
+}
 
-.latest-btn .moon{
-    width:42px;
-    height:42px;
+.hero-title span {
+    display: block;
+    color: var(--primary);
+}
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.hero-desc {
+    max-width: 430px;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text-light);
+}
 
-    border-radius:50%;
+.hero-image {
+    display: flex;
+    justify-content: flex-end;
+}
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            .18
-        );
-
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            .25
-        );
-
-    backdrop-filter:
-        blur(10px);
-
-    font-size:1.1rem;
-
-    flex-shrink:0;
+.hero-image img {
+    width: 700px;
+    margin-right: -50px;
+    margin-bottom: -150px;
 }
 
 /* ======================================================
-   EVENTS
+   HERO STATS
 ====================================================== */
 
-.events-archive{
-    padding-top:20px;
+.hero-stats {
+    display: flex;
+    gap: 50px;
+    width: 820px;
+    margin-top: 55px;
+    margin-bottom: -150px;
+    padding: 30px 35px;
+    border-radius: 38px;
+    background: rgba(255,255,255,.68);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 0 20px 50px rgba(255,180,210,.12);
 }
 
-.events-heading{
-    margin-bottom:35px;
+.hero-stat {
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
-.events-heading h2{
-    font-size:3rem;
-    color:#2f3555;
+.hero-stat-icon {
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ffe7f1;
+    font-size: 1.5rem;
+}
+
+.hero-stat strong {
+    display: block;
+    font-size: 2rem;
+    color: #2f3555;
+}
+
+.hero-stat span {
+    color: #9ca2b7;
 }
 
 /* ======================================================
-   TOOLBAR
+   LATEST EVENT CARD (Khối ngang đè khối cực chuẩn)
 ====================================================== */
 
-.events-toolbar{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    flex-wrap:wrap;
-
-    gap:30px;
-
-    margin-bottom:45px;
+.latest-section {
+    margin-top: 140px;
 }
 
-.month-filter{
-
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
+.events-page .latest-card {
+    display: grid !important; 
+    grid-template-columns: 420px 1fr !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    
+    gap: 60px !important;
+    padding: 38px !important;
+    border-radius: 40px !important;
+    background: rgba(255,255,255,.92) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    box-shadow: 0 25px 60px rgba(255,190,220,.12) !important;
+    
+    margin-top: -120px !important; 
+    position: relative !important;
+    z-index: 10 !important;
+    overflow: visible !important; 
+    
+    /* KHÔI PHỤC: Hiệu ứng chuyển động nhấc khối nhẹ nhàng cho riêng Latest Card khi hover */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-.month-filter button{
-
-    border:none;
-    outline:none;
-
-    padding:13px 24px;
-
-    border-radius:999px;
-
-    background:
-        rgba(255,255,255,.72);
-
-    border:
-        1px solid
-        rgba(255,190,220,.45);
-
-    color:#ff69ab;
-
-    cursor:pointer;
-
-    transition:.3s;
+.events-page .latest-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 30px 70px rgba(255,190,220,.22) !important;
 }
 
-.month-filter button:hover{
-
-    transform:translateY(-2px);
+.events-page .latest-card .latest-image {
+    display: block !important;
+    width: 420px !important;
+    height: 330px !important;
+    overflow: hidden !important;
+    border-radius: 32px !important;
 }
 
-.month-filter button.active{
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff5fa7,
-            #ff9b8b
-        );
-
-    color:white;
+.events-page .latest-card .latest-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 32px !important;
 }
 
-.toolbar-right{
-
-    display:flex;
-    align-items:center;
-    gap:18px;
+.events-page .latest-card .latest-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+    text-align: left !important;
 }
 
-#sort-select{
-
-    border:none;
-    outline:none;
-
-    background:
-        rgba(255,255,255,.72);
-
-    padding:15px 24px;
-
-    border-radius:999px;
-
-    box-shadow:
-        0 10px 25px
-        rgba(255,180,210,.08);
+.latest-content h2 {
+    font-size: 2rem;
+    line-height: 1.3;
+    color: #2f3555;
 }
 
-.view-toggle{
-
-    display:flex;
-    gap:10px;
+.latest-content p {
+    color: #8e94a8;
+    line-height: 1.9;
 }
 
-.view-toggle button{
-
-    width:52px;
-    height:52px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:white;
-
-    cursor:pointer;
-
-    transition:.3s;
+.latest-tag {
+    align-self: flex-start;
 }
 
-.view-toggle button.active{
+.latest-btn {
+    margin-top: 18px;
+    width: fit-content !important;
+    max-width: max-content !important;
+    align-self: flex-start;
+}
 
-    background:
-        linear-gradient(
-            135deg,
-            #ff5fa7,
-            #ff9b8b
-        );
-
-    color:white;
+.latest-meta {
+    margin-bottom: 12px;
+    color: var(--text-light);
+    line-height: 1.8;
 }
 
 /* ======================================================
-   GRID
+   EVENTS ARCHIVE & TOOLBAR
 ====================================================== */
 
-.events-grid{
+.events-archive {
+    margin-top: 50px;
+}
 
-    display:grid;
+.events-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 55px;
+}
 
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:30px;
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 /* ======================================================
-   LIST VIEW
+   MONTH FILTER
 ====================================================== */
 
-.events-grid.list-view{
-
-    grid-template-columns:1fr;
+.month-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
 }
 
-.events-grid.list-view .event-card{
-
-    display:flex;
-    align-items:center;
-
-    gap:34px;
-
-    padding:26px;
+.month-filter button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.8);
+    border: 1px solid rgba(255,210,230,.7);
+    font-family: inherit;
+    font-weight: 600;
+    color: #8d7380;
+    transition: .35s;
 }
 
-.events-grid.list-view .event-thumb{
-
-    width:340px;
-    height:220px;
-
-    flex-shrink:0;
-
-    border-radius:24px;
+.month-filter button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255,180,210,.18);
 }
 
-.events-grid.list-view .event-info{
-
-    flex:1;
-    padding:0;
-}
-
-.events-grid.list-view .event-info h2{
-
-    font-size:2rem;
-}
-
-.events-grid.list-view .event-photos{
-
-    transition:.3s;
-}
-
-.events-grid.list-view
-.event-card:hover
-.event-photos{
-
-    transform:
-        translateX(8px);
+.month-filter button.active {
+    color: #fff;
+    background: linear-gradient(135deg, #ff83b0, #ffb4c8);
+    border-color: transparent;
 }
 
 /* ======================================================
-   RESPONSIVE
+   SORT SELECT WRAPPER (Mũi tên hồng cách biệt viền)
 ====================================================== */
 
-@media(max-width:1200px){
-
-    .events-grid{
-
-        grid-template-columns:
-            repeat(2,1fr);
-    }
+.filter-select-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
-@media(max-width:992px){
-
-    .events-grid{
-
-        grid-template-columns:1fr;
-    }
-
-    .events-grid.list-view .event-card{
-
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .events-grid.list-view .event-thumb{
-
-        width:100%;
-        height:250px;
-    }
-
-    .events-grid.list-view .event-info{
-
-        padding-top:25px;
-    }
-
-    .events-grid.list-view
-    .event-info h2{
-
-        font-size:1.6rem;
-    }
-}
-/* ======================================================
-   FOOTER
-====================================================== */
-
-.events-footer{
-    position:relative;
-    padding-top:100px;
-    z-index:2;
+.filter-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 48px;
+    padding: 0 45px 0 20px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255,255,255,.82);
+    border: 1px solid rgba(255,210,230,.7);
+    font-family: inherit;
+    font-weight: 700;
+    color: #ff69ab;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.footer-message{
-
-    position:relative;
-
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-
-    gap:200px;
-    flex-wrap:wrap;
-    padding:20px 30px;
-
-    border-radius:40px;
-
-    background:
-        rgba(255,255,255,.48);
-
-    backdrop-filter:blur(28px);
-
-    border:
-        1px solid rgba(255,190,220,.45);
-
-    box-shadow:
-        0 18px 60px rgba(255,180,210,.10);
-
-    overflow:hidden;
+.filter-select-wrapper::after {
+    content: '▼';
+    font-size: 0.65rem;
+    color: #ff69ab;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
-.footer-message::before,
-.footer-message::after{
-    background:
-        radial-gradient(
-            circle at 30% 30%,
-            rgba(255,255,255,.95),
-            rgba(255,220,235,.35)
-        );
-
-    border:
-        2px solid
-        rgba(255,190,225,.45);
-
-    box-shadow:
-        0 0 25px
-        rgba(255,190,225,.35);
-
-    border-radius:50%;
-}
-
-.footer-message::before{
-    width:90px;
-    height:90px;
-
-    top:25px;
-    right:180px;
-}
-
-.footer-message::after{
-    width:55px;
-    height:55px;
-
-    top:90px;
-    right:120px;
-}
-
-.footer-copy{
-    max-width:650px;
-    z-index:2;
-}
-
-.footer-heart{
-    display:block;
-    margin-bottom:15px;
-    font-size:1.3rem;
-}
-
-.footer-copy h2{
-
-    font-size:2rem;
-    line-height:1.1;
-
-    color:#ff69ab;
-
-    margin-bottom:20px;
-}
-
-.footer-copy p{
-
-    color:#7d8398;
-
-    line-height:1.8;
-
-    margin-bottom:8px;
-}
-
-.footer-slogan{
-    color:#9aa0b5;
-}
-
-.footer-mascot{
-    position:relative;
-    z-index:2;
-}
-
-.footer-mascot img{
-
-    width:300px;
-
-    animation:
-        mascotFloat
-        5s ease-in-out infinite;
-}
-/* ======================================================
-   SITE CREDIT
-====================================================== */
-
-.site-credit{
-
-    text-align:center;
-
-    padding:
-        28px 20px 10px;
-
-    color:#9ea2b6;
-
-    font-size:.92rem;
-
-    line-height:1.8;
+.filter-select-wrapper select:hover {
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(255, 105, 171, 0.12);
 }
 
 /* ======================================================
-   ANIMATION
+   VIEW TOGGLE & GRID
 ====================================================== */
 
-@keyframes bubbleFloat{
+.view-toggle {
+    display: flex;
+    gap: 10px;
+}
 
-    0%{
-        transform:
-            translateY(0)
-            translateX(0)
-            scale(1);
+.view-toggle button {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid rgba(255,210,230,.4);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.view-toggle button.active {
+    background: var(--gradient-primary);
+    color: #fff;
+    border-color: transparent;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 32px;
+}
+
+.events-grid.list-view {
+    grid-template-columns: 1fr;
+}
+/* ======================================================
+   💻 RESPONSIVE MÁY TÍNH BẢNG & LAPTOP NHỎ (Max-width: 1200px)
+====================================================== */
+@media (max-width: 1200px) {
+    .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+        min-height: auto;
+        padding-top: 60px;
     }
 
-    25%{
-        transform:
-            translateY(-18px)
-            translateX(12px)
-            scale(1.04);
+    .hero-title {
+        font-size: 4.5rem;
     }
 
-    50%{
-        transform:
-            translateY(-35px)
-            translateX(-10px)
-            scale(1.08);
+    .hero-image {
+        display: flex;
+        justify-content: center;
     }
 
-    75%{
-        transform:
-            translateY(-15px)
-            translateX(15px)
-            scale(1.03);
+    .hero-image img {
+        width: 100%;
+        max-width: 550px;
+        margin-right: 0;
+        margin-bottom: 0;
     }
 
-    100%{
-        transform:
-            translateY(0)
-            translateX(0)
-            scale(1);
+    .hero-stats {
+        width: 100%;
+        max-width: 750px;
+        margin: 40px auto 0 auto;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .latest-section {
+        margin-top: 60px;
+    }
+
+    .events-page .latest-card {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+        padding: 24px !important;
+        margin-top: -50px !important;
+    }
+
+    .events-page .latest-card .latest-image {
+        width: 100% !important;
+        height: 280px !important;
     }
 }
 
-@keyframes mascotFloat{
-
-    0%{
-        transform:translateY(0);
+/* ======================================================
+   📱 RESPONSIVE ĐIỆN THOẠI DI ĐỘNG (Max-width: 768px)
+====================================================== */
+@media (max-width: 768px) {
+    .events-page {
+        padding-bottom: 60px;
     }
 
-    50%{
-        transform:translateY(-10px);
+    /* 1. ÉP BỐ CỤC HERO CHUYỂN DỌC HOÀN TOÀN */
+    .hero-layout {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Chuyển từ 2 cột thành 1 cột đứng */
+        gap: 30px !important;
+        text-align: center !important; /* Căn giữa toàn bộ chữ cho đẹp mắt */
+        min-height: auto !important;
+        padding-top: 40px !important;
     }
 
-    100%{
-        transform:translateY(0);
+    /* Căn giữa dòng mô tả sự kiện */
+    .hero-desc {
+        margin: 0 auto !important;
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    /* Thu nhỏ chữ tiêu đề trang để vừa khít màn hình dọc */
+    .hero-title {
+        font-size: 3.2rem !important;
+        margin: 15px 0 !important;
+        line-height: 1.1 !important;
+    }
+
+    /* 2. SỬA TRIỆT ĐỂ LỖI HÌNH ẢNH YOKO BỊ LỆCH RÌA */
+    .hero-image {
+        display: flex !important;
+        justify-content: center !important; /* Căn hình ảnh chính giữa màn hình */
+        width: 100% !important;
+        margin-top: 20px !important;
+    }
+
+    .hero-image img {
+        width: 100% !important;
+        max-width: 340px !important; /* Giới hạn độ rộng vừa vặn với chiều ngang điện thoại */
+        height: auto !important;
+        margin: 0 auto !important; /* Reset hoàn toàn các khoảng cách âm cũ */
+        display: block !important;
+    }
+
+    /* 3. ĐIỀU CHỈNH KHỐI THỐNG KÊ SỐ LIỆU */
+    .hero-stats {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px !important;
+        gap: 20px !important;
+        border-radius: 24px !important;
+        margin: 30px 0 0 0 !important; /* Reset margin âm để không đè lên phần khác */
+        flex-direction: column !important; /* Xếp dọc các dòng thông số */
+    }
+
+    .hero-stat {
+        width: 100% !important;
+        justify-content: flex-start !important;
+        gap: 14px !important;
+    }
+
+    .hero-stat-icon {
+        width: 52px !important;
+        height: 52px !important;
+        font-size: 1.2rem !important;
+    }
+
+    .hero-stat strong {
+        font-size: 1.5rem !important;
+    }
+
+    /* 4. ĐIỀU CHỈNH LATEST CARD TRÊN MOBILE */
+    .latest-section {
+        margin-top: 40px !important;
+    }
+
+    /* 5. CHỈNH SỬA TOOLBAR & BỘ LỌC THÁNG */
+    .events-toolbar {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 20px !important;
+        margin-bottom: 35px !important;
+    }
+
+    .month-filter {
+        gap: 8px !important;
+    }
+
+    .month-filter button {
+        padding: 8px 14px !important;
+        font-size: 0.85rem !important;
+        flex: 1 !important;
+        text-align: center !important;
+        min-width: calc(33.33% - 8px) !important;
+    }
+
+    .toolbar-right {
+        display: flex !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+
+    .filter-select-wrapper, 
+    .filter-select-wrapper select {
+        width: 100% !important;
+        max-width: 180px !important;
+    }
+
+    /* Ẩn bớt 50% bong bóng động nền trang trên Mobile để cuộn trang mượt hơn */
+    .events-bubbles span:nth-child(even) {
+        display: none !important;
     }
 }
