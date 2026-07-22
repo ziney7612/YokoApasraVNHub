@@ -235,9 +235,16 @@ body.lightbox-open {
     font-size: 14px;
     font-weight: 600;
 
-    overflow: visible;
+    /* SỬA LỖI: Đổi từ visible sang hidden để khóa chặt vệt sáng lướt qua nằm gọn trong viền nút */
+    overflow: hidden !important;
 
     isolation: isolate;
+}
+
+/* KHÓA VIỀN CHỐNG TRÀN VỆT SÁNG NGHIÊNG GÓC */
+.lightbox-download::after,
+.lightbox-download::before {
+    max-width: 100% !important;
 }
 
 /*==================================
@@ -351,6 +358,6 @@ body.lightbox-open {
     }
 
     .lightbox-image-container {
-        border-radius: 16px; /* Bo góc nhỏ hơn một chút trên màn hình mobile */
+        border-radius: 16px;
     }
 }
