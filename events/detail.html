@@ -164,108 +164,57 @@
 </main>
 
 
-<!-- ==========================================
-     LIGHTBOX
-========================================== -->
+<!-- ======================================================
+     LIGHTBOX (Cấu trúc mới: Gom toàn bộ cụm điều khiển dạt xuống đáy)
+====================================================== -->
+<div id="lightbox" class="lightbox">
 
-<div
-    id="lightbox"
-    class="lightbox">
+    <!-- Thanh đếm số góc trên bên trái giữ vị trí biệt lập sạch sẽ -->
+    <div id="lightbox-counter" class="lightbox-counter"></div>
 
-    <button
-        type="button"
-        class="lightbox-close"
-        aria-label="Close">
-
-        &times;
-
-    </button>
-
-
-    <div
-        id="lightbox-counter"
-        class="lightbox-counter">
-
-    </div>
-
-
-    <button
-        type="button"
-        class="lightbox-prev"
-        aria-label="Previous image">
-
-        ❮
-
-    </button>
-
+    <!-- Hai nút mũi tên điều hướng ảnh trái/phải -->
+    <button type="button" class="lightbox-prev" aria-label="Previous image">❮</button>
 
     <div class="lightbox-stage">
-
-        <!-- ĐÃ SỬA: Thêm lớp container bọc ngoài thẻ img để khóa vệt sáng shimmer không cho tràn ra ngoài -->
         <div class="lightbox-image-container">
-            <img
-                id="lightbox-image"
-                alt=""
-                draggable="false">
+            <img id="lightbox-image" alt="" draggable="false">
         </div>
-
     </div>
 
+    <button type="button" class="lightbox-next" aria-label="Next image">❯</button>
 
-    <button
-        type="button"
-        class="lightbox-next"
-        aria-label="Next image">
+    <!-- 🌟 DOCK ĐIỀU KHIỂN MỜ KÍNH ĐÁY MÀN HÌNH CHUẨN PHÁC HỌA CỦA BẠN -->
+    <div class="lightbox-bottom-bar">
+        
+        <!-- Hàng 1: Dòng tiêu đề chữ nằm gọn gàng bên trong thanh dock -->
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        
+        <!-- Hàng 2: Cặp nút bấm gom chung nằm song song, thẳng hàng tuyệt đối -->
+        <div class="lightbox-buttons-group">
+            
+            <!-- Nút Download Gradient kẹo ngọt chứa icon mặt trăng đuôi chữ -->
+            <a id="lightbox-download" class="btn-download lightbox-download" href="" target="_blank" rel="noopener noreferrer">
+                <span>Download Original</span>
+                <div class="moon">☾</div>
+            </a>
 
-        ❯
-
-    </button>
-
-
-   <a
-    id="lightbox-download"
-    class="btn-download lightbox-download"
-    href=""
-    target="_blank"
-    rel="noopener noreferrer">
-
-    <span class="moon">
-        ☾
-    </span>
-
-    <span>
-        Download Original
-    </span>
-
-    <span class="bubble"></span>
-    <span class="bubble"></span>
-    <span class="bubble"></span>
-    <span class="bubble"></span>
-    <span class="bubble"></span>
-
-</a>
-
-    <p
-        id="lightbox-caption"
-        class="lightbox-caption">
-
-    </p>
+            <!-- Nút đóng dấu X đồng bộ thon gọn nằm ngay bên cạnh -->
+            <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+            
+        </div>
+    </div>
 
 </div>
 
-
 <footer class="site-credit">
-
     © 2026 Yoko Apasra VNHub.
     Made with 🤍 by Vietnamese Fans •
     Unofficial fan-made archive •
     Non-commercial project.
-
 </footer>
 
-
+<!-- Hệ thống tệp tin JavaScript thực thi -->
 <script src="../js/event.js"></script>
-
 <script src="../js/lightbox.js"></script>
 
 </body>
