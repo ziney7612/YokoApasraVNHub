@@ -86,6 +86,9 @@ body.lightbox-open {
     pointer-events: auto;
     z-index: 2;
 
+    /* TỐI ƯU: Thêm đường viền kính mỏng bắt sáng cho bức ảnh như đang lơ lửng */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
     transition:
         opacity .35s ease,
         transform .35s ease;
@@ -131,10 +134,16 @@ body.lightbox-open {
 
 .lightbox-close:hover,
 .lightbox-prev:hover,
-.lightbox-next:hover,
-.lightbox-download:hover {
+.lightbox-next:hover {
     background: rgba(255,230,245,.18);
     box-shadow: 0 0 40px rgba(255,170,210,.35);
+}
+
+/* ĐÃ SỬA: Tách riêng hover của Download để khóa cứng scale dọc, không làm lệch hàng */
+.lightbox-download:hover {
+    background: rgba(255,230,245,.18) !important;
+    box-shadow: 0 0 40px rgba(255,170,210,.35) !important;
+    transform: scale(1.02) !important; /* Chỉ nở nhẹ, không bị đẩy lên trên */
 }
 
 /*==================================
@@ -145,26 +154,30 @@ body.lightbox-open {
 .lightbox-prev,
 .lightbox-next {
     position: fixed;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
-    width: 54px;
-    height: 54px;
-
-    border: none;
-    border-radius: 999px;
-
     cursor: pointer;
-
-    font-size: 24px;
 }
 
+/* ĐÃ SỬA: Khóa cứng chiều cao nút X thành 46px đồng bộ hoàn hảo */
 .lightbox-close {
     top: 20px;
     right: 20px;
-    font-size: 34px;
+    width: 46px !important;
+    height: 46px !important;
+    border: 1px solid rgba(255,190,220,.18);
+    border-radius: 999px;
+    font-size: 26px; /* Hạ bớt từ 34px xuống 26px để dấu nhân gọn gàng */
+}
+
+.lightbox-prev,
+.lightbox-next {
+    width: 54px;
+    height: 54px;
+    border: none;
+    border-radius: 999px;
+    font-size: 24px;
 }
 
 .lightbox-prev {
@@ -181,7 +194,7 @@ body.lightbox-open {
 
 .lightbox-prev:hover { transform: translateY(-50%) scale(1.08); }
 .lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
-.lightbox-close:hover { transform: scale(1.08); }
+.lightbox-close:hover { transform: scale(1.05); }
 
 /*==================================
 =            COUNTER               =
@@ -189,25 +202,20 @@ body.lightbox-open {
 
 .lightbox-counter {
     position: fixed;
-
-    top: 24px;
+    top: 20px; /* Hạ từ 24px xuống 20px để thẳng hàng đối xứng với cụm nút bên phải */
     left: 24px;
-
     padding: 10px 18px;
-
     border-radius: 999px;
-
     font-size: 13px;
     font-weight: 600;
-
     color: #fff;
 
-    background: rgba(255,230,245,.20);
-
+    /* TỐI ƯU: Đổi sang tone nền kính mờ tối sâu giống khối lịch để tôn ảnh idol rõ nhất */
+    background: rgba(0, 0, 0, 0.35) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-
-    box-shadow: 0 0 25px rgba(255,170,210,.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,.25);
 }
 
 /*==================================
@@ -217,27 +225,25 @@ body.lightbox-open {
 .lightbox-download {
     position: fixed;
 
-    top: 22px;
-    right: 88px;
+    /* ĐO ĐẠC CHUẨN XÁC: top trùng khớp 20px với nút X, right lùi sang 78px tinh tế */
+    top: 20px !important;
+    right: 78px !important;
 
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important; /* Khít khoảng cách icon mặt trăng với chữ */
 
-    padding: 12px 20px;
+    /* ĐÃ SỬA: Khóa cứng chiều cao 46px thon thả, bỏ padding dọc để chống mập nút */
+    height: 46px !important;
+    padding: 0 22px !important; 
 
     border-radius: 999px;
-
     text-decoration: none;
-
     color: #fff;
-
-    font-size: 14px;
+    font-size: 13.5px; /* Giảm nhẹ xuống 13.5px giúp chữ thanh mảnh cao cấp */
     font-weight: 600;
-
-    /* SỬA LỖI: Đổi từ visible sang hidden để khóa chặt vệt sáng lướt qua nằm gọn trong viền nút */
     overflow: hidden !important;
-
     isolation: isolate;
 }
 
@@ -246,50 +252,45 @@ body.lightbox-open {
 .lightbox-download::before {
     max-width: 100% !important;
 }
-
 /*==================================
 =             BUBBLES              =
 ==================================*/
 
 .lightbox-download .bubble {
     position: absolute;
-
-    width: 8px;
-    height: 8px;
-
+    width: 6px; /* Giảm nhẹ từ 8px xuống 6px để hạt bong bóng nhỏ nhắn, tinh tế hơn */
+    height: 6px;
     border-radius: 50%;
-
-    background: rgba(255,255,255,.9);
-
+    background: rgba(255,255,255,.8);
     opacity: 0;
-
     pointer-events: none;
-
-    animation: bubbleFloat 2.5s infinite;
+    animation: bubbleFloat 2.3s infinite;
 }
 
 .lightbox-download:hover .bubble {
-    animation: bubbleFloat 2.2s infinite;
+    animation: bubbleFloat 2.0s infinite;
 }
 
-.lightbox-download .bubble:nth-of-type(1){ left:12%; bottom:7px; animation-delay:0s; }
-.lightbox-download .bubble:nth-of-type(2){ left:28%; bottom:10px; animation-delay:.35s; }
-.lightbox-download .bubble:nth-of-type(3){ left:45%; bottom:6px; animation-delay:.7s; }
-.lightbox-download .bubble:nth-of-type(4){ left:60%; bottom:8px; animation-delay:1s; }
-.lightbox-download .bubble:nth-of-type(5){ left:75%; bottom:6px; animation-delay:1.3s; }
-.lightbox-download .bubble:nth-of-type(6){ left:88%; bottom:9px; animation-delay:1.6s; }
+/* ĐÃ SỬA: Điều chỉnh lại khoảng cách bottom từ 7px->10px xuống còn 2px->4px để bong bóng bay từ đáy nút mỏng */
+.lightbox-download .bubble:nth-of-type(1){ left:14%; bottom:2px; animation-delay:0s; }
+.lightbox-download .bubble:nth-of-type(2){ left:30%; bottom:4px; animation-delay:.35s; }
+.lightbox-download .bubble:nth-of-type(3){ left:48%; bottom:2px; animation-delay:.7s; }
+.lightbox-download .bubble:nth-of-type(4){ left:64%; bottom:3px; animation-delay:1s; }
+.lightbox-download .bubble:nth-of-type(5){ left:78%; bottom:2px; animation-delay:1.3s; }
+.lightbox-download .bubble:nth-of-type(6){ left:88%; bottom:4px; animation-delay:1.6s; }
 
 @keyframes bubbleFloat {
     0% {
         opacity: 0;
-        transform: translateY(0) scale(.3);
+        transform: translateY(0) scale(.4);
     }
     20% {
-        opacity: .9;
+        opacity: .8;
     }
     100% {
         opacity: 0;
-        transform: translateY(-34px) scale(1.8);
+        /* Thu ngắn biên độ bay lên thành -24px để bong bóng không bay vượt quá đỉnh nút mỏng */
+        transform: translateY(-24px) scale(1.6); 
     }
 }
 
@@ -299,21 +300,14 @@ body.lightbox-open {
 
 .lightbox-caption {
     position: fixed;
-
     left: 50%;
     bottom: 18px;
-
     transform: translateX(-50%);
-
     width: 80vw;
-
     text-align: center;
-
-    font-size: 16px;
+    font-size: 15px; /* Giảm nhẹ từ 16px xuống 15px giúp chữ thon mảnh thanh lịch */
     font-weight: 700;
-
     color: #fff;
-
     text-shadow: 0 3px 20px rgba(0,0,0,.45);
 }
 
@@ -324,32 +318,41 @@ body.lightbox-open {
 @media (max-width:768px) {
     .lightbox-prev,
     .lightbox-next {
-        width: 48px;
-        height: 48px;
-        font-size: 22px;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
     }
 
-    .lightbox-prev { left: 10px; }
-    .lightbox-next { right: 10px; }
+    .lightbox-prev { left: 8px; }
+    .lightbox-next { right: 8px; }
 
+    /* ĐÃ SỬA ĐỒNG BỘ: Khóa cứng chiều cao nút X thành 38px tinh tế trên điện thoại */
     .lightbox-close {
-        width: 48px;
-        height: 48px;
-        top: 14px;
-        right: 14px;
+        width: 38px !important;
+        height: 38px !important;
+        top: 14px !important;
+        right: 14px !important;
+        font-size: 20px !important;
     }
 
+    /* ĐÃ SỬA ĐỒNG BỘ: Nút Download thon gọn chiều cao 38px, nằm thẳng hàng tăm tắp với nút X (top: 14px) */
     .lightbox-download {
-        top: 14px;
-        right: 68px;
-        padding: 10px 14px;
-        font-size: 13px;
+        top: 14px !important;
+        right: 60px !important; /* Dịch sát nút X vừa vặn khuôn màn hình đứng */
+        height: 38px !important;
+        padding: 0 14px !important; /* Bỏ padding dọc cũ gây mập nút */
+        font-size: 12px !important;
+        gap: 6px !important;
+    }
+    
+    .lightbox-download .moon {
+        font-size: 13px !important;
     }
 
     .lightbox-caption {
         width: 92vw;
         bottom: 26px;
-        font-size: 14px;
+        font-size: 13px;
     }
 
     #lightbox-image {
