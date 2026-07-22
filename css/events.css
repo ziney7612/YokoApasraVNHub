@@ -389,7 +389,34 @@
     grid-template-columns: 1fr;
 }
 
+/* ======================================================
+   BACK LINK
+====================================================== */
 
+.event-detail-page .back-link{
+
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    margin-bottom:34px;
+
+    text-decoration:none;
+
+    font-size:.95rem;
+    font-weight:700;
+
+    color:var(--primary-dark);
+
+    transition:var(--transition);
+}
+
+.event-detail-page .back-link:hover{
+
+    transform:translateX(-4px);
+
+    color:var(--primary);
+}
 /* ======================================================
    💻 RESPONSIVE MÁY TÍNH BẢNG & LAPTOP NHỎ (Max-width: 1200px)
 ====================================================== */
