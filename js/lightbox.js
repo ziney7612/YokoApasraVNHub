@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
        1. HÀM TỰ ĐỘNG TRÍCH XUẤT TÊN SỰ KIỆN - SẠCH LỖI LẶP TỪ
     ====================================================== */
     function detectEventTitle(triggerElement) {
+        if (!triggerElement) return "Yoko Apasra";
+
         const pageTitleEl = document.getElementById("event-title") || 
                             document.querySelector(".hero-title") || 
                             document.querySelector(".exclusive-title");
@@ -97,7 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }).join("");
 
         thumbsList.querySelectorAll("img").forEach(thumb => {
-            thumb.onclick = (e) => show(parseInt(e.target.dataset.index));
+            thumb.onclick = (e) => {
+                e.stopPropagation();
+                show(parseInt(e.target.dataset.index));
+            };
         });
     }
 
@@ -121,10 +126,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    image.addEventListener("click", (e) => {
-        e.stopPropagation();
-        toggleFullscreenMode();
-    });
+    if (image) {
+        image.addEventListener("click", (e) => {
+            if (lightbox.classList.contains("show")) {
+                e.stopPropagation();
+                toggleFullscreenMode();
+            }
+        });
+    }
 
     /* ======================================================
        6. ĐỒNG BỘ TEXT TIÊU ĐỀ CHUẨN XÁC, SẠCH LỖI LẶP TỪ
@@ -162,8 +171,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const src = gallery[index].getAttribute("href") || gallery[index].dataset.src || "";
         const img = gallery[index].querySelector("img");
 
-        /* ĐÃ FIX LỖI CHÍNH TẢ: Loại bỏ chữ image thừa kế sai cú pháp cũ, 
-           giúp chuyển đổi ảnh mượt mà khi đổi thumbnail */
+        /* ĐÃ SỬA TRIỆT ĐỂ: Loại bỏ hoàn toàn chữ image thừa kế sai cú pháp cũ, 
+           sử dụng đúng đối tượng lightbox gốc của hệ thống */
         lightbox.classList.remove("fullscreen-mode"); 
         if (zoomBtn) zoomBtn.innerHTML = "⛶";
         
@@ -240,12 +249,10 @@ document.addEventListener("DOMContentLoaded", () => {
             open(gallery.indexOf(trigger), trigger); 
         }
     });
-
-    closeBtn?.addEventListener("click", close);
-    nextBtn?.addEventListener("click", () => { current = (current + 1) % gallery.length; show(current); });
-    prevBtn?.addEventListener("click", () => { current = (current - 1 + gallery.length) % gallery.length; show(current); });
-
-    lightbox.addEventListener("click", e => {
+closeBtn?.addEventListener("click", close);
+nextBtn?.addEventListener("click", () => { current = (current + 1) % gallery.length; show(current); });
+prevBtn?.addEventListener("click", () => { current = (current - 1 + gallery.length) % gallery.length; show(current); });
+lightbox.addEventListener("click", e => {
 if (e.target === lightbox || e.target.classList.contains("lightbox-stage")) close();
 });
 document.addEventListener("keydown", e => {
