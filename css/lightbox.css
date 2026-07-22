@@ -5,20 +5,17 @@
 .lightbox {
     position: fixed;
     inset: 0;
-
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: rgba(8, 8, 15, 0.72);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(8, 8, 15, 0.85);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     opacity: 0;
     visibility: hidden;
-
-    transition: .35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 99999;
+    padding: 24px;
 }
 
 .lightbox.show {
@@ -26,212 +23,63 @@
     visibility: visible;
 }
 
-body.lightbox-open {
-    overflow: hidden;
-}
+body.lightbox-open { overflow: hidden; }
 
 /*======================================================
-=                   IMAGE STAGE                        =
+=            TOP BAR (Cụm điều khiển phía trên)         =
 ======================================================*/
 
-.lightbox-stage {
-    position: fixed;
-    inset: 0;
-
+.lightbox-top-bar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-
-    padding: 40px;
-    pointer-events: none;
-    z-index: 1;
+    width: 100%;
+    z-index: 10;
 }
-
-/* Khung bọc bảo vệ ảnh chính, giấu vệt shimmer tràn viền */
-.lightbox-image-container {
-    position: relative !important;
-    overflow: hidden !important; 
-    border-radius: 24px; 
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: auto;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    z-index: 2;
-}
-
-/*======================================================
-=                   MAIN IMAGE                         =
-======================================================*/
-
-#lightbox-image {
-    max-width: 88vw;
-    max-height: 72vh; /* Hạ chiều cao xuống 72vh để nhường không gian cho Floating Bar ở đáy */
-    object-fit: contain;
-    border-radius: 24px;
-    cursor: zoom-in;
-    user-select: none;
-    -webkit-user-drag: none;
-    pointer-events: auto;
-    z-index: 2;
-    transition: opacity .35s ease, transform .35s ease;
-}
-
-#lightbox-image.loading {
-    opacity: 0;
-    transform: scale(.96);
-}
-
-/*======================================================
-=             NAV BUTTONS (Mũi tên trái/phải)          =
-======================================================*/
-
-.lightbox-prev,
-.lightbox-next {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 54px;
-    height: 54px;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 24px;
-    color: #fff;
-    background: rgba(255, 230, 245, 0.20);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 190, 220, 0.18);
-    box-shadow: 0 0 25px rgba(255, 170, 210, 0.15);
-    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
-}
-
-.lightbox-prev:hover,
-.lightbox-next:hover {
-    background: rgba(255, 230, 245, 0.25);
-    box-shadow: 0 0 40px rgba(255, 170, 210, 0.35);
-}
-
-.lightbox-prev { top: 50%; left: 22px; transform: translateY(-50%); }
-.lightbox-next { top: 50%; right: 22px; transform: translateY(-50%); }
-
-.lightbox-prev:hover { transform: translateY(-50%) scale(1.08); }
-.lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
-
-/*======================================================
-=            COUNTER (Thành phần đếm số góc trên)     =
-======================================================*/
 
 .lightbox-counter {
-    position: fixed;
-    top: 20px;
-    left: 24px;
-    padding: 10px 18px;
+    padding: 8px 16px;
     border-radius: 999px;
     font-size: 13px;
     font-weight: 700;
     color: #fff;
     background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/*======================================================
-=     🌟 NEW: BOTTOM FLOATING BAR (Thanh mờ kính dạt đáy) =
-======================================================*/
-
-.lightbox-bottom-bar {
-    position: fixed;
-    bottom: 24px; /* Khoảng cách lơ lửng cách đáy 24px cực sang */
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(90vw, 560px); /* Tự động dãn rộng trên PC, thu gọn trên mobile */
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    padding: 20px 24px;
-    
-    background: rgba(255, 235, 245, 0.15);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 32px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-    z-index: 1000;
-    isolation: isolate;
-}
-
-/* Tiêu đề chữ nằm gọn gàng bên trong thanh mờ kính */
-.lightbox-caption {
-    position: relative !important;
-    inset: auto !important;
-    transform: none !important;
-    width: 100% !important;
-    text-align: center;
-    font-size: 15px;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
-    margin: 0;
-    z-index: 5;
-}
-
-/* Hộp gom cụm 2 nút bấm nằm ngang sát nhau ở hàng dưới */
-.lightbox-buttons-group {
+.lightbox-action-buttons {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
-    width: 100%;
-    z-index: 5;
+    gap: 10px;
 }
 
-/*======================================================
-=    DOWNLOAD BUTTON (Chuyển sắc + Shimmer + Bong bóng) =
-======================================================*/
-
+/* KHÔI PHỤC: Nút Download Gradient kẹo ngọt chứa Shimmer & Bong bóng */
 .lightbox-download {
-    position: relative !important;
-    inset: auto !important; /* Hủy bỏ tọa độ fixed cũ */
-    
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     
-    height: 46px !important; /* Khóa độ cao thon thả chuẩn pixel */
-    padding: 0 10px 0 24px !important; /* Lề phải rộng hơn chừa chỗ cho mặt trăng */
+    height: 40px !important;
+    padding: 0 4px 0 18px !important; /* Dành chỗ trống đuôi chữ cho mặt trăng */
     border-radius: 999px;
     border: none !important;
     
-    /* Dải màu chuyển sắc dâu - lavender kẹo ngọt nguyên bản nịnh mắt */
     background: linear-gradient(135deg, #f397b9 0%, #d4bfe8 75%, #b2bcf1 100%) !important;
     box-shadow: 0 8px 25px rgba(243, 151, 185, 0.35) !important;
     
     text-decoration: none;
     color: #fff !important;
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 700;
     
-    overflow: hidden !important; /* Khóa vệt Shimmer và bong bóng */
+    overflow: hidden !important; /* Giữ chặt Shimmer và bong bóng */
+    position: relative;
     isolation: isolate;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: all 0.3s ease;
 }
 
-.lightbox-download:hover {
-    transform: translateY(-2px) scale(1.02) !important;
-    box-shadow: 0 12px 30px rgba(243, 151, 185, 0.45) !important;
-    opacity: 0.98;
-}
-
-/* HIỆU ỨNG VỆT SÁNG SHIMMER TỰ ĐỘNG CHẠY */
+/* KHÔI PHỤC: HIỆU ỨNG VỆT SÁNG SHIMMER CHẠY TỰ ĐỘNG */
 .lightbox-download::after {
     content: '';
     position: absolute;
@@ -255,29 +103,35 @@ body.lightbox-open {
     100% { left: 150%; }
 }
 
-/* VÒNG TRÒN KÍNH MỜ CHỨA MẶT TRĂNG ĐUÔI NÚT */
+.lightbox-download:hover {
+    opacity: 0.95;
+    box-shadow: 0 10px 30px rgba(243, 151, 185, 0.45) !important;
+    transform: scale(1.02);
+}
+
+/* KHÔI PHỤC: VÒNG TRÒN MẶT TRĂNG ĐUÔI CHỮ */
 .lightbox-download .icon-circle {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 34px !important;
-    height: 34px !important;
+    width: 32px !important;
+    height: 32px !important;
     border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.25) !important; 
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     color: #fff !important;
-    font-size: 14px !important;
-    margin-left: 12px !important;
+    font-size: 13px !important;
+    margin-left: 10px !important;
     z-index: 2;
 }
 
-/* BONG BÓNG KÍNH 3D BAY DẬP DỀNH TRONG NÚT MỚI */
+/* KHÔI PHỤC: 6 HẠT BONG BÓNG KÍNH 3D BAY LƠ LỬNG */
 .lightbox-download .bubble {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.85);
     opacity: 0;
@@ -286,103 +140,213 @@ body.lightbox-open {
     animation: bubbleFloatLightbox 2.5s infinite;
 }
 
-.lightbox-download:hover .bubble {
-    animation: bubbleFloatLightbox 2.0s infinite;
-}
+.lightbox-download:hover .bubble { animation: bubbleFloatLightbox 2.0s infinite; }
 
-.lightbox-download .bubble:nth-of-type(1){ left:14%; bottom:1px; animation-delay:0s; }
-.lightbox-download .bubble:nth-of-type(2){ left:32%; bottom:3px; animation-delay:.35s; }
-.lightbox-download .bubble:nth-of-type(3){ left:50%; bottom:1px; animation-delay:.7s; }
-.lightbox-download .bubble:nth-of-type(4){ left:66%; bottom:2px; animation-delay:1s; }
-.lightbox-download .bubble:nth-of-type(5){ left:78%; bottom:1px; animation-delay:1.3s; }
-.lightbox-download .bubble:nth-of-type(6){ left:86%; bottom:3px; animation-delay:1.6s; }
+.lightbox-download .bubble:nth-of-type(1){ left:12%; bottom:1px; animation-delay:0s; }
+.lightbox-download .bubble:nth-of-type(2){ left:28%; bottom:3px; animation-delay:.35s; }
+.lightbox-download .bubble:nth-of-type(3){ left:45%; bottom:1px; animation-delay:.7s; }
+.lightbox-download .bubble:nth-of-type(4){ left:60%; bottom:2px; animation-delay:1s; }
+.lightbox-download .bubble:nth-of-type(5){ left:72%; bottom:1px; animation-delay:1.3s; }
+.lightbox-download .bubble:nth-of-type(6){ left:82%; bottom:3px; animation-delay:1.6s; }
 
 @keyframes bubbleFloatLightbox {
     0% { opacity: 0; transform: translateY(0) scale(.4); }
     20% { opacity: .8; }
-    100% { opacity: 0; transform: translateY(-26px) scale(1.6); }
+    100% { opacity: 0; transform: translateY(-22px) scale(1.5); }
 }
 
-/*======================================================
-=                     NÚT ĐÓNG X                       =
-======================================================*/
-
+/* Nút Trái tim và nút Đóng X đồng bộ thon gọn */
+.lightbox-favorite,
 .lightbox-close {
-    position: relative !important;
-    inset: auto !important; /* Hủy bỏ tọa độ fixed cũ */
-    
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    background: rgba(255, 255, 255, 0.15) !important;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    
-    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.12);
     color: #fff;
+    font-size: 18px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: all 0.3s ease;
 }
 
+.lightbox-close { font-size: 22px; }
+
+.lightbox-favorite:hover,
 .lightbox-close:hover {
-    background: rgba(255, 255, 255, 0.25) !important;
+    background: rgba(255, 255, 255, 0.22);
     transform: scale(1.05);
 }
 
-
 /*======================================================
-=            📱 RESPONSIVE ĐIỆN THOẠI DI ĐỘNG           =
+=            IMAGE STAGE (Ảnh chính trung tâm)          =
 ======================================================*/
 
-@media (max-width: 768px) {
-    .lightbox-prev,
-    .lightbox-next {
-        width: 44px;
-        height: 44px;
-        font-size: 20px;
-    }
+.lightbox-stage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    width: 100%;
+    margin: 16px 0;
+}
 
-    .lightbox-prev { left: 8px; }
-    .lightbox-next { right: 8px; }
-
-    /* Thu nhỏ kích thước thanh Bottom Bar ôm khít màn hình dọc di động */
-.lightbox-bottom-bar {
-bottom: 16px;
-width: 92vw;
-padding: 14px 18px;
-border-radius: 24px;
-gap: 12px;
-}
-.lightbox-caption {
-font-size: 13px;
-}
-/* Thu nhỏ nút tải ảnh thon thả trên điện thoại */
-.lightbox-download {
-height: 38px !important;
-padding: 0 8px 0 16px !important;
-font-size: 12px !important;
-}
-.lightbox-download .icon-circle {
-width: 28px !important;
-height: 28px !important;
-font-size: 11px !important;
-margin-left: 8px !important;
-}
-.lightbox-close {
-width: 38px !important;
-height: 38px !important;
-font-size: 20px;
-}
-#lightbox-image {
-max-width: 94vw;
-max-height: 66vh; /* Co độ cao ảnh lại một chút tránh che mất dock điều khiển ở đáy */
-}
 .lightbox-image-container {
-border-radius: 16px;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+    max-width: 85vw;
+    max-height: 56vh;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+#lightbox-image {
+    display: block;
+    max-width: 100%;
+    max-height: 56vh;
+    object-fit: contain;
+    transition: opacity .3s ease;
+}
+
+.lightbox-zoom-btn {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    z-index: 5;
+    transition: background 0.3s;
+}
+.lightbox-zoom-btn:hover { background: rgba(0, 0, 0, 0.7); }
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+.lightbox-stage:hover .lightbox-prev { opacity: 1; transform: translateY(-50%) translateX(5px); }
+.lightbox-stage:hover .lightbox-next { opacity: 1; transform: translateY(-50%) translateX(-5px); }
+.lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.25); }
+
+/*======================================================
+=        BOTTOM WRAPPER (Cụm thông tin & Thumbnail)     =
+======================================================*/
+
+.lightbox-bottom-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    z-index: 10;
+}
+
+.lightbox-caption {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    margin: 0;
+    text-align: center;
+}
+
+.lightbox-thumbnails-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: min(100%, 650px);
+}
+
+.lightbox-thumbs-list {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 4px 0;
+    width: 100%;
+    scroll-behavior: smooth;
+}
+.lightbox-thumbs-list::-webkit-scrollbar { display: none; }
+
+.lightbox-thumbs-list img {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.4;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.lightbox-thumbs-list img.active {
+    opacity: 1;
+    border-color: #ff69ab;
+    transform: scale(1.05);
+}
+
+.thumb-nav {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    transition: color 0.3s;
+}
+.thumb-nav:hover { color: #fff; }
+
+/*======================================================
+=             📱 ĐỒNG BỘ TRÊN MOBILE (Max-width: 768px) =
+======================================================*/
+@media (max-width: 768px) {
+    .lightbox { padding: 16px; }
+    
+    /* Ẩn chữ trên mobile, giữ nút tròn gradient chứa mặt trăng óng ánh */
+    .lightbox-download span { display: none; }
+    .lightbox-download { padding: 0; width: 40px; height: 40px; }
+    .lightbox-download .icon-circle { margin-left: 0; width: 32px; height: 32px; }
+
+    .lightbox-image-container { max-width: 95vw; max-height: 48vh; }
+    #lightbox-image { max-height: 48vh; }
+
+    .lightbox-prev, .lightbox-next { opacity: 1; width: 38px; height: 38px; font-size: 16px; }
+    .lightbox-prev { left: 6px; }
+    .lightbox-next { right: 6px; }
+    
+    .lightbox-thumbnails-container { width: 100%; gap: 6px; }
+    .lightbox-thumbs-list img { width: 44px; height: 44px; }
 }
