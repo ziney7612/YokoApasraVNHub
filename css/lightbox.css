@@ -1,6 +1,6 @@
-/*==================================
-=          LIGHTBOX ROOT           =
-==================================*/
+/*======================================================
+=                   LIGHTBOX ROOT                      =
+======================================================*/
 
 .lightbox {
     position: fixed;
@@ -10,15 +10,14 @@
     justify-content: center;
     align-items: center;
 
-    background: rgba(8,8,15,.72);
+    background: rgba(8, 8, 15, 0.72);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
 
     opacity: 0;
     visibility: hidden;
 
-    transition: .35s;
-
+    transition: .35s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 99999;
 }
 
@@ -31,9 +30,9 @@ body.lightbox-open {
     overflow: hidden;
 }
 
-/*==================================
-=          IMAGE STAGE             =
-==================================*/
+/*======================================================
+=                   IMAGE STAGE                        =
+======================================================*/
 
 .lightbox-stage {
     position: fixed;
@@ -44,54 +43,39 @@ body.lightbox-open {
     align-items: center;
 
     padding: 40px;
-
     pointer-events: none;
-
     z-index: 1;
 }
 
-/*==================================
-=    NEW: IMAGE CONTAINER WRAPPER  =
-==================================*/
-
-/* SỬA LỖI: Lớp bọc bảo vệ này sẽ khóa chặt vệt shimmer, không cho lướt ra nền tối */
+/* Khung bọc bảo vệ ảnh chính, giấu vệt shimmer tràn viền */
 .lightbox-image-container {
     position: relative !important;
     overflow: hidden !important; 
-    border-radius: 24px; /* Trùng với bo góc của ảnh */
-    box-shadow: 0 25px 80px rgba(0,0,0,.45);
+    border-radius: 24px; 
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
     display: flex;
     justify-content: center;
     align-items: center;
     pointer-events: auto;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 2;
 }
 
-/*==================================
-=          MAIN IMAGE              =
-==================================*/
+/*======================================================
+=                   MAIN IMAGE                         =
+======================================================*/
 
 #lightbox-image {
     max-width: 88vw;
-    max-height: 88vh;
-
+    max-height: 72vh; /* Hạ chiều cao xuống 72vh để nhường không gian cho Floating Bar ở đáy */
     object-fit: contain;
     border-radius: 24px;
-
     cursor: zoom-in;
-
     user-select: none;
     -webkit-user-drag: none;
-
     pointer-events: auto;
     z-index: 2;
-
-    /* TỐI ƯU: Thêm đường viền kính mỏng bắt sáng cho bức ảnh như đang lơ lửng */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    transition:
-        opacity .35s ease,
-        transform .35s ease;
+    transition: opacity .35s ease, transform .35s ease;
 }
 
 #lightbox-image.loading {
@@ -99,223 +83,263 @@ body.lightbox-open {
     transform: scale(.96);
 }
 
-/*==================================
-=             BUTTONS              =
-==================================*/
+/*======================================================
+=             NAV BUTTONS (Mũi tên trái/phải)          =
+======================================================*/
 
-.lightbox-close,
-.lightbox-prev,
-.lightbox-next,
-.lightbox-download,
-.lightbox-counter,
-.lightbox-caption {
-    z-index: 1000;
-}
-
-.lightbox-close,
-.lightbox-prev,
-.lightbox-next,
-.lightbox-download {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    background: rgba(255,230,245,.20);
-
-    border: 1px solid rgba(255,190,220,.18);
-
-    box-shadow:
-        0 0 25px rgba(255,170,210,.18),
-        0 0 50px rgba(255,170,210,.08);
-
-    color: #fff;
-
-    transition: .3s ease;
-}
-
-.lightbox-close:hover,
-.lightbox-prev:hover,
-.lightbox-next:hover {
-    background: rgba(255,230,245,.18);
-    box-shadow: 0 0 40px rgba(255,170,210,.35);
-}
-
-/* ĐÃ SỬA: Tách riêng hover của Download để khóa cứng scale dọc, không làm lệch hàng */
-.lightbox-download:hover {
-    background: rgba(255,230,245,.18) !important;
-    box-shadow: 0 0 40px rgba(255,170,210,.35) !important;
-    transform: scale(1.02) !important; /* Chỉ nở nhẹ, không bị đẩy lên trên */
-}
-
-/*==================================
-=          CLOSE / NAV             =
-==================================*/
-
-.lightbox-close,
 .lightbox-prev,
 .lightbox-next {
     position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-}
-
-/* ĐÃ SỬA: Khóa cứng chiều cao nút X thành 46px đồng bộ hoàn hảo */
-.lightbox-close {
-    top: 20px;
-    right: 20px;
-    width: 46px !important;
-    height: 46px !important;
-    border: 1px solid rgba(255,190,220,.18);
-    border-radius: 999px;
-    font-size: 26px; /* Hạ bớt từ 34px xuống 26px để dấu nhân gọn gàng */
-}
-
-.lightbox-prev,
-.lightbox-next {
     width: 54px;
     height: 54px;
     border: none;
     border-radius: 999px;
+    cursor: pointer;
     font-size: 24px;
+    color: #fff;
+    background: rgba(255, 230, 245, 0.20);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 190, 220, 0.18);
+    box-shadow: 0 0 25px rgba(255, 170, 210, 0.15);
+    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
 }
 
-.lightbox-prev {
-    top: 50%;
-    left: 22px;
-    transform: translateY(-50%);
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 230, 245, 0.25);
+    box-shadow: 0 0 40px rgba(255, 170, 210, 0.35);
 }
 
-.lightbox-next {
-    top: 50%;
-    right: 22px;
-    transform: translateY(-50%);
-}
+.lightbox-prev { top: 50%; left: 22px; transform: translateY(-50%); }
+.lightbox-next { top: 50%; right: 22px; transform: translateY(-50%); }
 
 .lightbox-prev:hover { transform: translateY(-50%) scale(1.08); }
 .lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
-.lightbox-close:hover { transform: scale(1.05); }
 
-/*==================================
-=            COUNTER               =
-==================================*/
+/*======================================================
+=            COUNTER (Thành phần đếm số góc trên)     =
+======================================================*/
 
 .lightbox-counter {
     position: fixed;
-    top: 20px; /* Hạ từ 24px xuống 20px để thẳng hàng đối xứng với cụm nút bên phải */
+    top: 20px;
     left: 24px;
     padding: 10px 18px;
     border-radius: 999px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: #fff;
-
-    /* TỐI ƯU: Đổi sang tone nền kính mờ tối sâu giống khối lịch để tôn ảnh idol rõ nhất */
-    background: rgba(0, 0, 0, 0.35) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 8px 25px rgba(0,0,0,.25);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
 }
 
-/*==================================
-=            DOWNLOAD              =
-==================================*/
+/*======================================================
+=     🌟 NEW: BOTTOM FLOATING BAR (Thanh mờ kính dạt đáy) =
+======================================================*/
 
-.lightbox-download {
+.lightbox-bottom-bar {
     position: fixed;
-
-    /* ĐO ĐẠC CHUẨN XÁC: top trùng khớp 20px với nút X, right lùi sang 78px tinh tế */
-    top: 20px !important;
-    right: 78px !important;
-
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important; /* Khít khoảng cách icon mặt trăng với chữ */
-
-    /* ĐÃ SỬA: Khóa cứng chiều cao 46px thon thả, bỏ padding dọc để chống mập nút */
-    height: 46px !important;
-    padding: 0 22px !important; 
-
-    border-radius: 999px;
-    text-decoration: none;
-    color: #fff;
-    font-size: 13.5px; /* Giảm nhẹ xuống 13.5px giúp chữ thanh mảnh cao cấp */
-    font-weight: 600;
-    overflow: hidden !important;
+    bottom: 24px; /* Khoảng cách lơ lửng cách đáy 24px cực sang */
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90vw, 560px); /* Tự động dãn rộng trên PC, thu gọn trên mobile */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    
+    background: rgba(255, 235, 245, 0.15);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    z-index: 1000;
     isolation: isolate;
 }
 
-/* KHÓA VIỀN CHỐNG TRÀN VỆT SÁNG NGHIÊNG GÓC */
-.lightbox-download::after,
-.lightbox-download::before {
-    max-width: 100% !important;
+/* Tiêu đề chữ nằm gọn gàng bên trong thanh mờ kính */
+.lightbox-caption {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+    margin: 0;
+    z-index: 5;
 }
-/*==================================
-=             BUBBLES              =
-==================================*/
 
+/* Hộp gom cụm 2 nút bấm nằm ngang sát nhau ở hàng dưới */
+.lightbox-buttons-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    z-index: 5;
+}
+
+/*======================================================
+=    DOWNLOAD BUTTON (Chuyển sắc + Shimmer + Bong bóng) =
+======================================================*/
+
+.lightbox-download {
+    position: relative !important;
+    inset: auto !important; /* Hủy bỏ tọa độ fixed cũ */
+    
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    height: 46px !important; /* Khóa độ cao thon thả chuẩn pixel */
+    padding: 0 10px 0 24px !important; /* Lề phải rộng hơn chừa chỗ cho mặt trăng */
+    border-radius: 999px;
+    border: none !important;
+    
+    /* Dải màu chuyển sắc dâu - lavender kẹo ngọt nguyên bản nịnh mắt */
+    background: linear-gradient(135deg, #f397b9 0%, #d4bfe8 75%, #b2bcf1 100%) !important;
+    box-shadow: 0 8px 25px rgba(243, 151, 185, 0.35) !important;
+    
+    text-decoration: none;
+    color: #fff !important;
+    font-size: 13.5px;
+    font-weight: 700;
+    
+    overflow: hidden !important; /* Khóa vệt Shimmer và bong bóng */
+    isolation: isolate;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.lightbox-download:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 12px 30px rgba(243, 151, 185, 0.45) !important;
+    opacity: 0.98;
+}
+
+/* HIỆU ỨNG VỆT SÁNG SHIMMER TỰ ĐỘNG CHẠY */
+.lightbox-download::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: shimmerDownload 4s infinite ease-in-out;
+}
+
+@keyframes shimmerDownload {
+    0% { left: -150%; }
+    50% { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* VÒNG TRÒN KÍNH MỜ CHỨA MẶT TRĂNG ĐUÔI NÚT */
+.lightbox-download .icon-circle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.25) !important; 
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
+    font-size: 14px !important;
+    margin-left: 12px !important;
+    z-index: 2;
+}
+
+/* BONG BÓNG KÍNH 3D BAY DẬP DỀNH TRONG NÚT MỚI */
 .lightbox-download .bubble {
     position: absolute;
-    width: 6px; /* Giảm nhẹ từ 8px xuống 6px để hạt bong bóng nhỏ nhắn, tinh tế hơn */
+    width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: rgba(255,255,255,.8);
+    background: rgba(255, 255, 255, 0.85);
     opacity: 0;
     pointer-events: none;
-    animation: bubbleFloat 2.3s infinite;
+    z-index: 1;
+    animation: bubbleFloatLightbox 2.5s infinite;
 }
 
 .lightbox-download:hover .bubble {
-    animation: bubbleFloat 2.0s infinite;
+    animation: bubbleFloatLightbox 2.0s infinite;
 }
 
-/* ĐÃ SỬA: Điều chỉnh lại khoảng cách bottom từ 7px->10px xuống còn 2px->4px để bong bóng bay từ đáy nút mỏng */
-.lightbox-download .bubble:nth-of-type(1){ left:14%; bottom:2px; animation-delay:0s; }
-.lightbox-download .bubble:nth-of-type(2){ left:30%; bottom:4px; animation-delay:.35s; }
-.lightbox-download .bubble:nth-of-type(3){ left:48%; bottom:2px; animation-delay:.7s; }
-.lightbox-download .bubble:nth-of-type(4){ left:64%; bottom:3px; animation-delay:1s; }
-.lightbox-download .bubble:nth-of-type(5){ left:78%; bottom:2px; animation-delay:1.3s; }
-.lightbox-download .bubble:nth-of-type(6){ left:88%; bottom:4px; animation-delay:1.6s; }
+.lightbox-download .bubble:nth-of-type(1){ left:14%; bottom:1px; animation-delay:0s; }
+.lightbox-download .bubble:nth-of-type(2){ left:32%; bottom:3px; animation-delay:.35s; }
+.lightbox-download .bubble:nth-of-type(3){ left:50%; bottom:1px; animation-delay:.7s; }
+.lightbox-download .bubble:nth-of-type(4){ left:66%; bottom:2px; animation-delay:1s; }
+.lightbox-download .bubble:nth-of-type(5){ left:78%; bottom:1px; animation-delay:1.3s; }
+.lightbox-download .bubble:nth-of-type(6){ left:86%; bottom:3px; animation-delay:1.6s; }
 
-@keyframes bubbleFloat {
-    0% {
-        opacity: 0;
-        transform: translateY(0) scale(.4);
-    }
-    20% {
-        opacity: .8;
-    }
-    100% {
-        opacity: 0;
-        /* Thu ngắn biên độ bay lên thành -24px để bong bóng không bay vượt quá đỉnh nút mỏng */
-        transform: translateY(-24px) scale(1.6); 
-    }
+@keyframes bubbleFloatLightbox {
+    0% { opacity: 0; transform: translateY(0) scale(.4); }
+    20% { opacity: .8; }
+    100% { opacity: 0; transform: translateY(-26px) scale(1.6); }
 }
 
-/*==================================
-=            CAPTION               =
-==================================*/
+/*======================================================
+=                     NÚT ĐÓNG X                       =
+======================================================*/
 
-.lightbox-caption {
-    position: fixed;
-    left: 50%;
-    bottom: 18px;
-    transform: translateX(-50%);
-    width: 80vw;
-    text-align: center;
-    font-size: 15px; /* Giảm nhẹ từ 16px xuống 15px giúp chữ thon mảnh thanh lịch */
-    font-weight: 700;
+.lightbox-close {
+    position: relative !important;
+    inset: auto !important; /* Hủy bỏ tọa độ fixed cũ */
+    
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    font-size: 24px;
     color: #fff;
-    text-shadow: 0 3px 20px rgba(0,0,0,.45);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/*==================================
-=             MOBILE               =
-==================================*/
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: scale(1.05);
+}
 
-@media (max-width:768px) {
+
+/*======================================================
+=            📱 RESPONSIVE ĐIỆN THOẠI DI ĐỘNG           =
+======================================================*/
+
+@media (max-width: 768px) {
     .lightbox-prev,
     .lightbox-next {
         width: 44px;
@@ -326,41 +350,39 @@ body.lightbox-open {
     .lightbox-prev { left: 8px; }
     .lightbox-next { right: 8px; }
 
-    /* ĐÃ SỬA ĐỒNG BỘ: Khóa cứng chiều cao nút X thành 38px tinh tế trên điện thoại */
-    .lightbox-close {
-        width: 38px !important;
-        height: 38px !important;
-        top: 14px !important;
-        right: 14px !important;
-        font-size: 20px !important;
-    }
-
-    /* ĐÃ SỬA ĐỒNG BỘ: Nút Download thon gọn chiều cao 38px, nằm thẳng hàng tăm tắp với nút X (top: 14px) */
-    .lightbox-download {
-        top: 14px !important;
-        right: 60px !important; /* Dịch sát nút X vừa vặn khuôn màn hình đứng */
-        height: 38px !important;
-        padding: 0 14px !important; /* Bỏ padding dọc cũ gây mập nút */
-        font-size: 12px !important;
-        gap: 6px !important;
-    }
-    
-    .lightbox-download .moon {
-        font-size: 13px !important;
-    }
-
-    .lightbox-caption {
-        width: 92vw;
-        bottom: 26px;
-        font-size: 13px;
-    }
-
-    #lightbox-image {
-        max-width: 94vw;
-        max-height: 82vh;
-    }
-
-    .lightbox-image-container {
-        border-radius: 16px;
-    }
+    /* Thu nhỏ kích thước thanh Bottom Bar ôm khít màn hình dọc di động */
+.lightbox-bottom-bar {
+bottom: 16px;
+width: 92vw;
+padding: 14px 18px;
+border-radius: 24px;
+gap: 12px;
+}
+.lightbox-caption {
+font-size: 13px;
+}
+/* Thu nhỏ nút tải ảnh thon thả trên điện thoại */
+.lightbox-download {
+height: 38px !important;
+padding: 0 8px 0 16px !important;
+font-size: 12px !important;
+}
+.lightbox-download .icon-circle {
+width: 28px !important;
+height: 28px !important;
+font-size: 11px !important;
+margin-left: 8px !important;
+}
+.lightbox-close {
+width: 38px !important;
+height: 38px !important;
+font-size: 20px;
+}
+#lightbox-image {
+max-width: 94vw;
+max-height: 66vh; /* Co độ cao ảnh lại một chút tránh che mất dock điều khiển ở đáy */
+}
+.lightbox-image-container {
+border-radius: 16px;
+}
 }
