@@ -313,7 +313,7 @@
 /* ------------------------------------------------------
    VÒNG TRÒN KÍNH MỜ CHỨA MẶT TRĂNG (Căn chỉnh theo ảnh mẫu)
 ------------------------------------------------------ */
-.btn-secondary .icon-circle {
+.btn-secondary .moon {
     display: flex;
     align-items: center;
     justify-content: center;
