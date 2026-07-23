@@ -57,7 +57,7 @@
     .nav-menu a{ font-size:.95rem; }
     .home-hero{ padding:80px 0 70px; }
     .home-hero-layout{ display:flex; align-items:center; gap:45px; }
-    .home-hero-copy{ flex:1; margin-top:0; text-align:left; }
+    .home-hero-copy{ flex:1; margin-top:-50px; text-align:left; }
     .home-hero-title{ font-size:3.25rem; }
     .home-hero-desc{ max-width:unset; }
     .home-hero-visual{ flex:1; display:flex; justify-content:center; }
@@ -68,7 +68,7 @@
     .hero-layout{ display:flex; align-items:center; gap:40px; }
     .hero-copy{ flex:1; }
     .hero-image{ flex:1; display:flex; justify-content:center; }
-    .hero-image img{ width:620px; margin-right:-30px; margin-bottom:-100px; }
+    .hero-image img{ width:620px; margin-right:-50px; margin-bottom:-100px; }
     .hero-title{ font-size:3.2rem; }
     .hero-desc{ max-width:unset; }
     .hero-stats { display: flex !important; flex-direction: row !important; justify-content: space-around !important; gap:15px; }
