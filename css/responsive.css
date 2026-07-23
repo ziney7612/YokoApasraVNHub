@@ -72,7 +72,7 @@
     .hero-title{ font-size:3.2rem; }
     .hero-desc{ max-width:unset; }
     .hero-stats { display: flex !important; flex-direction: row !important; justify-content: space-around !important; gap:15px; }
-    .latest-card{ flex-direction:row; align-items:center; }
+    .latest-card{ flex-direction:row; align-items:center; margin-top:-60px; }
     .events-toolbar{ flex-direction:column; align-items:stretch; gap:18px; }
     .toolbar-right{ justify-content:space-between; }
     .events-grid{ grid-template-columns:repeat(2,1fr); }
