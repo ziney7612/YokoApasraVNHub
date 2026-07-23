@@ -387,7 +387,7 @@
    GLASS CARD
 ====================================================== */
 
-.glass-card{
+.about-glass-card{
 
     padding:40px;
 
@@ -409,7 +409,7 @@
 
 }
 
-.glass-card h2{
+.about-glass-card h2{
 
     margin-top:0;
 
@@ -421,7 +421,7 @@
 
 }
 
-.glass-card p{
+.about-glass-card p{
 
     margin-bottom:18px;
 
@@ -431,7 +431,7 @@
 
 }
 
-.glass-card.large{
+.about-glass-card.large{
 
     height:100%;
 
