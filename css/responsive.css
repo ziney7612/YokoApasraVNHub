@@ -68,7 +68,7 @@
     .hero-layout{ display:flex; align-items:center; gap:40px; }
     .hero-copy{ flex:1; }
     .hero-image{ flex:1; display:flex; justify-content:center; }
-    .hero-image img{ width:620px; }
+    .hero-image img{ width:620px; margin-right:-30px; margin-bottom:-100px; }
     .hero-title{ font-size:3.2rem; }
     .hero-desc{ max-width:unset; }
     .hero-stats { display: flex !important; flex-direction: row !important; justify-content: space-around !important; gap:15px; }
