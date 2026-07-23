@@ -29,6 +29,7 @@
     .header-container{ gap:30px; }
     .nav-menu{ gap:24px; }
     .home-hero-layout{ grid-template-columns:430px 1fr; }
+    .home-hero-copy{ margin-top:-120px; }
     .home-hero-title{ font-size:4rem; }
     .home-hero-desc{ font-size:1.05rem; }
     .home-hero-visual img{ width:620px; }
