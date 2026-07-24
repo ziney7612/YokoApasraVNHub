@@ -1148,51 +1148,48 @@
     width:150px;
 }
 
+.about-footer-group a{
 
-/* Responsive */
+    display:flex;
+    align-items:center;
+    gap:14px;
 
-@media(max-width:992px){
+    padding:10px 0;
 
-    .about-footer-card{
+    text-decoration:none;
 
-        grid-template-columns:1fr;
-    }
+    color:var(--text-dark);
 
-    .about-footer-divider{
-
-        display:none;
-    }
-
-    .about-footer-left{
-
-        flex-direction:column;
-
-        text-align:center;
-    }
-
-    .about-footer-btn{
-
-        margin:auto;
-        margin-top:25px;
-    }
-
-    .about-footer-right{
-
-        align-items:flex-start;
-    }
-
-    .about-footer-chibi{
-
-        position:static;
-
-        width:120px;
-
-        margin-top:20px;
-
-        align-self:flex-end;
-    }
+    transition:
+        color .25s ease,
+        transform .25s ease;
 
 }
+
+.about-footer-group a:hover{
+
+    color:#ef84b2;
+
+    transform:translateX(6px);
+
+}
+
+.about-footer-group a i{
+
+    width:22px;
+
+    text-align:center;
+
+    transition:transform .25s ease;
+
+}
+
+.about-footer-group a:hover i{
+
+    transform:scale(1.1);
+
+}
+
 /* ======================================================
    FOOTER
 ====================================================== */
@@ -1210,8 +1207,6 @@
     color:var(--text-light);
 
 }
-
-
 
 /* ======================================================
    FLOAT ANIMATION
